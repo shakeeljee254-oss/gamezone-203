@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameZone 203 - Free Online Games</title>
+<meta name="description" content="Play free online arcade games at GameZone 203.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#080b18;
+  color:white;
+  font-family:Arial,sans-serif;
+}
+header{
+  display:flex;justify-content:space-between;
+  align-items:center;padding:22px 7%;
+  background:#10152a;border-bottom:1px solid #252b49;
+}
+.logo{font-size:25px;font-weight:bold;color:#a78bfa}
+nav a{color:white;text-decoration:none;margin-left:22px}
+.hero{text-align:center;padding:75px 20px 55px}
+.hero h1{font-size:48px;margin-bottom:15px}
+.hero h1 span{color:#9b7bff}
+.hero p{color:#aab1ce;font-size:17px}
+.search{
+  margin:28px auto;width:90%;max-width:500px;
+  padding:15px;border-radius:12px;
+  background:#171e38;color:white;
+  border:1px solid #5545a5;font-size:16px;
+}
+section{padding:25px 7%}
+section h2{font-size:25px;margin-bottom:25px}
+.games{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:22px;
+}
+.card{
+  background:linear-gradient(145deg,#202849,#11172d);
+  border:1px solid #343b63;
+  border-radius:17px;padding:25px 15px;
+  text-align:center;
+  transition:.3s;
+}
+.card:hover{
+  transform:translateY(-7px);
+  border-color:#a78bfa;
+  box-shadow:0 10px 30px #7040ff33;
+}
+.emoji{font-size:55px;margin-bottom:15px}
+.card h3{margin-bottom:17px}
+.card button{
+  background:linear-gradient(90deg,#7045ee,#a855f7);
+  color:white;border:0;padding:11px 25px;
+  border-radius:9px;font-weight:bold;cursor:pointer;
+}
+footer{
+  text-align:center;padding:35px;
+  color:#9ba3c4;margin-top:40px;
+  background:#10152a;
+}
+@media(max-width:600px){
+  .hero h1{font-size:34px}
+  header{padding:18px 5%}
+  nav a{margin-left:10px;font-size:13px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎮 GameZone 203</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#games">Games</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>PLAY <span>UNLIMITED</span></h1>
+  <p>Discover exciting free online arcade games!</p>
+  <input class="search" id="search"
+  placeholder="🔍 Search your favorite game...">
+</div>
+
+<section id="games">
+  <h2>🔥 Popular Games</h2>
+  <div class="games" id="gameList">
+
+    <div class="card"><div class="emoji">🏎️</div><h3>Neon Racer</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🚀</div><h3>Galaxy Defender</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🌀</div><h3>Ball Maze 3D</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🏃</div><h3>Jungle Rush</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🐍</div><h3>Neon Snake</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🏀</div><h3>Hoops Master</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🏗️</div><h3>Tower Stack</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🫧</div><h3>Bubble Blast</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🧟</div><h3>Zombie Survival</h3><button onclick="comingSoon()">Play Now</button></div>
+    <div class="card"><div class="emoji">🍉</div><h3>Fruit Slice 3D</h3><button onclick="comingSoon()">Play Now</button></div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 GameZone 203 | Free Online Games
+</footer>
+
+<script>
+function comingSoon(){
+  alert("Game coming soon! Stay tuned.");
+}
+
+document.getElementById("search").addEventListener("input",function(){
+  let value=this.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(card=>{
+    card.style.display=card.innerText.toLowerCase().includes(value)?"block":"none";
+  });
+});
+</script>
+
+</body>
+</html>
