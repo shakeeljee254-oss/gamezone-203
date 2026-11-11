@@ -187,13 +187,25 @@ function update(){
  draw();
 }
 
-function startGame(){
- if(playing)return;
- if(msg.textContent.includes("GAME OVER"))reset();
- playing=true;
- msg.textContent="Good Luck! 🎮";
- loop=setInterval(update,120);
+let paused = false;
+
+function togglePause(){
+ if(!playing)return;
+
+ if(!paused){
+  clearInterval(loop);
+  paused=true;
+  msg.textContent="GAME PAUSED ⏸";
+  document.getElementById("pause").textContent="▶ RESUME";
+ }else{
+  paused=false;
+  msg.textContent="Good Luck! 🎮";
+  document.getElementById("pause").textContent="⏸ PAUSE";
+  loop=setInterval(update,120);
+ }
 }
+
+document.getElementById("pause").onclick=togglePause;
 
 document.addEventListener("keydown",e=>{
  const keys={
