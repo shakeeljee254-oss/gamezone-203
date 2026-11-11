@@ -73,8 +73,9 @@ button:active{transform:scale(.95)}
  <canvas id="game" width="400" height="400"></canvas>
 
  <h3 id="message">Press START to Play!</h3>
- <button id="start">START GAME</button>
- <button id="restart">RESTART</button>
+<button id="start">START GAME</button>
+<button id="restart">RESTART</button>
+<button id="pause">⏸ PAUSE</button>
 
  <div class="controls">
   <span></span><button onclick="turn(0,-1)">⬆️</button><span></span>
@@ -101,17 +102,17 @@ let snake,food,dx,dy,score,best,playing,loop;
 best=Number(localStorage.getItem("snakeBest")||0);
 bestEl.textContent=best;
 
-function reset(){
- clearInterval(loop);
- snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
- dx=1;dy=0;score=0;playing=false;
+function startGame(){
+ if(playing)return;
+
+ if(msg.textContent.includes("GAME OVER")){
+  reset();
+ }
+
+ playing=true;
  paused=false;
- document.getElementById("pause").textContent="⏸ PAUSE";
- food={x:15,y:10};
- scoreEl.textContent=0;
- msg.textContent="Press START to Play!";
- draw();
-}
+ msg.textContent="Good Luck! 🎮";
+ loop=setInterval(update,120);
 }
 
 function placeFood(){
