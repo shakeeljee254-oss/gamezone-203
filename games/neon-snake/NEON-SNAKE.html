@@ -105,10 +105,13 @@ function reset(){
  clearInterval(loop);
  snake=[{x:10,y:10},{x:9,y:10},{x:8,y:10}];
  dx=1;dy=0;score=0;playing=false;
+ paused=false;
+ document.getElementById("pause").textContent="⏸ PAUSE";
  food={x:15,y:10};
  scoreEl.textContent=0;
  msg.textContent="Press START to Play!";
  draw();
+}
 }
 
 function placeFood(){
