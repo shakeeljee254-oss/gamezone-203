@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover and play free browser games at GameZone.">
+  <meta name="theme-color" content="#090b14">
+  <title>GameZone — Play Beyond Limits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html" aria-label="GameZone home">
+        <span class="brand-mark">G<span>Z</span></span>
+        <span class="brand-name">GAME<span>ZONE</span><small>PLAY BEYOND LIMITS</small></span>
+      </a>
+
+      <div class="side-label">MENU</div>
+      <nav class="side-nav" aria-label="Main navigation">
+        <a class="nav-link active" href="#home"><span class="nav-icon">⌂</span> Home</a>
+        <a class="nav-link" href="#library"><span class="nav-icon">▦</span> All Games</a>
+        <a class="nav-link" href="#categories"><span class="nav-icon">◈</span> Categories</a>
+      </nav>
+
+      <div class="side-label collection-label">YOUR COLLECTION</div>
+      <nav class="side-nav">
+        <a class="nav-link" href="#library"><span class="nav-icon">♡</span> Favorites <span class="soon-tag">SOON</span></a>
+        <a class="nav-link" href="#library"><span class="nav-icon">◷</span> Recently Played</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-promo">
+          <div class="promo-orb">✦</div>
+          <strong>More games.<br>More fun.</strong>
+          <p>New adventures are on the way.</p>
+          <a href="#library">Explore library <span>→</span></a>
+        </div>
+        <div class="sidebar-foot">© 2026 GameZone</div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="home">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" aria-label="Open menu">☰</button>
+        <div class="breadcrumb">Discover <span>/</span> <strong>Home</strong></div>
+        <div class="top-actions">
+          <label class="top-search">
+            <span>⌕</span>
+            <input id="gameSearch" type="search" placeholder="Search games..." autocomplete="off">
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="avatar" aria-label="GameZone player">G</div>
+        </div>
+      </header>
+
+      <section class="welcome-row">
+        <div>
+          <p class="eyebrow"><span class="live-dot"></span> YOUR NEXT ADVENTURE STARTS HERE</p>
+          <h1>Ready to <span>play?</span></h1>
+          <p class="welcome-copy">Take a break, challenge yourself, and discover your next favorite game.</p>
+        </div>
+        <div class="welcome-stats">
+          <div class="stat-box"><span class="stat-icon">🎮</span><div><strong id="gameCount">01</strong><small>AVAILABLE GAME</small></div></div>
+          <div class="stat-box"><span class="stat-icon purple">✦</span><div><strong>FREE</strong><small>ALWAYS FUN</small></div></div>
+        </div>
+      </section>
+
+      <section class="hero-banner" aria-label="Featured game">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+          <span class="feature-label"><span>✦</span> FEATURED GAME</span>
+          <h2>Small snake.<br><em>Big challenge.</em></h2>
+          <p>Eat, grow, and beat your best score in our neon arcade classic.</p>
+          <a class="primary-button" href="games/neon-snake/NEON-SNAKE.html">Play Neon Snake <span>↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="hero-ring ring-one"></div><div class="hero-ring ring-two"></div>
+          <div class="snake-emoji">🐍</div>
+          <span class="spark spark-a">✦</span><span class="spark spark-b">✧</span><span class="spark spark-c">✦</span>
+          <div class="hero-caption">ARCADE CLASSIC <span>● ONLINE</span></div>
+        </div>
+      </section>
+
+      <section class="category-section" id="categories">
+        <div class="section-heading">
+          <div><p class="eyebrow">FIND YOUR PLAY STYLE</p><h2>Explore categories</h2></div>
+        </div>
+        <div class="category-list" id="categoryList">
+          <button class="category-chip selected" data-category="all"><span>✦</span> All games</button>
+          <button class="category-chip" data-category="arcade"><span>🕹️</span> Arcade</button>
+          <button class="category-chip" data-category="puzzle"><span>🧩</span> Puzzle</button>
+          <button class="category-chip" data-category="action"><span>⚡</span> Action</button>
+          <button class="category-chip" data-category="sports"><span>🏆</span> Sports</button>
+        </div>
+      </section>
+
+      <section class="library-section" id="library">
+        <div class="section-heading library-heading">
+          <div><p class="eyebrow">PICK UP AND PLAY</p><h2>Game library <span class="count-pill" id="libraryCount">1 GAME</span></h2></div>
+          <div class="sort-label">SORT BY <strong>Featured <span>⌄</span></strong></div>
+        </div>
+
+        <div class="game-grid" id="gameGrid">
+          <article class="game-card" data-name="neon snake" data-category="arcade">
+            <a class="game-art snake-art" href="games/neon-snake/NEON-SNAKE.html" aria-label="Play Neon Snake">
+              <span class="art-badge">AVAILABLE</span>
+              <span class="snake-art-emoji">🐍</span>
+              <span class="art-grid"></span>
+              <span class="art-play">▶</span>
+            </a>
+            <div class="game-info">
+              <div><span class="game-category">ARCADE</span><h3>Neon Snake</h3><p>Grow your snake. Beat your record.</p></div>
+              <a class="card-play" href="games/neon-snake/NEON-SNAKE.html" aria-label="Play Neon Snake">↗</a>
+            </div>
+          </article>
+
+          <article class="game-card coming-card" data-name="galaxy defender" data-category="action">
+            <div class="game-art galaxy-art"><span class="coming-label">COMING SOON</span><span class="placeholder-emoji">🚀</span><span class="art-title">GALAXY<br>DEFENDER</span></div>
+            <div class="game-info"><div><span class="game-category">ACTION</span><h3>Galaxy Defender</h3><p>A space adventure is coming.</p></div><span class="lock-icon">⌑</span></div>
+          </article>
+
+          <article class="game-card coming-card" data-name="ball maze 3d" data-category="puzzle">
+            <div class="game-art maze-art"><span class="coming-label">COMING SOON</span><span class="placeholder-emoji">🌀</span><span class="art-title">BALL MAZE<br>3D</span></div>
+            <div class="game-info"><div><span class="game-category">PUZZLE</span><h3>Ball Maze 3D</h3><p>Find your way through the maze.</p></div><span class="lock-icon">⌑</span></div>
+          </article>
+
+          <article class="game-card coming-card" data-name="jungle rush" data-category="action">
+            <div class="game-art jungle-art"><span class="coming-label">COMING SOON</span><span class="placeholder-emoji">🌴</span><span class="art-title">JUNGLE<br>RUSH</span></div>
+            <div class="game-info"><div><span class="game-category">ACTION</span><h3>Jungle Rush</h3><p>Run into the wild unknown.</p></div><span class="lock-icon">⌑</span></div>
+          </article>
+        </div>
+        <p class="empty-state" id="emptyState" hidden>No games found. Try another search.</p>
+        <div class="library-note"><span class="note-star">✦</span><span><strong>THE LIBRARY IS GROWING</strong><br>More original games are being crafted for you. Stay tuned!</span><span class="note-count">01 / 50</span></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 GAMEZONE. MADE FOR PLAYERS.</span><span>FREE TO PLAY <b>•</b> BUILT FOR FUN</span></footer>
+    </main>
+  </div>
+</body>
+</html>
