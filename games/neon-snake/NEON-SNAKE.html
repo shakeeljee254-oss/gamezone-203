@@ -101,7 +101,29 @@ const size=20;
 let snake,food,dx,dy,score,best,playing,loop;
 best=Number(localStorage.getItem("snakeBest")||0);
 bestEl.textContent=best;
+function reset(){
+ clearInterval(loop);
 
+ snake=[
+  {x:10,y:10},
+  {x:9,y:10},
+  {x:8,y:10}
+ ];
+
+ dx=1;
+ dy=0;
+ score=0;
+ playing=false;
+ paused=false;
+
+ placeFood();
+
+ scoreEl.textContent=0;
+ msg.textContent="Press START to Play!";
+ document.getElementById("pause").textContent="⏸ PAUSE";
+
+ draw();
+}
 function startGame(){
  if(playing)return;
 
