@@ -213,9 +213,12 @@ function update(){
  draw();
 }
 
-let paused = false;
+let snake,food,dx,dy,score,best,playing,loop,paused=false;
 
-function togglePause(){
+best=Number(localStorage.getItem("snakeBest")||0);
+bestEl.textContent=best;
+
+function reset(){
  if(!playing)return;
 
  if(!paused){
