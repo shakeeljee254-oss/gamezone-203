@@ -98,7 +98,7 @@ const bestEl=document.getElementById("best");
 const msg=document.getElementById("message");
 const size=20;
 
-let snake,food,dx,dy,score,best,playing,loop;
+let snake,food,dx,dy,score,best,playing,loop,paused=false;
 best=Number(localStorage.getItem("snakeBest")||0);
 bestEl.textContent=best;
 function reset(){
@@ -201,15 +201,18 @@ function update(){
  if(eating){
   score+=10;
   scoreEl.textContent=score;
+
   if(score>best){
    best=score;
    bestEl.textContent=best;
    localStorage.setItem("snakeBest",best);
   }
+
   placeFood();
  }else{
   snake.pop();
  }
+
  draw();
 }
 
@@ -218,7 +221,21 @@ let snake,food,dx,dy,score,best,playing,loop,paused=false;
 best=Number(localStorage.getItem("snakeBest")||0);
 bestEl.textContent=best;
 
-function reset(){
+function togglePause(){
+ if(!playing)return;
+
+ if(!paused){
+  clearInterval(loop);
+  paused=true;
+  msg.textContent="GAME PAUSED ⏸";
+  document.getElementById("pause").textContent="▶ RESUME";
+ }else{
+  paused=false;
+  msg.textContent="Good Luck! 🎮";
+  document.getElementById("pause").textContent="⏸ PAUSE";
+  loop=setInterval(update,120);
+ }
+}function togglePause(){
  if(!playing)return;
 
  if(!paused){
