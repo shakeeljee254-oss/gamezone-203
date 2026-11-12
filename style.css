@@ -81,3 +81,133 @@ button, input { font: inherit; }
 }
 @media (max-width: 360px) { .header-play { display: none; }.game-grid { gap: 8px; }.game-info { padding: 9px; }.hero h1 { font-size: 40px; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* ===== GameZone 203 compatibility fixes ===== */
+
+/* Hero buttons */
+.primary {
+  color: #fff;
+  background: var(--blue);
+  box-shadow: 0 7px 18px rgba(69,104,238,.2);
+}
+
+.primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+.secondary {
+  color: #45516b;
+  background: #fff;
+  border: 1px solid #e2e8fa;
+}
+
+/* Hero artwork */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.hero-gamepad {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(110px,15vw,175px);
+  filter: drop-shadow(0 17px 12px rgba(58,78,150,.18));
+  transform: rotate(-12deg);
+}
+
+/* Floating emojis */
+.float {
+  position: absolute;
+  z-index: 3;
+  font-size: 35px;
+}
+
+.float.f1 { top: 22px; right: 18%; }
+.float.f2 { bottom: 28px; right: 14%; }
+.float.f3 { top: 30px; left: 15%; }
+.float.f4 { bottom: 25px; left: 13%; }
+
+/* Kids section label */
+.kids-pill {
+  color: #7b65d9;
+  background: #f0edff;
+  border-radius: 30px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+/* Search area */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: min(270px,100%);
+  padding: 10px 13px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  color: #8792a8;
+  background: #fff;
+}
+
+.search input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  color: var(--ink);
+  font-size: 12px;
+  background: transparent;
+}
+
+/* Game count and empty message */
+.count {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.empty {
+  color: var(--muted);
+  text-align: center;
+  padding: 25px;
+}
+
+/* Notice text */
+.notice {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* All games section */
+.all-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px 72px;
+}
+
+/* Coming Soon label */
+.coming-soon {
+  color: #64708a;
+  background: #f0f2f7;
+  cursor: default;
+}
+
+.coming-soon:hover {
+  color: #64708a;
+  background: #f0f2f7;
+}
+
+/* Mobile compatibility */
+@media (max-width: 640px) {
+  .hero-gamepad {
+    font-size: 125px;
+  }
+
+  .all-section {
+    padding: 0 14px 48px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
