@@ -974,22 +974,29 @@ button, input {
     animation-duration: .01ms !important;
   }
 }
-/* Left Sidebar Menu Hover Animation */
-.sidebar nav a,
-.sidebar .nav-link {
+
+/* Left Sidebar Menu Animation */
+.sidebar-nav .side-link {
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.sidebar nav a:hover,
-.sidebar .nav-link:hover {
-    transform: translateX(7px);
+.sidebar-nav .side-link:hover {
+    transform: translateX(8px);
     background: linear-gradient(135deg, #6d28ff, #2563eb);
     color: #ffffff;
-    box-shadow: 0 6px 15px rgba(79, 70, 229, 0.25);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.25);
 }
 
-/* Active menu item */
-.sidebar nav a.active,
-.sidebar .nav-link.active {
-    transform: translateX(4px);
+/* Emoji Animation */
+.sidebar-nav .side-link:hover span {
+    display: inline-block;
+    animation: menuTextMove 0.3s ease;
+}
+
+@keyframes menuTextMove {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
 }
