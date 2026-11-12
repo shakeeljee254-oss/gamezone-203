@@ -4,102 +4,181 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f5f8ff">
-  <meta name="description" content="Discover popular, family-friendly and casual games at GameZone 203.">
-  <title>GameZone 203 — Free Online Games</title>
+  <meta name="theme-color" content="#f4f6ff">
+  <title>GameZone 203 - Play Free Online Games</title>
+  <meta name="description" content="Play free online games at GameZone 203. Explore action, racing, puzzle, arcade and kids games.">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
-  <a class="brand" href="#home"><span class="brand-icon">🎮</span><span>GameZone <b>203</b></span></a>
-  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-  <nav class="nav" id="main-nav">
-    <a href="#popular">Popular</a>
-    <a href="#kids">Kids Games</a>
-    <a href="#all-games">All Games</a>
-  </nav>
-  <a class="header-play" href="#popular">Explore Games →</a>
-</header>
 
-<main id="home">
-  <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow">WELCOME TO GAMEZONE 203</span>
-      <h1>Find your next<br><span>favourite game.</span></h1>
-      <p>Explore a collection of popular game titles, family-friendly picks and casual fun. Start with a game you love.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="#popular">Popular Games →</a>
-        <a class="button secondary" href="#kids">Kids Friendly</a>
+  <div class="dashboard">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+      <a href="#" class="brand">
+        <span class="brand-icon">🎮</span>
+        <span>GameZone<b>203</b></span>
+      </a>
+      <p class="brand-tagline">Play • Explore • Enjoy</p>
+
+      <nav class="sidebar-nav" id="main-nav">
+        <a href="#" class="side-link active">🏠 <span>Home</span></a>
+        <a href="#all-games" class="side-link">🎮 <span>All Games</span></a>
+        <a href="#popular" class="side-link">🏆 <span>Popular Games</span></a>
+        <a href="#kids" class="side-link">🧸 <span>Kids Games</span></a>
+        <a href="#categories" class="side-link">🗂️ <span>Categories</span></a>
+        <a href="#about" class="side-link">ℹ️ <span>About</span></a>
+      </nav>
+
+      <div class="sidebar-promo">
+        <div class="promo-crown">👑</div>
+        <h3>GAME ON!</h3>
+        <p>Discover exciting free games.</p>
+        <a href="#all-games">Explore Now →</a>
       </div>
-      <div class="hero-note">📱 Designed for phones, tablets, laptops and desktop computers</div>
-    </div>
-    <div class="hero-art" aria-hidden="true">
-      <div class="orb"></div>
-      <div class="hero-gamepad">🎮</div>
-      <span class="float f1">⭐</span>
-      <span class="float f2">🏀</span>
-      <span class="float f3">🧩</span>
-    </div>
-  </section>
 
-  <section class="trust-row">
-    <div><span>⚡</span><b>Easy to explore</b><small>Find games quickly</small></div>
-    <div><span>📱</span><b>Responsive design</b><small>Fits your screen</small></div>
-    <div><span>😊</span><b>Family picks</b><small>Casual options for kids</small></div>
-  </section>
-
-  <section class="section" id="popular">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">PLAYER FAVOURITES</span>
-        <h2>Popular Games</h2>
-        <p>Highlighted titles from the original catalogue.</p>
+      <div class="sidebar-footer">
+        <div class="social-icons">▶️　🎮　𝕏　f</div>
+        <p>© <span id="year"></span> GameZone203</p>
+        <p>Play More. Have Fun!</p>
       </div>
-    </div>
-    <div class="game-grid" id="popular-grid"></div>
-  </section>
+    </aside>
 
-  <section class="kids-section" id="kids">
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">FAMILY & CASUAL</span>
-        <h2>Kids Friendly Games</h2>
-        <p>Board, puzzle and party-style picks. Parents should check each game's age rating.</p>
-      </div>
-      <span class="kids-pill">🌈 Fun for everyone</span>
-    </div>
-    <div class="game-grid" id="kids-grid"></div>
-  </section>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
 
-  <section class="section all-section" id="all-games">
-    <div class="section-heading all-heading">
-      <div>
-        <span class="eyebrow">FULL COLLECTION</span>
-        <h2>All Games <span class="count" id="games-count">55</span></h2>
-        <p>Browse the catalogue by category or search.</p>
-      </div>
-      <label class="search">
-        <span>⌕</span>
-        <input id="game-search" type="search" placeholder="Search games..." aria-label="Search games">
-      </label>
-    </div>
-    <div class="filter-row" id="filter-row"></div>
-    <div class="game-grid" id="all-grid"></div>
-    <p class="empty" id="empty-message" hidden>No games found. Try another search.</p>
-  </section>
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">☰</button>
 
-  <section class="notice">
-    <b>Important:</b> Only Neon Snake currently links to a playable game hosted on this website. Other titles need verified play links. Ratings and player counts are sample figures, not live statistics.
-  </section>
-</main>
+        <form class="top-search" id="search-form">
+          <span>🔍</span>
+          <input id="game-search" type="search" placeholder="Search for games..." autocomplete="off">
+          <button type="submit">Search</button>
+        </form>
 
-<footer class="footer">
-  <a class="brand" href="#home"><span class="brand-icon">🎮</span><span>GameZone <b>203</b></span></a>
-  <p>Enjoy games responsibly. Take regular breaks.</p>
-  <span>© <span id="year"></span> GameZone 203</span>
-</footer>
+        <div class="top-profile">
+          <div class="profile-coins">🪙 <strong>Free Games</strong></div>
+          <div class="profile-avatar">👤</div>
+          <div class="profile-label">
+            <strong>Player</strong>
+            <small>Welcome!</small>
+          </div>
+        </div>
+      </header>
 
-<script src="main.js"></script>
-<script src="script.js"></script>
+      <!-- HERO + TRENDING SIDEBAR -->
+      <section class="dashboard-top">
+
+        <div class="hero">
+          <div class="hero-content">
+            <span class="hero-eyebrow">WELCOME TO THE GAMING WORLD</span>
+            <h1>GameZone<span>203</span></h1>
+            <p>Play Free Online Games <strong>Anytime, Anywhere!</strong></p>
+            <a href="#all-games" class="hero-button">▶ Explore Games <span>→</span></a>
+            <div class="hero-trust">✨ Free to play &nbsp; • &nbsp; 🎮 Fun for everyone</div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-glow"></div>
+            <span class="hero-star star-one">⭐</span>
+            <span class="hero-star star-two">👑</span>
+            <span class="hero-star star-three">✨</span>
+            <span class="hero-gamepad">🎮</span>
+            <span class="hero-character">🧑‍🚀</span>
+          </div>
+        </div>
+
+        <aside class="trending-panel">
+          <h2>🔥 Trending Now</h2>
+          <div class="trending-list">
+            <div class="trending-item"><b>01</b><span>🏎️</span><strong>Racing Games</strong></div>
+            <div class="trending-item"><b>02</b><span>🔫</span><strong>Action Games</strong></div>
+            <div class="trending-item"><b>03</b><span>🧩</span><strong>Puzzle Games</strong></div>
+            <div class="trending-item"><b>04</b><span>🏰</span><strong>Adventure Games</strong></div>
+            <div class="trending-item"><b>05</b><span>🧸</span><strong>Kids Games</strong></div>
+          </div>
+          <a href="#all-games" class="trending-link">Explore all games →</a>
+        </aside>
+
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="category-section" id="categories">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">FIND YOUR FAVORITE</span>
+            <h2>🎮 Browse Categories</h2>
+          </div>
+        </div>
+        <div class="category-shortcuts">
+          <a href="#all-games" class="category-tile tile-purple"><span>▦</span>All Games</a>
+          <a href="#all-games" class="category-tile tile-red"><span>🔥</span>Battle Royale</a>
+          <a href="#all-games" class="category-tile tile-blue"><span>🎯</span>Action</a>
+          <a href="#all-games" class="category-tile tile-green"><span>🏎️</span>Racing</a>
+          <a href="#all-games" class="category-tile tile-orange"><span>🧠</span>Puzzle</a>
+          <a href="#all-games" class="category-tile tile-violet"><span>🎲</span>Board Games</a>
+          <a href="#all-games" class="category-tile tile-cyan"><span>🧱</span>Arcade</a>
+          <a href="#kids" class="category-tile tile-lime"><span>🧸</span>Kids</a>
+        </div>
+      </section>
+
+      <!-- POPULAR GAMES -->
+      <section class="games-section" id="popular">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">MOST PLAYED</span>
+            <h2>⭐ Popular Games</h2>
+          </div>
+          <a href="#all-games" class="view-all">View All Games →</a>
+        </div>
+        <div class="game-grid" id="popular-grid"></div>
+      </section>
+
+      <!-- KIDS GAMES -->
+      <section class="kids-section" id="kids">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">FUN FOR LITTLE PLAYERS</span>
+            <h2>🧸 Kids & Family Games</h2>
+            <p>Enjoy fun and friendly games for everyone.</p>
+          </div>
+          <span class="kids-pill">💜 Family Friendly</span>
+        </div>
+        <div class="game-grid" id="kids-grid"></div>
+      </section>
+
+      <!-- ALL GAMES -->
+      <section class="games-section all-games-section" id="all-games">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">EXPLORE THE COLLECTION</span>
+            <h2>🎯 All Games</h2>
+            <p>Find your next favorite game.</p>
+          </div>
+          <span class="game-count-label">Game Collection</span>
+        </div>
+
+        <div class="filter-row" id="filter-row"></div>
+
+        <div class="game-grid" id="all-grid"></div>
+
+        <p class="empty-message" id="empty-message" hidden>
+          No games found. Try another search.
+        </p>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="main-footer" id="about">
+        <a href="#" class="footer-brand">🎮 GameZone<b>203</b></a>
+        <p>Play More. Have Fun! Discover free online games for everyone.</p>
+        <small>© <span id="footer-year"></span> GameZone 203. All rights reserved.</small>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
