@@ -1,93 +1,105 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f5f8ff">
-  <meta name="description" content="Play fun, family-friendly browser games on GameZone 203.">
+  <meta name="description" content="Discover popular, family-friendly and casual games at GameZone 203.">
   <title>GameZone 203 — Free Online Games</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="GameZone 203 home">
-      <span class="brand-icon">🎮</span>
-      <span>GameZone <b>203</b></span>
-    </a>
-    <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
-    <nav class="nav" id="main-nav">
-      <a href="#popular">Popular</a>
-      <a href="#kids">Kids Games</a>
-      <a href="#all-games">All Games</a>
-    </nav>
-    <a class="header-play" href="#popular">Play Games <span>→</span></a>
-  </header>
+<header class="site-header">
+  <a class="brand" href="#home"><span class="brand-icon">🎮</span><span>GameZone <b>203</b></span></a>
+  <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  <nav class="nav" id="main-nav">
+    <a href="#popular">Popular</a>
+    <a href="#kids">Kids Games</a>
+    <a href="#all-games">All Games</a>
+  </nav>
+  <a class="header-play" href="#popular">Explore Games →</a>
+</header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="hero-copy">
-        <span class="eyebrow">WELCOME TO GAMEZONE 203</span>
-        <h1>Fun games.<br><span>Good times.</span></h1>
-        <p>Discover fun browser games for everyone. Pick a game, press play, and enjoy!</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#popular">Explore Games <span>→</span></a>
-          <a class="button button-light" href="#kids">Kids friendly games</a>
-        </div>
-        <div class="hero-note"><span class="online-dot"></span> Easy to play on mobile, tablet and computer</div>
+<main id="home">
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">WELCOME TO GAMEZONE 203</span>
+      <h1>Find your next<br><span>favourite game.</span></h1>
+      <p>Explore a collection of popular game titles, family-friendly picks and casual fun. Start with a game you love.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#popular">Popular Games →</a>
+        <a class="button secondary" href="#kids">Kids Friendly</a>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-circle circle-one"></div><div class="art-circle circle-two"></div>
-        <div class="gamepad-art">🎮</div>
-        <span class="float-emoji star">⭐</span><span class="float-emoji ball">🏀</span>
-        <span class="float-emoji puzzle">🧩</span><span class="float-emoji rocket">🚀</span>
-      </div>
-    </section>
+      <div class="hero-note">📱 Designed for phones, tablets, laptops and desktop computers</div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="orb"></div>
+      <div class="hero-gamepad">🎮</div>
+      <span class="float f1">⭐</span>
+      <span class="float f2">🏀</span>
+      <span class="float f3">🧩</span>
+    </div>
+  </section>
 
-    <section class="trust-row" aria-label="Website features">
-      <div><span>⚡</span><strong>Quick to start</strong><small>No complicated setup</small></div>
-      <div><span>📱</span><strong>Any screen</strong><small>Phone, tablet or PC</small></div>
-      <div><span>😊</span><strong>Family picks</strong><small>Fun for all ages</small></div>
-    </section>
+  <section class="trust-row">
+    <div><span>⚡</span><b>Easy to explore</b><small>Find games quickly</small></div>
+    <div><span>📱</span><b>Responsive design</b><small>Fits your screen</small></div>
+    <div><span>😊</span><b>Family picks</b><small>Casual options for kids</small></div>
+  </section>
 
-    <section class="section" id="popular">
-      <div class="section-heading">
-        <div><span class="eyebrow">PLAYER FAVOURITES</span><h2>Popular Games</h2><p>Fun games to try first.</p></div>
-        <a class="text-link" href="#all-games">View all games →</a>
+  <section class="section" id="popular">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">PLAYER FAVOURITES</span>
+        <h2>Popular Games</h2>
+        <p>Highlighted titles from the original catalogue.</p>
       </div>
-      <div class="game-grid" id="popular-grid"></div>
-    </section>
+    </div>
+    <div class="game-grid" id="popular-grid"></div>
+  </section>
 
-    <section class="kids-section" id="kids">
-      <div class="section-heading">
-        <div><span class="eyebrow">SAFE & SIMPLE FUN</span><h2>Kids Friendly Games</h2><p>Easygoing games that children can enjoy with family guidance.</p></div>
-        <span class="kids-bubble">🌈 Play • Learn • Smile</span>
+  <section class="kids-section" id="kids">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">FAMILY & CASUAL</span>
+        <h2>Kids Friendly Games</h2>
+        <p>Board, puzzle and party-style picks. Parents should check each game's age rating.</p>
       </div>
-      <div class="game-grid" id="kids-grid"></div>
-    </section>
+      <span class="kids-pill">🌈 Fun for everyone</span>
+    </div>
+    <div class="game-grid" id="kids-grid"></div>
+  </section>
 
-    <section class="section" id="all-games">
-      <div class="section-heading all-heading">
-        <div><span class="eyebrow">THE GAME COLLECTION</span><h2>Explore All Games</h2><p>Search and find something fun to play.</p></div>
-        <label class="search-wrap"><span>⌕</span><input id="game-search" type="search" placeholder="Search games..." aria-label="Search games"></label>
+  <section class="section all-section" id="all-games">
+    <div class="section-heading all-heading">
+      <div>
+        <span class="eyebrow">FULL COLLECTION</span>
+        <h2>All Games <span class="count" id="games-count">55</span></h2>
+        <p>Browse the catalogue by category or search.</p>
       </div>
-      <div class="filter-row" id="filter-row">
-        <button class="filter-chip active" data-filter="All">All</button>
-        <button class="filter-chip" data-filter="Arcade">Arcade</button>
-        <button class="filter-chip" data-filter="Puzzle">Puzzle</button>
-        <button class="filter-chip" data-filter="Kids">Kids</button>
-        <button class="filter-chip" data-filter="Classic">Classic</button>
-      </div>
-      <div class="game-grid" id="all-grid"></div>
-      <p class="empty-message" id="empty-message" hidden>No games found. Try another search.</p>
-    </section>
-  </main>
+      <label class="search">
+        <span>⌕</span>
+        <input id="game-search" type="search" placeholder="Search games..." aria-label="Search games">
+      </label>
+    </div>
+    <div class="filter-row" id="filter-row"></div>
+    <div class="game-grid" id="all-grid"></div>
+    <p class="empty" id="empty-message" hidden>No games found. Try another search.</p>
+  </section>
 
-  <footer class="footer">
-    <a class="brand footer-brand" href="#home"><span class="brand-icon">🎮</span><span>GameZone <b>203</b></span></a>
-    <p>Simple fun for everyone. Play responsibly and take breaks.</p>
-    <span>© <span id="year"></span> GameZone 203</span>
-  </footer>
-  <script src="main.js"></script>
-  <script src="script.js"></script>
+  <section class="notice">
+    <b>Important:</b> Only Neon Snake currently links to a playable game hosted on this website. Other titles need verified play links. Ratings and player counts are sample figures, not live statistics.
+  </section>
+</main>
+
+<footer class="footer">
+  <a class="brand" href="#home"><span class="brand-icon">🎮</span><span>GameZone <b>203</b></span></a>
+  <p>Enjoy games responsibly. Take regular breaks.</p>
+  <span>© <span id="year"></span> GameZone 203</span>
+</footer>
+
+<script src="main.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
