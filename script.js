@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
   const config = window.GZ_CONFIG || {};
   const games = config.games || [];
@@ -152,19 +151,19 @@ document.addEventListener("DOMContentLoaded", () => {
     updateAllGames();
   }
 
-  if (filterRow) {
-    filterRow.addEventListener("click", event => {
-      const button = event.target.closest("[data-category]");
-      if (!button) return;
+ 
+  // Trending Now category buttons
+  document.querySelector(".trending-list")?.addEventListener("click", event => {
+    const button = event.target.closest(".trending-item");
+    if (!button) return;
 
-      activeCategory = button.dataset.category;
-      updateAllGames();
+    activeCategory = button.dataset.category;
+    updateAllGames();
 
-      document.getElementById("all-games")?.scrollIntoView({
-        behavior: "smooth"
-      });
+    document.getElementById("all-games")?.scrollIntoView({
+      behavior: "smooth"
     });
-  }
+  });
 
   if (searchInput) {
     searchInput.addEventListener("input", () => {
