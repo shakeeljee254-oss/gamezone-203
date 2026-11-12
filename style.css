@@ -999,3 +999,40 @@ button, input {
     50% { transform: translateX(4px); }
     100% { transform: translateX(0); }
 }
+
+/* Trending Now - Animated Category Buttons */
+.trending-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 10px;
+    margin: 4px 0;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.trending-item:hover {
+    background: linear-gradient(135deg, #6d28ff, #2563eb);
+    transform: translateX(7px);
+    box-shadow: 0 5px 14px rgba(79, 70, 229, 0.22);
+}
+
+.trending-item:hover b,
+.trending-item:hover strong {
+    color: #ffffff;
+}
+
+.trending-item:hover span {
+    transform: scale(1.25) rotate(-8deg);
+}
+
+.trending-item span {
+    transition: transform 0.3s ease;
+}
+
+.trending-item b,
+.trending-item strong {
+    transition: color 0.3s ease;
+}
