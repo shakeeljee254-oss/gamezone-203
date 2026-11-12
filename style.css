@@ -1,4 +1,3 @@
-
 :root {
   --ink: #101b48;
   --muted: #687493;
@@ -999,4 +998,37 @@ button, input {
     0% { transform: translateX(0); }
     50% { transform: translateX(4px); }
     100% { transform: translateX(0); }
+}
+
+/* Sidebar Menu Button Design */
+.sidebar-nav .side-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 12px;
+    color: #b8c4dc;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hover Animation */
+.sidebar-nav .side-link:hover {
+    background: linear-gradient(135deg, #6d28ff, #2563eb);
+    color: #ffffff;
+    transform: translateX(6px);
+    box-shadow: 0 5px 15px rgba(79, 70, 229, 0.25);
+}
+
+/* Active Button */
+.sidebar-nav .side-link.active {
+    background: linear-gradient(135deg, #6d28ff, #2563eb);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
