@@ -1,215 +1,244 @@
 
-(() => {
-  "use strict";
-
+document.addEventListener("DOMContentLoaded", () => {
   const config = window.GZ_CONFIG || {};
   const games = config.games || [];
+  const categories = config.categories || ["All", ...new Set(games.map(g => g.category).filter(Boolean))];
 
   const popularGrid = document.getElementById("popular-grid");
   const kidsGrid = document.getElementById("kids-grid");
   const allGrid = document.getElementById("all-grid");
-  const search = document.getElementById("game-search");
-  const empty = document.getElementById("empty-message");
   const filterRow = document.getElementById("filter-row");
+  const searchInput = document.getElementById("game-search");
+  const searchForm = document.getElementById("search-form");
+  const emptyMessage = document.getElementById("empty-message");
+  const menuToggle = document.getElementById("menu-toggle");
+  const sidebar = document.querySelector(".sidebar");
 
-  let activeFilter = "All";
+  const year = new Date().getFullYear();
+  document.querySelectorAll("#year, #footer-year").forEach(el => {
+    el.textContent = year;
+  });
 
-  // Create a game card
-  function card(game) {
-    const article = document.createElement("article");
-    article.className = "game-card";
+  let activeCategory = "All";
+  let searchTerm = "";
 
-    const art = document.createElement("div");
-    art.className = "game-art";
-    art.style.setProperty("--art-bg", game.bg || "#edf1ff");
-
-    const emoji = document.createElement("span");
-    emoji.className = "game-emoji";
-    emoji.textContent = game.emoji || "🎮";
-
-    const tag = document.createElement("span");
-    tag.className = "game-tag";
-    tag.textContent = game.tag || game.category || "GAME";
-
-    art.append(tag, emoji);
-
-    const info = document.createElement("div");
-    info.className = "game-info";
-
-    const title = document.createElement("h3");
-    title.textContent = game.name || "Untitled Game";
-
-    const desc = document.createElement("p");
-    desc.textContent =
-      game.description || "Choose this game and have fun.";
-
-    // Show Play Now only when a URL exists
-    if (game.url && game.url.trim() !== "") {
-      const link = document.createElement("a");
-
-      link.className = "play-link";
-      link.href = game.url;
-      link.textContent = "Play Now →";
-
-      if (/^https?:\/\//i.test(game.url)) {
-        link.target = "_blank";
-        link.rel = "noopener noreferrer";
-      }
-
-      info.append(title, desc, link);
-    } else {
-      const comingSoon = document.createElement("span");
-
-      comingSoon.className = "play-link coming-soon";
-      comingSoon.textContent = "Coming Soon";
-
-      info.append(title, desc, comingSoon);
-    }
-
-    article.append(art, info);
-
-    return article;
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
   }
 
-  // Render game cards
-  function render(target, list) {
-    if (!target) return;
-
-    target.replaceChildren(...list.map(card));
+  function getName(game) {
+    return game.name || game.title || "Untitled Game";
   }
 
-  // Create category filter buttons
-  function createFilters() {
+  function getEmoji(game) {
+    return game.emoji || game.icon || "🎮";
+  }
+
+  function getCategory(game) {
+    return game.category || "Arcade";
+  }
+
+  function getDescription(game) {
+    return game.description || game.tag || "Enjoy this exciting game!";
+  }
+
+  function getGameURL(game) {
+    return game.url || game.link || "";
+  }
+
+  function makeCard(game) {
+    const name = escapeHTML(getName(game));
+    const category = escapeHTML(getCategory(game));
+    const description = escapeHTML(getDescription(game));
+    const emoji = escapeHTML(getEmoji(game));
+    const url = getGameURL(game);
+
+    const button = url
+      ? `<a class="play-link" href="${escapeHTML(url)}">▶ Play Now</a>`
+      : `<span class="coming-soon">Coming Soon</span>`;
+
+    return `
+      <article class="game-card">
+        <div class="game-art" style="--art-bg:${escapeHTML(game.color || "#dce8ff")}">
+          <span class="game-tag">${category}</span>
+          <span class="game-emoji">${emoji}</span>
+        </div>
+        <div class="game-info">
+          <h3>${name}</h3>
+          <p>${description}</p>
+          ${button}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderGames(grid, list) {
+    if (!grid) return;
+    grid.innerHTML = list.map(makeCard).join("");
+  }
+
+  function renderFilters() {
     if (!filterRow) return;
 
-    const categories = config.categories || [
-      "All",
-      "Popular",
-      ...new Set(games.map(game => game.category).filter(Boolean))
-    ];
+    const filterCategories = categories.length
+      ? categories
+      : ["All", "Popular", "Kids & Family"];
 
-    filterRow.replaceChildren();
-
-    categories.forEach(category => {
-      const button = document.createElement("button");
-
-      button.type = "button";
-      button.className = "filter-chip";
-      button.dataset.filter = category;
-      button.textContent = category;
-
-      if (category === "All") {
-        button.classList.add("active");
-      }
-
-      filterRow.appendChild(button);
-    });
+    filterRow.innerHTML = filterCategories.map(category => `
+      <button
+        type="button"
+        class="filter-chip ${category === activeCategory ? "active" : ""}"
+        data-category="${escapeHTML(category)}">
+        ${escapeHTML(category)}
+      </button>
+    `).join("");
   }
 
-  // Search and filter all games
-  function updateAllGames() {
-    const term = (search?.value || "").trim().toLowerCase();
+  function matchesSearch(game) {
+    if (!searchTerm) return true;
 
-    const filtered = games.filter(game => {
-      const searchableText = [
-        game.name,
-        game.category,
-        game.description,
-        game.tag
-      ].join(" ").toLowerCase();
+    const text = [
+      getName(game),
+      getCategory(game),
+      getDescription(game),
+      game.tag || ""
+    ].join(" ").toLowerCase();
 
-      const matchesText = searchableText.includes(term);
+    return text.includes(searchTerm);
+  }
 
-      let matchesFilter = true;
-
-      if (activeFilter === "Popular") {
-        matchesFilter = game.popular === true;
-      } else if (activeFilter === "Kids") {
-        matchesFilter = game.kids === true;
-      } else if (activeFilter === "Kids & Family") {
-        matchesFilter = game.category === "Kids & Family";
-      } else if (activeFilter !== "All") {
-        matchesFilter = game.category === activeFilter;
-      }
-
-      return matchesText && matchesFilter;
-    });
-
-    render(allGrid, filtered);
-
-    if (empty) {
-      empty.hidden = filtered.length > 0;
+  function matchesCategory(game) {
+    if (activeCategory === "All") return true;
+    if (activeCategory === "Popular") return game.popular === true;
+    if (activeCategory === "Kids" || activeCategory === "Kids & Family") {
+      return game.kids === true || getCategory(game) === activeCategory;
     }
+    return getCategory(game) === activeCategory;
   }
 
-  // Initial page rendering
-  createFilters();
-
-  render(
-    popularGrid,
-    games.filter(game => game.popular === true)
-  );
-
-  render(
-    kidsGrid,
-    games.filter(game => game.kids === true)
-  );
-
-  updateAllGames();
-
-  // Search input
-  search?.addEventListener("input", updateAllGames);
-
-  // Category filter clicks
-  filterRow?.addEventListener("click", event => {
-    const button = event.target.closest("[data-filter]");
-
-    if (!button) return;
-
-    activeFilter = button.dataset.filter || "All";
-
-    filterRow.querySelectorAll(".filter-chip").forEach(chip => {
-      chip.classList.toggle("active", chip === button);
-    });
-
-    updateAllGames();
-  });
-
-  // Mobile navigation
-  const menuButton = document.getElementById("menu-toggle");
-  const nav = document.getElementById("main-nav");
-
-  menuButton?.addEventListener("click", () => {
-    if (!nav) return;
-
-    const opened = nav.classList.toggle("open");
-
-    menuButton.setAttribute("aria-expanded", String(opened));
-    menuButton.setAttribute(
-      "aria-label",
-      opened ? "Close menu" : "Open menu"
+  function updateAllGames() {
+    const filtered = games.filter(game =>
+      matchesCategory(game) && matchesSearch(game)
     );
 
-    menuButton.textContent = opened ? "✕" : "☰";
-  });
+    renderGames(allGrid, filtered);
 
-  nav?.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
+    if (emptyMessage) {
+      emptyMessage.hidden = filtered.length !== 0;
+    }
 
-      menuButton?.setAttribute("aria-expanded", "false");
+    renderFilters();
+  }
 
-      if (menuButton) {
-        menuButton.textContent = "☰";
-        menuButton.setAttribute("aria-label", "Open menu");
-      }
+  function renderHomepage() {
+    renderGames(
+      popularGrid,
+      games.filter(game => game.popular === true).slice(0, 8)
+    );
+
+    renderGames(
+      kidsGrid,
+      games.filter(game =>
+        game.kids === true || getCategory(game) === "Kids & Family"
+      ).slice(0, 8)
+    );
+
+    updateAllGames();
+  }
+
+  if (filterRow) {
+    filterRow.addEventListener("click", event => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+
+      activeCategory = button.dataset.category;
+      updateAllGames();
+
+      document.getElementById("all-games")?.scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      searchTerm = searchInput.value.trim().toLowerCase();
+      updateAllGames();
+    });
+  }
+
+  if (searchForm) {
+    searchForm.addEventListener("submit", event => {
+      event.preventDefault();
+      searchTerm = searchInput.value.trim().toLowerCase();
+      activeCategory = "All";
+      updateAllGames();
+
+      document.getElementById("all-games")?.scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // Category shortcut cards
+  document.querySelectorAll(".category-tile").forEach(tile => {
+    tile.addEventListener("click", event => {
+      const label = tile.textContent.trim().toLowerCase();
+      const mapping = {
+        "all games": "All",
+        "battle royale": "Battle Royale",
+        "action": "Action & Adventure",
+        "racing": "Racing & Sports",
+        "puzzle": "Puzzle & Brain",
+        "board games": "Board & Classic",
+        "arcade": "Arcade",
+        "kids": "Kids & Family"
+      };
+
+      const selected = mapping[label];
+      if (!selected) return;
+
+      event.preventDefault();
+      activeCategory = categories.includes(selected) ? selected : "All";
+      searchTerm = "";
+      if (searchInput) searchInput.value = "";
+      updateAllGames();
+
+      document.getElementById("all-games")?.scrollIntoView({
+        behavior: "smooth"
+      });
     });
   });
 
-  // Current year in footer
-  const year = document.getElementById("year");
+  // Mobile sidebar
+  if (menuToggle && sidebar) {
+    menuToggle.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+    });
 
-  if (year) {
-    year.textContent = new Date().getFullYear();
+    sidebar.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        sidebar.classList.remove("open");
+      });
+    });
+
+    document.addEventListener("click", event => {
+      if (
+        window.innerWidth <= 760 &&
+        sidebar.classList.contains("open") &&
+        !sidebar.contains(event.target) &&
+        !menuToggle.contains(event.target)
+      ) {
+        sidebar.classList.remove("open");
+      }
+    });
   }
-})();
+
+  renderHomepage();
+});
