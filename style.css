@@ -999,7 +999,6 @@ button, input {
     50% { transform: translateX(4px); }
     100% { transform: translateX(0); }
 }
-
 /* Trending Now - Animated Category Buttons */
 .trending-item {
     display: flex;
