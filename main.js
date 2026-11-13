@@ -567,14 +567,14 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#e8f5ed"
     },
-    {
+       {
       id: "tic-tac-toe",
       name: "Tic Tac Toe",
       category: "Board & Classic",
       emoji: "⭕",
       tag: "CLASSIC",
       description: "Get three marks in a row to win.",
-     url: "games/tic-tac-toe/tic-tac-toe.html",
+      url: "games/tic-tac-toe/",
       popular: false,
       kids: true,
       bg: "#e9f1ff"
