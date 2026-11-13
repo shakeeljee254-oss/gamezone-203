@@ -1,7 +1,5 @@
-
 window.GZ_CONFIG = {
   siteName: "GameZone 203",
-url:
   categories: [
     "All",
     "Popular",
