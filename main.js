@@ -311,18 +311,18 @@ window.GZ_CONFIG = {
     },
 
     // 4. Puzzle & Brain
-    {
-      id: "2048",
-      name: "2048",
-      category: "Puzzle & Brain",
-      emoji: "🔢",
-      tag: "BRAIN GAME",
-      description: "Join matching numbers to reach the 2048 tile.",
-      url: "",
-      popular: true,
-      kids: true,
-      bg: "#fff1dc"
-    },
+   {
+  id: "2048",
+  name: "2048",
+  category: "Puzzle & Brain",
+  emoji: "🔢",
+  tag: "BRAIN GAME",
+  description: "Join matching numbers to reach the 2048 tile.",
+  url: "games/2048/2048.html",
+  popular: true,
+  kids: true,
+  bg: "#fff1dc"
+},
     {
       id: "sudoku",
       name: "Sudoku",
