@@ -653,7 +653,7 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff0e5"
     },
-    {
+      {
       id: "cookie-clicker",
       name: "Cookie Clicker",
       category: "Strategy & Casual",
