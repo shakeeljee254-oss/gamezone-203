@@ -2,9 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#f7f4ed">
-  <title>2048 - GameZone 203</title>
+  
+  <title>2048 Game - Play Free Online | GameZone 203</title>
+  <meta name="description" content="Play the classic 2048 puzzle game for free online at GameZone 203. Join the numbers and get to the 2048 tile! Works on mobile and desktop.">
+  
   <style>
     :root {
       --page: #f7f4ed;
@@ -25,6 +28,7 @@
       font-family: Inter, ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
       display: flex;
       justify-content: center;
+      overflow-x: hidden;
     }
     .app { width: min(100%, 480px); }
     .topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
@@ -92,7 +96,6 @@
       .scores { gap: 5px; }
       .score-box { min-width: 65px; padding-inline: 8px; }
     }
-    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
   </style>
 </head>
 <body>
@@ -125,7 +128,7 @@
         <button id="messageButton">Try Again</button>
       </div>
     </section>
-    <p class="help"><strong>How to play:</strong> Use your arrow keys or swipe on the board. Combine matching numbers to make bigger tiles. Reach <strong>2048</strong> to win!</p>
+    <p class="help"><strong>How to play:</strong> Use your arrow keys, swipe on mobile, or drag with mouse. Combine matching numbers to make bigger tiles. Reach <strong>2048</strong> to win!</p>
   </main>
 
   <script>
@@ -245,21 +248,39 @@
         won = old.won; keepPlaying = old.keepPlaying; previous = null;
         hideMessage(); render();
       }
+      
+      // Keyboard Controls
       document.addEventListener("keydown", e => {
         const keys = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right" };
         if (keys[e.key]) { e.preventDefault(); move(keys[e.key]); }
       });
-      let touchStart = null;
+
+      // Touch & Mouse Swipe Controls
+      let startX = 0, startY = 0;
+      
       boardEl.addEventListener("touchstart", e => {
-        const t = e.changedTouches[0]; touchStart = [t.clientX, t.clientY];
+        const t = e.changedTouches[0]; startX = t.clientX; startY = t.clientY;
       }, { passive: true });
+
       boardEl.addEventListener("touchend", e => {
-        if (!touchStart) return;
-        const t = e.changedTouches[0], dx = t.clientX - touchStart[0], dy = t.clientY - touchStart[1];
-        touchStart = null;
-        if (Math.max(Math.abs(dx), Math.abs(dy)) < 25) return;
-        move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
+        const t = e.changedTouches[0], dx = t.clientX - startX, dy = t.clientY - startY;
+        handleSwipe(dx, dy);
       }, { passive: true });
+      
+      // Mouse Drag Support
+      boardEl.addEventListener("mousedown", e => {
+        startX = e.clientX; startY = e.clientY;
+      });
+      boardEl.addEventListener("mouseup", e => {
+        const dx = e.clientX - startX, dy = e.clientY - startY;
+        handleSwipe(dx, dy);
+      });
+
+      function handleSwipe(dx, dy) {
+        if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
+        move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
+      }
+
       document.getElementById("newGame").addEventListener("click", startGame);
       undoBtn.addEventListener("click", undo);
       document.getElementById("messageButton").addEventListener("click", () => {
