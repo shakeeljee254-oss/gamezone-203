@@ -574,7 +574,7 @@ window.GZ_CONFIG = {
       emoji: "⭕",
       tag: "CLASSIC",
       description: "Get three marks in a row to win.",
-      url: "",
+     url: "games/tic-tac-toe/tic-tac-toe.html",
       popular: false,
       kids: true,
       bg: "#e9f1ff"
