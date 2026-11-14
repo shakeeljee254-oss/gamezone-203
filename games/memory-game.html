@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Slither.io - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Slither.io style game free online at GameZone 203. Grow your snake, eat food, and become the biggest!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/neon-snake/slither.html">
+<meta property="og:title" content="Slither.io - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;background:#111;color:white;
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ display:flex;justify-content:center;align-items:center;
+ overflow:hidden; /* Full screen feel */
+}
+.game-container {
+ width: 100vw; height: 100vh; display: flex; flex-direction: column;
+ position: relative;
+}
+canvas {
+ background: radial-gradient(circle, #2a3b2a 0%, #0d1a0d 100%); /* Slither.io background */
+ display: block; width: 100%; height: 100%; touch-action:none;
+}
+.ui-panel {
+ position: absolute; top: 15px; left: 15px;
+ background: rgba(0,0,0,0.6); padding: 15px; border-radius: 10px;
+ pointer-events: none;
+}
+.score-board {
+ font-size: 24px; font-weight: bold; color: #fff; text-shadow: 0 0 10px #50f5d0;
+}
+.overlay {
+ position: absolute; inset: 0; background: rgba(0,0,0,0.8);
+ display: flex; flex-direction: column; justify-content: center; align-items: center;
+ z-index: 10;
+}
+.overlay h1 { color: #50f5d0; font-size: 40px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;}
+button {
+ background:linear-gradient(90deg,#50f5d0,#00a8ff); color:#000; border:0;
+ padding:15px 40px; border-radius:30px; font-weight:bold; font-size:18px; 
+ cursor:pointer; transition: transform 0.1s; text-transform: uppercase;
+}
+button:hover { transform: scale(1.05); }
+button:active { transform:scale(.95); }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+ <canvas id="game"></canvas>
+ 
+ <div class="ui-panel">
+  <div class="score-board">Length: <span id="score">10</span></div>
+ </div>
+
+ <div class="overlay" id="startScreen">
+  <h1>Slither Style</h1>
+  <button id="startBtn">Play Now</button>
+ </div>
+
+ <div class="overlay hidden" id="gameOverScreen">
+  <h1 style="color:#ff4d79">Game Over</h1>
+  <p style="font-size:18px; margin-bottom: 20px;">Your Length: <span id="finalScore">10</span></p>
+  <button id="restartBtn">Try Again</button>
+ </div>
+</div>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let width, height;
+function resize() {
+ width = canvas.width = window.innerWidth;
+ height = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const startScreen = document.getElementById("startScreen");
+const gameOverScreen = document.getElementById("gameOverScreen");
+const scoreEl = document.getElementById("score");
+const finalScoreEl = document.getElementById("finalScore");
+
+let snake, foods, dx, dy, playing, gameLoop, score;
+let mouseX = 0, mouseY = 0;
+const SPEED = 4;
+const SNAKE_RADIUS = 10;
+
+function reset() {
+ // Saanp ko center me start karein
+ snake = [
+  {x: width/2, y: height/2},
+  {x: width/2 - 10, y: height/2},
+  {x: width/2 - 20, y: height/2}
+ ];
+ dx = SPEED; dy = 0;
+ score = 10;
+ playing = false;
+ foods = [];
+ 
+ // Khana banayein
+ for(let i=0; i<50; i++) {
+  spawnFood();
+ }
+ 
+ scoreEl.textContent = score;
+ draw();
+}
+
+function spawnFood() {
+ foods.push({
+  x: Math.random() * width,
+  y: Math.random() * height,
+  color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+  radius: Math.random() * 4 + 4
+ });
+}
+
+function startGame() {
+ if(playing) return;
+ startScreen.classList.add("hidden");
+ gameOverScreen.classList.add("hidden");
+ reset();
+ playing = true;
+ 
+ // Mouse move tracking (Slither.io style)
+ window.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+ });
+ 
+ // Touch tracking
+ canvas.addEventListener('touchmove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouseX = e.touches[0].clientX - rect.left;
+  mouseY = e.touches[0].clientY - rect.top;
+ }, {passive: true});
+
+ gameLoop = setInterval(update, 1000/60); // 60 FPS
+}
+
+function draw() {
+ // Clear screen
+ ctx.clearRect(0, 0, width, height);
+ 
+ // Draw foods
+ foods.forEach(f => {
+  ctx.beginPath();
+  ctx.arc(f.x, f.y, f.radius, 0, Math.PI * 2);
+  ctx.fillStyle = f.color;
+  ctx.shadowBlur = 10;
+  ctx.shadowColor = f.color;
+  ctx.fill();
+ });
+ ctx.shadowBlur = 0;
+
+ // Draw snake (Slither.io style circles with patterns)
+ for(let i = snake.length - 1; i >= 0; i--) {
+  const s = snake[i];
+  ctx.beginPath();
+  ctx.arc(s.x, s.y, SNAKE_RADIUS, 0, Math.PI * 2);
+  
+  // Pattern logic (Head is different, body is colorful)
+  if(i === 0) {
+   ctx.fillStyle = "#ffffff";
+   ctx.shadowBlur = 15;
+   ctx.shadowColor = "#50f5d0";
+  } else {
+   // Alternating colors for pattern
+   ctx.fillStyle = i % 2 === 0 ? "#a855f7" : "#50f5d0"; 
+   ctx.shadowBlur = 5;
+   ctx.shadowColor = "#a855f7";
+  }
+  ctx.fill();
+ }
+ ctx.shadowBlur = 0;
+}
+
+function update() {
+ if(!playing) return;
+
+ const head = snake[0];
+ 
+ // Calculate direction towards mouse/touch
+ const angle = Math.atan2(mouseY - head.y, mouseX - head.x);
+ const targetDx = Math.cos(angle) * SPEED;
+ const targetDy = Math.sin(angle) * SPEED;
+ 
+ // Smooth turning
+ dx += (targetDx - dx) * 0.2;
+ dy += (targetDy - dy) * 0.2;
+
+ // Move head
+ const newHead = {x: head.x + dx, y: head.y + dy};
+ snake.unshift(newHead);
+
+ // Wall wrap (Slither.io me deewar nahi hoti, saanp aage nikal jata hai)
+ if(newHead.x < 0) newHead.x = width;
+ if(newHead.x > width) newHead.x = 0;
+ if(newHead.y < 0) newHead.y = height;
+ if(newHead.y > height) newHead.y = 0;
+
+ // Check food collision
+ let ateFood = false;
+ for(let i = 0; i < foods.length; i++) {
+  const f = foods[i];
+  const dist = Math.hypot(newHead.x - f.x, newHead.y - f.y);
+  if(dist < SNAKE_RADIUS + f.radius) {
+   foods.splice(i, 1);
+   score += 1;
+   scoreEl.textContent = score;
+   ateFood = true;
+   spawnFood(); // New food
+   break;
+  }
+ }
+
+ if(!ateFood) {
+  snake.pop(); // Remove tail
+ }
+
+ draw();
+}
+
+document.getElementById("startBtn").onclick = startGame;
+document.getElementById("restartBtn").onclick = startGame;
+
+// Init
+reset();
+</script>
+</body>
+</html>
