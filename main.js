@@ -670,10 +670,22 @@ window.GZ_CONFIG = {
       emoji: "🐍",
       tag: "MULTIPLAYER",
       description: "Grow your snake and compete with other players.",
-    url: "games/neon-snake/slither.html",
+      url: "games/neon-snake/slither.html",
       popular: true,
       kids: true,
       bg: "#e6f6ed"
+    },
+    {
+      id: "memory-match",
+      name: "Memory Match",
+      category: "Puzzle & Brain",
+      emoji: "🃏",
+      tag: "NEW",
+      description: "Flip the cards and find all the matching pairs.",
+      url: "games/memory-game.html",
+      popular: true,
+      kids: true,
+      bg: "#ffeaf2"
     },
 
     // 8. Your Own Game
@@ -688,7 +700,8 @@ window.GZ_CONFIG = {
       popular: true,
       kids: true,
       bg: "#e5f8f2"
-       ,{
+    },
+    {
       id: "color-match",
       name: "Color Match",
       category: "Puzzle & Brain",
@@ -699,6 +712,6 @@ window.GZ_CONFIG = {
       popular: true,
       kids: true,
       bg: "#e0f2fe"
-   }
+    }
   ]
 };
