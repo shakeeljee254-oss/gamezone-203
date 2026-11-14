@@ -688,6 +688,17 @@ window.GZ_CONFIG = {
       popular: true,
       kids: true,
       bg: "#e5f8f2"
-    }
+       ,{
+      id: "color-match",
+      name: "Color Match",
+      category: "Puzzle & Brain",
+      emoji: "🎨",
+      tag: "NEW",
+      description: "Test your brain speed. Match the colors before time runs out!",
+      url: "games/color-match.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+   }
   ]
 };
