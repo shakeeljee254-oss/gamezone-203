@@ -5,13 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Slither Arena - Play Free Online | GameZone 203</title>
 
-<!-- SEO TAGS -->
-<meta name="description" content="Play Slither Arena free online at GameZone 203. Compete against AI snakes, eat food, and become the biggest!">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/neon-snake/slither.html">
-<meta property="og:title" content="Slither Arena - Play Free Online | GameZone 203">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<meta name="twitter:card" content="summary_large_image">
-
 <style>
 *{box-sizing:border-box}
 body{
@@ -54,7 +47,7 @@ button:active { transform:scale(.95); }
 
  <div class="overlay" id="startScreen">
   <h1>Slither Arena</h1>
-  <p>Eat food to grow. Cut off AI snakes to make them crash and steal their food!</p>
+  <p>Eat food to grow. Make AI snakes crash into you, but don't hit their body!</p>
   <button id="startBtn">Play Now</button>
  </div>
 
@@ -92,7 +85,7 @@ function createSnake(x, y, isPlayer) {
   x, y, dx: SPEED, dy: 0, isPlayer,
   body: [{x, y}, {x: x-10, y}, {x: x-20, y}],
   color: isPlayer ? "#50f5d0" : AI_COLORS[Math.floor(Math.random() * AI_COLORS.length)],
-  dead: false, score: 10, angle: 0
+  dead: false, score: 10
  };
 }
 
@@ -103,7 +96,6 @@ function reset() {
  for(let i=0; i<4; i++) { 
   let rx = Math.random() * (width - 200) + 100;
   let ry = Math.random() * (height - 200) + 100;
-  
   if (Math.hypot(rx - player.x, ry - player.y) < 300) { 
    rx = rx > width/2 ? rx - 300 : rx + 300;
    ry = ry > height/2 ? ry - 300 : ry + 300;
@@ -153,7 +145,6 @@ function drawSnake(snake) {
   const seg = snake.body[i];
   ctx.beginPath();
   ctx.arc(seg.x, seg.y, radius, 0, Math.PI * 2);
-  
   ctx.fillStyle = i === 0 ? "#ffffff" : snake.color; 
   ctx.fill();
   
@@ -182,16 +173,15 @@ function draw() {
 function update() {
  if(!playing) return;
 
- // Player
+ // Player Movement
  const angle = Math.atan2(mouseY - player.body[0].y, mouseX - player.body[0].x);
  player.dx += (Math.cos(angle) * SPEED - player.dx) * 0.15;
  player.dy += (Math.sin(angle) * SPEED - player.dy) * 0.15;
  moveSnake(player);
  
- // AI
+ // AI Movement
  ais.forEach(ai => {
   if(ai.dead) return;
-  
   let closestFood = null, minDist = Infinity;
   foods.forEach(f => {
    let d = Math.hypot(ai.body[0].x - f.x, ai.body[0].y - f.y);
@@ -244,9 +234,10 @@ function checkFoods() {
   
   for(let i = foods.length - 1; i >= 0; i--) {
    const f = foods[i];
+   // Khana khane ka check (Sirf head se)
    if(Math.hypot(head.x - f.x, head.y - f.y) < radius + f.radius) {
     foods.splice(i, 1);
-    snake.score += 2; 
+    snake.score += 3; // Khane se lamba hoga, par nahi marega
     spawnFood();
     break;
    }
@@ -259,20 +250,26 @@ function checkCollisions() {
 
  allSnakes.forEach(snake => {
   const head = snake.body[0];
-  const radius = BASE_RADIUS; 
+  // Collision radius thoda chhota kiya hai taake ghalti se na mare
+  const collisionRadius = (BASE_RADIUS + (snake.score * 0.015)) * 0.8; 
   
-  for(let i = 10; i < snake.body.length; i++) {
-   if(Math.hypot(head.x - snake.body[i].x, head.y - snake.body[i].y) < radius * 1.5) {
+  // Khud se takrana (Apni body se) - 12 segment ke baad check karein
+  for(let i = 12; i < snake.body.length; i++) {
+   if(Math.hypot(head.x - snake.body[i].x, head.y - snake.body[i].y) < collisionRadius) {
     killSnake(snake);
     return;
    }
   }
 
+  // Doosre saanpon ki body se takrana
   allSnakes.forEach(other => {
    if(snake === other || other.dead) return;
    
+   const otherRadius = (BASE_RADIUS + (other.score * 0.015)) * 0.8;
+   
    for(let i = 0; i < other.body.length; i++) {
-    if(Math.hypot(head.x - other.body[i].x, head.y - other.body[i].y) < radius * 1.5) {
+    // Agar head kisi aur ki body ke bohot qareeb aya
+    if(Math.hypot(head.x - other.body[i].x, head.y - other.body[i].y) < (collisionRadius + otherRadius) * 0.6) {
      killSnake(snake);
      other.score += Math.floor(snake.score / 2); 
      return;
