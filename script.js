@@ -152,19 +152,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
  
-  // Trending Now category buttons
-  document.querySelector(".trending-list")?.addEventListener("click", event => {
-    const button = event.target.closest(".trending-item");
-    if (!button) return;
+  // Filter chips click event (YEH CODE MISSING THA)
+  if (filterRow) {
+    filterRow.addEventListener("click", event => {
+      const button = event.target.closest(".filter-chip");
+      if (!button) return;
 
-    activeCategory = button.dataset.category;
-    updateAllGames();
+      activeCategory = button.dataset.category;
+      updateAllGames();
 
-    document.getElementById("all-games")?.scrollIntoView({
-      behavior: "smooth"
+      document.getElementById("all-games")?.scrollIntoView({
+        behavior: "smooth"
+      });
     });
-  });
-
+  }
   if (searchInput) {
     searchInput.addEventListener("input", () => {
       searchTerm = searchInput.value.trim().toLowerCase();
