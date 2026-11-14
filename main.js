@@ -565,7 +565,7 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#e8f5ed"
     },
-          {
+    {
       id: "tic-tac-toe",
       name: "Tic Tac Toe",
       category: "Board & Classic",
@@ -651,7 +651,7 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff0e5"
     },
-      {
+    {
       id: "cookie-clicker",
       name: "Cookie Clicker",
       category: "Strategy & Casual",
@@ -700,18 +700,6 @@ window.GZ_CONFIG = {
       popular: true,
       kids: true,
       bg: "#e5f8f2"
-    },
-    {
-      id: "color-match",
-      name: "Color Match",
-      category: "Puzzle & Brain",
-      emoji: "🎨",
-      tag: "NEW",
-      description: "Test your brain speed. Match the colors before time runs out!",
-      url: "games/color-match.html",
-      popular: true,
-      kids: true,
-        bg: "#e5f8f2"
     },
     {
       id: "color-match",
