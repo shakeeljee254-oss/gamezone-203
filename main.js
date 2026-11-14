@@ -670,7 +670,7 @@ window.GZ_CONFIG = {
       emoji: "🐍",
       tag: "MULTIPLAYER",
       description: "Grow your snake and compete with other players.",
-      url: "",
+    url: "games/neon-snake/slither.html",
       popular: true,
       kids: true,
       bg: "#e6f6ed"
