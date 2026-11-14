@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Ping Pong - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play classic Ping Pong free online at GameZone 203. Test your reflexes in this fast-paced table tennis game!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/ping-pong.html">
+<meta property="og:title" content="Ping Pong - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Ping Pong",
+  "description": "Play classic Ping Pong free online.",
+  "genre": ["Sports", "Arcade"]
+}
+</script>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    touch-action: none;
+  }
+  canvas {
+    background-color: #000;
+    box-shadow: 0 0 30px rgba(80, 245, 208, 0.3);
+    border-radius: 8px;
+    max-width: 100%;
+    max-height: 100vh;
+  }
+  #startOverlay {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 10;
+    border: 2px solid #50f5d0;
+    box-shadow: 0 0 20px #50f5d0;
+  }
+  h1 { color: #50f5d0; margin-top: 0; font-size: 40px; letter-spacing: 2px; }
+  p { color: #aab1ce; font-size: 16px; margin-bottom: 25px; }
+  button {
+    background: #50f5d0;
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover {
+    background: #fff;
+    box-shadow: 0 0 15px #fff;
+  }
+</style>
+</head>
+<body>
+
+  <div id="startOverlay">
+    <h1>PING PONG</h1>
+    <p>Move your mouse or finger to control the paddle.</p>
+    <button id="startBtn">START GAME</button>
+  </div>
+
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const startOverlay = document.getElementById("startOverlay");
+  const startBtn = document.getElementById("startBtn");
+
+  // Game variables
+  let gameRunning = false;
+  let playerScore = 0;
+  let aiScore = 0;
+
+  // Player Paddle
+  const paddleWidth = 10;
+  const paddleHeight = 100;
+  let playerY = (canvas.height - paddleHeight) / 2;
+  
+  // AI Paddle
+  let aiY = (canvas.height - paddleHeight) / 2;
+
+  // Ball
+  const ballRadius = 8;
+  let ballX = canvas.width / 2;
+  let ballY = canvas.height / 2;
+  let ballSpeedX = 6;
+  let ballSpeedY = 6;
+
+  // Controls
+  let mouseY = canvas.height / 2;
+
+  canvas.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleY = canvas.height / rect.height;
+    mouseY = (e.clientY - rect.top) * scaleY;
+  });
+
+  canvas.addEventListener("touchmove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const scaleY = canvas.height / rect.height;
+    mouseY = (e.touches[0].clientY - rect.top) * scaleY;
+  }, {passive: true});
+
+  function resetBall() {
+    ballX = canvas.width / 2;
+    ballY = canvas.height / 2;
+    ballSpeedX = -ballSpeedX; // Change direction on reset
+    ballSpeedY = (Math.random() * 6) - 3; // Random Y direction
+  }
+
+  function update() {
+    if (!gameRunning) return;
+
+    // Move Player
+    playerY = mouseY - (paddleHeight / 2);
+    // Keep player in bounds
+    if (playerY < 0) playerY = 0;
+    if (playerY > canvas.height - paddleHeight) playerY = canvas.height - paddleHeight;
+
+    // Move AI (Follow the ball with some delay/speed limit)
+    let aiTargetY = ballY - (paddleHeight / 2);
+    aiY += (aiTargetY - aiY) * 0.08; // AI Speed
+    if (aiY < 0) aiY = 0;
+    if (aiY > canvas.height - paddleHeight) aiY = canvas.height - paddleHeight;
+
+    // Move Ball
+    ballX += ballSpeedX;
+    ballY += ballSpeedY;
+
+    // Top and Bottom Wall Collision
+    if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
+      ballSpeedY = -ballSpeedY;
+    }
+
+    // Left Paddle Collision (Player)
+    if (
+      ballX - ballRadius < 30 + paddleWidth && 
+      ballY > playerY && 
+      ballY < playerY + paddleHeight
+    ) {
+      ballSpeedX = -ballSpeedX * 1.05; // Speed up slightly on hit
+      // Add spin based on where it hits the paddle
+      let hitPos = (ballY - playerY) / paddleHeight; // 0 to 1
+      ballSpeedY = (hitPos - 0.5) * 12;
+      ballX = 30 + paddleWidth + ballRadius; // Prevent sticking
+    }
+
+    // Right Paddle Collision (AI)
+    if (
+      ballX + ballRadius > canvas.width - 30 - paddleWidth && 
+      ballY > aiY && 
+      ballY < aiY + paddleHeight
+    ) {
+      ballSpeedX = -ballSpeedX * 1.05;
+      let hitPos = (ballY - aiY) / paddleHeight;
+      ballSpeedY = (hitPos - 0.5) * 12;
+      ballX = canvas.width - 30 - paddleWidth - ballRadius;
+    }
+
+    // Score Points
+    if (ballX - ballRadius < 0) {
+      aiScore++;
+      resetBall();
+    } else if (ballX + ballRadius > canvas.width) {
+      playerScore++;
+      resetBall();
+    }
+  }
+
+  function draw() {
+    // Clear canvas
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Draw Net
+    ctx.strokeStyle = "#333";
+    ctx.lineWidth = 4;
+    ctx.setLineDash([15, 15]);
+    ctx.beginPath();
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+    ctx.stroke();
+    ctx.setLineDash([]); // Reset dash
+
+    // Draw Player Paddle (Neon)
+    ctx.fillStyle = "#50f5d0";
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = "#50f5d0";
+    ctx.fillRect(30, playerY, paddleWidth, paddleHeight);
+
+    // Draw AI Paddle (Red)
+    ctx.fillStyle = "#ff4d79";
+    ctx.shadowColor = "#ff4d79";
+    ctx.fillRect(canvas.width - 30 - paddleWidth, aiY, paddleWidth, paddleHeight);
+
+    // Draw Ball
+    ctx.fillStyle = "#fff";
+    ctx.shadowColor = "#fff";
+    ctx.beginPath();
+    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0; // Reset shadow
+
+    // Draw Scores
+    ctx.font = "bold 50px Arial";
+    ctx.fillStyle = "rgba(255,255,255,0.2)";
+    ctx.textAlign = "center";
+    ctx.fillText(playerScore, canvas.width / 2 - 80, 80);
+    ctx.fillText(aiScore, canvas.width / 2 + 80, 80);
+  }
+
+  function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  startBtn.addEventListener("click", () => {
+    startOverlay.style.display = "none";
+    gameRunning = true;
+  });
+
+  // Start drawing immediately (shows background before start)
+  gameLoop();
+
+</script>
+</body>
+</html>
