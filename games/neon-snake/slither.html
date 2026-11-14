@@ -91,17 +91,8 @@ function createSnake(x, y, isPlayer) {
 
 function reset() {
  player = createSnake(width/2, height/2, true);
- 
  ais = [];
- for(let i=0; i<4; i++) { 
-  let rx = Math.random() * (width - 200) + 100;
-  let ry = Math.random() * (height - 200) + 100;
-  if (Math.hypot(rx - player.x, ry - player.y) < 300) { 
-   rx = rx > width/2 ? rx - 300 : rx + 300;
-   ry = ry > height/2 ? ry - 300 : ry + 300;
-  }
-  ais.push(createSnake(rx, ry, false));
- }
+ for(let i=0; i<4; i++) spawnAI();
  
  foods = [];
  for(let i=0; i<120; i++) spawnFood(); 
@@ -109,6 +100,19 @@ function reset() {
  playing = false;
  updateUI();
  draw();
+}
+
+function spawnAI() {
+ let rx = Math.random() * (width - 200) + 100;
+ let ry = Math.random() * (height - 200) + 100;
+ 
+ if (player) {
+  if (Math.hypot(rx - player.x, ry - player.y) < 300) { 
+   rx = rx > width/2 ? rx - 300 : rx + 300;
+   ry = ry > height/2 ? ry - 300 : ry + 300;
+  }
+ }
+ ais.push(createSnake(rx, ry, false));
 }
 
 function spawnFood() {
@@ -203,6 +207,10 @@ function update() {
   moveSnake(ai);
  });
 
+ // Remove dead AIs and spawn new ones
+ ais = ais.filter(ai => !ai.dead);
+ while(ais.length < 4) spawnAI();
+
  checkCollisions();
  checkFoods();
  updateUI();
@@ -219,10 +227,6 @@ function moveSnake(snake) {
 
  const newHead = {x: nx, y: ny};
  snake.body.unshift(newHead);
- 
- if(snake.body.length > snake.score) {
-  snake.body.pop();
- }
 }
 
 function checkFoods() {
@@ -234,13 +238,19 @@ function checkFoods() {
   
   for(let i = foods.length - 1; i >= 0; i--) {
    const f = foods[i];
-   // Khana khane ka check (Sirf head se)
    if(Math.hypot(head.x - f.x, head.y - f.y) < radius + f.radius) {
     foods.splice(i, 1);
-    snake.score += 3; // Khane se lamba hoga, par nahi marega
+    snake.score += 3; 
     spawnFood();
+    
+    // Body ko badhne dein (tail pop mat karein is frame mein)
     break;
    }
+  }
+  
+  // Agar body lambi ho gayi hai toh tail pop karein
+  if(snake.body.length > snake.score) {
+   snake.body.pop();
   }
  });
 }
@@ -250,11 +260,10 @@ function checkCollisions() {
 
  allSnakes.forEach(snake => {
   const head = snake.body[0];
-  // Collision radius thoda chhota kiya hai taake ghalti se na mare
-  const collisionRadius = (BASE_RADIUS + (snake.score * 0.015)) * 0.8; 
+  const collisionRadius = (BASE_RADIUS + (snake.score * 0.015)) * 0.7; 
   
-  // Khud se takrana (Apni body se) - 12 segment ke baad check karein
-  for(let i = 12; i < snake.body.length; i++) {
+  // Khud se takrana (Apni body se) - 15 segment ke baad check karein taake khane se na mare
+  for(let i = 15; i < snake.body.length; i++) {
    if(Math.hypot(head.x - snake.body[i].x, head.y - snake.body[i].y) < collisionRadius) {
     killSnake(snake);
     return;
@@ -264,11 +273,9 @@ function checkCollisions() {
   // Doosre saanpon ki body se takrana
   allSnakes.forEach(other => {
    if(snake === other || other.dead) return;
-   
-   const otherRadius = (BASE_RADIUS + (other.score * 0.015)) * 0.8;
+   const otherRadius = (BASE_RADIUS + (other.score * 0.015)) * 0.7;
    
    for(let i = 0; i < other.body.length; i++) {
-    // Agar head kisi aur ki body ke bohot qareeb aya
     if(Math.hypot(head.x - other.body[i].x, head.y - other.body[i].y) < (collisionRadius + otherRadius) * 0.6) {
      killSnake(snake);
      other.score += Math.floor(snake.score / 2); 
