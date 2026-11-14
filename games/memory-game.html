@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Memory Match - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Memory Match free online at GameZone 203. Test your brain by finding all the matching pairs of cards!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/memory-game.html">
+<meta property="og:title" content="Memory Match - Play Free Online | GameZone 203">
+<meta property="og:description" content="Test your memory by matching pairs of cards. Play Memory Match free online.">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Memory Match",
+  "description": "Test your memory by matching pairs of cards.",
+  "genre": ["Puzzle", "Brain"],
+  "playMode": "SinglePlayer"
+}
+</script>
+
 <style>
 :root { --bg: #1a1a2e; --card: #16213e; --accent: #e94560; }
 body { margin: 0; background: var(--bg); color: white; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; min-height: 100vh; justify-content: center; }
@@ -21,14 +40,31 @@ button:hover { background: #c0354d; }
 </style>
 </head>
 <body>
+
 <h1>Memory Match</h1>
 <p>Find all the matching pairs!</p>
+
 <div class="stats">
  <div>Moves: <span id="moves">0</span></div>
  <div>Time: <span id="time">0s</span></div>
 </div>
+
 <div class="game-board" id="board"></div>
 <button onclick="startGame()">New Game</button>
+
+<!-- ARTICLE / FAQ SECTION -->
+<div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #16213e; border-radius: 10px; border: 1px solid #0f3460; color: #aab1ce; text-align: left;">
+  <h2 style="color: #e94560; margin-top: 0;">How to Play Memory Match</h2>
+  <p>Click on a card to flip it and reveal the fruit. Flip a second card. If they match, they stay open. If they don't, they will flip back. Try to remember where each fruit is and match all the pairs in the fewest moves!</p>
+  
+  <h2 style="color: #e94560; margin-top: 20px;">Frequently Asked Questions</h2>
+  <h3 style="margin-bottom: 5px; color: #fff;">Is Memory Match free?</h3>
+  <p style="margin-top: 0;">Yes, it is 100% free to play on GameZone 203.</p>
+  
+  <h3 style="margin-bottom: 5px; color: #fff;">Can I play on mobile?</h3>
+  <p style="margin-top: 0;">Yes, the game is fully responsive and works perfectly on smartphones and tablets.</p>
+</div>
+
 <script>
 const emojis = ["🍎", "🍌", "🍇", "🍓", "🍒", "🍉", "🥥", "🍍"];
 let cards = [], flipped = [], matched = 0, moves = 0, time = 0, timer, isLocked = false;
