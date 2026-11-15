@@ -5,56 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Bubble Shooter Pro - Play Free Online | GameZone 203</title>
 
-<!-- SEO TAGS -->
-<meta name="description" content="Play Bubble Shooter Pro free online at GameZone 203. Aim, shoot, and match 3 or more bubbles to clear the board! Easy, Normal, and Hard levels available.">
+<!-- IMPROVED SEO TAGS -->
+<meta name="description" content="Play Bubble Shooter Pro free online at GameZone 203. Aim, shoot, and match 3 or more colorful bubbles to clear the board! Enjoy Easy, Normal, and Hard levels with addictive gameplay.">
+<meta name="keywords" content="bubble shooter, free online games, puzzle games, arcade games, bubble shooter pro, gamezone 203, play bubble shooter">
 <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/bubble-shooter.html">
 <meta property="og:title" content="Bubble Shooter Pro - Play Free Online | GameZone 203">
+<meta property="og:description" content="Match 3 or more bubbles and clear the board in this addictive puzzle game!">
 <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "VideoGame",
   "name": "Bubble Shooter Pro",
-  "description": "Play Bubble Shooter with Easy, Normal, and Hard levels.",
-  "genre": ["Arcade", "Puzzle"]
+  "description": "Play Bubble Shooter with Easy, Normal, and Hard levels. Match 3 or more bubbles to win.",
+  "genre": ["Arcade", "Puzzle", "Casual"],
+  "gamePlatform": ["Web Browser"],
+  "applicationCategory": "Game"
 }
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+  /* Fonts & Reset */
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
 
   body {
     margin: 0;
     overflow: hidden;
-    background: radial-gradient(circle at center, #1e1b4b, #0f172a);
+    /* Light, vibrant background instead of dark */
+    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
     touch-action: none;
-    color: white;
   }
+
   canvas {
-    background: #0f172a;
-    box-shadow: 0 0 40px rgba(168, 85, 247, 0.2);
-    border-radius: 12px;
-    border: 2px solid #3b0764;
+    /* Clean white canvas with soft shadow */
+    background: #ffffff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 16px;
+    border: 4px solid #ffffff;
     max-width: 100%;
     max-height: 100vh;
+    cursor: crosshair;
   }
+
+  /* Menu Overlay - Light Theme */
   #menuOverlay {
     position: absolute;
-    background: rgba(15, 23, 42, 0.95);
-    padding: 40px;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 40px 50px;
+    border-radius: 24px;
     text-align: center;
     z-index: 10;
-    border: 2px solid #a855f7;
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    border: 2px solid #e2e8f0;
   }
-  h1 { color: #d8b4fe; margin-top: 0; font-size: 32px; text-shadow: 0 0 10px #a855f7; }
-  p { color: #94a3b8; font-size: 14px; margin-bottom: 25px; }
+
+  h1 {
+    color: #1e293b;
+    margin-top: 0;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 5px;
+  }
+
+  p {
+    color: #64748b;
+    font-size: 16px;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
   
   .difficulty-buttons {
     display: flex;
@@ -63,29 +95,44 @@
   }
   
   button {
-    background: linear-gradient(90deg, #7e22ce, #a855f7);
-    color: white;
     border: none;
-    padding: 15px 30px;
+    padding: 16px 30px;
     font-size: 18px;
-    font-weight: bold;
-    border-radius: 10px;
+    font-weight: 700;
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
-  button:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(168, 85, 247, 0.6); }
-  button.easy { background: linear-gradient(90deg, #059669, #10b981); }
-  button.normal { background: linear-gradient(90deg, #2563eb, #3b82f6); }
-  button.hard { background: linear-gradient(90deg, #dc2626, #ef4444); }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  /* Vibrant Buttons */
+  button.easy { background: #10b981; color: white; }
+  button.easy:hover { background: #059669; }
+  
+  button.normal { background: #3b82f6; color: white; }
+  button.normal:hover { background: #2563eb; }
+  
+  button.hard { background: #ef4444; color: white; }
+  button.hard:hover { background: #dc2626; }
 </style>
 </head>
 <body>
 
   <div id="menuOverlay">
     <h1>BUBBLE SHOOTER</h1>
-    <p>Select Difficulty</p>
+    <p>Select Your Difficulty</p>
     <div class="difficulty-buttons">
       <button class="easy" onclick="startGame('easy')">Easy</button>
       <button class="normal" onclick="startGame('normal')">Normal</button>
@@ -93,7 +140,7 @@
     </div>
   </div>
 
-  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <canvas id="gameCanvas" width="480" height="720"></canvas>
 
 <script>
   const canvas = document.getElementById("gameCanvas");
@@ -105,21 +152,21 @@
   let difficulty = 'normal';
   
   // Grid Settings
-  const BUBBLE_RADIUS = 16;
+  const BUBBLE_RADIUS = 18; // Slightly bigger for better visibility
   const BUBBLE_DIAMETER = BUBBLE_RADIUS * 2;
   const COLS = 12;
-  const ROWS = 14;
+  const ROWS = 16; // Increased rows for more play area
   
-  // Colors with modern look
+  // Bright, vibrant colors matching the reference image
   const COLORS = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
   let activeColors = [];
 
   let grid = [];
-  let shooter = { x: canvas.width / 2, y: canvas.height - 30, angle: 0 };
+  let shooter = { x: canvas.width / 2, y: canvas.height - 50, angle: 0 };
   let currentBubble = null;
   let nextBubble = null;
   let projectile = null;
-  let shootSpeed = 12;
+  let shootSpeed = 14;
   let rowsToFill = 6;
 
   function startGame(diff) {
@@ -129,17 +176,17 @@
     score = 0;
     
     if (difficulty === 'easy') {
-      activeColors = COLORS.slice(0, 3); // Only 3 colors
-      rowsToFill = 4;
-      shootSpeed = 10;
-    } else if (difficulty === 'normal') {
-      activeColors = COLORS.slice(0, 4); // 4 colors
-      rowsToFill = 6;
+      activeColors = COLORS.slice(0, 4); 
+      rowsToFill = 5;
       shootSpeed = 12;
+    } else if (difficulty === 'normal') {
+      activeColors = COLORS.slice(0, 5);
+      rowsToFill = 7;
+      shootSpeed = 14;
     } else {
-      activeColors = COLORS.slice(0, 6); // 6 colors
-      rowsToFill = 8;
-      shootSpeed = 15;
+      activeColors = COLORS; // All 6 colors
+      rowsToFill = 9;
+      shootSpeed = 16;
     }
 
     resetGame();
@@ -155,8 +202,8 @@
         if (r < rowsToFill) {
           grid[r][c] = {
             color: activeColors[Math.floor(Math.random() * activeColors.length)],
-            x: c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 5,
-            y: r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 5 // 0.87 for hex packing
+            x: c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10,
+            y: r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10
           };
         } else {
           grid[r][c] = null;
@@ -176,20 +223,20 @@
   }
 
   function drawBubble(x, y, color, isProjectile = false) {
-    // Glow effect
-    ctx.shadowBlur = isProjectile ? 20 : 10;
-    ctx.shadowColor = color;
-
     ctx.beginPath();
     ctx.arc(x, y, BUBBLE_RADIUS, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
+    
+    // Add a subtle border/stroke for definition
+    ctx.strokeStyle = "rgba(0,0,0,0.1)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
 
-    // Reset shadow for highlight
-    ctx.shadowBlur = 0;
+    // Highlight for 3D effect
     ctx.beginPath();
-    ctx.arc(x - 4, y - 4, BUBBLE_RADIUS / 2.5, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.arc(x - 5, y - 5, BUBBLE_RADIUS / 3, 0, Math.PI * 2);
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
     ctx.fill();
   }
 
@@ -209,35 +256,38 @@
     if (gameRunning && !projectile) {
       ctx.beginPath();
       ctx.moveTo(shooter.x, shooter.y);
-      ctx.lineTo(shooter.x + Math.cos(shooter.angle) * 120, shooter.y + Math.sin(shooter.angle) * 120);
-      ctx.strokeStyle = "rgba(255,255,255,0.2)";
-      ctx.lineWidth = 2;
-      ctx.setLineDash([5, 5]);
+      // Dotted line to predict shot
+      let endX = shooter.x + Math.cos(shooter.angle) * 200;
+      let endY = shooter.y + Math.sin(shooter.angle) * 200;
+      ctx.lineTo(endX, endY);
+      ctx.strokeStyle = "rgba(0,0,0,0.2)";
+      ctx.lineWidth = 3;
+      ctx.setLineDash([8, 8]);
       ctx.stroke();
       ctx.setLineDash([]);
     }
 
     // Draw Shooter Base
     ctx.beginPath();
-    ctx.arc(shooter.x, shooter.y, 28, 0, Math.PI * 2);
-    ctx.fillStyle = "#1e293b";
+    ctx.arc(shooter.x, shooter.y, 35, 0, Math.PI * 2);
+    ctx.fillStyle = "#e2e8f0";
     ctx.fill();
-    ctx.strokeStyle = "#a855f7";
-    ctx.lineWidth = 3;
+    ctx.strokeStyle = "#cbd5e1";
+    ctx.lineWidth = 4;
     ctx.stroke();
 
-    // Draw Current Bubble
+    // Draw Current Bubble in Shooter
     if (currentBubble) {
       drawBubble(shooter.x, shooter.y, currentBubble.color);
     }
 
     // Draw Next Bubble
     if (nextBubble) {
-      drawBubble(40, canvas.height - 30, nextBubble.color);
-      ctx.fillStyle = "#94a3b8";
-      ctx.font = "12px Poppins";
+      drawBubble(50, canvas.height - 50, nextBubble.color);
+      ctx.fillStyle = "#64748b";
+      ctx.font = "bold 14px Poppins";
       ctx.textAlign = "center";
-      ctx.fillText("NEXT", 40, canvas.height - 60);
+      ctx.fillText("NEXT", 50, canvas.height - 90);
     }
 
     // Draw Projectile
@@ -246,10 +296,10 @@
     }
 
     // Draw Score
-    ctx.fillStyle = "white";
-    ctx.font = "bold 22px Poppins";
+    ctx.fillStyle = "#1e293b";
+    ctx.font = "bold 24px Poppins";
     ctx.textAlign = "right";
-    ctx.fillText("Score: " + score, canvas.width - 20, 35);
+    ctx.fillText("Score: " + score, canvas.width - 20, 40);
   }
 
   function update() {
@@ -259,17 +309,17 @@
     projectile.y += Math.sin(projectile.angle) * shootSpeed;
 
     // Wall Collision
-    if (projectile.x < BUBBLE_RADIUS) {
-      projectile.x = BUBBLE_RADIUS;
+    if (projectile.x < BUBBLE_RADIUS + 10) {
+      projectile.x = BUBBLE_RADIUS + 10;
       projectile.angle = Math.PI - projectile.angle;
     }
-    if (projectile.x > canvas.width - BUBBLE_RADIUS) {
-      projectile.x = canvas.width - BUBBLE_RADIUS;
+    if (projectile.x > canvas.width - BUBBLE_RADIUS - 10) {
+      projectile.x = canvas.width - BUBBLE_RADIUS - 10;
       projectile.angle = Math.PI - projectile.angle;
     }
 
     // Top Collision
-    if (projectile.y < BUBBLE_RADIUS) {
+    if (projectile.y < BUBBLE_RADIUS + 10) {
       snapBubble();
       return;
     }
@@ -279,7 +329,7 @@
       for (let c = 0; c < COLS; c++) {
         if (grid[r][c]) {
           let dist = Math.hypot(projectile.x - grid[r][c].x, projectile.y - grid[r][c].y);
-          if (dist < BUBBLE_DIAMETER - 4) { // -4 for tighter fit
+          if (dist < BUBBLE_DIAMETER - 4) {
             snapBubble();
             return;
           }
@@ -294,8 +344,8 @@
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         if (!grid[r][c]) {
-          let expectedX = c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 5;
-          let expectedY = r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 5;
+          let expectedX = c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10;
+          let expectedY = r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10;
           let dist = Math.hypot(projectile.x - expectedX, projectile.y - expectedY);
           if (dist < minDist) {
             minDist = dist;
@@ -306,8 +356,8 @@
       }
     }
 
-    let snapX = closestC * BUBBLE_DIAMETER + BUBBLE_RADIUS + (closestR % 2 === 0 ? 0 : BUBBLE_RADIUS) + 5;
-    let snapY = closestR * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 5;
+    let snapX = closestC * BUBBLE_DIAMETER + BUBBLE_RADIUS + (closestR % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10;
+    let snapY = closestR * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10;
     
     grid[closestR][closestC] = { color: projectile.color, x: snapX, y: snapY };
 
@@ -365,6 +415,7 @@
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     shooter.angle = Math.atan2(y - shooter.y, x - shooter.x);
+    // Clamp angle so you can't shoot downwards
     if (shooter.angle > 0) shooter.angle = 0;
     if (shooter.angle < -Math.PI) shooter.angle = -Math.PI;
   }
