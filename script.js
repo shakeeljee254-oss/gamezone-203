@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderGames(popularGrid, playableGames.slice(0, 8));
 
     // Kids section mein sirf chalne wale kids games dikhenge
-    renderGames(kidsGrid, playableGames.filter(g => g.kids === true).slice(0, 8));
+   if (kidsGrid) kidsGrid.innerHTML = "";
 
     updateAllGames();
   }
