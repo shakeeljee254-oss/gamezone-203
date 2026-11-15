@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Fruit Ninja - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Fruit Ninja free online at GameZone 203. Swipe to slice flying fruits and avoid the bombs!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja.html">
+<meta property="og:title" content="Fruit Ninja - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Fruit Ninja",
+  "description": "Play Fruit Ninja free online.",
+  "genre": ["Arcade", "Action"]
+}
+</script>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    touch-action: none;
+  }
+  canvas {
+    background: radial-gradient(circle, #2a2a40, #111);
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    max-width: 100%;
+    max-height: 100vh;
+    cursor: crosshair;
+  }
+  #startOverlay {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 10;
+    border: 2px solid #f97316;
+  }
+  h1 { color: #f97316; margin-top: 0; font-size: 32px; text-shadow: 0 0 10px #f97316; }
+  p { color: #ddd; font-size: 16px; margin-bottom: 25px; }
+  button {
+    background: linear-gradient(90deg, #f97316, #fbbf24);
+    color: #000;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  button:hover { transform: scale(1.05); }
+</style>
+</head>
+<body>
+
+  <div id="startOverlay">
+    <h1>FRUIT NINJA</h1>
+    <p>Swipe to slice the fruits.<br>Don't hit the bombs! 💣</p>
+    <button id="startBtn">START GAME</button>
+  </div>
+
+  <canvas id="gameCanvas" width="600" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const startOverlay = document.getElementById("startOverlay");
+  const startBtn = document.getElementById("startBtn");
+
+  let gameRunning = false;
+  let score = 0;
+  let bestScore = localStorage.getItem("fruitBest") || 0;
+  let lives = 3;
+
+  let fruits = [];
+  let slices = []; // For juice particles
+  let mouseTrail = [];
+  
+  // Emojis for Fruits and Bomb
+  const fruitTypes = [
+    { emoji: "🍉", color: "#ef4444" }, // Watermelon
+    { emoji: "🍎", color: "#dc2626" }, // Apple
+    { emoji: "🍊", color: "#f97316" }, // Orange
+    { emoji: "🍋", color: "#fbbf24" }, // Lemon
+    { emoji: "🥝", color: "#84cc16" }  // Kiwi
+  ];
+
+  function resetGame() {
+    gameRunning = true;
+    startOverlay.style.display = "none";
+    score = 0;
+    lives = 3;
+    fruits = [];
+    slices = [];
+    mouseTrail = [];
+    gameLoop();
+  }
+
+  function spawnFruit() {
+    if (!gameRunning) return;
+    
+    // 15% chance of spawning a bomb
+    const isBomb = Math.random() < 0.15;
+    
+    const startX = Math.random() * (canvas.width - 100) + 50;
+    const velocityY = -(Math.random() * 5 + 12); // Upwards force
+    const velocityX = (canvas.width / 2 - startX) / 60 + (Math.random() - 0.5) * 4; // Towards center
+    
+    let type;
+    if (isBomb) {
+      type = { emoji: "💣", color: "#333" };
+    } else {
+      type = fruitTypes[Math.floor(Math.random() * fruitTypes.length)];
+    }
+
+    fruits.push({
+      x: startX,
+      y: canvas.height + 50,
+      vx: velocityX,
+      vy: velocityY,
+      radius: 30,
+      color: type.color,
+      emoji: type.emoji,
+      isBomb: isBomb,
+      sliced: false,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.1
+    });
+  }
+
+  function createJuice(x, y, color) {
+    for (let i = 0; i < 15; i++) {
+      slices.push({
+        x: x, y: y,
+        vx: (Math.random() - 0.5) * 10,
+        vy: (Math.random() - 0.5) * 10,
+        radius: Math.random() * 5 + 2,
+        color: color,
+        life: 1.0
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw Mouse Trail (Blade)
+    if (mouseTrail.length > 0) {
+      ctx.beginPath();
+      ctx.moveTo(mouseTrail[0].x, mouseTrail[0].y);
+      for (let i = 1; i < mouseTrail.length; i++) {
+        ctx.lineTo(mouseTrail[i].x, mouseTrail[i].y);
+      }
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+      ctx.lineWidth = 4;
+      ctx.lineCap = "round";
+      ctx.stroke();
+    }
+
+    // Draw Fruits
+    fruits.forEach(fruit => {
+      ctx.save();
+      ctx.translate(fruit.x, fruit.y);
+      ctx.rotate(fruit.rotation);
+      ctx.font = fruit.radius * 2 + "px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(fruit.emoji, 0, 0);
+      ctx.restore();
+    });
+
+    // Draw Juice Slices
+    slices.forEach((slice, index) => {
+      slice.x += slice.vx;
+      slice.y += slice.vy;
+      slice.life -= 0.02;
+      
+      if (slice.life <= 0) {
+        slices.splice(index, 1);
+        return;
+      }
+
+      ctx.beginPath();
+      ctx.arc(slice.x, slice.y, slice.radius, 0, Math.PI * 2);
+      ctx.fillStyle = slice.color;
+      ctx.globalAlpha = slice.life;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    });
+
+    // Draw UI
+    ctx.fillStyle = "white";
+    ctx.font = "bold 30px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText("Score: " + score, 20, 40);
+    
+    ctx.textAlign = "right";
+    ctx.fillText("Lives: " + "❤️".repeat(lives), canvas.width - 20, 40);
+  }
+
+  function update() {
+    if (!gameRunning) return;
+
+    // Spawn logic
+    if (Math.random() < 0.03) spawnFruit();
+
+    for (let i = fruits.length - 1; i >= 0; i--) {
+      let fruit = fruits[i];
+      
+      // Physics
+      fruit.x += fruit.vx;
+      fruit.y += fruit.vy;
+      fruit.vy += 0.3; // Gravity
+      fruit.rotation += fruit.rotSpeed;
+
+      // Remove if fell off screen
+      if (fruit.y > canvas.height + 100) {
+        fruits.splice(i, 1);
+        continue;
+      }
+
+      // Check Collision with Mouse Trail
+      if (!fruit.sliced && mouseTrail.length > 2) {
+        for (let j = 0; j < mouseTrail.length; j++) {
+          let dist = Math.hypot(fruit.x - mouseTrail[j].x, fruit.y - mouseTrail[j].y);
+          if (dist < fruit.radius + 10) {
+            // Sliced!
+            fruit.sliced = true;
+            
+            if (fruit.isBomb) {
+              // Hit a bomb
+              createJuice(fruit.x, fruit.y, "#ef4444");
+              lives = 0;
+              gameOver();
+            } else {
+              // Sliced a fruit
+              createJuice(fruit.x, fruit.y, fruit.color);
+              score += 10;
+            }
+            
+            fruits.splice(i, 1);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  function gameOver() {
+    gameRunning = false;
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("fruitBest", bestScore);
+    }
+
+    setTimeout(() => {
+      ctx.fillStyle = "rgba(0,0,0,0.85)";
+      ctx.fillRect(0, canvas.height/2 - 120, canvas.width, 240);
+      
+      ctx.fillStyle = "#f97316";
+      ctx.font = "bold 40px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 50);
+      
+      ctx.fillStyle = "white";
+      ctx.font = "24px Arial";
+      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 10);
+      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 50);
+      
+      ctx.fillStyle = "#aab1ce";
+      ctx.font = "16px Arial";
+      ctx.fillText("Click to Play Again", canvas.width/2, canvas.height/2 + 100);
+      
+      const restart = () => {
+        canvas.removeEventListener("mousedown", restart);
+        canvas.removeEventListener("touchstart", restart);
+        resetGame();
+      };
+      canvas.addEventListener("mousedown", restart);
+      canvas.addEventListener("touchstart", restart, {passive: true});
+    }, 500);
+  }
+
+  function gameLoop() {
+    if (!gameRunning) {
+      // Keep drawing trails and slices even if game over
+      draw();
+      if (slices.length > 0) requestAnimationFrame(gameLoop); 
+      return;
+    }
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  // Mouse Controls
+  canvas.addEventListener("mousemove", (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    mouseTrail.push({ x, y });
+    if (mouseTrail.length > 8) mouseTrail.shift();
+  });
+
+  // Touch Controls
+  canvas.addEventListener("touchmove", (e) => {
+    e.preventDefault();
+    const rect = canvas.getBoundingClientRect();
+    const x = e.touches[0].clientX - rect.left;
+    const y = e.touches[0].clientY - rect.top;
+    
+    mouseTrail.push({ x, y });
+    if (mouseTrail.length > 8) mouseTrail.shift();
+  }, {passive: false});
+
+  // Clear trail when mouse stops
+  setInterval(() => {
+    if (mouseTrail.length > 0) mouseTrail.shift();
+  }, 50);
+
+  startBtn.addEventListener("click", resetGame);
+
+</script>
+</body>
+</html>
