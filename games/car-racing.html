@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Endless Car Racing - Play Free Online | GameZone 203</title>
+<title>Endless Car Racing Pro - Play Free Online | GameZone 203</title>
 
 <!-- SEO TAGS -->
-<meta name="description" content="Play Endless Car Racing free online at GameZone 203. Dodge traffic, earn coins, unlock new cars, and beat your high score!">
+<meta name="description" content="Play Endless Car Racing Pro free online at GameZone 203. Dodge traffic, unlock new cars, and beat your high score!">
 <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/car-racing.html">
-<meta property="og:title" content="Endless Car Racing - Play Free Online | GameZone 203">
+<meta property="og:title" content="Endless Car Racing Pro - Play Free Online | GameZone 203">
 <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
 
 <style>
@@ -27,7 +27,7 @@
     color: white;
   }
   canvas {
-    background: #1e293b;
+    background: #0f172a;
     box-shadow: 0 0 40px rgba(56, 189, 248, 0.2);
     border-radius: 15px;
     border: 2px solid #334155;
@@ -99,14 +99,11 @@
 </head>
 <body>
 
-  <!-- Garage Menu -->
   <div id="menuOverlay">
     <h1>Garage</h1>
     <div id="totalCoins">🪙 Coins: 0</div>
     
-    <div class="garage" id="garage">
-      <!-- Cars will be generated here -->
-    </div>
+    <div class="garage" id="garage"></div>
     
     <p id="msgBox" style="color: #ef4444; font-size: 12px; height: 15px; margin: 0 0 10px 0;"></p>
     
@@ -126,20 +123,20 @@
   let gameRunning = false;
   let score = 0;
   let level = 1;
-  let speed = 5;
+  let speed = 6; // Shuruati speed tez ki hai
   let roadOffset = 0;
   let distance = 0;
   let spawnTimer = 0;
 
   // Coins & Cars State
-  let coins = parseInt(localStorage.getItem("racingCoins")) || 0;
-  let unlockedCars = JSON.parse(localStorage.getItem("racingCars")) || [0]; // 0 index unlocked by default
-  let selectedCar = parseInt(localStorage.getItem("racingSelectedCar")) || 0;
+  let coins = parseInt(localStorage.getItem("racingCoinsPro")) || 0;
+  let unlockedCars = JSON.parse(localStorage.getItem("racingCarsPro")) || [0]; 
+  let selectedCar = parseInt(localStorage.getItem("racingSelectedCarPro")) || 0;
 
   const carsDB = [
     { name: "Starter", color: "#38bdf8", price: 0, icon: "🚗" },
-    { name: "Sport", color: "#ef4444", price: 100, icon: "🏎️" },
-    { name: "Super", color: "#a855f7", price: 300, icon: "🚓" }
+    { name: "Sport", color: "#ef4444", price: 150, icon: "🏎️" },
+    { name: "Super", color: "#a855f7", price: 400, icon: "🚓" }
   ];
 
   const playerCar = {
@@ -150,10 +147,9 @@
   };
 
   let opponents = [];
-  const opponentColors = ["#fbbf24", "#10b981", "#f97316"];
+  const opponentColors = ["#fbbf24", "#10b981", "#f97316", "#ec4899"];
   const lanes = [canvas.width / 4 - 20, canvas.width / 2 - 20, (3 * canvas.width) / 4 - 20];
 
-  // Initialize Menu
   function initMenu() {
     totalCoinsEl.textContent = `🪙 Coins: ${coins}`;
     garageEl.innerHTML = "";
@@ -181,19 +177,18 @@
     
     if (isUnlocked) {
       selectedCar = index;
-      localStorage.setItem("racingSelectedCar", selectedCar);
+      localStorage.setItem("racingSelectedCarPro", selectedCar);
       msgBox.textContent = "";
       initMenu();
     } else {
-      // Try to buy
       const price = carsDB[index].price;
       if (coins >= price) {
         coins -= price;
-        localStorage.setItem("racingCoins", coins);
+        localStorage.setItem("racingCoinsPro", coins);
         unlockedCars.push(index);
-        localStorage.setItem("racingCars", JSON.stringify(unlockedCars));
+        localStorage.setItem("racingCarsPro", JSON.stringify(unlockedCars));
         selectedCar = index;
-        localStorage.setItem("racingSelectedCar", selectedCar);
+        localStorage.setItem("racingSelectedCarPro", selectedCar);
         msgBox.style.color = "#10b981";
         msgBox.textContent = `Successfully unlocked ${carsDB[index].name}!`;
         initMenu();
@@ -209,7 +204,7 @@
     gameRunning = true;
     score = 0;
     level = 1;
-    speed = 5;
+    speed = 6; // Fast start
     distance = 0;
     spawnTimer = 0;
     opponents = [];
@@ -220,7 +215,7 @@
 
   function spawnCar() {
     const lane = lanes[Math.floor(Math.random() * lanes.length)];
-    if (opponents.some(car => car.y < 200 && car.x === lane)) return;
+    if (opponents.some(car => car.y < 250 && car.x === lane)) return;
 
     opponents.push({
       x: lane, y: -100, width: 40, height: 80,
@@ -229,21 +224,30 @@
   }
 
   function drawCar(x, y, width, height, color) {
+    // Shadow
+    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    ctx.beginPath(); ctx.roundRect(x - 2, y + 5, width + 4, height, 10); ctx.fill();
+
+    // Body
     ctx.fillStyle = color;
     ctx.beginPath(); ctx.roundRect(x, y, width, height, 10); ctx.fill();
     
-    // Windows
-    ctx.fillStyle = "rgba(0,0,0,0.6)";
+    // Windshield/Windows
+    ctx.fillStyle = "rgba(0,0,0,0.7)";
     ctx.beginPath(); ctx.roundRect(x + 5, y + 10, width - 10, 20, 5); ctx.fill();
     ctx.beginPath(); ctx.roundRect(x + 5, y + 35, width - 10, 20, 5); ctx.fill();
 
-    // Lights
-    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    // Headlights/Taillights
+    ctx.fillStyle = "#fff";
     ctx.fillRect(x + 5, y, 8, 4);
     ctx.fillRect(x + width - 13, y, 8, 4);
+    
+    ctx.fillStyle = "#ef4444";
+    ctx.fillRect(x + 5, y + height - 4, 8, 4);
+    ctx.fillRect(x + width - 13, y + height - 4, 8, 4);
 
     // Wheels
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#111";
     ctx.fillRect(x - 4, y + 10, 6, 15);
     ctx.fillRect(x + width - 2, y + 10, 6, 15);
     ctx.fillRect(x - 4, y + height - 25, 6, 15);
@@ -251,45 +255,43 @@
   }
 
   function drawRoad() {
-    // Dark Road
-    ctx.fillStyle = "#1e293b";
-    ctx.fillRect(50, 0, canvas.width - 100, canvas.height);
-
-    // Grass / Sidewalks
+    // Grass
     ctx.fillStyle = "#0f172a";
     ctx.fillRect(0, 0, 50, canvas.height);
     ctx.fillRect(canvas.width - 50, 0, 50, canvas.height);
 
-    // Road Lines
+    // Neon Grass Borders
+    ctx.fillStyle = "#38bdf8";
+    ctx.fillRect(48, 0, 2, canvas.height);
+    ctx.fillRect(canvas.width - 50, 0, 2, canvas.height);
+
+    // Road Background
+    ctx.fillStyle = "#1e293b";
+    ctx.fillRect(50, 0, canvas.width - 100, canvas.height);
+
+    // Dashed Lines
     ctx.fillStyle = "#475569";
     roadOffset = (roadOffset + speed) % 40;
     for (let y = -40; y < canvas.height; y += 40) {
-      ctx.fillRect(canvas.width / 2 - 4, y + roadOffset, 8, 20);
+      ctx.fillRect(canvas.width / 3 - 4, y + roadOffset, 8, 20);
+      ctx.fillRect((canvas.width / 3) * 2 - 4, y + roadOffset, 8, 20);
     }
-    
-    // Edge Lines
-    ctx.fillStyle = "#38bdf8";
-    ctx.fillRect(50, 0, 4, canvas.height);
-    ctx.fillRect(canvas.width - 54, 0, 4, canvas.height);
   }
 
   function update() {
     if (!gameRunning) return;
 
-    // Difficulty & Speed
     distance += speed;
-    let newLevel = Math.floor(distance / 1000) + 1;
+    let newLevel = Math.floor(distance / 800) + 1;
     if (newLevel > level) {
       level = newLevel;
-      speed += 1; // Speed up each level
+      speed += 1.5; // Speed increases faster
     }
 
-    // Move Opponents
     for (let i = opponents.length - 1; i >= 0; i--) {
       let car = opponents[i];
       car.y += speed;
 
-      // Collision
       if (
         playerCar.x < car.x + car.width - 5 &&
         playerCar.x + playerCar.width > car.x + 5 &&
@@ -303,14 +305,13 @@
       if (car.y > canvas.height) {
         opponents.splice(i, 1);
         score += 10;
-        coins += 1; // Earn 1 coin per car dodged
-        localStorage.setItem("racingCoins", coins);
+        coins += 1; 
+        localStorage.setItem("racingCoinsPro", coins);
       }
     }
 
-    // Spawning logic
     spawnTimer++;
-    if (spawnTimer > Math.max(30, 80 - (level * 5))) {
+    if (spawnTimer > Math.max(25, 60 - (level * 5))) {
       spawnCar();
       spawnTimer = 0;
     }
@@ -420,7 +421,6 @@
     }
   });
 
-  // Init on Load
   initMenu();
 
 </script>
