@@ -714,13 +714,25 @@ window.GZ_CONFIG = {
       bg: "#e0f2fe"
     },
     {
-      id: "ping-pong",
+           id: "ping-pong",
       name: "Ping Pong",
       category: "Racing & Sports",
       emoji: "🏓",
       tag: "NEW",
       description: "Test your reflexes in this classic Ping Pong game. Can you beat the AI?",
       url: "games/ping-pong.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
+      id: "flappy-bird",
+      name: "Flappy Bird",
+      category: "Arcade",
+      emoji: "🐦",
+      tag: "NEW",
+      description: "Tap to fly through the pipes in this classic addictive game!",
+      url: "games/flappy-bird.html",
       popular: true,
       kids: true,
       bg: "#e0f2fe"
