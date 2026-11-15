@@ -91,7 +91,7 @@ const leaderList = document.getElementById("leader-list");
 let player, ais, foods, playing, gameLoop;
 let mouseX = 0, mouseY = 0;
 const SPEED = 4.5; 
-const BASE_RADIUS = 10; // Saanp ki shuruati motai
+const BASE_RADIUS = 10; 
 
 const AI_COLORS = ["#ff4d79", "#f1c40f", "#a855f7", "#00a8ff", "#e67e22", "#2ecc71"];
 
@@ -110,7 +110,8 @@ function reset() {
  for(let i=0; i<4; i++) spawnAI();
  
  foods = [];
- for(let i=0; i<120; i++) spawnFood(); 
+ // CHANGE 1: Khane kam kar diye (120 se 60 kar diye)
+ for(let i=0; i<60; i++) spawnFood(); 
  
  playing = false;
  updateUI();
@@ -134,7 +135,7 @@ function spawnFood() {
  foods.push({
   x: Math.random() * width, y: Math.random() * height,
   color: `hsl(${Math.random() * 360}, 100%, 65%)`,
-  radius: 6 
+  radius: 5 
  });
 }
 
@@ -158,8 +159,8 @@ function startGame() {
 function drawSnake(snake) {
  if(snake.dead) return;
  
- // Saanp ki motai ab dheere badhegi (score * 0.008)
- const radius = BASE_RADIUS + (snake.score * 0.008);
+ // CHANGE 2: Motai aur kam kar di (0.008 se 0.004 kar diya)
+ const radius = BASE_RADIUS + (snake.score * 0.004);
 
  for(let i = snake.body.length - 1; i >= 0; i--) {
   const seg = snake.body[i];
@@ -247,29 +248,28 @@ function checkFoods() {
  
  allSnakes.forEach(snake => {
   const head = snake.body[0];
-  // Collision ke liye sahi radius
-  const radius = BASE_RADIUS + (snake.score * 0.008);
+  const radius = BASE_RADIUS + (snake.score * 0.004);
   
   for(let i = foods.length - 1; i >= 0; i--) {
    const f = foods[i];
    if(Math.hypot(head.x - f.x, head.y - f.y) < radius + f.radius) {
     foods.splice(i, 1);
     
-    // AB SIRF 1 SEGMENT BADHEGA (Pehle 3 hota tha)
     snake.score += 1; 
     
-    // Speed thodi tez hogi khana khane par
     if (snake.score % 10 === 0 && snake.dx !== 0 && snake.dy !== 0) {
       snake.dx *= 1.02;
       snake.dy *= 1.02;
     }
     
-    spawnFood();
+    // CHANGE 3: Naya khana thodi der baad aayega (Randomly)
+    if (Math.random() < 0.7) {
+        spawnFood();
+    }
     break;
    }
   }
   
-  // Tail pop logic
   if(snake.body.length > snake.score) {
    snake.body.pop();
   }
@@ -281,7 +281,7 @@ function checkCollisions() {
 
  allSnakes.forEach(snake => {
   const head = snake.body[0];
-  const collisionRadius = (BASE_RADIUS + (snake.score * 0.008)) * 0.7; 
+  const collisionRadius = (BASE_RADIUS + (snake.score * 0.004)) * 0.7; 
   
   for(let i = 15; i < snake.body.length; i++) {
    if(Math.hypot(head.x - snake.body[i].x, head.y - snake.body[i].y) < collisionRadius) {
@@ -292,7 +292,7 @@ function checkCollisions() {
 
   allSnakes.forEach(other => {
    if(snake === other || other.dead) return;
-   const otherRadius = (BASE_RADIUS + (other.score * 0.008)) * 0.7;
+   const otherRadius = (BASE_RADIUS + (other.score * 0.004)) * 0.7;
    
    for(let i = 0; i < other.body.length; i++) {
     if(Math.hypot(head.x - other.body[i].x, head.y - other.body[i].y) < (collisionRadius + otherRadius) * 0.6) {
@@ -310,12 +310,12 @@ function killSnake(snake) {
  snake.dead = true;
  
  snake.body.forEach(seg => {
-  for(let i=0; i<2; i++) {
+  for(let i=0; i<1; i++) {
    foods.push({
     x: seg.x + (Math.random()-0.5)*20,
     y: seg.y + (Math.random()-0.5)*20,
     color: snake.color,
-    radius: 6
+    radius: 5
    });
   }
  });
