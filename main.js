@@ -18,6 +18,30 @@ window.GZ_CONFIG = {
     // 1. NAYE CHALNE WALE GAMES (Sabse Upar)
     // ==========================================
     {
+      id: "fruit-ninja",
+      name: "Fruit Ninja",
+      category: "Arcade",
+      emoji: "🍉",
+      tag: "NEW",
+      description: "Swipe to slice flying fruits, but avoid the bombs!",
+      url: "games/fruit-ninja.html",
+      popular: true,
+      kids: true,
+      bg: "#fff0e8"
+    },
+    {
+      id: "car-racing",
+      name: "Car Racing",
+      category: "Racing & Sports",
+      emoji: "🏎️",
+      tag: "NEW",
+      description: "Dodge traffic, earn coins, unlock new cars, and beat your high score!",
+      url: "games/car-racing.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
       id: "bubble-shooter",
       name: "Bubble Shooter",
       category: "Puzzle & Brain",
@@ -622,18 +646,6 @@ window.GZ_CONFIG = {
       bg: "#e8f4ff"
     },
     {
-      id: "fruit-ninja",
-      name: "Fruit Ninja",
-      category: "Kids & Family",
-      emoji: "🍉",
-      tag: "ARCADE FUN",
-      description: "Slice flying fruit and aim for a high score.",
-      url: "",
-      popular: false,
-      kids: true,
-      bg: "#fff0e8"
-    },
-    {
       id: "duck-life",
       name: "Duck Life",
       category: "Kids & Family",
@@ -749,40 +761,6 @@ window.GZ_CONFIG = {
       tag: "TOWER DEFENCE",
       description: "Build towers and stop waves of balloons.",
       url: "",
-        popular: false,
-      kids: true,
-      bg: "#fff0e5"
-    },
-    {
-      id: "cookie-clicker",
-      name: "Cookie Clicker",
-      category: "Strategy & Casual",
-      emoji: "🍪",
-      tag: "CASUAL",
-      description: "Bake cookies and grow your cookie empire.",
-      url: "",
-      popular: false,
-      kids: true,
-      bg: "#fff1df"
-    },
-      category: "Strategy & Casual",
-      emoji: "🍪",
-      tag: "CASUAL",
-      description: "Bake cookies and grow your cookie empire.",
-      url: "",
-      popular: false,
-      kids: true,
-      bg: "#fff1df"
-    },
-    {
-          {
-      id: "bloons-td",
-      name: "Bloons TD",
-      category: "Strategy & Casual",
-      emoji: "🎈",
-      tag: "TOWER DEFENCE",
-      description: "Build towers and stop waves of balloons.",
-      url: "",
       popular: false,
       kids: true,
       bg: "#fff0e5"
@@ -798,30 +776,6 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff1df"
-    },
-    {
-      id: "car-racing",
-      name: "Car Racing",
-      category: "Racing & Sports",
-      emoji: "🏎️",
-      tag: "NEW",
-      description: "Dodge traffic, earn coins, unlock new cars, and beat your high score!",
-      url: "games/car-racing.html",
-      popular: true,
-      kids: true,
-      bg: "#e0f2fe"
-    },
-    {
-      id: "fruit-ninja",
-      name: "Fruit Ninja",
-      category: "Arcade",
-      emoji: "🍉",
-      tag: "NEW",
-      description: "Swipe to slice flying fruits, but avoid the bombs!",
-      url: "games/fruit-ninja.html",
-      popular: true,
-      kids: true,
-      bg: "#fff0e8"
     }
   ]
 };
