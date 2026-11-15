@@ -18,6 +18,30 @@ window.GZ_CONFIG = {
     // 1. NAYE CHALNE WALE GAMES (Sabse Upar)
     // ==========================================
     {
+      id: "bubble-shooter",
+      name: "Bubble Shooter",
+      category: "Puzzle & Brain",
+      emoji: "🫧",
+      tag: "NEW",
+      description: "Aim, shoot, and match 3 or more bubbles to clear the board!",
+      url: "games/bubble-shooter.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
+      id: "connect-four",
+      name: "Connect Four",
+      category: "Board & Classic",
+      emoji: "🔴",
+      tag: "NEW",
+      description: "Drop the discs and connect 4 in a row to beat the AI!",
+      url: "games/connect-four.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
       id: "tower-stack",
       name: "Tower Stack",
       category: "Arcade",
@@ -127,7 +151,7 @@ window.GZ_CONFIG = {
     },
 
     // ==========================================
-    // 2. NAYE GAMES JO ABHI BANENGE (Coming Soon)
+    // 2. BAAKI GAMES (Coming Soon)
     // ==========================================
     {
       id: "chess",
@@ -249,10 +273,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#ffeaf2"
     },
-
-    // ==========================================
-    // 3. BAAKI GAMES (Sabse Neeche)
-    // ==========================================
     {
       id: "call-of-duty-warzone",
       name: "Call of Duty: Warzone",
@@ -744,17 +764,6 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff1df"
-        ,{
-      id: "connect-four",
-      name: "Connect Four",
-      category: "Board & Classic",
-      emoji: "🔴",
-      tag: "NEW",
-      description: "Drop the discs and connect 4 in a row to beat the AI!",
-      url: "games/connect-four.html",
-      popular: true,
-      kids: true,
-      bg: "#e0f2fe"
     }
   ]
 };
