@@ -31,25 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })[char]);
   }
 
-  function getName(game) {
-    return game.name || game.title || "Untitled Game";
-  }
-
-  function getEmoji(game) {
-    return game.emoji || game.icon || "🎮";
-  }
-
-  function getCategory(game) {
-    return game.category || "Arcade";
-  }
-
-  function getDescription(game) {
-    return game.description || game.tag || "Enjoy this exciting game!";
-  }
-
-  function getGameURL(game) {
-    return game.url || game.link || "";
-  }
+  function getName(game) { return game.name || "Untitled Game"; }
+  function getEmoji(game) { return game.emoji || "🎮"; }
+  function getCategory(game) { return game.category || "Arcade"; }
+  function getDescription(game) { return game.description || game.tag || "Enjoy this game!"; }
+  function getGameURL(game) { return game.url || ""; }
 
   function makeCard(game) {
     const name = escapeHTML(getName(game));
@@ -64,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return `
       <article class="game-card">
-        <div class="game-art" style="--art-bg:${escapeHTML(game.color || "#dce8ff")}">
+        <div class="game-art" style="--art-bg:${escapeHTML(game.bg || "#dce8ff")}">
           <span class="game-tag">${category}</span>
           <span class="game-emoji">${emoji}</span>
         </div>
@@ -82,18 +68,33 @@ document.addEventListener("DOMContentLoaded", () => {
     grid.innerHTML = list.map(makeCard).join("");
   }
 
+  // Nayi logic: Sirf chalne wale (url wale) games ko Popular aur Kids mein dikhayein
+  function renderHomepage() {
+    const playableGames = games.filter(g => g.url && g.url.trim() !== "");
+
+    // Popular section mein sirf chalne wale games dikhenge
+    renderGames(popularGrid, playableGames.slice(0, 8));
+
+    // Kids section mein sirf chalne wale kids games dikhenge
+    renderGames(kidsGrid, playableGames.filter(g => g.kids === true).slice(0, 8));
+
+    updateAllGames();
+  }
+
+  function updateAllGames() {
+    const filtered = games.filter(game =>
+      matchesCategory(game) && matchesSearch(game)
+    );
+
+    renderGames(allGrid, filtered);
+    if (emptyMessage) emptyMessage.hidden = filtered.length !== 0;
+    renderFilters();
+  }
+
   function renderFilters() {
     if (!filterRow) return;
-
-    const filterCategories = categories.length
-      ? categories
-      : ["All", "Popular", "Kids & Family"];
-
-    filterRow.innerHTML = filterCategories.map(category => `
-      <button
-        type="button"
-        class="filter-chip ${category === activeCategory ? "active" : ""}"
-        data-category="${escapeHTML(category)}">
+    filterRow.innerHTML = categories.map(category => `
+      <button type="button" class="filter-chip ${category === activeCategory ? "active" : ""}" data-category="${escapeHTML(category)}">
         ${escapeHTML(category)}
       </button>
     `).join("");
@@ -101,14 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function matchesSearch(game) {
     if (!searchTerm) return true;
-
-    const text = [
-      getName(game),
-      getCategory(game),
-      getDescription(game),
-      game.tag || ""
-    ].join(" ").toLowerCase();
-
+    const text = [getName(game), getCategory(game), getDescription(game), game.tag || ""].join(" ").toLowerCase();
     return text.includes(searchTerm);
   }
 
@@ -121,51 +115,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return getCategory(game) === activeCategory;
   }
 
-  function updateAllGames() {
-    const filtered = games.filter(game =>
-      matchesCategory(game) && matchesSearch(game)
-    );
-
-    renderGames(allGrid, filtered);
-
-    if (emptyMessage) {
-      emptyMessage.hidden = filtered.length !== 0;
-    }
-
-    renderFilters();
-  }
-
-  function renderHomepage() {
-    renderGames(
-      popularGrid,
-      games.filter(game => game.popular === true).slice(0, 8)
-    );
-
-    renderGames(
-      kidsGrid,
-      games.filter(game =>
-        game.kids === true || getCategory(game) === "Kids & Family"
-      ).slice(0, 8)
-    );
-
-    updateAllGames();
-  }
-
- 
-  // Filter chips click event (YEH CODE MISSING THA)
+  // Events
   if (filterRow) {
     filterRow.addEventListener("click", event => {
       const button = event.target.closest(".filter-chip");
       if (!button) return;
-
       activeCategory = button.dataset.category;
       updateAllGames();
-
-      document.getElementById("all-games")?.scrollIntoView({
-        behavior: "smooth"
-      });
+      document.getElementById("all-games")?.scrollIntoView({ behavior: "smooth" });
     });
   }
+
   if (searchInput) {
     searchInput.addEventListener("input", () => {
       searchTerm = searchInput.value.trim().toLowerCase();
@@ -179,62 +139,33 @@ document.addEventListener("DOMContentLoaded", () => {
       searchTerm = searchInput.value.trim().toLowerCase();
       activeCategory = "All";
       updateAllGames();
-
-      document.getElementById("all-games")?.scrollIntoView({
-        behavior: "smooth"
-      });
+      document.getElementById("all-games")?.scrollIntoView({ behavior: "smooth" });
     });
   }
 
-  // Category shortcut cards
   document.querySelectorAll(".category-tile").forEach(tile => {
     tile.addEventListener("click", event => {
       const label = tile.textContent.trim().toLowerCase();
       const mapping = {
-        "all games": "All",
-        "battle royale": "Battle Royale",
-        "action": "Action & Adventure",
-        "racing": "Racing & Sports",
-        "puzzle": "Puzzle & Brain",
-        "board games": "Board & Classic",
-        "arcade": "Arcade",
-        "kids": "Kids & Family"
+        "all games": "All", "battle royale": "Battle Royale", "action": "Action & Adventure",
+        "racing": "Racing & Sports", "puzzle": "Puzzle & Brain", "board games": "Board & Classic",
+        "arcade": "Arcade", "kids": "Kids & Family"
       };
-
       const selected = mapping[label];
       if (!selected) return;
-
       event.preventDefault();
       activeCategory = categories.includes(selected) ? selected : "All";
       searchTerm = "";
       if (searchInput) searchInput.value = "";
       updateAllGames();
-
-      document.getElementById("all-games")?.scrollIntoView({
-        behavior: "smooth"
-      });
+      document.getElementById("all-games")?.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  // Mobile sidebar
   if (menuToggle && sidebar) {
-    menuToggle.addEventListener("click", () => {
-      sidebar.classList.toggle("open");
-    });
-
-    sidebar.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        sidebar.classList.remove("open");
-      });
-    });
-
+    menuToggle.addEventListener("click", () => sidebar.classList.toggle("open"));
     document.addEventListener("click", event => {
-      if (
-        window.innerWidth <= 760 &&
-        sidebar.classList.contains("open") &&
-        !sidebar.contains(event.target) &&
-        !menuToggle.contains(event.target)
-      ) {
+      if (window.innerWidth <= 760 && sidebar.classList.contains("open") && !sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
         sidebar.classList.remove("open");
       }
     });
