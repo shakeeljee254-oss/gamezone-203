@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Endless Car Racing - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Endless Car Racing free online at GameZone 203. Dodge traffic, speed up, and beat your high score!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/car-racing.html">
+<meta property="og:title" content="Endless Car Racing - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Endless Car Racing",
+  "description": "Play Endless Car Racing free online.",
+  "genre": ["Racing", "Arcade"]
+}
+</script>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    touch-action: none;
+  }
+  canvas {
+    background: #333;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    max-width: 100%;
+    max-height: 100vh;
+  }
+  #startOverlay {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 10;
+    border: 2px solid #38bdf8;
+  }
+  h1 { color: #38bdf8; margin-top: 0; text-transform: uppercase; letter-spacing: 2px;}
+  p { color: #cbd5e1; font-size: 16px; margin-bottom: 25px; }
+  button {
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { background: #0ea5e9; box-shadow: 0 0 15px #38bdf8; }
+</style>
+</head>
+<body>
+
+  <div id="startOverlay">
+    <h1>Car Racing</h1>
+    <p>Use Arrow Keys or Swipe to move.<br>Avoid the traffic!</p>
+    <button id="startBtn">START GAME</button>
+  </div>
+
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const startOverlay = document.getElementById("startOverlay");
+  const startBtn = document.getElementById("startBtn");
+
+  let gameRunning = false;
+  let score = 0;
+  let bestScore = localStorage.getItem("racingBest") || 0;
+  let speed = 5;
+  let roadOffset = 0;
+
+  // Player Car
+  const playerCar = {
+    x: canvas.width / 2 - 20,
+    y: canvas.height - 120,
+    width: 40,
+    height: 80,
+    color: "#38bdf8"
+  };
+
+  // Opponent Cars & Lines
+  let opponents = [];
+  const opponentColors = ["#ef4444", "#fbbf24", "#10b981", "#a855f7", "#f97316"];
+  const lanes = [canvas.width / 4 - 20, canvas.width / 2 - 20, (3 * canvas.width) / 4 - 20];
+
+  function resetGame() {
+    gameRunning = true;
+    startOverlay.style.display = "none";
+    score = 0;
+    speed = 5;
+    opponents = [];
+    playerCar.x = canvas.width / 2 - 20;
+    roadOffset = 0;
+    gameLoop();
+  }
+
+  function spawnCar() {
+    const lane = lanes[Math.floor(Math.random() * lanes.length)];
+    // Don't spawn if a car is already in that lane near the top
+    if (opponents.some(car => car.y < 150 && car.x === lane)) return;
+
+    opponents.push({
+      x: lane,
+      y: -100,
+      width: 40,
+      height: 80,
+      color: opponentColors[Math.floor(Math.random() * opponentColors.length)]
+    });
+  }
+
+  function drawCar(x, y, width, height, color) {
+    // Car Body
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.roundRect(x, y, width, height, 10);
+    ctx.fill();
+    
+    // Windshield
+    ctx.fillStyle = "rgba(0,0,0,0.5)";
+    ctx.beginPath();
+    ctx.roundRect(x + 5, y + 10, width - 10, 20, 5);
+    ctx.fill();
+    
+    // Roof
+    ctx.beginPath();
+    ctx.roundRect(x + 5, y + 35, width - 10, 20, 5);
+    ctx.fill();
+
+    // Wheels
+    ctx.fillStyle = "black";
+    ctx.fillRect(x - 5, y + 10, 5, 15); // Top Left
+    ctx.fillRect(x + width, y + 10, 5, 15); // Top Right
+    ctx.fillRect(x - 5, y + height - 25, 5, 15); // Bottom Left
+    ctx.fillRect(x + width, y + height - 25, 5, 15); // Bottom Right
+  }
+
+  function drawRoad() {
+    // Road Background
+    ctx.fillStyle = "#475569";
+    ctx.fillRect(50, 0, canvas.width - 100, canvas.height);
+
+    // Grass
+    ctx.fillStyle = "#166534";
+    ctx.fillRect(0, 0, 50, canvas.height);
+    ctx.fillRect(canvas.width - 50, 0, 50, canvas.height);
+
+    // Road Lines
+    ctx.fillStyle = "#e2e8f0";
+    roadOffset = (roadOffset + speed) % 40;
+    
+    // Center lines
+    for (let y = -40; y < canvas.height; y += 40) {
+      ctx.fillRect(canvas.width / 2 - 5, y + roadOffset, 10, 20);
+    }
+    
+    // Side borders
+    ctx.fillStyle = "white";
+    ctx.fillRect(50, 0, 5, canvas.height);
+    ctx.fillRect(canvas.width - 55, 0, 5, canvas.height);
+  }
+
+  function update() {
+    if (!gameRunning) return;
+
+    // Move Road
+    drawRoad();
+
+    // Move Opponents
+    for (let i = opponents.length - 1; i >= 0; i--) {
+      let car = opponents[i];
+      car.y += speed;
+
+      // Collision Detection
+      if (
+        playerCar.x < car.x + car.width &&
+        playerCar.x + playerCar.width > car.x &&
+        playerCar.y < car.y + car.height &&
+        playerCar.y + playerCar.height > car.y
+      ) {
+        gameOver();
+        return;
+      }
+
+      // Remove off-screen cars and add score
+      if (car.y > canvas.height) {
+        opponents.splice(i, 1);
+        score += 10;
+      }
+    }
+
+    // Increase difficulty
+    if (score > 0 && score % 100 === 0) {
+      speed += 0.5;
+      score += 1; // just to prevent multiple speed triggers on same score
+    }
+
+    // Spawn new cars
+    if (Math.random() < 0.02 + (speed / 1000)) {
+      spawnCar();
+    }
+  }
+
+  function draw() {
+    // Clear Screen
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawRoad();
+
+    // Draw Opponents
+    opponents.forEach(car => {
+      drawCar(car.x, car.y, car.width, car.height, car.color);
+    });
+
+    // Draw Player
+    drawCar(playerCar.x, playerCar.y, playerCar.width, playerCar.height, playerCar.color);
+
+    // Draw Score
+    ctx.fillStyle = "white";
+    ctx.font = "bold 24px Arial";
+    ctx.textAlign = "left";
+    ctx.fillText("Score: " + score, 20, 40);
+    ctx.fillText("Speed: " + Math.floor(speed * 10), 20, 70);
+  }
+
+  function gameOver() {
+    gameRunning = false;
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("racingBest", bestScore);
+    }
+
+    setTimeout(() => {
+      ctx.fillStyle = "rgba(0,0,0,0.8)";
+      ctx.fillRect(0, canvas.height/2 - 100, canvas.width, 200);
+      
+      ctx.fillStyle = "#ef4444";
+      ctx.font = "bold 36px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("CRASHED!", canvas.width/2, canvas.height/2 - 30);
+      
+      ctx.fillStyle = "white";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 20);
+      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 50);
+      
+      ctx.fillStyle = "#38bdf8";
+      ctx.font = "16px Arial";
+      ctx.fillText("Click to Restart", canvas.width/2, canvas.height/2 + 90);
+      
+      const restart = () => {
+        canvas.removeEventListener("mousedown", restart);
+        canvas.removeEventListener("touchstart", restart);
+        resetGame();
+      };
+      canvas.addEventListener("mousedown", restart);
+      canvas.addEventListener("touchstart", restart, {passive: true});
+      
+    }, 100);
+  }
+
+  function gameLoop() {
+    if (!gameRunning) return;
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  // Controls
+  window.addEventListener("keydown", (e) => {
+    if (!gameRunning) return;
+    if (e.key === "ArrowLeft" || e.key === "a") {
+      playerCar.x = lanes[0];
+    } else if (e.key === "ArrowRight" || e.key === "d") {
+      playerCar.x = lanes[2];
+    } else if (e.key === "ArrowUp" || e.key === "w") {
+      playerCar.x = lanes[1];
+    }
+  });
+
+  let touchStartX = 0;
+  canvas.addEventListener("touchstart", (e) => {
+    if (!gameRunning) return;
+    touchStartX = e.touches[0].clientX;
+  }, {passive: true});
+
+  canvas.addEventListener("touchend", (e) => {
+    if (!gameRunning) return;
+    let touchEndX = e.changedTouches[0].clientX;
+    if (touchEndX < touchStartX - 30) {
+      // Swipe Left
+      if (playerCar.x === lanes[2]) playerCar.x = lanes[1];
+      else if (playerCar.x === lanes[1]) playerCar.x = lanes[0];
+    } else if (touchEndX > touchStartX + 30) {
+      // Swipe Right
+      if (playerCar.x === lanes[0]) playerCar.x = lanes[1];
+      else if (playerCar.x === lanes[1]) playerCar.x = lanes[2];
+    }
+  }, {passive: true});
+
+  // For Mouse Clicking (PC)
+  canvas.addEventListener("mousedown", (e) => {
+    if (!gameRunning) return;
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    if (mouseX < canvas.width / 2) {
+      // Move Left
+      if (playerCar.x === lanes[2]) playerCar.x = lanes[1];
+      else if (playerCar.x === lanes[1]) playerCar.x = lanes[0];
+    } else {
+      // Move Right
+      if (playerCar.x === lanes[0]) playerCar.x = lanes[1];
+      else if (playerCar.x === lanes[1]) playerCar.x = lanes[2];
+    }
+  });
+
+  startBtn.addEventListener("click", resetGame);
+
+</script>
+</body>
+</html>
