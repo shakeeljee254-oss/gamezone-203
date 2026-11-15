@@ -10,15 +10,6 @@
 <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/tower-stack.html">
 <meta property="og:title" content="Tower Stack - Play Free Online | GameZone 203">
 <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Tower Stack",
-  "description": "Play Tower Stack free online.",
-  "genre": ["Arcade", "Casual"]
-}
-</script>
 
 <style>
   body {
@@ -84,7 +75,6 @@
   let score = 0;
   let bestScore = localStorage.getItem("towerBest") || 0;
   
-  // Tower variables
   let blocks = [];
   let currentBlock = null;
   let cameraY = 0;
@@ -92,7 +82,6 @@
   let speed = 3;
   let moveDirection = 1;
 
-  // Colors
   const colors = ["#e94560", "#fbbf24", "#50f5d0", "#a855f7", "#00a8ff"];
 
   function resetGame() {
@@ -125,28 +114,23 @@
 
     const lastBlock = blocks[blocks.length - 1];
     
-    // Calculate overlap
     const overlapLeft = Math.max(currentBlock.x, lastBlock.x);
     const overlapRight = Math.min(currentBlock.x + currentBlock.width, lastBlock.x + lastBlock.width);
     const overlapWidth = overlapRight - overlapLeft;
 
     if (overlapWidth <= 0) {
-      // Game Over - Missed completely
       gameOver();
       return;
     }
 
-    // Adjust block position and width based on overlap
     currentBlock.x = overlapLeft;
     currentBlock.width = overlapWidth;
     
     blocks.push(currentBlock);
     score++;
     
-    // Increase speed slightly
     if (score % 5 === 0) speed += 0.5;
 
-    // Camera follows up
     if (currentBlock.y + cameraY < 200) {
       cameraY += blockHeight;
     }
@@ -192,10 +176,8 @@
   function update() {
     if (!gameRunning || !currentBlock) return;
 
-    // Move current block
     currentBlock.x += speed * moveDirection;
     
-    // Bounce off walls
     if (currentBlock.x <= 0) {
       currentBlock.x = 0;
       moveDirection = 1;
@@ -206,19 +188,15 @@
   }
 
   function draw() {
-    // Clear screen
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw blocks
     blocks.forEach(b => {
       ctx.fillStyle = b.color;
       ctx.fillRect(b.x, b.y + cameraY, b.width, blockHeight);
-      // 3D Effect
       ctx.fillStyle = "rgba(0,0,0,0.2)";
       ctx.fillRect(b.x, b.y + cameraY + blockHeight - 5, b.width, 5);
     });
 
-    // Draw current block
     if (currentBlock) {
       ctx.fillStyle = currentBlock.color;
       ctx.fillRect(currentBlock.x, currentBlock.y + cameraY, currentBlock.width, blockHeight);
@@ -226,7 +204,6 @@
       ctx.fillRect(currentBlock.x, currentBlock.y + cameraY + blockHeight - 5, currentBlock.width, 5);
     }
 
-    // Draw Score
     ctx.fillStyle = "white";
     ctx.font = "bold 40px Arial";
     ctx.textAlign = "center";
@@ -240,7 +217,6 @@
     requestAnimationFrame(gameLoop);
   }
 
-  // Controls
   window.addEventListener("keydown", (e) => {
     if (e.code === "Space" || e.code === "ArrowDown") {
       e.preventDefault();
