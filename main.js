@@ -752,7 +752,7 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff0e5"
-    },
+       },
     {
       id: "cookie-clicker",
       name: "Cookie Clicker",
@@ -764,6 +764,18 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff1df"
+    },
+    {
+      id: "car-racing",
+      name: "Car Racing",
+      category: "Racing & Sports",
+      emoji: "🏎️",
+      tag: "NEW",
+      description: "Dodge traffic, earn coins, unlock new cars, and beat your high score!",
+      url: "games/car-racing.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
     }
   ]
 };
