@@ -766,6 +766,7 @@ window.GZ_CONFIG = {
       bg: "#fff1df"
     },
     {
+        {
       id: "car-racing",
       name: "Car Racing",
       category: "Racing & Sports",
@@ -776,6 +777,18 @@ window.GZ_CONFIG = {
       popular: true,
       kids: true,
       bg: "#e0f2fe"
+    },
+    {
+      id: "fruit-ninja",
+      name: "Fruit Ninja",
+      category: "Arcade",
+      emoji: "🍉",
+      tag: "NEW",
+      description: "Swipe to slice flying fruits, but avoid the bombs!",
+      url: "games/fruit-ninja.html",
+      popular: true,
+      kids: true,
+      bg: "#fff0e8"
     }
   ]
 };
