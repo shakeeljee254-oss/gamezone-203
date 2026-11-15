@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Tower Stack - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Tower Stack free online at GameZone 203. Tap to stack the blocks as high as you can in this addictive game!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/tower-stack.html">
+<meta property="og:title" content="Tower Stack - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Tower Stack",
+  "description": "Play Tower Stack free online.",
+  "genre": ["Arcade", "Casual"]
+}
+</script>
+
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #1a1a2e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    touch-action: none;
+  }
+  canvas {
+    background: linear-gradient(to bottom, #16213e, #0f3460);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    max-width: 100%;
+    max-height: 100vh;
+  }
+  #startOverlay {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    z-index: 10;
+    border: 2px solid #e94560;
+  }
+  h1 { color: #e94560; margin-top: 0; letter-spacing: 2px; }
+  p { color: #aab1ce; font-size: 16px; margin-bottom: 25px; }
+  button {
+    background: #e94560;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { background: #c0354d; box-shadow: 0 0 15px #e94560; }
+</style>
+</head>
+<body>
+
+  <div id="startOverlay">
+    <h1>TOWER STACK</h1>
+    <p>Tap or Click to drop the block.<br>Build the highest tower!</p>
+    <button id="startBtn">START GAME</button>
+  </div>
+
+  <canvas id="gameCanvas" width="400" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById("gameCanvas");
+  const ctx = canvas.getContext("2d");
+  const startOverlay = document.getElementById("startOverlay");
+  const startBtn = document.getElementById("startBtn");
+
+  let gameRunning = false;
+  let score = 0;
+  let bestScore = localStorage.getItem("towerBest") || 0;
+  
+  // Tower variables
+  let blocks = [];
+  let currentBlock = null;
+  let cameraY = 0;
+  const blockHeight = 30;
+  let speed = 3;
+  let moveDirection = 1;
+
+  // Colors
+  const colors = ["#e94560", "#fbbf24", "#50f5d0", "#a855f7", "#00a8ff"];
+
+  function resetGame() {
+    blocks = [];
+    // Base block
+    blocks.push({ x: canvas.width/2 - 60, y: canvas.height - blockHeight, width: 120, color: "#fff" });
+    
+    currentBlock = createNewBlock();
+    score = 0;
+    cameraY = 0;
+    speed = 3;
+    moveDirection = 1;
+    gameRunning = true;
+    startOverlay.style.display = "none";
+    gameLoop();
+  }
+
+  function createNewBlock() {
+    const lastBlock = blocks[blocks.length - 1];
+    return {
+      x: Math.random() > 0.5 ? 0 : canvas.width - lastBlock.width,
+      y: lastBlock.y - blockHeight,
+      width: lastBlock.width,
+      color: colors[score % colors.length]
+    };
+  }
+
+  function dropBlock() {
+    if (!gameRunning || !currentBlock) return;
+
+    const lastBlock = blocks[blocks.length - 1];
+    
+    // Calculate overlap
+    const overlapLeft = Math.max(currentBlock.x, lastBlock.x);
+    const overlapRight = Math.min(currentBlock.x + currentBlock.width, lastBlock.x + lastBlock.width);
+    const overlapWidth = overlapRight - overlapLeft;
+
+    if (overlapWidth <= 0) {
+      // Game Over - Missed completely
+      gameOver();
+      return;
+    }
+
+    // Adjust block position and width based on overlap
+    currentBlock.x = overlapLeft;
+    currentBlock.width = overlapWidth;
+    
+    blocks.push(currentBlock);
+    score++;
+    
+    // Increase speed slightly
+    if (score % 5 === 0) speed += 0.5;
+
+    // Camera follows up
+    if (currentBlock.y + cameraY < 200) {
+      cameraY += blockHeight;
+    }
+
+    currentBlock = createNewBlock();
+  }
+
+  function gameOver() {
+    gameRunning = false;
+    if (score > bestScore) {
+      bestScore = score;
+      localStorage.setItem("towerBest", bestScore);
+    }
+
+    setTimeout(() => {
+      ctx.fillStyle = "rgba(0,0,0,0.8)";
+      ctx.fillRect(0, canvas.height/2 - 120, canvas.width, 240);
+      
+      ctx.fillStyle = "#e94560";
+      ctx.font = "bold 32px Arial";
+      ctx.textAlign = "center";
+      ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 50);
+      
+      ctx.fillStyle = "white";
+      ctx.font = "20px Arial";
+      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 10);
+      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 40);
+      
+      ctx.fillStyle = "#aab1ce";
+      ctx.font = "16px Arial";
+      ctx.fillText("Click to Restart", canvas.width/2, canvas.height/2 + 90);
+      
+      const restart = () => {
+        canvas.removeEventListener("mousedown", restart);
+        canvas.removeEventListener("touchstart", restart);
+        resetGame();
+      };
+      canvas.addEventListener("mousedown", restart);
+      canvas.addEventListener("touchstart", restart, {passive: true});
+    }, 500);
+  }
+
+  function update() {
+    if (!gameRunning || !currentBlock) return;
+
+    // Move current block
+    currentBlock.x += speed * moveDirection;
+    
+    // Bounce off walls
+    if (currentBlock.x <= 0) {
+      currentBlock.x = 0;
+      moveDirection = 1;
+    } else if (currentBlock.x + currentBlock.width >= canvas.width) {
+      currentBlock.x = canvas.width - currentBlock.width;
+      moveDirection = -1;
+    }
+  }
+
+  function draw() {
+    // Clear screen
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw blocks
+    blocks.forEach(b => {
+      ctx.fillStyle = b.color;
+      ctx.fillRect(b.x, b.y + cameraY, b.width, blockHeight);
+      // 3D Effect
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.fillRect(b.x, b.y + cameraY + blockHeight - 5, b.width, 5);
+    });
+
+    // Draw current block
+    if (currentBlock) {
+      ctx.fillStyle = currentBlock.color;
+      ctx.fillRect(currentBlock.x, currentBlock.y + cameraY, currentBlock.width, blockHeight);
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.fillRect(currentBlock.x, currentBlock.y + cameraY + blockHeight - 5, currentBlock.width, 5);
+    }
+
+    // Draw Score
+    ctx.fillStyle = "white";
+    ctx.font = "bold 40px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(score, canvas.width/2, 70);
+  }
+
+  function gameLoop() {
+    if (!gameRunning) return;
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+
+  // Controls
+  window.addEventListener("keydown", (e) => {
+    if (e.code === "Space" || e.code === "ArrowDown") {
+      e.preventDefault();
+      dropBlock();
+    }
+  });
+
+  canvas.addEventListener("mousedown", dropBlock);
+  canvas.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    dropBlock();
+  }, {passive: false});
+
+  startBtn.addEventListener("click", resetGame);
+
+</script>
+</body>
+</html>
