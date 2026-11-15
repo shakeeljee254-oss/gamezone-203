@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Connect Four - Play Free Online | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<meta name="description" content="Play Connect Four free online at GameZone 203. Drop the discs and connect 4 in a row to beat the computer!">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/connect-four.html">
+<meta property="og:title" content="Connect Four - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Connect Four",
+  "description": "Play Connect Four free online.",
+  "genre": ["Puzzle", "Strategy", "Board Game"]
+}
+</script>
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #1e293b;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  h1 { color: #38bdf8; margin-bottom: 5px; letter-spacing: 1px; }
+  #status { font-size: 20px; font-weight: bold; margin-bottom: 15px; color: #fbbf24; }
+  
+  .game-board {
+    background: #2563eb;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    position: relative;
+  }
+
+  .cell {
+    width: 50px;
+    height: 50px;
+    background: #1e293b;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.5);
+    transition: background 0.2s;
+  }
+
+  /* Hover effect for empty cells */
+  .cell:hover:not(.red):not(.yellow) { background: #334155; }
+
+  /* Coin Colors */
+  .cell.red { background: #ef4444; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3); cursor: default; }
+  .cell.yellow { background: #fbbf24; box-shadow: inset 0 -5px 10px rgba(0,0,0,0.3); cursor: default; }
+
+  /* Animations */
+  .drop-anim { animation: drop 0.4s ease-in; }
+  @keyframes drop {
+    0% { transform: translateY(-300px); }
+    100% { transform: translateY(0); }
+  }
+
+  .controls { margin-top: 20px; }
+  button {
+    background: #38bdf8;
+    color: #0f172a;
+    border: none;
+    padding: 12px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  button:hover { background: #0ea5e9; transform: scale(1.05); }
+
+  /* Mobile Setup */
+  @media (max-width: 500px) {
+    .cell { width: 40px; height: 40px; }
+    .game-board { gap: 6px; padding: 6px; }
+  }
+</style>
+</head>
+<body>
+
+  <h1>Connect Four</h1>
+  <div id="status">Your Turn (Red)</div>
+
+  <div class="game-board" id="board"></div>
+
+  <div class="controls">
+    <button onclick="startGame()">Restart Game</button>
+  </div>
+
+<script>
+  const ROWS = 6;
+  const COLS = 7;
+  const boardEl = document.getElementById("board");
+  const statusEl = document.getElementById("status");
+
+  let board = [];
+  let currentPlayer = "red"; // red (Player) or yellow (AI)
+  let gameOver = false;
+
+  function startGame() {
+    board = Array(ROWS).fill(null).map(() => Array(COLS).fill(null));
+    currentPlayer = "red";
+    gameOver = false;
+    statusEl.textContent = "Your Turn (Red)";
+    statusEl.style.color = "#fbbf24";
+    renderBoard();
+  }
+
+  function renderBoard() {
+    boardEl.innerHTML = "";
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const cell = document.createElement("div");
+        cell.classList.add("cell");
+        if (board[r][c]) cell.classList.add(board[r][c]);
+        
+        // Click event (Columns ke hisaab se)
+        cell.onclick = () => handleColumnClick(c);
+        boardEl.appendChild(cell);
+      }
+    }
+  }
+
+  function handleColumnClick(col) {
+    if (gameOver || currentPlayer !== "red") return;
+    
+    // Check karein ke column bhara hua toh nahi
+    let row = getLowestEmptyRow(col);
+    if (row === -1) return; // Column full
+
+    makeMove(row, col, "red");
+    
+    if (!gameOver) {
+      currentPlayer = "yellow";
+      statusEl.textContent = "AI is thinking...";
+      statusEl.style.color = "#aab1ce";
+      setTimeout(aiMove, 500); // AI ka delay
+    }
+  }
+
+  function getLowestEmptyRow(col) {
+    for (let r = ROWS - 1; r >= 0; r--) {
+      if (board[r][col] === null) return r;
+    }
+    return -1;
+  }
+
+  function makeMove(row, col, player) {
+    board[row][col] = player;
+    renderBoard(); // UI update
+    
+    // Drop Animation
+    const cellIndex = row * COLS + col;
+    boardEl.children[cellIndex].classList.add("drop-anim");
+
+    if (checkWin(row, col, player)) {
+      gameOver = true;
+      statusEl.textContent = player === "red" ? "🎉 You Win!" : "🤖 AI Wins!";
+      statusEl.style.color = player === "red" ? "#10b981" : "#ef4444";
+      return;
+    }
+
+    if (board[0].every(cell => cell !== null)) {
+      gameOver = true;
+      statusEl.textContent = "It's a Draw!";
+      statusEl.style.color = "#fbbf24";
+      return;
+    }
+  }
+
+  // AI Logic (Simple random + block player)
+  function aiMove() {
+    if (gameOver) return;
+
+    let validCols = [];
+    for (let c = 0; c < COLS; c++) {
+      if (board[0][c] === null) validCols.push(c);
+    }
+
+    // 1. Check agar AI jeet sakta hai
+    for (let c of validCols) {
+      let r = getLowestEmptyRow(c);
+      board[r][c] = "yellow";
+      if (checkWin(r, c, "yellow")) {
+        board[r][c] = null;
+        makeMove(r, c, "yellow");
+        currentPlayer = "red";
+        return;
+      }
+      board[r][c] = null;
+    }
+
+    // 2. Check agar Player jeetne wala hai, toh use block karo
+    for (let c of validCols) {
+      let r = getLowestEmptyRow(c);
+      board[r][c] = "red";
+      if (checkWin(r, c, "red")) {
+        board[r][c] = null;
+        makeMove(r, c, "yellow");
+        currentPlayer = "red";
+        return;
+      }
+      board[r][c] = null;
+    }
+
+    // 3. Random move agar koi danger nahi
+    let randomCol = validCols[Math.floor(Math.random() * validCols.length)];
+    let row = getLowestEmptyRow(randomCol);
+    makeMove(row, randomCol, "yellow");
+    
+    if (!gameOver) {
+      currentPlayer = "red";
+      statusEl.textContent = "Your Turn (Red)";
+      statusEl.style.color = "#fbbf24";
+    }
+  }
+
+  // Winning logic (Check 4 in a row)
+  function checkWin(row, col, player) {
+    // Directions: Horizontal, Vertical, Diagonal Up, Diagonal Down
+    const directions = [[0, 1], [1, 0], [1, 1], [1, -1]];
+    
+    for (let [dr, dc] of directions) {
+      let count = 1;
+      
+      // Check positive direction
+      for (let i = 1; i < 4; i++) {
+        let r = row + dr * i, c = col + dc * i;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) count++;
+        else break;
+      }
+      
+      // Check negative direction
+      for (let i = 1; i < 4; i++) {
+        let r = row - dr * i, c = col - dc * i;
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) count++;
+        else break;
+      }
+      
+      if (count >= 4) return true;
+    }
+    return false;
+  }
+
+  startGame();
+</script>
+</body>
+</html>
