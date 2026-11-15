@@ -14,7 +14,169 @@ window.GZ_CONFIG = {
   ],
 
   games: [
-    // 1. Popular & Battle Royale
+    // ==========================================
+    // 1. NAYE CHALNE WALE GAMES (Sabse Upar)
+    // ==========================================
+    {
+      id: "tower-stack",
+      name: "Tower Stack",
+      category: "Arcade",
+      emoji: "🏗️",
+      tag: "NEW",
+      description: "Tap to drop the blocks and build the highest tower possible!",
+      url: "games/tower-stack.html",
+      popular: true,
+      kids: true,
+      bg: "#f0f4ff"
+    },
+    {
+      id: "flappy-bird",
+      name: "Flappy Bird",
+      category: "Arcade",
+      emoji: "🐦",
+      tag: "NEW",
+      description: "Tap to fly through the pipes in this classic addictive game!",
+      url: "games/flappy-bird.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
+      id: "ping-pong",
+      name: "Ping Pong",
+      category: "Racing & Sports",
+      emoji: "🏓",
+      tag: "NEW",
+      description: "Test your reflexes in this classic Ping Pong game. Can you beat the AI?",
+      url: "games/ping-pong.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
+      id: "color-match",
+      name: "Color Match",
+      category: "Puzzle & Brain",
+      emoji: "🎨",
+      tag: "NEW",
+      description: "Test your brain speed. Match the colors before time runs out!",
+      url: "games/color-match.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
+    },
+    {
+      id: "memory-match",
+      name: "Memory Match",
+      category: "Puzzle & Brain",
+      emoji: "🃏",
+      tag: "NEW",
+      description: "Flip the cards and find all the matching pairs.",
+      url: "games/memory-game.html",
+      popular: true,
+      kids: true,
+      bg: "#ffeaf2"
+    },
+    {
+      id: "slither-io",
+      name: "Slither.io",
+      category: "Strategy & Casual",
+      emoji: "🐍",
+      tag: "MULTIPLAYER",
+      description: "Grow your snake and compete with AI snakes.",
+      url: "games/neon-snake/slither.html",
+      popular: true,
+      kids: true,
+      bg: "#e6f6ed"
+    },
+    {
+      id: "neon-snake",
+      name: "Neon Snake",
+      category: "Arcade",
+      emoji: "🐍",
+      tag: "OUR GAME",
+      description: "Guide the snake, collect points and beat your best score.",
+      url: "games/neon-snake/NEON-SNAKE.html",
+      popular: true,
+      kids: true,
+      bg: "#e5f8f2"
+    },
+    {
+      id: "2048",
+      name: "2048",
+      category: "Puzzle & Brain",
+      emoji: "🔢",
+      tag: "BRAIN GAME",
+      description: "Join matching numbers to reach the 2048 tile.",
+      url: "games/2048/2048.html",
+      popular: true,
+      kids: true,
+      bg: "#fff1dc"
+    },
+    {
+      id: "tic-tac-toe",
+      name: "Tic Tac Toe",
+      category: "Board & Classic",
+      emoji: "⭕",
+      tag: "CLASSIC",
+      description: "Get three marks in a row to win.",
+      url: "games/tic-tac-toe/tic-tac-toe.html",
+      popular: true,
+      kids: true,
+      bg: "#e9f1ff"
+    },
+
+    // ==========================================
+    // 2. NAYE GAMES JO ABHI BANENGE (Coming Soon)
+    // ==========================================
+    {
+      id: "chess",
+      name: "Chess",
+      category: "Board & Classic",
+      emoji: "♟️",
+      tag: "THINKING",
+      description: "Play the classic strategy board game.",
+      url: "",
+      popular: true,
+      kids: true,
+      bg: "#edf3e8"
+    },
+    {
+      id: "ludo-king",
+      name: "Ludo King",
+      category: "Board & Classic",
+      emoji: "🎲",
+      tag: "FAMILY GAME",
+      description: "Play Ludo with friends and family.",
+      url: "",
+      popular: true,
+      kids: true,
+      bg: "#fff0e5"
+    },
+    {
+      id: "subway-surfers",
+      name: "Subway Surfers",
+      category: "Kids & Family",
+      emoji: "🚆",
+      tag: "KIDS PICK",
+      description: "Run, jump and dodge obstacles in a colourful world.",
+      url: "",
+      popular: true,
+      kids: true,
+      bg: "#e5f4ff"
+    },
+    {
+      id: "among-us",
+      name: "Among Us",
+      category: "Action & Adventure",
+      emoji: "👨‍🚀",
+      tag: "MULTIPLAYER",
+      description: "Find the impostor in this social deduction game.",
+      url: "",
+      popular: true,
+      kids: false,
+      bg: "#ffe9ed"
+    },
     {
       id: "roblox",
       name: "Roblox",
@@ -76,6 +238,22 @@ window.GZ_CONFIG = {
       bg: "#ffe9e5"
     },
     {
+      id: "candy-crush",
+      name: "Candy Crush Saga",
+      category: "Puzzle & Brain",
+      emoji: "🍬",
+      tag: "POPULAR",
+      description: "Match colourful candies and complete fun levels.",
+      url: "",
+      popular: true,
+      kids: true,
+      bg: "#ffeaf2"
+    },
+
+    // ==========================================
+    // 3. BAAKI GAMES (Sabse Neeche)
+    // ==========================================
+    {
       id: "call-of-duty-warzone",
       name: "Call of Duty: Warzone",
       category: "Battle Royale",
@@ -111,8 +289,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff0f6"
     },
-
-    // 2. Action & Adventure
     {
       id: "genshin-impact",
       name: "Genshin Impact",
@@ -148,18 +324,6 @@ window.GZ_CONFIG = {
       popular: false,
       kids: false,
       bg: "#e9eee8"
-    },
-    {
-      id: "among-us",
-      name: "Among Us",
-      category: "Action & Adventure",
-      emoji: "👨‍🚀",
-      tag: "MULTIPLAYER",
-      description: "Find the impostor in this social deduction game.",
-      url: "",
-      popular: true,
-      kids: false,
-      bg: "#ffe9ed"
     },
     {
       id: "brawl-stars",
@@ -209,8 +373,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff1df"
     },
-
-    // 3. Racing & Sports
     {
       id: "asphalt-legends",
       name: "Asphalt Legends",
@@ -307,20 +469,6 @@ window.GZ_CONFIG = {
       kids: false,
       bg: "#e9efff"
     },
-
-    // 4. Puzzle & Brain
-   {
-  id: "2048",
-  name: "2048",
-  category: "Puzzle & Brain",
-  emoji: "🔢",
-  tag: "BRAIN GAME",
-  description: "Join matching numbers to reach the 2048 tile.",
-  url: "games/2048/2048.html",
-  popular: true,
-  kids: true,
-  bg: "#fff1dc"
-},
     {
       id: "sudoku",
       name: "Sudoku",
@@ -358,18 +506,6 @@ window.GZ_CONFIG = {
       bg: "#e9eaff"
     },
     {
-      id: "candy-crush",
-      name: "Candy Crush Saga",
-      category: "Puzzle & Brain",
-      emoji: "🍬",
-      tag: "POPULAR",
-      description: "Match colourful candies and complete fun levels.",
-      url: "",
-      popular: true,
-      kids: true,
-      bg: "#ffeaf2"
-    },
-    {
       id: "block-blast",
       name: "Block Blast!",
       category: "Puzzle & Brain",
@@ -404,20 +540,6 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff0df"
-    },
-
-    // 5. Kids & Family
-    {
-      id: "subway-surfers",
-      name: "Subway Surfers",
-      category: "Kids & Family",
-      emoji: "🚆",
-      tag: "KIDS PICK",
-      description: "Run, jump and dodge obstacles in a colourful world.",
-      url: "",
-      popular: true,
-      kids: true,
-      bg: "#e5f4ff"
     },
     {
       id: "temple-run-2",
@@ -503,32 +625,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff5d9"
     },
-
-    // 6. Board & Classic
-    {
-      id: "chess",
-      name: "Chess",
-      category: "Board & Classic",
-      emoji: "♟️",
-      tag: "THINKING",
-      description: "Play the classic strategy board game.",
-      url: "",
-      popular: true,
-      kids: true,
-      bg: "#edf3e8"
-    },
-    {
-      id: "ludo-king",
-      name: "Ludo King",
-      category: "Board & Classic",
-      emoji: "🎲",
-      tag: "FAMILY GAME",
-      description: "Play Ludo with friends and family.",
-      url: "",
-      popular: true,
-      kids: true,
-      bg: "#fff0e5"
-    },
     {
       id: "checkers",
       name: "Checkers",
@@ -566,18 +662,6 @@ window.GZ_CONFIG = {
       bg: "#e8f5ed"
     },
     {
-      id: "tic-tac-toe",
-      name: "Tic Tac Toe",
-      category: "Board & Classic",
-      emoji: "⭕",
-      tag: "CLASSIC",
-      description: "Get three marks in a row to win.",
-      url: "games/tic-tac-toe/tic-tac-toe.html",
-      popular: false,
-      kids: true,
-      bg: "#e9f1ff"
-    },
-    {
       id: "carrom",
       name: "Carrom",
       category: "Board & Classic",
@@ -601,8 +685,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#e9f5e9"
     },
-
-    // 7. Strategy & Casual
     {
       id: "clash-of-clans",
       name: "Clash of Clans",
@@ -662,80 +744,6 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff1df"
-    },
-    {
-      id: "slither-io",
-      name: "Slither.io",
-      category: "Strategy & Casual",
-      emoji: "🐍",
-      tag: "MULTIPLAYER",
-      description: "Grow your snake and compete with other players.",
-      url: "games/neon-snake/slither.html",
-      popular: true,
-      kids: true,
-      bg: "#e6f6ed"
-    },
-    {
-      id: "memory-match",
-      name: "Memory Match",
-      category: "Puzzle & Brain",
-      emoji: "🃏",
-      tag: "NEW",
-      description: "Flip the cards and find all the matching pairs.",
-      url: "games/memory-game.html",
-      popular: true,
-      kids: true,
-      bg: "#ffeaf2"
-    },
-
-    // 8. Your Own Game
-    {
-      id: "neon-snake",
-      name: "Neon Snake",
-      category: "Arcade",
-      emoji: "🐍",
-      tag: "OUR GAME",
-      description: "Guide the snake, collect points and beat your best score.",
-      url: "games/neon-snake/NEON-SNAKE.html",
-      popular: true,
-      kids: true,
-      bg: "#e5f8f2"
-    },
-    {
-      id: "color-match",
-      name: "Color Match",
-      category: "Puzzle & Brain",
-      emoji: "🎨",
-      tag: "NEW",
-      description: "Test your brain speed. Match the colors before time runs out!",
-      url: "games/color-match.html",
-      popular: true,
-      kids: true,
-      bg: "#e0f2fe"
-    },
-    {
-           id: "ping-pong",
-      name: "Ping Pong",
-      category: "Racing & Sports",
-      emoji: "🏓",
-      tag: "NEW",
-      description: "Test your reflexes in this classic Ping Pong game. Can you beat the AI?",
-      url: "games/ping-pong.html",
-      popular: true,
-      kids: true,
-      bg: "#e0f2fe"
-    },
-    {
-      id: "flappy-bird",
-      name: "Flappy Bird",
-      category: "Arcade",
-      emoji: "🐦",
-      tag: "NEW",
-      description: "Tap to fly through the pipes in this classic addictive game!",
-      url: "games/flappy-bird.html",
-      popular: true,
-      kids: true,
-      bg: "#e0f2fe"
     }
   ]
 };
