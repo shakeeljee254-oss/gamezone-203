@@ -28,7 +28,6 @@
 </script>
 
 <style>
-  /* Fonts & Reset */
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
   * {
@@ -38,7 +37,6 @@
   body {
     margin: 0;
     overflow: hidden;
-    /* Light, vibrant background instead of dark */
     background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
     display: flex;
     justify-content: center;
@@ -49,7 +47,6 @@
   }
 
   canvas {
-    /* Clean white canvas with soft shadow */
     background: #ffffff;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     border-radius: 16px;
@@ -59,7 +56,6 @@
     cursor: crosshair;
   }
 
-  /* Menu Overlay - Light Theme */
   #menuOverlay {
     position: absolute;
     background: rgba(255, 255, 255, 0.95);
@@ -117,7 +113,6 @@
     transform: translateY(0);
   }
 
-  /* Vibrant Buttons */
   button.easy { background: #10b981; color: white; }
   button.easy:hover { background: #059669; }
   
@@ -151,13 +146,11 @@
   let score = 0;
   let difficulty = 'normal';
   
-  // Grid Settings
-  const BUBBLE_RADIUS = 18; // Slightly bigger for better visibility
+  const BUBBLE_RADIUS = 18;
   const BUBBLE_DIAMETER = BUBBLE_RADIUS * 2;
   const COLS = 12;
-  const ROWS = 16; // Increased rows for more play area
+  const ROWS = 16;
   
-  // Bright, vibrant colors matching the reference image
   const COLORS = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
   let activeColors = [];
 
@@ -166,6 +159,7 @@
   let currentBubble = null;
   let nextBubble = null;
   let projectile = null;
+  let fallingBubbles = []; // NEW: Array for falling animations
   let shootSpeed = 14;
   let rowsToFill = 6;
 
@@ -184,7 +178,7 @@
       rowsToFill = 7;
       shootSpeed = 14;
     } else {
-      activeColors = COLORS; // All 6 colors
+      activeColors = COLORS; 
       rowsToFill = 9;
       shootSpeed = 16;
     }
@@ -194,8 +188,8 @@
 
   function resetGame() {
     grid = [];
+    fallingBubbles = []; // Reset falling bubbles
     
-    // Initialize Grid
     for (let r = 0; r < ROWS; r++) {
       grid[r] = [];
       for (let c = 0; c < COLS; c++) {
@@ -228,12 +222,10 @@
     ctx.fillStyle = color;
     ctx.fill();
     
-    // Add a subtle border/stroke for definition
     ctx.strokeStyle = "rgba(0,0,0,0.1)";
     ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Highlight for 3D effect
     ctx.beginPath();
     ctx.arc(x - 5, y - 5, BUBBLE_RADIUS / 3, 0, Math.PI * 2);
     ctx.fillStyle = "rgba(255,255,255,0.6)";
@@ -252,11 +244,15 @@
       }
     }
 
+    // Draw Falling Bubbles
+    fallingBubbles.forEach(b => {
+      drawBubble(b.x, b.y, b.color);
+    });
+
     // Draw Aim Line
     if (gameRunning && !projectile) {
       ctx.beginPath();
       ctx.moveTo(shooter.x, shooter.y);
-      // Dotted line to predict shot
       let endX = shooter.x + Math.cos(shooter.angle) * 200;
       let endY = shooter.y + Math.sin(shooter.angle) * 200;
       ctx.lineTo(endX, endY);
@@ -276,7 +272,7 @@
     ctx.lineWidth = 4;
     ctx.stroke();
 
-    // Draw Current Bubble in Shooter
+    // Draw Current Bubble
     if (currentBubble) {
       drawBubble(shooter.x, shooter.y, currentBubble.color);
     }
@@ -303,12 +299,25 @@
   }
 
   function update() {
-    if (!gameRunning || !projectile) return;
+    if (!gameRunning) return;
+
+    // Update falling bubbles (Gravity)
+    for (let i = fallingBubbles.length - 1; i >= 0; i--) {
+      let b = fallingBubbles[i];
+      b.vy += 0.8; // Gravity acceleration
+      b.y += b.vy;
+      
+      // Remove if off-screen
+      if (b.y > canvas.height + BUBBLE_RADIUS) {
+        fallingBubbles.splice(i, 1);
+      }
+    }
+
+    if (!projectile) return;
 
     projectile.x += Math.cos(projectile.angle) * shootSpeed;
     projectile.y += Math.sin(projectile.angle) * shootSpeed;
 
-    // Wall Collision
     if (projectile.x < BUBBLE_RADIUS + 10) {
       projectile.x = BUBBLE_RADIUS + 10;
       projectile.angle = Math.PI - projectile.angle;
@@ -318,13 +327,11 @@
       projectile.angle = Math.PI - projectile.angle;
     }
 
-    // Top Collision
     if (projectile.y < BUBBLE_RADIUS + 10) {
       snapBubble();
       return;
     }
 
-    // Grid Collision Check
     for (let r = 0; r < ROWS; r++) {
       for (let c = 0; c < COLS; c++) {
         if (grid[r][c]) {
@@ -368,6 +375,7 @@
     nextBubble = createRandomBubble();
   }
 
+  // NEW LOGIC: Check Matches and Drop Floating Bubbles
   function checkMatches(r, c) {
     let targetColor = grid[r][c].color;
     let matches = [];
@@ -395,10 +403,70 @@
     dfs(r, c);
 
     if (matches.length >= 3) {
+      // Remove matches
       matches.forEach(m => {
-        grid[m.r][m.c] = null;
-        score += 10;
+        let bubble = grid[m.r][m.c];
+        if (bubble) {
+          fallingBubbles.push({ x: bubble.x, y: bubble.y, color: bubble.color, vy: 2 });
+          grid[m.r][m.c] = null;
+          score += 10;
+        }
       });
+
+      // Now check for floating (disconnected) bubbles
+      dropFloatingBubbles();
+    }
+  }
+
+  // NEW FUNCTION: Find bubbles disconnected from the top and drop them
+  function dropFloatingBubbles() {
+    let connected = new Set();
+    
+    // Helper to check if a cell is valid and filled
+    function isFilled(r, c) {
+      return r >= 0 && r < ROWS && c >= 0 && c < COLS && grid[r][c] !== null;
+    }
+
+    // DFS starting from the top row to mark all connected bubbles
+    function markConnected(row, col) {
+      if (!isFilled(row, col)) return;
+      let key = row + "," + col;
+      if (connected.has(key)) return;
+      
+      connected.add(key);
+
+      let isEven = row % 2 === 0;
+      markConnected(row - 1, col + (isEven ? -1 : 0));
+      markConnected(row - 1, col + (isEven ? 0 : 1));
+      markConnected(row, col - 1);
+      markConnected(row, col + 1);
+      markConnected(row + 1, col + (isEven ? -1 : 0));
+      markConnected(row + 1, col + (isEven ? 0 : 1));
+    }
+
+    // Start DFS from all bubbles in the top row
+    for (let c = 0; c < COLS; c++) {
+      if (isFilled(0, c)) {
+        markConnected(0, c);
+      }
+    }
+
+    // Now, find all bubbles that are filled but NOT in the "connected" set
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        if (grid[r][c] && !connected.has(r + "," + c)) {
+          // This bubble is floating! Drop it.
+          let bubble = grid[r][c];
+          fallingBubbles.push({ 
+            x: bubble.x, 
+            y: bubble.y, 
+            color: bubble.color, 
+            vy: 2 // Initial downward velocity
+          });
+          grid[r][c] = null;
+          score += 20; // Bonus points for dropping
+        }
+      }
     }
   }
 
@@ -409,13 +477,11 @@
     requestAnimationFrame(gameLoop);
   }
 
-  // Controls
   function handleMove(clientX, clientY) {
     const rect = canvas.getBoundingClientRect();
     const x = clientX - rect.left;
     const y = clientY - rect.top;
     shooter.angle = Math.atan2(y - shooter.y, x - shooter.x);
-    // Clamp angle so you can't shoot downwards
     if (shooter.angle > 0) shooter.angle = 0;
     if (shooter.angle < -Math.PI) shooter.angle = -Math.PI;
   }
