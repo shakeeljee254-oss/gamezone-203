@@ -744,6 +744,17 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff1df"
+        ,{
+      id: "connect-four",
+      name: "Connect Four",
+      category: "Board & Classic",
+      emoji: "🔴",
+      tag: "NEW",
+      description: "Drop the discs and connect 4 in a row to beat the AI!",
+      url: "games/connect-four.html",
+      popular: true,
+      kids: true,
+      bg: "#e0f2fe"
     }
   ]
 };
