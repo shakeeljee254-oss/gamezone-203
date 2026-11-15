@@ -10,15 +10,6 @@
 <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/connect-four.html">
 <meta property="og:title" content="Connect Four - Play Free Online | GameZone 203">
 <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Connect Four",
-  "description": "Play Connect Four free online.",
-  "genre": ["Puzzle", "Strategy", "Board Game"]
-}
-</script>
 
 <style>
   body {
@@ -31,8 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    touch-action: none;
+    padding: 20px;
   }
 
   h1 { color: #38bdf8; margin-bottom: 5px; letter-spacing: 1px; }
@@ -69,8 +59,8 @@
   /* Animations */
   .drop-anim { animation: drop 0.4s ease-in; }
   @keyframes drop {
-    0% { transform: translateY(-300px); }
-    100% { transform: translateY(0); }
+    0% { transform: translateY(-300px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
   }
 
   .controls { margin-top: 20px; }
@@ -86,6 +76,19 @@
     transition: 0.2s;
   }
   button:hover { background: #0ea5e9; transform: scale(1.05); }
+
+  /* Article/FAQ */
+  .info-box {
+    max-width: 600px;
+    margin-top: 40px;
+    background: #0f172a;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    text-align: left;
+  }
+  .info-box h2 { color: #38bdf8; font-size: 20px; margin-top: 0; }
+  .info-box p { color: #cbd5e1; font-size: 14px; line-height: 1.6; }
 
   /* Mobile Setup */
   @media (max-width: 500px) {
@@ -103,6 +106,12 @@
 
   <div class="controls">
     <button onclick="startGame()">Restart Game</button>
+  </div>
+
+  <!-- SEO Article -->
+  <div class="info-box">
+    <h2>How to Play Connect Four</h2>
+    <p>Click on any column to drop your red disc. The disc will fall to the lowest available spot. Your goal is to connect four discs of the same color horizontally, vertically, or diagonally before the AI does! Be careful not to let the AI block your moves.</p>
   </div>
 
 <script>
@@ -132,7 +141,7 @@
         cell.classList.add("cell");
         if (board[r][c]) cell.classList.add(board[r][c]);
         
-        // Click event (Columns ke hisaab se)
+        // Click event 
         cell.onclick = () => handleColumnClick(c);
         boardEl.appendChild(cell);
       }
@@ -142,9 +151,9 @@
   function handleColumnClick(col) {
     if (gameOver || currentPlayer !== "red") return;
     
-    // Check karein ke column bhara hua toh nahi
+    // Check if column is full
     let row = getLowestEmptyRow(col);
-    if (row === -1) return; // Column full
+    if (row === -1) return; 
 
     makeMove(row, col, "red");
     
@@ -152,7 +161,7 @@
       currentPlayer = "yellow";
       statusEl.textContent = "AI is thinking...";
       statusEl.style.color = "#aab1ce";
-      setTimeout(aiMove, 500); // AI ka delay
+      setTimeout(aiMove, 600); 
     }
   }
 
@@ -165,7 +174,7 @@
 
   function makeMove(row, col, player) {
     board[row][col] = player;
-    renderBoard(); // UI update
+    renderBoard(); 
     
     // Drop Animation
     const cellIndex = row * COLS + col;
@@ -178,6 +187,7 @@
       return;
     }
 
+    // Check for Draw
     if (board[0].every(cell => cell !== null)) {
       gameOver = true;
       statusEl.textContent = "It's a Draw!";
@@ -186,7 +196,7 @@
     }
   }
 
-  // AI Logic (Simple random + block player)
+  // AI Logic 
   function aiMove() {
     if (gameOver) return;
 
@@ -195,7 +205,7 @@
       if (board[0][c] === null) validCols.push(c);
     }
 
-    // 1. Check agar AI jeet sakta hai
+    // 1. Check if AI can win
     for (let c of validCols) {
       let r = getLowestEmptyRow(c);
       board[r][c] = "yellow";
@@ -203,12 +213,13 @@
         board[r][c] = null;
         makeMove(r, c, "yellow");
         currentPlayer = "red";
+        updateTurnStatus();
         return;
       }
       board[r][c] = null;
     }
 
-    // 2. Check agar Player jeetne wala hai, toh use block karo
+    // 2. Check if Player is about to win, block them
     for (let c of validCols) {
       let r = getLowestEmptyRow(c);
       board[r][c] = "red";
@@ -216,39 +227,41 @@
         board[r][c] = null;
         makeMove(r, c, "yellow");
         currentPlayer = "red";
+        updateTurnStatus();
         return;
       }
       board[r][c] = null;
     }
 
-    // 3. Random move agar koi danger nahi
+    // 3. Pick a random valid column if no immediate threat
     let randomCol = validCols[Math.floor(Math.random() * validCols.length)];
     let row = getLowestEmptyRow(randomCol);
     makeMove(row, randomCol, "yellow");
     
     if (!gameOver) {
       currentPlayer = "red";
-      statusEl.textContent = "Your Turn (Red)";
-      statusEl.style.color = "#fbbf24";
+      updateTurnStatus();
     }
+  }
+
+  function updateTurnStatus() {
+    statusEl.textContent = "Your Turn (Red)";
+    statusEl.style.color = "#fbbf24";
   }
 
   // Winning logic (Check 4 in a row)
   function checkWin(row, col, player) {
-    // Directions: Horizontal, Vertical, Diagonal Up, Diagonal Down
     const directions = [[0, 1], [1, 0], [1, 1], [1, -1]];
     
     for (let [dr, dc] of directions) {
       let count = 1;
       
-      // Check positive direction
       for (let i = 1; i < 4; i++) {
         let r = row + dr * i, c = col + dc * i;
         if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) count++;
         else break;
       }
       
-      // Check negative direction
       for (let i = 1; i < 4; i++) {
         let r = row - dr * i, c = col - dc * i;
         if (r >= 0 && r < ROWS && c >= 0 && c < COLS && board[r][c] === player) count++;
