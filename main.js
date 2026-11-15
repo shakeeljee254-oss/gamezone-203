@@ -749,10 +749,44 @@ window.GZ_CONFIG = {
       tag: "TOWER DEFENCE",
       description: "Build towers and stop waves of balloons.",
       url: "",
+        popular: false,
+      kids: true,
+      bg: "#fff0e5"
+    },
+    {
+      id: "cookie-clicker",
+      name: "Cookie Clicker",
+      category: "Strategy & Casual",
+      emoji: "🍪",
+      tag: "CASUAL",
+      description: "Bake cookies and grow your cookie empire.",
+      url: "",
+      popular: false,
+      kids: true,
+      bg: "#fff1df"
+    },
+      category: "Strategy & Casual",
+      emoji: "🍪",
+      tag: "CASUAL",
+      description: "Bake cookies and grow your cookie empire.",
+      url: "",
+      popular: false,
+      kids: true,
+      bg: "#fff1df"
+    },
+    {
+          {
+      id: "bloons-td",
+      name: "Bloons TD",
+      category: "Strategy & Casual",
+      emoji: "🎈",
+      tag: "TOWER DEFENCE",
+      description: "Build towers and stop waves of balloons.",
+      url: "",
       popular: false,
       kids: true,
       bg: "#fff0e5"
-       },
+    },
     {
       id: "cookie-clicker",
       name: "Cookie Clicker",
@@ -766,7 +800,6 @@ window.GZ_CONFIG = {
       bg: "#fff1df"
     },
     {
-        {
       id: "car-racing",
       name: "Car Racing",
       category: "Racing & Sports",
