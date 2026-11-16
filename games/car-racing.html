@@ -5,7 +5,7 @@
 <!-- SEO TAGS -->
 <title>Highway Racer 203 - Play Free Online Car Racing Game | GameZone 203</title>
 <meta name="description" content="Play Highway Racer 203 free online! Dodge traffic, collect coins, use nitro, and unlock new cars in this fast-paced endless racing game.">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/highway-racer.html">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/car-racing.html">
 <meta property="og:title" content="Highway Racer 203 - Play Free Online | GameZone 203">
 <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -64,6 +64,16 @@ body.game.touch #touch{display:flex}
 .faq-section h2 { color: #ff8a1f; margin-top: 0; }
 .faq-section h3 { color: #fff; margin-bottom: 5px; }
 </style></head><body>
+
+<!-- Loading Screen -->
+<div id="loading-screen" style="position:fixed;inset:0;background:#060918;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
+  <h1 style="color:#ff8a1f;font-family:Impact,sans-serif;font-size:2.5rem;text-shadow:0 0 20px #ff8a1f;margin-bottom:20px;">HIGHWAY RACER 203</h1>
+  <div style="width:200px;height:6px;background:#1a233a;border-radius:10px;overflow:hidden;">
+    <div id="loading-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#ff8a1f,#ffcf24);transition:width 0.1s linear;"></div>
+  </div>
+  <p style="color:#9fb4e0;margin-top:15px;font-family:sans-serif;letter-spacing:2px;">LOADING...</p>
+</div>
+
 <div id="wrap">
 <canvas id="c"></canvas>
 <div id="rot">Rotate your phone to landscape for the best view</div>
@@ -87,16 +97,17 @@ Your car speeds up on its own. Dodge traffic, grab gold coins, and use nitro (it
 <div class="scr" id="over"><h2>GAME OVER</h2><div class="panel stats"><div>Score <b id="os">0</b></div><div>Best <b id="ob">0</b></div><div>Distance <b id="od">0</b></div><div>Coins <b id="oc">0</b></div></div><p id="nbst" style="color:#ffcf24;font-weight:800"></p>
 <div class="btns"><button class="btn" data-a="restart">RESTART</button><button class="btn s" data-a="menu">MAIN MENU</button></div></div>
 
-<!-- FAQ SECTION FOR SEO -->
-<div class="faq-section">
-  <h2>How to Play Highway Racer 203</h2>
+</div>
+
+<!-- FAQ SECTION FOR SEO (Now hidden by default) -->
+<div id="game-faq" style="display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #2b4078; color: #9fb4e0; text-align: left; position: relative; z-index: 100; font-family: 'Trebuchet MS', Verdana, sans-serif;">
+  <h2 style="color: #ff8a1f; margin-top: 0;">How to Play Highway Racer 203</h2>
   <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
-  <h3>Frequently Asked Questions</h3>
+  <h3 style="color: #fff; margin-bottom: 5px;">Frequently Asked Questions</h3>
   <p><b>Can I play on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro.</p>
   <p><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race.</p>
 </div>
 
-</div>
 <script>
 (()=>{'use strict';
 const $=i=>document.getElementById(i),B=document.body,mg=$('c').getContext('2d',{alpha:false});
@@ -274,4 +285,28 @@ if(++hudN%4===0&&B.classList.contains('game')){$('sc').textContent=Math.floor(sc
 $('sp').textContent=Math.round(speed);$('nf').style.width=nitro+'%'}}
 resize();$('bs').textContent='SOUND: '+(snd?'ON':'OFF');reset();speed=120;toMenu();requestAnimationFrame(loop);
 })();
-</script></body></html>
+</script>
+
+<!-- LOADING SCREEN LOGIC -->
+<script>
+  let loadProgress = 0;
+  const loadInterval = setInterval(() => {
+    loadProgress += Math.random() * 10;
+    if (loadProgress >= 100) {
+      loadProgress = 100;
+      clearInterval(loadInterval);
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 500);
+        }
+      }, 500);
+    }
+    const bar = document.getElementById('loading-bar');
+    if (bar) bar.style.width = loadProgress + '%';
+  }, 200);
+</script>
+
+</body>
+</html>
