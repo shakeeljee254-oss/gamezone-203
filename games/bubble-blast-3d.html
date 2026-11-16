@@ -117,6 +117,10 @@
     .result-star { color: rgba(255, 255, 255, 0.16); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); transform: scale(0.6); }
     .result-star.earned { color: var(--neon-gold); text-shadow: 0 0 24px rgba(255, 215, 0, 0.9); transform: scale(1.1); }
     @media (max-width: 480px) { .dashboard-card { padding: 20px 16px; gap: 14px; } .game-logo { font-size: 1.75rem !important; } .powerup-btn { width: 52px; height: 52px; } .hud-pill { padding: 6px 10px; font-size: 0.85rem; } }
+ /* Jab game chal raha ho toh FAQ ko chhupa dein */
+body:has(#hud-layer:not(.hidden)) .faq-section {
+  display: none !important;
+}
   </style>
 </head>
 <body>
@@ -304,17 +308,6 @@
       <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.45;">Your progress and high scores are safely stored in local memory. Ready to jump back in whenever you are!</p>
       <button id="btn-return-arena" class="btn-arcade btn-primary" style="margin-top:8px;">⚡ RE-ENTER ARENA</button>
     </div>
-  </div>
-
-  <!-- FAQ SECTION FOR SEO -->
-  <div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; color: #f0f6ff; border: 1px solid #00f0ff; font-family: 'Rajdhani', sans-serif; text-align: left; position: relative; z-index: 100;">
-    <h2 style="color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">How to Play Bubble Blast 3D Pro</h2>
-    <p>Use your mouse or touch to aim and shoot. Match 3 or more bubbles of the same color to pop them. Use special power-ups like Bomb, Rainbow, Fire, and Lightning to clear levels faster!</p>
-    <h2 style="color: #00f0ff; margin-top: 20px; font-family: 'Orbitron', sans-serif;">Frequently Asked Questions</h2>
-    <h3 style="color: #fff;">Does it have levels?</h3>
-    <p>Yes, the game features 60 progressive 3D stages!</p>
-    <h3 style="color: #fff;">Can I play on mobile?</h3>
-    <p>Yes, it is fully optimized for mobile touch controls.</p>
   </div>
 
   <script>
@@ -554,5 +547,15 @@
       window.onload = function () { updateCameraResponsive(); syncSettingsUI(); refreshMenuStats(); setScreen('menu'); lastTime = performance.now(); requestAnimationFrame(animate); };
     })();
   </script>
+ <!-- FAQ SECTION FOR SEO -->
+  <div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; color: #f0f6ff; border: 1px solid #00f0ff; font-family: 'Rajdhani', sans-serif; text-align: left; position: relative; z-index: 100;">
+    <h2 style="color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">How to Play Bubble Blast 3D Pro</h2>
+    <p>Use your mouse or touch to aim and shoot. Match 3 or more bubbles of the same color to pop them. Use special power-ups like Bomb, Rainbow, Fire, and Lightning to clear levels faster!</p>
+    <h2 style="color: #00f0ff; margin-top: 20px; font-family: 'Orbitron', sans-serif;">Frequently Asked Questions</h2>
+    <h3 style="color: #fff;">Does it have levels?</h3>
+    <p>Yes, the game features 60 progressive 3D stages!</p>
+    <h3 style="color: #fff;">Can I play on mobile?</h3>
+    <p>Yes, it is fully optimized for mobile touch controls.</p>
+  </div>
 </body>
 </html>
