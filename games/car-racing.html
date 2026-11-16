@@ -252,8 +252,8 @@ if(crash){crashT+=dt;if(crashT>1.2)gameOver()}}
 function show(id){['menu','garage','how','pause','over'].forEach(s=>$(s).classList.toggle('on',s===id))}
 function reset(){px=0;pv=0;speed=50;dist=0;score=0;coinsN=0;nitro=100;traffic=[];coinA=[];spin=0;tilt=0;crashT=0;shake=0;nOn=false;laneSp=sh([52,68,84,100]);
 for(let i=0;i<24&&traffic.length<7;i++)spawn(40+Math.random()*150)}
-function startGame(){initAudio();reset();mode='play';show(null);B.classList.add('game')}
-function toMenu(){if(mode!=='menu'){mode='menu';reset();speed=120}B.classList.remove('game');show('menu');$('mb').textContent='Best score: '+best}
+function startGame(){initAudio();reset();mode='play';show(null);B.classList.add('game');document.getElementById('game-faq').style.display='none';}
+function toMenu(){if(mode!=='menu'){mode='menu';reset();speed=120}B.classList.remove('game');show('menu');$('mb').textContent='Best score: '+best;document.getElementById('game-faq').style.display='block';}
 function pauseG(){if(mode==='play'){mode='pause';show('pause')}}
 function resumeG(){if(mode==='pause'){mode='play';show(null)}}
 function gameOver(){mode='over';spin=0;tilt=0;const sc=Math.floor(score);let nb=false;if(sc>best){best=sc;S('hr203_best',best);nb=true}
