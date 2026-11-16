@@ -125,6 +125,14 @@ body:has(#hud-layer:not(.hidden)) .faq-section {
 </head>
 <body>
   <div id="game-canvas-container"></div>
+  <!-- Loading Screen -->
+  <div id="loading-screen" style="position:fixed;inset:0;background:#060918;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
+    <h1 style="color:#00f0ff;font-family:Orbitron,sans-serif;font-size:2rem;text-shadow:0 0 20px #00f0ff;margin-bottom:20px;">BUBBLE BLAST 3D</h1>
+    <div style="width:200px;height:6px;background:#1a233a;border-radius:10px;overflow:hidden;">
+      <div id="loading-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#00f0ff,#ff2a85);transition:width 0.1s linear;"></div>
+    </div>
+    <p style="color:#8fa4c8;margin-top:15px;font-family:Rajdhani,sans-serif;letter-spacing:2px;">LOADING...</p>
+  </div>
   <div id="floating-layer"></div>
   <div id="toast-box"></div>
 
