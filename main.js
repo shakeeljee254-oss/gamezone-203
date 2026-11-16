@@ -42,16 +42,16 @@ window.GZ_CONFIG = {
       bg: "#e0f2fe"
     },
     {
-      id: "bubble-shooter",
-      name: "Bubble Shooter",
+     id: "bubble-blast-3d",
+      name: "Bubble Blast 3D Pro",
       category: "Puzzle & Brain",
-      emoji: "🫧",
-      tag: "NEW",
-      description: "Aim, shoot, and match 3 or more bubbles to clear the board!",
-      url: "games/bubble-shooter.html",
+      emoji: "🔮",
+      tag: "3D PRO",
+      description: "Experience the ultimate 3D bubble shooter with power-ups and 60 levels!",
+      url: "games/bubble-blast-3d.html", 
       popular: true,
       kids: true,
-      bg: "#e0f2fe"
+      bg: "#121c44"
     },
     {
       id: "connect-four",
