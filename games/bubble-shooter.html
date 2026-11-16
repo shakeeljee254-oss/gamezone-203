@@ -2,487 +2,448 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Bubble Shooter Pro - Play Free Online | GameZone 203</title>
-
-<!-- IMPROVED SEO TAGS -->
-<meta name="description" content="Play Bubble Shooter Pro free online at GameZone 203. Aim, shoot, and match 3 or more colorful bubbles to clear the board! Enjoy Easy, Normal, and Hard levels with addictive gameplay.">
-<meta name="keywords" content="bubble shooter, free online games, puzzle games, arcade games, bubble shooter pro, gamezone 203, play bubble shooter">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/bubble-shooter.html">
-<meta property="og:title" content="Bubble Shooter Pro - Play Free Online | GameZone 203">
-<meta property="og:description" content="Match 3 or more bubbles and clear the board in this addictive puzzle game!">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Bubble Shooter Pro",
-  "description": "Play Bubble Shooter with Easy, Normal, and Hard levels. Match 3 or more bubbles to win.",
-  "genre": ["Arcade", "Puzzle", "Casual"],
-  "gamePlatform": ["Web Browser"],
-  "applicationCategory": "Game"
-}
-</script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Bubble Pop 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    overflow: hidden;
-    background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    touch-action: none;
-  }
-
-  canvas {
-    background: #ffffff;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border-radius: 16px;
-    border: 4px solid #ffffff;
-    max-width: 100%;
-    max-height: 100vh;
-    cursor: crosshair;
-  }
-
-  #menuOverlay {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 40px 50px;
-    border-radius: 24px;
-    text-align: center;
-    z-index: 10;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-    border: 2px solid #e2e8f0;
-  }
-
-  h1 {
-    color: #1e293b;
-    margin-top: 0;
-    font-size: 36px;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 5px;
-  }
-
-  p {
-    color: #64748b;
-    font-size: 16px;
-    margin-bottom: 30px;
-    font-weight: 600;
-  }
+  :root { --ink:#f4f6ff; --glass:rgba(255,255,255,.09); --edge:rgba(255,255,255,.2); --bg:#0b1030; }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { margin:0; height:100%; background:var(--bg); overflow:hidden; overscroll-behavior:none;
+    font-family:'Fredoka', ui-rounded, 'Segoe UI', system-ui, sans-serif; color:var(--ink); }
+  #game { position:fixed; inset:0; width:100%; height:100%; display:block; touch-action:none; cursor:crosshair; }
   
-  .difficulty-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+  /* HUD FIX: Next bubble position aur mobile safe area */
+  #hud { position:fixed; inset:0; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none;
+    padding:max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(90px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left)); }
+  .row { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .row.bottom { align-items:flex-end; }
+  .pill { background:var(--glass); border:1px solid var(--edge); border-radius:18px; padding:8px 16px;
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); display:flex; flex-direction:column; align-items:flex-end; min-width:92px; }
+  .pill.left { align-items:flex-start; }
+  .pill small { font-size:.75rem; font-weight:500; opacity:.7; }
+  .pill b { font-size:1.7rem; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums; }
   
-  button {
-    border: none;
-    padding: 16px 30px;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  }
-
-  button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-  }
-
-  button:active {
-    transform: translateY(0);
-  }
-
-  button.easy { background: #10b981; color: white; }
-  button.easy:hover { background: #059669; }
+  .next { display:flex; align-items:center; gap:10px; background:var(--glass); border:1px solid var(--edge); border-radius:999px;
+    padding:8px 16px 8px 8px; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); position:absolute; bottom:max(14px, env(safe-area-inset-bottom)); left:max(14px, env(safe-area-inset-left)); }
+  #nextBubble { width:44px; height:44px; border-radius:50%; transition:background .25s; box-shadow:inset -4px -6px 10px rgba(0,0,0,.25), 0 4px 12px rgba(0,0,0,.35); }
+  .next span { font-weight:600; }
   
-  button.normal { background: #3b82f6; color: white; }
-  button.normal:hover { background: #2563eb; }
-  
-  button.hard { background: #ef4444; color: white; }
-  button.hard:hover { background: #dc2626; }
+  #overlay { position:fixed; inset:0; display:none; align-items:center; justify-content:center; padding:20px;
+    background:rgba(5,8,28,.6); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px); z-index:10; }
+  #overlay.show { display:flex; }
+  .card { width:min(360px, 100%); text-align:center; background:linear-gradient(160deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
+    border:1px solid var(--edge); border-radius:28px; padding:28px 24px; box-shadow:0 24px 60px rgba(0,0,0,.5); animation:pop .35s cubic-bezier(.2,1.4,.4,1); }
+  .card h1 { margin:0 0 6px; font-size:2.1rem; }
+  .card p { margin:0 0 20px; opacity:.85; font-size:1.1rem; }
+  button { font:inherit; font-weight:700; font-size:1.1rem; color:#14102e; border:0; border-radius:999px; padding:12px 32px; cursor:pointer;
+    background:linear-gradient(135deg,#ffe14d,#ff9f1c); box-shadow:0 6px 0 #b86a00, 0 10px 20px rgba(0,0,0,.35); }
+  button:active { transform:translateY(3px); box-shadow:0 3px 0 #b86a00; }
+  button:focus-visible { outline:3px solid #fff; outline-offset:3px; }
+  @keyframes pop { from { transform:scale(.8); opacity:0; } to { transform:scale(1); opacity:1; } }
+  @media (prefers-reduced-motion:reduce) { .card { animation:none; } }
+  @media (max-width:480px) { .pill b { font-size:1.4rem; } }
 </style>
 </head>
 <body>
+<canvas id="game"></canvas>
 
-  <div id="menuOverlay">
-    <h1>BUBBLE SHOOTER</h1>
-    <p>Select Your Difficulty</p>
-    <div class="difficulty-buttons">
-      <button class="easy" onclick="startGame('easy')">Easy</button>
-      <button class="normal" onclick="startGame('normal')">Normal</button>
-      <button class="hard" onclick="startGame('hard')">Hard</button>
-    </div>
+<div id="hud">
+  <div class="row">
+    <div class="pill left"><small>Level</small><b id="level">1</b></div>
+    <div class="pill"><small>Score</small><b id="score">0</b></div>
   </div>
+  <div class="row bottom">
+    <div class="next"><div id="nextBubble"></div><span>Next</span></div>
+  </div>
+</div>
 
-  <canvas id="gameCanvas" width="480" height="720"></canvas>
+<div id="overlay" role="dialog" aria-live="polite">
+  <div class="card">
+    <h1 id="ovTitle">Game over</h1>
+    <p id="ovText"></p>
+    <button id="ovBtn">Play again</button>
+  </div>
+</div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const menuOverlay = document.getElementById("menuOverlay");
+(() => {
+  'use strict';
 
-  let gameRunning = false;
-  let score = 0;
-  let difficulty = 'normal';
-  
-  const BUBBLE_RADIUS = 18;
-  const BUBBLE_DIAMETER = BUBBLE_RADIUS * 2;
-  const COLS = 12;
-  const ROWS = 16;
-  
-  const COLORS = ["#ef4444", "#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899"];
-  let activeColors = [];
+  // ---------- Constants ----------
+  const COLORS = [0xff3b5c, 0xff9f1c, 0xffe14d, 0x2ee66b, 0x2ec4ff, 0xb15cff];
+  const COLS = 11, W = COLS * 2, RH = Math.sqrt(3), MAXROW = 13, SPEED = 48;
+  const rowCols = r => (r % 2 ? COLS - 1 : COLS);
+  const cx = (r, c) => (r % 2 ? 2 + 2 * c : 1 + 2 * c);
+  const cy = r => -1 - r * RH;
+  const key = (r, c) => r * 100 + c;
+  const hex = n => '#' + n.toString(16).padStart(6, '0');
+  const SP = new THREE.Vector3(W / 2, cy(13.2), 0); 
+  const CENTER_Y = -14.5;
 
-  let grid = [];
-  let shooter = { x: canvas.width / 2, y: canvas.height - 50, angle: 0 };
-  let currentBubble = null;
-  let nextBubble = null;
-  let projectile = null;
-  let fallingBubbles = []; 
-  let shootSpeed = 14;
-  let rowsToFill = 6;
+  // ---------- Renderer / scene ----------
+  const canvas = document.getElementById('game');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputEncoding = THREE.sRGBEncoding;
 
-  function startGame(diff) {
-    difficulty = diff;
-    menuOverlay.style.display = "none";
-    gameRunning = true;
-    score = 0;
-    
-    if (difficulty === 'easy') {
-      activeColors = COLORS.slice(0, 4); 
-      rowsToFill = 5;
-      shootSpeed = 12;
-    } else if (difficulty === 'normal') {
-      activeColors = COLORS.slice(0, 5);
-      rowsToFill = 7;
-      shootSpeed = 14;
-    } else {
-      activeColors = COLORS; 
-      rowsToFill = 9;
-      shootSpeed = 16;
-    }
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0b1030);
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
 
-    resetGame();
+  // Soft-box environment map
+  const envCanvas = document.createElement('canvas');
+  envCanvas.width = 256; envCanvas.height = 128;
+  const ex = envCanvas.getContext('2d');
+  const eg = ex.createLinearGradient(0, 0, 0, 128);
+  eg.addColorStop(0, '#9fb4ff'); eg.addColorStop(.5, '#2a2f6b'); eg.addColorStop(1, '#0b1030');
+  ex.fillStyle = eg; ex.fillRect(0, 0, 256, 128);
+  ex.fillStyle = '#fff';
+  ex.fillRect(30, 20, 50, 30); ex.fillRect(150, 14, 70, 22); ex.fillRect(100, 70, 30, 14);
+  const envTex = new THREE.CanvasTexture(envCanvas);
+  envTex.mapping = THREE.EquirectangularReflectionMapping;
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  const envRT = pmrem.fromEquirectangular(envTex);
+  scene.environment = envRT.texture;
+  envTex.dispose(); pmrem.dispose();
+
+  // Lights
+  scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+  const sun = new THREE.DirectionalLight(0xffffff, 0.9);
+  sun.position.set(3, 6, 30);
+  sun.target.position.set(W / 2, CENTER_Y, 0);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(2048, 2048);
+  Object.assign(sun.shadow.camera, { left: -22, right: 22, top: 26, bottom: -26, near: 1, far: 90 });
+  sun.shadow.bias = -0.0004;
+  scene.add(sun, sun.target);
+  const pt = new THREE.PointLight(0xaec8ff, 0.5, 90);
+  pt.position.set(W / 2, -4, 22);
+  scene.add(pt);
+
+  // Backdrop, walls, ceiling
+  const disposables = [envRT, renderer];
+  const mk = (geo, mat) => { disposables.push(geo, mat); return new THREE.Mesh(geo, mat); };
+  const back = mk(new THREE.PlaneGeometry(70, 80), new THREE.MeshStandardMaterial({ color: 0x151b4d, roughness: 0.95 }));
+  back.position.set(W / 2, CENTER_Y, -1.8); back.receiveShadow = true; scene.add(back);
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0x6f86ff, emissive: 0x2a3cc0, emissiveIntensity: .6, roughness: .4 });
+  const wallL = mk(new THREE.BoxGeometry(.4, 34, 1.6), wallMat); wallL.position.set(-.2, CENTER_Y - 1, -.2);
+  const wallR = wallL.clone(); wallR.position.x = W + .2;
+  const ceil = mk(new THREE.BoxGeometry(W + .8, .4, 1.6), wallMat); ceil.position.set(W / 2, .2, -.2);
+  scene.add(wallL, wallR, ceil);
+  const danger = mk(new THREE.BoxGeometry(W, .08, .1), new THREE.MeshBasicMaterial({ color: 0xff3b5c, transparent: true, opacity: .45 }));
+  danger.position.set(W / 2, cy(MAXROW - .5), -.9); scene.add(danger);
+
+  // Bubble geometry + materials
+  const bubbleGeo = new THREE.SphereGeometry(1, 40, 28);
+  disposables.push(bubbleGeo);
+  const mats = COLORS.map(c => {
+    const m = new THREE.MeshPhysicalMaterial({ color: c, roughness: .12, metalness: .05, clearcoat: 1, clearcoatRoughness: .05, reflectivity: .9, envMapIntensity: 1.2 });
+    disposables.push(m); return m;
+  });
+  const makeBubble = ci => {
+    const m = new THREE.Mesh(bubbleGeo, mats[ci]);
+    m.castShadow = true; m.receiveShadow = true; scene.add(m); return m;
+  };
+
+  // Shooter
+  const shooter = new THREE.Group();
+  shooter.position.copy(SP);
+  const ring = mk(new THREE.TorusGeometry(1.9, .22, 16, 48), new THREE.MeshStandardMaterial({ color: 0xdfe6ff, metalness: .6, roughness: .25 }));
+  const barrel = mk(new THREE.CylinderGeometry(.5, .7, 3, 20), new THREE.MeshStandardMaterial({ color: 0x8fa2ff, metalness: .5, roughness: .3 }));
+  barrel.position.set(0, 2, -.4); barrel.castShadow = true;
+  const barrelPivot = new THREE.Group(); barrelPivot.add(barrel);
+  shooter.add(ring, barrelPivot); scene.add(shooter);
+
+  // Aim dots
+  const MAXDOTS = 70;
+  const dotGeo = new THREE.BufferGeometry();
+  dotGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(MAXDOTS * 3), 3));
+  const dotMat = new THREE.PointsMaterial({ color: 0xffffff, size: .42, transparent: true, opacity: .85, depthWrite: false });
+  disposables.push(dotGeo, dotMat);
+  const dots = new THREE.Points(dotGeo, dotMat); dots.frustumCulled = false; scene.add(dots);
+
+  // ---------- State ----------
+  const grid = new Map();
+  const falling = [], fx = [];
+  let cur = null, nextColor = 0, shot = null;
+  let state = 'play', score = 0, level = 1, aimAngle = Math.PI / 2, aiming = false;
+  const dir = new THREE.Vector2(0, 1);
+  const $ = id => document.getElementById(id);
+
+  const presentColors = () => { const s = new Set(); grid.forEach(b => s.add(b.color)); return [...s]; };
+  const pickColor = () => { const p = presentColors(); return p.length ? p[(Math.random() * p.length) | 0] : 0; };
+  const setScore = v => { score = v; $('score').textContent = v; };
+  const showNext = () => { const h = hex(COLORS[nextColor]); $('nextBubble').style.background = `radial-gradient(circle at 32% 28%, #fff 0 8%, ${h} 40%, ${h} 100%)`; };
+
+  function neighbors(r, c) {
+    const o = [[r, c - 1], [r, c + 1]], d = r % 2 ? [0, 1] : [-1, 0];
+    for (const rr of [r - 1, r + 1]) for (const k of d) o.push([rr, c + k]);
+    return o.filter(([a, b]) => a >= 0 && b >= 0 && b < rowCols(a));
   }
 
-  function resetGame() {
-    grid = [];
-    fallingBubbles = []; 
-    
-    for (let r = 0; r < ROWS; r++) {
-      grid[r] = [];
-      for (let c = 0; c < COLS; c++) {
-        if (r < rowsToFill) {
-          grid[r][c] = {
-            color: activeColors[Math.floor(Math.random() * activeColors.length)],
-            x: c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10,
-            y: r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10
-          };
-        } else {
-          grid[r][c] = null;
-        }
-      }
+  // ---------- Level setup ----------
+  function clearAll() {
+    grid.forEach(b => scene.remove(b.mesh)); grid.clear();
+    falling.forEach(f => scene.remove(f.mesh)); falling.length = 0;
+    fx.forEach(removeFx); fx.length = 0;
+    if (shot) { scene.remove(shot.mesh); shot = null; }
+    if (cur) { scene.remove(cur.mesh); cur = null; }
+  }
+  function buildLevel() {
+    clearAll();
+    const rows = 6 + Math.min(level, 4);
+    for (let r = 0; r < rows; r++) for (let c = 0; c < rowCols(r); c++) {
+      let ci = (Math.random() * COLORS.length) | 0;
+      if (c > 0 && Math.random() < .4) ci = grid.get(key(r, c - 1)).color;
+      else if (r > 0 && Math.random() < .25) ci = grid.get(key(r - 1, Math.min(c, rowCols(r - 1) - 1))).color;
+      const mesh = makeBubble(ci);
+      mesh.position.set(cx(r, c), cy(r), 0);
+      grid.set(key(r, c), { mesh, color: ci, r, c });
     }
-    
-    currentBubble = createRandomBubble();
-    nextBubble = createRandomBubble();
-    projectile = null;
-    
-    gameLoop();
+    $('level').textContent = level;
+    nextColor = pickColor();
+    loadShooter();
+    state = 'play';
+    $('overlay').classList.remove('show');
+    dots.visible = true; // Ensure dots are visible on start
+  }
+  function loadShooter() {
+    const ci = nextColor;
+    cur = { color: ci, mesh: makeBubble(ci) };
+    cur.mesh.position.copy(SP);
+    nextColor = pickColor(); showNext();
+  }
+  function ensurePlayable() {
+    const p = presentColors();
+    if (!p.length) return;
+    if (cur && !p.includes(cur.color)) { cur.color = p[(Math.random() * p.length) | 0]; cur.mesh.material = mats[cur.color]; }
+    if (!p.includes(nextColor)) { nextColor = p[(Math.random() * p.length) | 0]; showNext(); }
   }
 
-  function createRandomBubble() {
-    return { color: activeColors[Math.floor(Math.random() * activeColors.length)] };
+  // ---------- Aiming ----------
+  const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), tmp = new THREE.Vector3();
+  function hitsGrid(x, y) {
+    for (const b of grid.values()) {
+      const dy = b.mesh.position.y - y; if (dy > 1.9 || dy < -1.9) continue;
+      const dx = b.mesh.position.x - x; if (dx * dx + dy * dy < 3.4) return true;
+    }
+    return false;
   }
-
-  function drawBubble(x, y, color, isProjectile = false) {
-    ctx.beginPath();
-    ctx.arc(x, y, BUBBLE_RADIUS, 0, Math.PI * 2);
-    ctx.fillStyle = color;
-    ctx.fill();
-    
-    ctx.strokeStyle = "rgba(0,0,0,0.1)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.arc(x - 5, y - 5, BUBBLE_RADIUS / 3, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,255,255,0.6)";
-    ctx.fill();
+  function updateAim() {
+    barrelPivot.rotation.z = aimAngle - Math.PI / 2;
+    const arr = dotGeo.attributes.position.array;
+    let x = SP.x, y = SP.y, vx = dir.x, vy = dir.y, dist = 0, nextAt = 2.6, n = 0;
+    for (let i = 0; i < 500 && n < MAXDOTS; i++) {
+      x += vx * .4; y += vy * .4;
+      if (x < 1) { x = 2 - x; vx = -vx; } else if (x > W - 1) { x = 2 * (W - 1) - x; vx = -vx; }
+      if (y >= -1 || hitsGrid(x, y)) break;
+      dist += .4;
+      if (dist >= nextAt) { arr[n * 3] = x; arr[n * 3 + 1] = y; arr[n * 3 + 2] = 0; n++; nextAt += 1.6; }
+    }
+    dotGeo.setDrawRange(0, n);
+    dotGeo.attributes.position.needsUpdate = true;
   }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        if (grid[r][c]) {
-          drawBubble(grid[r][c].x, grid[r][c].y, grid[r][c].color);
-        }
-      }
-    }
-
-    fallingBubbles.forEach(b => {
-      drawBubble(b.x, b.y, b.color);
-    });
-
-    if (gameRunning && !projectile) {
-      ctx.beginPath();
-      ctx.moveTo(shooter.x, shooter.y);
-      let endX = shooter.x + Math.cos(shooter.angle) * 200;
-      let endY = shooter.y + Math.sin(shooter.angle) * 200;
-      ctx.lineTo(endX, endY);
-      ctx.strokeStyle = "rgba(0,0,0,0.2)";
-      ctx.lineWidth = 3;
-      ctx.setLineDash([8, 8]);
-      ctx.stroke();
-      ctx.setLineDash([]);
-    }
-
-    ctx.beginPath();
-    ctx.arc(shooter.x, shooter.y, 35, 0, Math.PI * 2);
-    ctx.fillStyle = "#e2e8f0";
-    ctx.fill();
-    ctx.strokeStyle = "#cbd5e1";
-    ctx.lineWidth = 4;
-    ctx.stroke();
-
-    if (currentBubble) {
-      drawBubble(shooter.x, shooter.y, currentBubble.color);
-    }
-
-    if (nextBubble) {
-      drawBubble(50, canvas.height - 50, nextBubble.color);
-      ctx.fillStyle = "#64748b";
-      ctx.font = "bold 14px Poppins";
-      ctx.textAlign = "center";
-      ctx.fillText("NEXT", 50, canvas.height - 90);
-    }
-
-    if (projectile) {
-      drawBubble(projectile.x, projectile.y, projectile.color, true);
-    }
-
-    ctx.fillStyle = "#1e293b";
-    ctx.font = "bold 24px Poppins";
-    ctx.textAlign = "right";
-    ctx.fillText("Score: " + score, canvas.width - 20, 40);
-  }
-
-  function update() {
-    if (!gameRunning) return;
-
-    for (let i = fallingBubbles.length - 1; i >= 0; i--) {
-      let b = fallingBubbles[i];
-      b.vy += 0.8; 
-      b.y += b.vy;
-      
-      if (b.y > canvas.height + BUBBLE_RADIUS) {
-        fallingBubbles.splice(i, 1);
-      }
-    }
-
-    if (!projectile) return;
-
-    projectile.x += Math.cos(projectile.angle) * shootSpeed;
-    projectile.y += Math.sin(projectile.angle) * shootSpeed;
-
-    if (projectile.x < BUBBLE_RADIUS + 10) {
-      projectile.x = BUBBLE_RADIUS + 10;
-      projectile.angle = Math.PI - projectile.angle;
-    }
-    if (projectile.x > canvas.width - BUBBLE_RADIUS - 10) {
-      projectile.x = canvas.width - BUBBLE_RADIUS - 10;
-      projectile.angle = Math.PI - projectile.angle;
-    }
-
-    if (projectile.y < BUBBLE_RADIUS + 10) {
-      snapBubble();
-      return;
-    }
-
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        if (grid[r][c]) {
-          let dist = Math.hypot(projectile.x - grid[r][c].x, projectile.y - grid[r][c].y);
-          if (dist < BUBBLE_DIAMETER - 4) {
-            snapBubble();
-            return;
-          }
-        }
-      }
-    }
-  }
-
-  function snapBubble() {
-    let closestR = 0, closestC = 0, minDist = Infinity;
-    
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        if (!grid[r][c]) {
-          let expectedX = c * BUBBLE_DIAMETER + BUBBLE_RADIUS + (r % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10;
-          let expectedY = r * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10;
-          let dist = Math.hypot(projectile.x - expectedX, projectile.y - expectedY);
-          if (dist < minDist) {
-            minDist = dist;
-            closestR = r;
-            closestC = c;
-          }
-        }
-      }
-    }
-
-    let snapX = closestC * BUBBLE_DIAMETER + BUBBLE_RADIUS + (closestR % 2 === 0 ? 0 : BUBBLE_RADIUS) + 10;
-    let snapY = closestR * BUBBLE_DIAMETER * 0.87 + BUBBLE_RADIUS + 10;
-    
-    grid[closestR][closestC] = { color: projectile.color, x: snapX, y: snapY };
-
-    projectile = null;
-    checkMatches(closestR, closestC);
-    
-    currentBubble = nextBubble;
-    nextBubble = createRandomBubble();
-  }
-
-  function checkMatches(r, c) {
-    let targetColor = grid[r][c].color;
-    let matches = [];
-    let visited = new Set();
-
-    function dfs(row, col) {
-      if (row < 0 || row >= ROWS || col < 0 || col >= COLS) return;
-      if (!grid[row][col] || grid[row][col].color !== targetColor) return;
-      
-      let key = row + "," + col;
-      if (visited.has(key)) return;
-      
-      visited.add(key);
-      matches.push({r: row, c: col});
-
-      let isEven = row % 2 === 0;
-      dfs(row - 1, col + (isEven ? -1 : 0));
-      dfs(row - 1, col + (isEven ? 0 : 1));
-      dfs(row, col - 1);
-      dfs(row, col + 1);
-      dfs(row + 1, col + (isEven ? -1 : 0));
-      dfs(row + 1, col + (isEven ? 0 : 1));
-    }
-
-    dfs(r, c);
-
-    if (matches.length >= 3) {
-      matches.forEach(m => {
-        let bubble = grid[m.r][m.c];
-        if (bubble) {
-          fallingBubbles.push({ x: bubble.x, y: bubble.y, color: bubble.color, vy: 2 });
-          grid[m.r][m.c] = null;
-          score += 10;
-        }
-      });
-
-      dropFloatingBubbles();
-    }
-  }
-
-  // UPDATED FUNCTION: More strict floating bubble check
-  function dropFloatingBubbles() {
-    let connected = new Set();
-    
-    function isFilled(r, c) {
-      return r >= 0 && r < ROWS && c >= 0 && c < COLS && grid[r][c] !== null;
-    }
-
-    function markConnected(row, col) {
-      if (!isFilled(row, col)) return;
-      let key = row + "," + col;
-      if (connected.has(key)) return;
-      
-      connected.add(key);
-
-      let isEven = row % 2 === 0;
-      markConnected(row - 1, col + (isEven ? -1 : 0));
-      markConnected(row - 1, col + (isEven ? 0 : 1));
-      markConnected(row, col - 1);
-      markConnected(row, col + 1);
-      markConnected(row + 1, col + (isEven ? -1 : 0));
-      markConnected(row + 1, col + (isEven ? 0 : 1));
-    }
-
-    // Start DFS from the top row
-    for (let c = 0; c < COLS; c++) {
-      if (isFilled(0, c)) {
-        markConnected(0, c);
-      }
-    }
-
-    // Now, drop bubbles that are NOT in the connected set
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        if (grid[r][c] && !connected.has(r + "," + c)) {
-          let bubble = grid[r][c];
-          fallingBubbles.push({ 
-            x: bubble.x, 
-            y: bubble.y, 
-            color: bubble.color, 
-            vy: 2 
-          });
-          grid[r][c] = null;
-          score += 20; 
-        }
-      }
-    }
-  }
-
-  function gameLoop() {
-    if (!gameRunning) return;
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-  }
-
-  function handleMove(clientX, clientY) {
+  function aimAt(ev) {
     const rect = canvas.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const y = clientY - rect.top;
-    shooter.angle = Math.atan2(y - shooter.y, x - shooter.x);
-    if (shooter.angle > 0) shooter.angle = 0;
-    if (shooter.angle < -Math.PI) shooter.angle = -Math.PI;
+    ndc.set(((ev.clientX - rect.left) / rect.width) * 2 - 1, -((ev.clientY - rect.top) / rect.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    if (!ray.ray.intersectPlane(plane, tmp)) return;
+    let a = Math.atan2(tmp.y - SP.y, tmp.x - SP.x);
+    aimAngle = Math.min(Math.PI - .17, Math.max(.17, a));
+    dir.set(Math.cos(aimAngle), Math.sin(aimAngle));
+    updateAim();
   }
 
-  function handleShoot() {
-    if (!projectile && currentBubble && gameRunning) {
-      projectile = { x: shooter.x, y: shooter.y, color: currentBubble.color, angle: shooter.angle };
-      currentBubble = null;
+  // ---------- Shooting ----------
+  function fire() {
+    if (state !== 'play' || shot || !cur) return;
+    shot = { mesh: cur.mesh, color: cur.color, dx: dir.x, dy: dir.y };
+    cur = null;
+    dots.visible = false; // FIX: Hide aim dots immediately after shooting
+  }
+  function stepShot(dt) {
+    let move = SPEED * dt;
+    while (move > 0 && shot) {
+      const s = Math.min(.25, move); move -= s;
+      const p = shot.mesh.position;
+      p.x += shot.dx * s; p.y += shot.dy * s;
+      if (p.x < 1) { p.x = 2 - p.x; shot.dx = -shot.dx; }
+      else if (p.x > W - 1) { p.x = 2 * (W - 1) - p.x; shot.dx = -shot.dx; }
+      if (p.y >= -1 || hitsGrid(p.x, p.y)) land();
     }
   }
+  function land() {
+    const p = shot.mesh.position;
+    const r0 = Math.round((-1 - p.y) / RH);
+    let best = null, bd = 1e9;
+    for (let r = Math.max(0, r0 - 1); r <= r0 + 1; r++) for (let c = 0; c < rowCols(r); c++) {
+      if (grid.has(key(r, c))) continue;
+      const dx = cx(r, c) - p.x, dy = cy(r) - p.y, d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = { r, c }; }
+    }
+    const b = { mesh: shot.mesh, color: shot.color, r: best.r, c: best.c };
+    b.mesh.position.set(cx(b.r, b.c), cy(b.r), 0);
+    grid.set(key(b.r, b.c), b);
+    shot = null;
 
-  canvas.addEventListener("mousemove", (e) => handleMove(e.clientX, e.clientY));
-  canvas.addEventListener("mousedown", handleShoot);
-  canvas.addEventListener("touchmove", (e) => { e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive: false});
-  canvas.addEventListener("touchstart", (e) => { e.preventDefault(); handleMove(e.touches[0].clientX, e.touches[0].clientY); }, {passive: false});
-  canvas.addEventListener("touchend", (e) => { e.preventDefault(); handleShoot(); }, {passive: false});
+    // Match-3
+    const seen = new Set([key(b.r, b.c)]), stack = [b], group = [];
+    while (stack.length) {
+      const n = stack.pop(); group.push(n);
+      for (const [r, c] of neighbors(n.r, n.c)) {
+        const k = key(r, c), o = grid.get(k);
+        if (o && !seen.has(k) && o.color === b.color) { seen.add(k); stack.push(o); }
+      }
+    }
+    if (group.length >= 3) {
+      group.forEach(n => { burst(n.mesh.position.x, n.mesh.position.y, COLORS[n.color]); scene.remove(n.mesh); grid.delete(key(n.r, n.c)); });
+      setScore(score + group.length * 10);
+      dropFloating();
+    }
 
+    // Outcome
+    let lost = false; grid.forEach(n => { if (n.r >= MAXROW) lost = true; });
+    if (lost) return endGame(false);
+    if (!grid.size) return endGame(true);
+    ensurePlayable();
+    loadShooter();
+    updateAim();
+    dots.visible = true; // FIX: Show dots again after next bubble loads
+  }
+  function dropFloating() {
+    const ok = new Set(), stack = [];
+    grid.forEach(n => { if (n.r === 0) { ok.add(key(n.r, n.c)); stack.push(n); } });
+    while (stack.length) {
+      const n = stack.pop();
+      for (const [r, c] of neighbors(n.r, n.c)) {
+        const k = key(r, c), o = grid.get(k);
+        if (o && !ok.has(k)) { ok.add(k); stack.push(o); }
+      }
+    }
+    [...grid.entries()].forEach(([k, n]) => {
+      if (ok.has(k)) return;
+      grid.delete(k);
+      falling.push({ mesh: n.mesh, vx: (Math.random() - .5) * 8, vy: Math.random() * 6, vz: Math.random() * 6,
+        rx: (Math.random() - .5) * 6, rz: (Math.random() - .5) * 6 });
+      setScore(score + 10);
+    });
+  }
+
+  // ---------- Particles ----------
+  function burst(x, y, color) {
+    const N = 22, pos = new Float32Array(N * 3), vel = [];
+    for (let i = 0; i < N; i++) {
+      pos[i * 3] = x; pos[i * 3 + 1] = y;
+      const a = Math.random() * Math.PI * 2, s = 5 + Math.random() * 9;
+      vel.push(Math.cos(a) * s, Math.sin(a) * s, (Math.random() - .3) * 8);
+    }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const mat = new THREE.PointsMaterial({ color, size: .6, transparent: true, depthWrite: false });
+    const pts = new THREE.Points(geo, mat); pts.frustumCulled = false; scene.add(pts);
+    fx.push({ pts, geo, mat, vel, life: 0 });
+  }
+  function removeFx(f) { scene.remove(f.pts); f.geo.dispose(); f.mat.dispose(); }
+
+  // ---------- End states ----------
+  function endGame(won) {
+    state = won ? 'won' : 'lost';
+    setTimeout(() => {
+      $('ovTitle').textContent = won ? 'Level complete!' : 'Game over';
+      $('ovText').textContent = `Score: ${score}`;
+      $('ovBtn').textContent = won ? 'Next level' : 'Play again';
+      $('overlay').classList.add('show');
+      $('ovBtn').focus();
+    }, won ? 900 : 300);
+  }
+  $('ovBtn').addEventListener('click', () => {
+    if (state === 'won') level++; else { level = 1; setScore(0); }
+    buildLevel(); updateAim();
+  });
+
+  // ---------- Input ----------
+  const onDown = e => { if (state !== 'play') return; aiming = true; canvas.setPointerCapture && canvas.setPointerCapture(e.pointerId); aimAt(e); };
+  const onMove = e => { if (state === 'play') aimAt(e); };
+  const onUp = e => { if (!aiming) return; aiming = false; if (state === 'play') { aimAt(e); fire(); } };
+  const onCancel = () => { aiming = false; };
+  
+  // Mobile touch fix: add touch events as fallback for older browsers
+  canvas.addEventListener('pointerdown', onDown);
+  canvas.addEventListener('pointermove', onMove);
+  canvas.addEventListener('pointerup', onUp);
+  canvas.addEventListener('pointercancel', onCancel);
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); onDown(e.touches[0]); }, {passive: false});
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); onMove(e.touches[0]); }, {passive: false});
+  canvas.addEventListener('touchend', e => { e.preventDefault(); onUp(e.changedTouches[0]); }, {passive: false});
+
+  // ---------- Resize ----------
+  function resize() {
+    const w = window.innerWidth, h = window.innerHeight, aspect = w / h;
+    renderer.setSize(w, h, false);
+    camera.aspect = aspect; camera.updateProjectionMatrix();
+    const t = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    const d = Math.max(19.5 / t, 13.5 / (t * aspect)) * 1.04;
+    camera.position.set(W / 2, CENTER_Y + d * 0.22, d);
+    camera.lookAt(W / 2, CENTER_Y, 0);
+    camera.updateMatrixWorld();
+  }
+  window.addEventListener('resize', resize);
+  window.addEventListener('orientationchange', resize);
+
+  // ---------- Loop ----------
+  const clock = new THREE.Clock();
+  let raf = 0;
+  function loop() {
+    raf = requestAnimationFrame(loop);
+    const dt = Math.min(clock.getDelta(), .05);
+    if (shot) stepShot(dt);
+    for (let i = falling.length - 1; i >= 0; i--) {
+      const f = falling[i], m = f.mesh;
+      f.vy -= 60 * dt;
+      m.position.x += f.vx * dt; m.position.y += f.vy * dt; m.position.z += f.vz * dt;
+      m.rotation.x += f.rx * dt; m.rotation.z += f.rz * dt;
+      if (m.position.y < -60) { scene.remove(m); falling.splice(i, 1); }
+    }
+    for (let i = fx.length - 1; i >= 0; i--) {
+      const f = fx[i]; f.life += dt;
+      const a = f.geo.attributes.position.array;
+      for (let k = 0; k < a.length; k += 3) {
+        f.vel[k + 1] -= 25 * dt;
+        a[k] += f.vel[k] * dt; a[k + 1] += f.vel[k + 1] * dt; a[k + 2] += f.vel[k + 2] * dt;
+      }
+      f.geo.attributes.position.needsUpdate = true;
+      f.mat.opacity = Math.max(0, 1 - f.life / .9);
+      if (f.life >= .9) { removeFx(f); fx.splice(i, 1); }
+    }
+    if (cur) cur.mesh.rotation.y += dt;
+    renderer.render(scene, camera);
+  }
+
+  // ---------- Cleanup ----------
+  function dispose() {
+    cancelAnimationFrame(raf);
+    window.removeEventListener('resize', resize);
+    window.removeEventListener('orientationchange', resize);
+    canvas.removeEventListener('pointerdown', onDown);
+    canvas.removeEventListener('pointermove', onMove);
+    canvas.removeEventListener('pointerup', onUp);
+    canvas.removeEventListener('pointercancel', onCancel);
+    clearAll();
+    disposables.forEach(o => o.dispose && o.dispose());
+  }
+  window.addEventListener('pagehide', dispose);
+
+  // ---------- Start ----------
+  resize();
+  buildLevel();
+  updateAim();
+  loop();
+})();
 </script>
 </body>
 </html>
