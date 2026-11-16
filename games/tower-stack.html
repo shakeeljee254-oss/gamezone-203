@@ -2,236 +2,116 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Tower Stack - Play Free Online | GameZone 203</title>
-
-<!-- SEO TAGS -->
-<meta name="description" content="Play Tower Stack free online at GameZone 203. Tap to stack the blocks as high as you can in this addictive game!">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/tower-stack.html">
-<meta property="og:title" content="Tower Stack - Play Free Online | GameZone 203">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<title>Tower Stack Pro | GameZone 203</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background-color: #1a1a2e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    touch-action: none;
-  }
-  canvas {
-    background: linear-gradient(to bottom, #16213e, #0f3460);
-    box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    max-width: 100%;
-    max-height: 100vh;
-  }
-  #startOverlay {
-    position: absolute;
-    background: rgba(0,0,0,0.85);
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    z-index: 10;
-    border: 2px solid #e94560;
-  }
-  h1 { color: #e94560; margin-top: 0; letter-spacing: 2px; }
-  p { color: #aab1ce; font-size: 16px; margin-bottom: 25px; }
-  button {
-    background: #e94560;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  button:hover { background: #c0354d; box-shadow: 0 0 15px #e94560; }
+:root{--bg:#0b0f19;--panel:rgba(17,24,39,.92);--cyan:#00f3ff;--pink:#ff007f;--purple:#9d00ff;--yellow:#f3ff00;--green:#00ff66;--muted:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-user-select:none;touch-action:manipulation;font-family:Segoe UI,Roboto,Arial,sans-serif}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:#fff}button{cursor:pointer}#game-container{position:fixed;inset:0;z-index:1}#game-container canvas{display:block;width:100%;height:100%}
+#ui-layer{position:fixed;inset:0;z-index:10;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 14px calc(12px + env(safe-area-inset-bottom))}.interactive{pointer-events:auto}
+.hud-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.hud-group{display:flex;align-items:center;gap:8px}.hud-badge{background:var(--panel);border:2px solid var(--cyan);box-shadow:0 0 12px #00f3ff55;padding:7px 12px;border-radius:11px;display:flex;flex-direction:column;align-items:center;backdrop-filter:blur(6px);min-width:64px}.label{font-size:.65rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase}.value{font-size:1.1rem;color:var(--cyan);font-weight:900}.icon-btn{width:42px;height:42px;border:2px solid var(--pink);border-radius:11px;background:var(--panel);color:white;font-size:1.1rem;box-shadow:0 0 10px #ff007f55}
+.hud-center{position:absolute;top:17%;left:0;width:100%;text-align:center;pointer-events:none}#combo-popup{font-size:clamp(1.5rem,6vw,2.5rem);font-weight:900;color:var(--yellow);text-shadow:0 0 14px var(--yellow);opacity:0;transform:scale(.7);transition:.2s}#combo-popup.show{opacity:1;transform:scale(1)}
+.hud-bottom{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.powerup-btn{min-width:66px;padding:7px 10px;border:2px solid var(--purple);border-radius:11px;background:var(--panel);color:white;display:flex;flex-direction:column;align-items:center}.powerup-btn:disabled{opacity:.35}.p-name{font-size:.72rem;font-weight:bold}.p-count{font-size:.85rem;color:var(--yellow)}
+.screen{position:fixed;inset:0;z-index:100;background:#0b0f19eF;backdrop-filter:blur(9px);display:flex;justify-content:center;align-items:center;padding:14px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .2s}.screen.active{opacity:1;visibility:visible;pointer-events:auto}.modal-box{width:min(100%,490px);max-height:90dvh;overflow:auto;background:var(--panel);border:2px solid var(--cyan);box-shadow:0 0 28px #00f3ff44;border-radius:22px;padding:clamp(18px,4vw,28px);display:flex;flex-direction:column;align-items:center}.game-title{font-size:clamp(1.7rem,7vw,2.3rem);font-weight:950;color:var(--cyan);text-shadow:0 0 14px #00f3ff88;text-align:center;letter-spacing:1px}.game-subtitle{font-size:.75rem;color:var(--muted);letter-spacing:2px;text-align:center;margin:5px 0 18px;text-transform:uppercase}.menu-btn-group{display:flex;flex-direction:column;gap:10px;width:100%;margin-top:12px}.primary-btn,.secondary-btn{width:100%;padding:13px;border-radius:12px;font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.5px}.primary-btn{border:0;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#07101b;box-shadow:0 0 15px #00f3ff55}.secondary-btn{background:transparent;border:2px solid var(--muted);color:#fff}.primary-btn:active,.secondary-btn:active,.action-btn:active{transform:scale(.98)}
+.tab-header{display:flex;gap:8px;width:100%;margin:8px 0 14px}.tab-btn{flex:1;padding:9px;border:0;border-radius:8px;background:#ffffff12;color:var(--muted);font-weight:bold}.tab-btn.active{background:var(--cyan);color:#061018}.tab-content{display:none;width:100%;flex-direction:column;gap:9px;max-height:48dvh;overflow:auto}.tab-content.active{display:flex}.item-card{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px;background:#ffffff0b;border:1px solid #ffffff20;border-radius:10px}.item-card.unlocked{border-color:var(--cyan)}.item-card.selected{border-color:var(--green)}.item-info{min-width:0}.item-info h4{font-size:.92rem}.item-info p{font-size:.75rem;color:var(--muted);margin-top:3px}.action-btn{border:0;border-radius:8px;background:var(--cyan);color:#061018;font-weight:bold;padding:8px 11px;font-size:.82rem;white-space:nowrap}.action-btn:disabled{opacity:.35}.difficulty-heading{margin:10px 0 3px;color:var(--yellow);font-weight:900;font-size:.85rem;letter-spacing:1px}.tutorial-overlay{position:fixed;inset:0;z-index:150;background:#000b;display:none;justify-content:center;align-items:center;padding:18px}.tutorial-card{max-width:400px;background:var(--panel);border:2px solid var(--yellow);border-radius:18px;padding:24px;text-align:center}.tutorial-card h2{color:var(--yellow);margin-bottom:12px}.tutorial-card p{line-height:1.5;margin:10px 0;color:#eee}.error-note{color:var(--muted);text-align:center;line-height:1.5;margin:12px 0}
+@media(max-width:520px){#ui-layer{padding-left:9px;padding-right:9px}.hud-group{gap:5px}.hud-badge{padding:6px 8px;min-width:55px}.value{font-size:1rem}.icon-btn{width:38px;height:38px}.powerup-btn{min-width:61px;padding:6px 7px}.p-name{font-size:.66rem}.modal-box{padding:18px}}
 </style>
 </head>
 <body>
-
-  <div id="startOverlay">
-    <h1>TOWER STACK</h1>
-    <p>Tap or Click to drop the block.<br>Build the highest tower!</p>
-    <button id="startBtn">START GAME</button>
-  </div>
-
-  <canvas id="gameCanvas" width="400" height="600"></canvas>
-
+<div id="game-container"></div>
+<div id="ui-layer">
+ <div class="hud-top">
+  <div class="hud-group"><button class="icon-btn interactive" id="btn-pause" title="Pause">Ⅱ</button><div class="hud-badge"><span class="label">Score</span><span class="value" id="hud-score">0</span></div><div class="hud-badge"><span class="label">Coins</span><span class="value" id="hud-coins">100</span></div></div>
+  <div class="hud-group"><div class="hud-badge" id="hud-level-badge" style="display:none"><span class="label" id="hud-level-name">Level</span><span class="value" id="hud-target">15</span></div><button class="icon-btn interactive" id="btn-sound" title="Sound">🔊</button></div>
+ </div>
+ <div class="hud-center"><div id="combo-popup">PERFECT!</div></div>
+ <div class="hud-bottom" id="powerup-bar">
+  <button class="powerup-btn interactive" data-powerup="slow"><span class="p-name">🐢 Slow</span><span class="p-count" id="count-slow">3</span></button>
+  <button class="powerup-btn interactive" data-powerup="double"><span class="p-name">2× Double</span><span class="p-count" id="count-double">3</span></button>
+  <button class="powerup-btn interactive" data-powerup="perfect"><span class="p-name">🎯 Perfect</span><span class="p-count" id="count-perfect">3</span></button>
+  <button class="powerup-btn interactive" data-powerup="shield"><span class="p-name">🛡 Shield</span><span class="p-count" id="count-shield">2</span></button>
+ </div>
+</div>
+<div class="tutorial-overlay" id="tutorial-overlay"><div class="tutorial-card"><h2>HOW TO PLAY</h2><p>Tap or click anywhere outside the buttons when the moving block is above your tower.</p><p>Accurate placement keeps your tower wide. Missing the tower ends the round.</p><button class="primary-btn interactive" id="btn-close-tutorial">Got It — Let's Stack!</button></div></div>
+<section id="screen-menu" class="screen active"><div class="modal-box"><h1 class="game-title">TOWER STACK</h1><p class="game-subtitle">Pro | GameZone 203</p><div class="menu-btn-group"><button class="primary-btn interactive" id="btn-play-endless">Endless Mode</button><button class="primary-btn interactive" id="btn-play-levels" style="background:linear-gradient(135deg,var(--pink),var(--purple))">100 Level Campaign</button><button class="secondary-btn interactive" id="btn-open-shop">Shop & Skins</button><button class="secondary-btn interactive" id="btn-open-missions">Missions & Achievements</button><button class="secondary-btn interactive" id="btn-open-settings">Settings</button></div></div></section>
+<section id="screen-pause" class="screen"><div class="modal-box"><h1 class="game-title">PAUSED</h1><p class="game-subtitle">Game in progress</p><div class="menu-btn-group"><button class="primary-btn interactive" id="btn-resume">Resume</button><button class="secondary-btn interactive" id="btn-restart-game">Restart</button><button class="secondary-btn interactive" id="btn-quit-menu">Main Menu</button></div></div></section>
+<section id="screen-gameover" class="screen"><div class="modal-box"><h1 class="game-title" style="color:var(--pink)">GAME OVER</h1><p class="game-subtitle">Tower collapsed</p><div class="item-card"><div class="item-info"><h4>Final Score</h4><p id="go-score">0</p></div><div class="item-info"><h4>Best Score</h4><p id="go-best">0</p></div><div class="item-info"><h4>Coins</h4><p id="go-coins">+0</p></div></div><div class="menu-btn-group"><button class="primary-btn interactive" id="btn-play-again">Play Again</button><button class="secondary-btn interactive" id="btn-go-menu">Main Menu</button></div></div></section>
+<section id="screen-levelwin" class="screen"><div class="modal-box"><h1 class="game-title" style="color:var(--green)">LEVEL COMPLETE!</h1><p class="game-subtitle" id="win-subtitle">Level 1 cleared</p><div class="hud-badge" style="width:100%;margin:15px 0"><span class="label">Reward</span><span class="value" id="win-reward">+50 Coins</span></div><div class="menu-btn-group"><button class="primary-btn interactive" id="btn-next-level">Next Level</button><button class="secondary-btn interactive" id="btn-win-menu">Level Select</button></div></div></section>
+<section id="screen-levels" class="screen"><div class="modal-box"><h1 class="game-title">CAMPAIGN</h1><p class="game-subtitle" id="campaign-progress">Easy → Normal → Hard · 100 Levels</p><div class="tab-content active" id="levels-list"></div><div class="menu-btn-group"><button class="secondary-btn interactive" id="btn-levels-back">Back to Menu</button></div></div></section>
+<section id="screen-shop" class="screen"><div class="modal-box"><h1 class="game-title">SHOP</h1><p class="game-subtitle">Themes & block skins</p><div class="tab-header"><button class="tab-btn active interactive" data-tab="shop-themes">Themes</button><button class="tab-btn interactive" data-tab="shop-skins">Skins</button></div><div class="tab-content active" id="shop-themes"></div><div class="tab-content" id="shop-skins"></div><div class="menu-btn-group"><button class="secondary-btn interactive" id="btn-shop-back">Back to Menu</button></div></div></section>
+<section id="screen-missions" class="screen"><div class="modal-box"><h1 class="game-title">MISSIONS</h1><p class="game-subtitle">Quests & trophies</p><div class="tab-header"><button class="tab-btn active interactive" data-tab="tab-missions">Missions</button><button class="tab-btn interactive" data-tab="tab-achievements">Achievements</button></div><div class="tab-content active" id="tab-missions"></div><div class="tab-content" id="tab-achievements"></div><div class="menu-btn-group"><button class="secondary-btn interactive" id="btn-missions-back">Back to Menu</button></div></div></section>
+<section id="screen-settings" class="screen"><div class="modal-box"><h1 class="game-title">SETTINGS</h1><p class="game-subtitle">Audio & data</p><div class="menu-btn-group"><div class="item-card"><div class="item-info"><h4>Sound Effects</h4></div><button class="action-btn interactive" id="setting-sfx-toggle">ON</button></div><div class="item-card"><div class="item-info"><h4>Background Music</h4></div><button class="action-btn interactive" id="setting-music-toggle">ON</button></div><div class="item-card"><div class="item-info"><h4>Reset Progress</h4><p>Clear saved game data</p></div><button class="action-btn interactive" id="setting-reset-data" style="background:var(--pink)">Reset</button></div><button class="secondary-btn interactive" id="btn-settings-back">Back to Menu</button></div></div></section>
+<section id="screen-error" class="screen"><div class="modal-box"><h1 class="game-title" style="color:var(--pink)">3D ENGINE ERROR</h1><p class="error-note" id="error-message">Three.js or WebGL could not start. Check your internet connection and browser WebGL support.</p><button class="primary-btn interactive" onclick="location.reload()">Retry</button></div></section>
 <script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const startOverlay = document.getElementById("startOverlay");
-  const startBtn = document.getElementById("startBtn");
-
-  let gameRunning = false;
-  let score = 0;
-  let bestScore = localStorage.getItem("towerBest") || 0;
-  
-  let blocks = [];
-  let currentBlock = null;
-  let cameraY = 0;
-  const blockHeight = 30;
-  let speed = 3;
-  let moveDirection = 1;
-
-  const colors = ["#e94560", "#fbbf24", "#50f5d0", "#a855f7", "#00a8ff"];
-
-  function resetGame() {
-    blocks = [];
-    // Base block
-    blocks.push({ x: canvas.width/2 - 60, y: canvas.height - blockHeight, width: 120, color: "#fff" });
-    
-    currentBlock = createNewBlock();
-    score = 0;
-    cameraY = 0;
-    speed = 3;
-    moveDirection = 1;
-    gameRunning = true;
-    startOverlay.style.display = "none";
-    gameLoop();
-  }
-
-  function createNewBlock() {
-    const lastBlock = blocks[blocks.length - 1];
-    return {
-      x: Math.random() > 0.5 ? 0 : canvas.width - lastBlock.width,
-      y: lastBlock.y - blockHeight,
-      width: lastBlock.width,
-      color: colors[score % colors.length]
-    };
-  }
-
-  function dropBlock() {
-    if (!gameRunning || !currentBlock) return;
-
-    const lastBlock = blocks[blocks.length - 1];
-    
-    const overlapLeft = Math.max(currentBlock.x, lastBlock.x);
-    const overlapRight = Math.min(currentBlock.x + currentBlock.width, lastBlock.x + lastBlock.width);
-    const overlapWidth = overlapRight - overlapLeft;
-
-    if (overlapWidth <= 0) {
-      gameOver();
-      return;
-    }
-
-    currentBlock.x = overlapLeft;
-    currentBlock.width = overlapWidth;
-    
-    blocks.push(currentBlock);
-    score++;
-    
-    if (score % 5 === 0) speed += 0.5;
-
-    if (currentBlock.y + cameraY < 200) {
-      cameraY += blockHeight;
-    }
-
-    currentBlock = createNewBlock();
-  }
-
-  function gameOver() {
-    gameRunning = false;
-    if (score > bestScore) {
-      bestScore = score;
-      localStorage.setItem("towerBest", bestScore);
-    }
-
-    setTimeout(() => {
-      ctx.fillStyle = "rgba(0,0,0,0.8)";
-      ctx.fillRect(0, canvas.height/2 - 120, canvas.width, 240);
-      
-      ctx.fillStyle = "#e94560";
-      ctx.font = "bold 32px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 50);
-      
-      ctx.fillStyle = "white";
-      ctx.font = "20px Arial";
-      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 10);
-      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 40);
-      
-      ctx.fillStyle = "#aab1ce";
-      ctx.font = "16px Arial";
-      ctx.fillText("Click to Restart", canvas.width/2, canvas.height/2 + 90);
-      
-      const restart = () => {
-        canvas.removeEventListener("mousedown", restart);
-        canvas.removeEventListener("touchstart", restart);
-        resetGame();
-      };
-      canvas.addEventListener("mousedown", restart);
-      canvas.addEventListener("touchstart", restart, {passive: true});
-    }, 500);
-  }
-
-  function update() {
-    if (!gameRunning || !currentBlock) return;
-
-    currentBlock.x += speed * moveDirection;
-    
-    if (currentBlock.x <= 0) {
-      currentBlock.x = 0;
-      moveDirection = 1;
-    } else if (currentBlock.x + currentBlock.width >= canvas.width) {
-      currentBlock.x = canvas.width - currentBlock.width;
-      moveDirection = -1;
-    }
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    blocks.forEach(b => {
-      ctx.fillStyle = b.color;
-      ctx.fillRect(b.x, b.y + cameraY, b.width, blockHeight);
-      ctx.fillStyle = "rgba(0,0,0,0.2)";
-      ctx.fillRect(b.x, b.y + cameraY + blockHeight - 5, b.width, 5);
-    });
-
-    if (currentBlock) {
-      ctx.fillStyle = currentBlock.color;
-      ctx.fillRect(currentBlock.x, currentBlock.y + cameraY, currentBlock.width, blockHeight);
-      ctx.fillStyle = "rgba(0,0,0,0.2)";
-      ctx.fillRect(currentBlock.x, currentBlock.y + cameraY + blockHeight - 5, currentBlock.width, 5);
-    }
-
-    ctx.fillStyle = "white";
-    ctx.font = "bold 40px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText(score, canvas.width/2, 70);
-  }
-
-  function gameLoop() {
-    if (!gameRunning) return;
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-  }
-
-  window.addEventListener("keydown", (e) => {
-    if (e.code === "Space" || e.code === "ArrowDown") {
-      e.preventDefault();
-      dropBlock();
-    }
-  });
-
-  canvas.addEventListener("mousedown", dropBlock);
-  canvas.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    dropBlock();
-  }, {passive: false});
-
-  startBtn.addEventListener("click", resetGame);
-
+'use strict';
+// ---------- Save data (validated and safely merged) ----------
+const SAVE_KEY='tower_stack_pro_data_v3';
+const DEFAULT_DATA={coins:100,bestScore:0,sfx:true,music:true,selectedTheme:'cyberpunk',selectedSkin:'default',unlockedThemes:['cyberpunk'],unlockedSkins:['default'],unlockedLevel:1,powerups:{slow:3,double:3,perfect:3,shield:2},missions:{stack50:{progress:0,target:50,claimed:false},perfect10:{progress:0,target:10,claimed:false},earnCoins:{progress:0,target:200,claimed:false}},achievements:{score20:false,score50:false,allThemes:false},tutorialShown:false};
+const clone=o=>JSON.parse(JSON.stringify(o));
+let gameData=clone(DEFAULT_DATA);
+function loadGameData(){try{const raw=JSON.parse(localStorage.getItem(SAVE_KEY)||localStorage.getItem('tower_stack_pro_data_v2')||'null');if(raw&&typeof raw==='object'){const oldAch=raw.achievements||{};gameData={...clone(DEFAULT_DATA),...raw,powerups:{...DEFAULT_DATA.powerups,...(raw.powerups||{})},missions:{...clone(DEFAULT_DATA.missions),...(raw.missions||{})},achievements:{score20:!!(oldAch.score20?.unlocked??oldAch.score20),score50:!!(oldAch.score50?.unlocked??oldAch.score50),allThemes:!!(oldAch.allThemes?.unlocked??oldAch.allThemes)}}}}catch(e){gameData=clone(DEFAULT_DATA)}
+ if(!THEME_KEYS.includes(gameData.selectedTheme))gameData.selectedTheme='cyberpunk';if(!SKIN_KEYS.includes(gameData.selectedSkin))gameData.selectedSkin='default';gameData.unlockedLevel=Math.max(1,Math.min(100,Number(gameData.unlockedLevel)||1));['slow','double','perfect','shield'].forEach(k=>gameData.powerups[k]=Math.max(0,Number(gameData.powerups[k])||0));}
+function saveGameData(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(gameData))}catch(e){}}
+// ---------- Audio ----------
+class SoundSystem{constructor(){this.sfxEnabled=true;this.musicEnabled=true;this.ctx=null;this.timer=null;this.step=0}init(){if(!this.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(AC)this.ctx=new AC()}if(this.ctx?.state==='suspended')this.ctx.resume()}tone(freq,type='sine',dur=.15,vol=.08,forMusic=false){if(forMusic?!this.musicEnabled:!this.sfxEnabled)return;this.init();if(!this.ctx)return;try{const o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.setValueAtTime(vol,this.ctx.currentTime);g.gain.exponentialRampToValueAtTime(.0001,this.ctx.currentTime+dur);o.connect(g);g.connect(this.ctx.destination);o.start();o.stop(this.ctx.currentTime+dur)}catch(e){}}place(perfect){this.tone(perfect?590:300,perfect?'triangle':'sine',.18,.12);if(perfect)setTimeout(()=>this.tone(880,'sine',.2,.1),90)}reward(){[523,659,784].forEach((n,i)=>setTimeout(()=>this.tone(n,'sine',.18,.1),i*100))}over(){this.tone(140,'sawtooth',.5,.18)}startMusic(){if(!this.musicEnabled||this.timer)return;this.init();const notes=[220,247,262,294,330,349,392];this.timer=setInterval(()=>{this.tone(notes[this.step++%notes.length],'sine',.25,.018,true)},430)}stopMusic(){if(this.timer)clearInterval(this.timer);this.timer=null}}
+const sound=new SoundSystem();
+// ---------- Themes, skins and 100 campaign levels ----------
+const THEMES={cyberpunk:{name:'Cyberpunk Neon',bg:0x0b0f19,light:0x00f3ff},synthwave:{name:'Synthwave Sunset',bg:0x1a0b2e,light:0xff007f},matrix:{name:'Matrix Code',bg:0x021205,light:0x00ff66},gold:{name:'Royal Gold',bg:0x1a150b,light:0xf3ff00}};
+const SKINS={default:{name:'Neon Solid',price:0},glass:{name:'Glass Glow',price:150},striped:{name:'Cyber Glass',price:300},rainbow:{name:'Prismatic',price:500}};
+const THEME_KEYS=Object.keys(THEMES),SKIN_KEYS=Object.keys(SKINS);
+function difficultyFor(id){return id<=30?'EASY':id<=65?'NORMAL':'HARD'}
+function levelConfig(id){const diff=difficultyFor(id),n=id<=30?id:id<=65?id-30:id-65;const target=diff==='EASY'?12+Math.floor(n*.8):diff==='NORMAL'?35+Math.floor(n*1.25):80+Math.floor(n*1.6);return{id,target,reward:25+id*5,name:`Level ${id}`,difficulty:diff}}
+loadGameData();sound.sfxEnabled=gameData.sfx;sound.musicEnabled=gameData.music;
+// ---------- Three.js engine ----------
+let scene=null,camera=null,renderer=null,clock=null,engineReady=false,gameState='MENU',gameMode='ENDLESS',currentLevelId=1;
+let stack=[],debris=[],movingBlock=null,direction=1,moveAxis='x',score=0,perfectCombo=0,baseBlockSize=3,blockHeight=.5,baseSpeed=.065,speedMultiplier=1;
+let active={slow:false,double:false,perfect:false,shield:false},powerTimers={};
+const $=id=>document.getElementById(id);
+function showError(msg){$('error-message').textContent=msg;$('screen-error').classList.add('active')}
+function initThree(){if(!window.THREE){showError('Three.js library did not load. Please check your internet connection and reload.');return false}try{scene=new THREE.Scene();const theme=THEMES[gameData.selectedTheme]||THEMES.cyberpunk;scene.background=new THREE.Color(theme.bg);camera=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,1000);camera.position.set(10,15,15);camera.lookAt(0,5,0);renderer=new THREE.WebGLRenderer({antialias:true,alpha:false,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.setSize(innerWidth,innerHeight);$('game-container').appendChild(renderer.domElement);scene.add(new THREE.AmbientLight(0xffffff,.72));const light=new THREE.DirectionalLight(theme.light,1.2);light.position.set(10,20,10);scene.add(light);window.addEventListener('resize',resize);clock=new THREE.Clock();engineReady=true;return true}catch(e){showError('WebGL could not initialize on this device. Try another browser or enable hardware acceleration.');return false}}
+function resize(){if(!camera||!renderer)return;camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}
+function disposeMesh(mesh){if(!mesh)return;scene?.remove(mesh);mesh.geometry?.dispose();if(Array.isArray(mesh.material))mesh.material.forEach(m=>m.dispose());else mesh.material?.dispose()}
+function makeMaterial(color){if(gameData.selectedSkin==='glass')return new THREE.MeshPhysicalMaterial({color,transparent:true,opacity:.78,roughness:.12,metalness:.2});return new THREE.MeshStandardMaterial({color,roughness:.32,metalness:.45})}
+function createBlock(x,y,z,w,d,color,isBase=false){const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,blockHeight,d),makeMaterial(color));mesh.position.set(x,y+blockHeight/2,z);scene.add(mesh);const b={mesh,x,y,z,width:w,depth:d,color};if(isBase)stack.unshift(b);else stack.push(b);return b}
+function blockColor(i){return new THREE.Color(`hsl(${(i*13)%360},90%,60%)`).getHex()}
+function clearWorld(){stack.forEach(b=>disposeMesh(b.mesh));debris.forEach(d=>disposeMesh(d.mesh));if(movingBlock)disposeMesh(movingBlock.mesh);stack=[];debris=[];movingBlock=null;Object.values(powerTimers).forEach(clearTimeout);powerTimers={};active={slow:false,double:false,perfect:false,shield:false};speedMultiplier=1}
+function spawnNextBlock(){const top=stack[stack.length-1];if(!top)return;const y=top.y+blockHeight;moveAxis=stack.length%2===0?'x':'z';const dist=7;const x=moveAxis==='x'?(direction===1?-dist:dist):top.x,z=moveAxis==='z'?(direction===1?-dist:dist):top.z;const color=blockColor(stack.length);const mesh=new THREE.Mesh(new THREE.BoxGeometry(top.width,blockHeight,top.depth),makeMaterial(color));mesh.position.set(x,y+blockHeight/2,z);scene.add(mesh);movingBlock={mesh,x,y,z,width:top.width,depth:top.depth,color}}
+function getLevelSpeed(){if(gameMode!=='LEVEL')return .065;const d=difficultyFor(currentLevelId);return d==='EASY'?.052:d==='NORMAL'?.075:.095}
+function resetGame(mode,levelId=1){if(!engineReady)return;gameMode=mode;currentLevelId=levelId;score=0;perfectCombo=0;direction=1;clearWorld();baseSpeed=getLevelSpeed();$('hud-score').textContent='0';$('hud-coins').textContent=gameData.coins;$('hud-level-badge').style.display=mode==='LEVEL'?'flex':'none';if(mode==='LEVEL'){const cfg=levelConfig(levelId);$('hud-level-name').textContent=`${cfg.difficulty} · LVL ${levelId}`;$('hud-target').textContent=cfg.target}else{$('hud-level-name').textContent='Target'}createBlock(0,0,0,baseBlockSize,baseBlockSize,0xffffff,true);spawnNextBlock();scene.background=new THREE.Color(THEMES[gameData.selectedTheme].bg);updatePowerupButtons();if(gameData.music)sound.startMusic()}
+function popup(txt){const el=$('combo-popup');el.textContent=txt;el.classList.add('show');clearTimeout(popup.timer);popup.timer=setTimeout(()=>el.classList.remove('show'),650)}
+function addDebris(x,y,z,w,d,color){if(w<=.015||d<=.015)return;const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,blockHeight,d),makeMaterial(color));mesh.position.set(x,y+blockHeight/2,z);scene.add(mesh);debris.push({mesh,vx:(Math.random()-.5)*.08,vy:-.025,vz:(Math.random()-.5)*.08,rot:.045,life:0});if(debris.length>24){const old=debris.shift();disposeMesh(old.mesh)}}
+function updateMission(key,amount){const m=gameData.missions[key];if(m&&!m.claimed)m.progress=Math.min(m.target,m.progress+amount)}
+function placeBlock(){if(gameState!=='PLAYING'||!movingBlock)return;const top=stack[stack.length-1],delta=(moveAxis==='x'?movingBlock.x-top.x:movingBlock.z-top.z),dimension=moveAxis==='x'?top.width:top.depth;let overlap=dimension-Math.abs(delta);const perfectThreshold=active.perfect?.6:.15;if(overlap<=0){missBlock();return}let adjusted=delta;if(Math.abs(delta)<perfectThreshold){adjusted=0;overlap=dimension;perfectCombo++;popup(perfectCombo>1?`COMBO ×${perfectCombo}!`:'PERFECT!');sound.place(true);if(perfectCombo>=3)gameData.coins+=2}else{perfectCombo=0;sound.place(false);const excess=Math.abs(delta),sign=delta>0?1:-1;if(moveAxis==='x')addDebris(movingBlock.x+sign*(overlap/2+excess/2),movingBlock.y,movingBlock.z,excess,top.depth,movingBlock.color);else addDebris(movingBlock.x,movingBlock.y,movingBlock.z+sign*(overlap/2+excess/2),top.width,excess,movingBlock.color)}
+ const nx=moveAxis==='x'?top.x+adjusted/2:top.x,nz=moveAxis==='z'?top.z+adjusted/2:top.z,nw=moveAxis==='x'?overlap:top.width,nd=moveAxis==='z'?overlap:top.depth;disposeMesh(movingBlock.mesh);movingBlock=null;createBlock(nx,top.y+blockHeight,nz,nw,nd,stack[stack.length-1].color===undefined?blockColor(stack.length):blockColor(stack.length));score+=active.double?2:1;$('hud-score').textContent=score;$('hud-coins').textContent=gameData.coins;updateMission('stack50',1);if(perfectCombo>0)updateMission('perfect10',1);gameData.bestScore=Math.max(gameData.bestScore,score);if(gameMode==='LEVEL'){const cfg=levelConfig(currentLevelId);if(score>=cfg.target){winLevel(cfg);return}}baseSpeed=Math.min(baseSpeed+.00065,.16);direction*=-1;spawnNextBlock();camera.position.y+=blockHeight;saveGameData()}
+function missBlock(){if(active.shield){active.shield=false;popup('SHIELD SAVED!');if(movingBlock)disposeMesh(movingBlock.mesh);movingBlock=null;direction*=-1;spawnNextBlock();updatePowerupButtons();return}gameState='GAMEOVER';sound.over();if(movingBlock){disposeMesh(movingBlock.mesh);movingBlock=null}const earned=Math.floor(score*1.5);gameData.coins+=earned;updateMission('earnCoins',earned);if(score>=20)gameData.achievements.score20=true;if(score>=50)gameData.achievements.score50=true;saveGameData();$('go-score').textContent=score;$('go-best').textContent=gameData.bestScore;$('go-coins').textContent=`+${earned}`;$('hud-coins').textContent=gameData.coins;showScreen('screen-gameover');sound.stopMusic()}
+function winLevel(cfg){gameState='LEVELWIN';sound.stopMusic();sound.reward();gameData.coins+=cfg.reward;gameData.unlockedLevel=Math.max(gameData.unlockedLevel,Math.min(100,currentLevelId+1));saveGameData();$('win-subtitle').textContent=`${cfg.difficulty} · Level ${currentLevelId} cleared!`;$('win-reward').textContent=`+${cfg.reward} Coins`;$('btn-next-level').textContent=currentLevelId>=100?'Campaign Complete':'Next Level';$('btn-next-level').disabled=currentLevelId>=100;$('btn-next-level').style.opacity=currentLevelId>=100?'.45':'1';showScreen('screen-levelwin')}
+// ---------- Power-ups ----------
+function updatePowerupButtons(){['slow','double','perfect','shield'].forEach(k=>{const el=$(`count-${k}`);if(el)el.textContent=gameData.powerups[k];const btn=document.querySelector(`[data-powerup="${k}"]`);if(btn)btn.disabled=gameState!=='PLAYING'||gameData.powerups[k]<=0||active[k]})}
+function activatePowerup(k){if(gameState!=='PLAYING'||!gameData.powerups[k]||active[k])return;gameData.powerups[k]--;sound.tone(600);active[k]=true;updatePowerupButtons();saveGameData();if(k==='shield'){popup('SHIELD ACTIVE');return}const duration=k==='double'?8000:k==='perfect'?6000:5000;if(k==='slow'){speedMultiplier=.5;popup('SLOW MOTION')}if(k==='double')popup('DOUBLE SCORE');if(k==='perfect')popup('WIDE PERFECT');powerTimers[k]=setTimeout(()=>{active[k]=false;if(k==='slow')speedMultiplier=1;updatePowerupButtons()},duration)}
+document.querySelectorAll('.powerup-btn').forEach(b=>b.addEventListener('click',()=>activatePowerup(b.dataset.powerup)));
+// ---------- Screen helpers ----------
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));if(id){const el=$(id);if(el)el.classList.add('active')}}
+function startEndless(){if(!gameData.tutorialShown){$('tutorial-overlay').style.display='flex';return}showScreen(null);resetGame('ENDLESS');gameState='PLAYING';updatePowerupButtons()}
+function startLevel(id){if(id>gameData.unlockedLevel||id<1||id>100)return;showScreen(null);resetGame('LEVEL',id);gameState='PLAYING';updatePowerupButtons()}
+// ---------- Level list: 100 levels, sequential unlock ----------
+function renderLevels(){const c=$('levels-list');c.innerHTML='';$('campaign-progress').textContent=`${Math.min(100,gameData.unlockedLevel-1)} / 100 cleared · Easy → Normal → Hard`;let last='';for(let id=1;id<=100;id++){const cfg=levelConfig(id);if(cfg.difficulty!==last){const h=document.createElement('div');h.className='difficulty-heading';h.textContent=cfg.difficulty==='EASY'?'🟢 EASY · LEVELS 1–30':cfg.difficulty==='NORMAL'?'🟡 NORMAL · LEVELS 31–65':'🔴 HARD · LEVELS 66–100';c.appendChild(h);last=cfg.difficulty}const unlocked=id<=gameData.unlockedLevel,done=id<gameData.unlockedLevel;const card=document.createElement('div');card.className=`item-card ${unlocked?'unlocked':''}`;const info=document.createElement('div');info.className='item-info';const h=document.createElement('h4');h.textContent=`${cfg.name} ${done?'✓':''}`;const p=document.createElement('p');p.textContent=`Target: ${cfg.target} blocks · Reward: ${cfg.reward} coins`;info.append(h,p);const b=document.createElement('button');b.className='action-btn interactive';b.textContent=done?'Replay':unlocked?'Play':'🔒 Locked';b.disabled=!unlocked;b.addEventListener('click',()=>startLevel(id));card.append(info,b);c.appendChild(card)}}
+// ---------- Shop and missions ----------
+function renderShop(){const tc=$('shop-themes'),sc=$('shop-skins');tc.innerHTML='';sc.innerHTML='';THEME_KEYS.forEach(k=>{const unlocked=gameData.unlockedThemes.includes(k),selected=gameData.selectedTheme===k;const card=document.createElement('div');card.className=`item-card ${unlocked?'unlocked':''} ${selected?'selected':''}`;card.innerHTML=`<div class="item-info"><h4>${THEMES[k].name}</h4><p>${unlocked?(selected?'Selected':'Unlocked'):'Price: 100 coins'}</p></div>`;const b=document.createElement('button');b.className='action-btn';b.textContent=selected?'Active':unlocked?'Select':'Buy';b.onclick=()=>{if(!unlocked&&gameData.coins<100)return;if(!unlocked){gameData.coins-=100;gameData.unlockedThemes.push(k)}gameData.selectedTheme=k;if(gameData.unlockedThemes.length===4)gameData.achievements.allThemes=true;if(scene)scene.background=new THREE.Color(THEMES[k].bg);saveGameData();renderShop()};card.append(b);tc.append(card)});SKIN_KEYS.forEach(k=>{const unlocked=gameData.unlockedSkins.includes(k),selected=gameData.selectedSkin===k;const card=document.createElement('div');card.className=`item-card ${unlocked?'unlocked':''} ${selected?'selected':''}`;card.innerHTML=`<div class="item-info"><h4>${SKINS[k].name}</h4><p>${unlocked?(selected?'Selected':'Unlocked'):`Price: ${SKINS[k].price} coins`}</p></div>`;const b=document.createElement('button');b.className='action-btn';b.textContent=selected?'Active':unlocked?'Select':'Buy';b.onclick=()=>{if(!unlocked&&gameData.coins<SKINS[k].price)return;if(!unlocked){gameData.coins-=SKINS[k].price;gameData.unlockedSkins.push(k)}gameData.selectedSkin=k;saveGameData();renderShop()};card.append(b);sc.append(card)})}
+function renderMissions(){const c=$('tab-missions');c.innerHTML='';const names={stack50:'Stack 50 blocks',perfect10:'Make 10 perfect placements',earnCoins:'Earn 200 coins'};Object.entries(gameData.missions).forEach(([k,m])=>{const card=document.createElement('div');card.className='item-card';const info=document.createElement('div');info.className='item-info';info.innerHTML=`<h4>${names[k]}</h4><p>Progress: ${m.progress}/${m.target}</p>`;const b=document.createElement('button');b.className='action-btn';b.textContent=m.claimed?'Claimed':m.progress>=m.target?'Claim 50 🪙':'In Progress';b.disabled=m.claimed||m.progress<m.target;b.onclick=()=>{if(!m.claimed&&m.progress>=m.target){m.claimed=true;gameData.coins+=50;sound.reward();saveGameData();renderMissions()}};card.append(info,b);c.append(card)});const a=$('tab-achievements');a.innerHTML='';[{id:'score20',name:'Tower Novice',desc:'Reach score 20'},{id:'score50',name:'Skyscraper Master',desc:'Reach score 50'},{id:'allThemes',name:'Collector',desc:'Unlock all themes'}].forEach(x=>{const card=document.createElement('div');card.className=`item-card ${gameData.achievements[x.id]?'unlocked':''}`;card.innerHTML=`<div class="item-info"><h4>${x.name}</h4><p>${x.desc}</p></div><span>${gameData.achievements[x.id]?'🏆':'🔒'}</span>`;a.append(card)})}
+// ---------- UI events ----------
+$('btn-play-endless').onclick=startEndless;$('btn-close-tutorial').onclick=()=>{$('tutorial-overlay').style.display='none';gameData.tutorialShown=true;saveGameData();showScreen(null);resetGame('ENDLESS');gameState='PLAYING';updatePowerupButtons()};$('btn-play-levels').onclick=()=>{renderLevels();showScreen('screen-levels')};$('btn-open-shop').onclick=()=>{renderShop();showScreen('screen-shop')};$('btn-open-missions').onclick=()=>{renderMissions();showScreen('screen-missions')};$('btn-open-settings').onclick=()=>showScreen('screen-settings');
+$('btn-pause').onclick=()=>{if(gameState==='PLAYING'){gameState='PAUSED';showScreen('screen-pause');updatePowerupButtons()}};$('btn-resume').onclick=()=>{showScreen(null);gameState='PLAYING';updatePowerupButtons()};$('btn-restart-game').onclick=()=>{showScreen(null);resetGame(gameMode,currentLevelId);gameState='PLAYING';updatePowerupButtons()};$('btn-quit-menu').onclick=()=>{sound.stopMusic();showScreen('screen-menu');gameState='MENU';updatePowerupButtons()};$('btn-play-again').onclick=()=>{showScreen(null);resetGame(gameMode,currentLevelId);gameState='PLAYING';updatePowerupButtons()};$('btn-go-menu').onclick=()=>{sound.stopMusic();showScreen('screen-menu');gameState='MENU';updatePowerupButtons()};$('btn-next-level').onclick=()=>{if(currentLevelId<100){const n=currentLevelId+1;showScreen(null);resetGame('LEVEL',n);gameState='PLAYING';updatePowerupButtons()}else{showScreen('screen-levels');renderLevels()}};$('btn-win-menu').onclick=()=>{renderLevels();showScreen('screen-levels')};
+[['btn-levels-back','screen-menu'],['btn-shop-back','screen-menu'],['btn-missions-back','screen-menu'],['btn-settings-back','screen-menu']].forEach(([id,s])=>$(id).onclick=()=>showScreen(s));
+document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>{const modal=b.closest('.modal-box');modal.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));modal.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.tab).classList.add('active')}));
+function syncAudioUI(){$('btn-sound').textContent=gameData.sfx?'🔊':'🔇';$('setting-sfx-toggle').textContent=gameData.sfx?'ON':'OFF';$('setting-music-toggle').textContent=gameData.music?'ON':'OFF'}
+$('btn-sound').onclick=()=>{gameData.sfx=!gameData.sfx;sound.sfxEnabled=gameData.sfx;syncAudioUI();saveGameData()};$('setting-sfx-toggle').onclick=()=>{gameData.sfx=!gameData.sfx;sound.sfxEnabled=gameData.sfx;syncAudioUI();saveGameData()};$('setting-music-toggle').onclick=()=>{gameData.music=!gameData.music;sound.musicEnabled=gameData.music;if(gameData.music&&gameState==='PLAYING')sound.startMusic();else sound.stopMusic();syncAudioUI();saveGameData()};$('setting-reset-data').onclick=()=>{if(confirm('Reset all Tower Stack progress?')){localStorage.removeItem(SAVE_KEY);gameData=clone(DEFAULT_DATA);sound.sfxEnabled=true;sound.musicEnabled=true;syncAudioUI();saveGameData();renderLevels();showScreen('screen-menu')}};
+// Ignore taps on UI; tap game area to place block.
+window.addEventListener('pointerdown',e=>{if(e.target.closest('button,.screen,.tutorial-overlay'))return;if(gameState==='PLAYING')placeBlock()});window.addEventListener('keydown',e=>{if((e.code==='Space'||e.code==='ArrowUp')&&gameState==='PLAYING'){e.preventDefault();placeBlock()}});
+// ---------- Animation: pause-safe debris and stable speed ----------
+function animate(){requestAnimationFrame(animate);if(!engineReady||!renderer||!scene||!camera)return;const dt=Math.min(clock.getDelta(),.05);if(gameState==='PLAYING'&&movingBlock){const limit=4.5;movingBlock[moveAxis]+=baseSpeed*speedMultiplier*direction*(dt*60);if(movingBlock[moveAxis]>limit){movingBlock[moveAxis]=limit;direction=-1}else if(movingBlock[moveAxis]<-limit){movingBlock[moveAxis]=-limit;direction=1}movingBlock.mesh.position[moveAxis]=movingBlock[moveAxis];const targetY=10+stack.length*blockHeight;camera.position.y+=(targetY-camera.position.y)*Math.min(1,dt*5);camera.lookAt(0,camera.position.y-5,0);debris.forEach(d=>{d.life+=dt;d.mesh.position.x+=d.vx*(dt*60);d.mesh.position.y+=d.vy*(dt*60);d.mesh.position.z+=d.vz*(dt*60);d.mesh.rotation.x+=d.rot*(dt*60);d.mesh.rotation.z+=d.rot*(dt*60)});const expired=debris.filter(d=>d.life>2.5||d.mesh.position.y< -8);expired.forEach(d=>disposeMesh(d.mesh));debris=debris.filter(d=>!expired.includes(d))}renderer.render(scene,camera)}
+// ---------- Boot ----------
+syncAudioUI();$('hud-coins').textContent=gameData.coins;updatePowerupButtons();if(initThree()){animate()}else{gameState='ERROR'}
 </script>
 </body>
 </html>
