@@ -346,7 +346,7 @@ body:has(#hud-layer:not(.hidden)) .faq-section {
 
       const STORAGE_KEY = 'bubble_blast_3d_pro_save_v1';
       const TOTAL_LEVELS = 60;
-      const defaultSaveData = { playerName: 'NOVA PILOT', unlockedLevel: 1, currentLevel: 1, bestScore: 0, levelStars: {}, levelScores: {}, powerups: { bomb: 3, rainbow: 3, fire: 2, lightning: 2 }, settings: { music: true, sfx: true, volume: 80, quality: 'high' } };
+      const defaultSaveData = { playerName: 'NOVA PILOT', unlockedLevel: 1, currentLevel: 1, bestScore: 0, levelStars: {}, levelScores: {}, powerups: { bomb: 3, rainbow: 3, fire: 2, lightning: 2 }, settings: { music: true, sfx: true, volume: 80, quality: 'medium' } };
       let saveData = loadSaveData();
       function loadSaveData() { try { const raw = localStorage.getItem(STORAGE_KEY); if (!raw) return JSON.parse(JSON.stringify(defaultSaveData)); const parsed = JSON.parse(raw); return { ...JSON.parse(JSON.stringify(defaultSaveData)), ...parsed, powerups: { ...defaultSaveData.powerups, ...(parsed.powerups || {}) }, settings: { ...defaultSaveData.settings, ...(parsed.settings || {}) } }; } catch (e) { return JSON.parse(JSON.stringify(defaultSaveData)); } }
       function persistSaveData() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData)); } catch (e) {} }
