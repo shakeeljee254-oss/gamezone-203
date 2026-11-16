@@ -551,12 +551,29 @@ body:has(#hud-layer:not(.hidden)) .faq-section {
       let lastTime = performance.now();
       function animate(now) { requestAnimationFrame(animate); const dt = Math.min(0.05, (now - lastTime) / 1000); lastTime = now; if (starField) { starField.rotation.z += dt * 0.025; } baseRing.rotation.z -= dt * 0.55; nextRing.rotation.z += dt * 0.8; if (gameState.cameraShake > 0) { gameState.cameraShake = Math.max(0, gameState.cameraShake - dt * 1.6); const shakeAmt = gameState.cameraShake * 0.35; camera.position.x = (Math.random() - 0.5) * shakeAmt; camera.position.y = -0.15 + (Math.random() - 0.5) * shakeAmt; } else { camera.position.x = 0; camera.position.y = -0.15; } if (gameState.mode === 'playing' && gameState.projectile) { const proj = gameState.projectile; const subSteps = 4; const subDt = dt / subSteps; const minX = LEFT_WALL + BUBBLE_RADIUS; const maxX = RIGHT_WALL - BUBBLE_RADIUS; const topLimit = TOP_Y - gameState.ceilingOffsetRows * ROW_HEIGHT; let impacted = false; for (let s = 0; s < subSteps && !impacted; s++) { proj.x += proj.vx * subDt; proj.y += proj.vy * subDt; if (proj.x <= minX) { proj.x = minX + (minX - proj.x); proj.vx = -proj.vx; sound.playBounce(); } else if (proj.x >= maxX) { proj.x = maxX - (proj.x - maxX); proj.vx = -proj.vx; sound.playBounce(); } if (proj.y >= topLimit) { proj.y = topLimit; impacted = true; break; } for (let r = 0; r < MAX_ROWS && !impacted; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (!cell) continue; const pos = getCellWorldPos(r, c); const dx = proj.x - pos.x; const dy = proj.y - pos.y; if (dx * dx + dy * dy <= (BUBBLE_DIAM * 0.91) * (BUBBLE_DIAM * 0.91)) { if (proj.special === 'fire') { const key = `${r},${c}`; if (!proj.piercedSet.has(key)) { proj.piercedSet.add(key); popCell(r, c, proj.piercedSet.size); gameState.score += 90; updateHUD(); } } else { impacted = true; break; } } } } } proj.mesh.position.set(proj.x, proj.y, 0.05); if (proj.mesh.userData.ring) { proj.mesh.userData.ring.rotation.z += dt * 6; } if (impacted) { resolveProjectileImpact(proj.x, proj.y); } } for (let r = 0; r < gameState.grid.length; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (cell && cell.wobble > 0) { cell.wobble = Math.max(0, cell.wobble - dt * 1.4); const s = 1 + Math.sin(cell.wobble * 32) * cell.wobble * 0.35; cell.mesh.scale.set(s, 2 - s, 1); if (cell.wobble === 0) cell.mesh.scale.setScalar(1); } } } for (let i = gameState.fallingBubbles.length - 1; i >= 0; i--) { const fb = gameState.fallingBubbles[i]; fb.vy -= 22 * dt; fb.mesh.position.x += fb.vx * dt; fb.mesh.position.y += fb.vy * dt; fb.mesh.rotation.z += fb.rotSpeed * dt; if (fb.mesh.position.y < LAUNCHER_Y - 1.2) { spawnBurst(fb.mesh.position.x, fb.mesh.position.y, fb.colorHex, 8); sound.playPop(i); scene.remove(fb.mesh); gameState.fallingBubbles.splice(i, 1); } } for (let i = gameState.particles.length - 1; i >= 0; i--) { const p = gameState.particles[i]; p.life += dt; if (p.life >= p.maxLife) { scene.remove(p.mesh); gameState.particles.splice(i, 1); continue; } p.vy -= 14 * dt; p.mesh.position.x += p.vx * dt; p.mesh.position.y += p.vy * dt; p.mesh.position.z += p.vz * dt; const ratio = 1 - p.life / p.maxLife; p.mesh.scale.setScalar(Math.max(0.01, ratio)); } for (let i = gameState.shockwaves.length - 1; i >= 0; i--) { const sw = gameState.shockwaves[i]; sw.life += dt; if (sw.life >= sw.maxLife) { scene.remove(sw.mesh); sw.mesh.geometry.dispose(); sw.mesh.material.dispose(); gameState.shockwaves.splice(i, 1); continue; } const t = sw.life / sw.maxLife; const sc = 0.5 + (sw.maxScale - 0.5) * (1 - Math.pow(1 - t, 3)); sw.mesh.scale.setScalar(sc); sw.mesh.material.opacity = (1 - t) * 0.85; } updateTrajectoryVisuals(); renderer.render(scene, camera); }
 
-      window.addEventListener('resize', updateCameraResponsive);
-      window.onload = function () { updateCameraResponsive(); syncSettingsUI(); refreshMenuStats(); setScreen('menu'); lastTime = performance.now(); requestAnimationFrame(animate); };
-    })();
+       })();
   </script>
- <!-- FAQ SECTION FOR SEO -->
-  <div style="max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; color: #f0f6ff; border: 1px solid #00f0ff; font-family: 'Rajdhani', sans-serif; text-align: left; position: relative; z-index: 100;">
+
+  <!-- LOADING SCREEN LOGIC -->
+  <script>
+    let loadProgress = 0;
+    const loadInterval = setInterval(() => {
+      loadProgress += Math.random() * 15;
+      if (loadProgress >= 100) {
+        loadProgress = 100;
+        clearInterval(loadInterval);
+        setTimeout(() => {
+          const loader = document.getElementById('loading-screen');
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 500);
+        }, 300);
+      }
+      document.getElementById('loading-bar').style.width = loadProgress + '%';
+    }, 200);
+  </script>
+
+  <!-- FAQ SECTION FOR SEO (Now hidden by default) -->
+  <div id="game-faq" style="display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; color: #f0f6ff; border: 1px solid #00f0ff; font-family: 'Rajdhani', sans-serif; text-align: left; position: relative; z-index: 100;">
     <h2 style="color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">How to Play Bubble Blast 3D Pro</h2>
     <p>Use your mouse or touch to aim and shoot. Match 3 or more bubbles of the same color to pop them. Use special power-ups like Bomb, Rainbow, Fire, and Lightning to clear levels faster!</p>
     <h2 style="color: #00f0ff; margin-top: 20px; font-family: 'Orbitron', sans-serif;">Frequently Asked Questions</h2>
