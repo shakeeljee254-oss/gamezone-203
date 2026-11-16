@@ -163,9 +163,31 @@ syncAudioUI();$('hud-coins').textContent=gameData.coins;updatePowerupButtons();i
         }
       }, 1000);
     }
-    const bar = document.getElementById('loading-bar');
+       const bar = document.getElementById('loading-bar');
     if (bar) bar.style.width = loadProgress + '%';
   }, 200);
 </script>
+
+<!-- LOADING SCREEN LOGIC (Fixed) -->
+<script>
+  let loadProgress2 = 0;
+  const loadInterval2 = setInterval(() => {
+    loadProgress2 += Math.random() * 10;
+    if (loadProgress2 >= 100) {
+      loadProgress2 = 100;
+      clearInterval(loadInterval2);
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 500);
+        }
+      }, 1000);
+    }
+    const bar2 = document.getElementById('loading-bar');
+    if (bar2) bar2.style.width = loadProgress2 + '%';
+  }, 200);
+</script>
+
 </body>
 </html>
