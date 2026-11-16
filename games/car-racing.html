@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>Highway Racer 203 | GameZone 203</title>
+
+<!-- SEO TAGS -->
+<title>Highway Racer 203 - Play Free Online Car Racing Game | GameZone 203</title>
+<meta name="description" content="Play Highway Racer 203 free online! Dodge traffic, collect coins, use nitro, and unlock new cars in this fast-paced endless racing game.">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/highway-racer.html">
+<meta property="og:title" content="Highway Racer 203 - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Highway Racer 203",
+  "description": "Dodge traffic and race at high speeds in this endless racing game.",
+  "genre": ["Racing", "Arcade"]
+}
+</script>
+
 <style>
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 html,body{height:100%;background:#0b1220;overflow:hidden;touch-action:none;font-family:"Trebuchet MS",Verdana,sans-serif;color:#fff}
@@ -41,6 +58,11 @@ body.game.touch #touch{display:flex}
 #touch button.a{background:rgba(255,138,31,.75);border-color:#ffd08a}
 #touch .nitro{border-color:#2fd3ff}#touch .nitro.a{background:rgba(31,181,255,.8)}
 @media(max-height:480px){.btns{grid-template-columns:1fr 1fr}h1{font-size:36px}.scr{gap:8px}}
+
+/* FAQ Section */
+.faq-section { max-width: 800px; margin: 40px auto 0; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #2b4078; color: #9fb4e0; text-align: left; position: relative; z-index: 100; font-family: "Trebuchet MS", Verdana, sans-serif; }
+.faq-section h2 { color: #ff8a1f; margin-top: 0; }
+.faq-section h3 { color: #fff; margin-bottom: 5px; }
 </style></head><body>
 <div id="wrap">
 <canvas id="c"></canvas>
@@ -64,6 +86,16 @@ Your car speeds up on its own. Dodge traffic, grab gold coins, and use nitro (it
 
 <div class="scr" id="over"><h2>GAME OVER</h2><div class="panel stats"><div>Score <b id="os">0</b></div><div>Best <b id="ob">0</b></div><div>Distance <b id="od">0</b></div><div>Coins <b id="oc">0</b></div></div><p id="nbst" style="color:#ffcf24;font-weight:800"></p>
 <div class="btns"><button class="btn" data-a="restart">RESTART</button><button class="btn s" data-a="menu">MAIN MENU</button></div></div>
+
+<!-- FAQ SECTION FOR SEO -->
+<div class="faq-section">
+  <h2>How to Play Highway Racer 203</h2>
+  <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
+  <h3>Frequently Asked Questions</h3>
+  <p><b>Can I play on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro.</p>
+  <p><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race.</p>
+</div>
+
 </div>
 <script>
 (()=>{'use strict';
@@ -209,8 +241,7 @@ function toMenu(){if(mode!=='menu'){mode='menu';reset();speed=120}B.classList.re
 function pauseG(){if(mode==='play'){mode='pause';show('pause')}}
 function resumeG(){if(mode==='pause'){mode='play';show(null)}}
 function gameOver(){mode='over';spin=0;tilt=0;const sc=Math.floor(score);let nb=false;if(sc>best){best=sc;S('hr203_best',best);nb=true}
-$('os').textContent=sc;$('ob').textContent=best;$('od').textContent=Math.floor(dist)+' m';$('oc').textContent=coinsN;$('nbst').textContent=nb?'NEW BEST SCORE!':'';
-B.classList.remove('game');show('over');sfx.over()}
+$('os').textContent=sc;$('ob').textContent=best;$('od').textContent=Math.floor(dist)+' m';$('oc').textContent=coinsN;$('nbst').textContent=nb?'NEW BEST SCORE!':'';B.classList.remove('game');show('over');sfx.over()}
 function fsToggle(){const d=document,e=$('wrap');if(d.fullscreenElement||d.webkitFullscreenElement)(d.exitFullscreen||d.webkitExitFullscreen).call(d);else(e.requestFullscreen||e.webkitRequestFullscreen).call(e)}
 if(!($('wrap').requestFullscreen||$('wrap').webkitRequestFullscreen))$('bf').style.display='none';
 function buildGarage(){const gl=$('gl');gl.innerHTML='';CARS.forEach((c,i)=>{const b=document.createElement('button');b.className='card'+(i===sel?' sel':'');
