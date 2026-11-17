@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe - Play Free Online vs Computer or 2 Players | GameZone 203</title>
   
   <!-- PRIMARY SEO -->
-  <meta name="description" content="Play free online Tic Tac Toe against the computer (Easy, Medium, Hard) or a friend. Classic 3x3 game with score tracking, instant play, no download required.">
+  <title>Tic Tac Toe 203 – Ultimate Neon Arcade | GameZone 203</title>
+  <meta name="description" content="Play the ultimate neon arcade Tic Tac Toe 203 on GameZone 203. Features 6 game modes, board sizes 3x3 to 5x5, AI difficulty levels, daily rewards, reward shop, tournament mode, and coin wallet!">
+  <meta name="keywords" content="tic tac toe, free online games, neon arcade, play tic tac toe, gamezone 203, board games">
   <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/tic-tac-toe/tic-tac-toe.html">
   
   <!-- OPEN GRAPH -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Tic Tac Toe - Play Free Online | GameZone 203">
-  <meta property="og:description" content="Play classic Tic Tac Toe free online. Challenge the computer or a friend.">
+  <meta property="og:title" content="Tic Tac Toe 203 – Ultimate Neon Arcade | GameZone 203">
+  <meta property="og:description" content="Play neon arcade Tic Tac Toe with tournaments, time challenge, shop, daily rewards, and AI difficulties.">
   <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -21,247 +22,970 @@
   {
     "@context": "https://schema.org",
     "@type": "VideoGame",
-    "name": "Tic Tac Toe",
-    "description": "Play the classic Tic Tac Toe game against the computer or a friend.",
-    "genre": ["Board", "Classic"],
+    "name": "Tic Tac Toe 203",
+    "description": "Ultimate neon arcade Tic Tac Toe with multiple game modes, boards, tournament mode, reward shop, and coin wallet.",
+    "genre": ["Board", "Classic", "Arcade"],
     "playMode": ["SinglePlayer", "MultiPlayer"]
   }
   </script>
 
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--ink:#18223b;--muted:#71809d;--line:#e7ebf4;--panel:#fff;--bg:#f5f7ff;--blue:#5478f5;--purple:#8a62ed;--x:#3977ed;--o:#ee8b45;--green:#20a878}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;padding:28px 16px 42px;background:radial-gradient(circle at 10% 0%,#e9efff 0,transparent 35%),radial-gradient(circle at 100% 20%,#f1eaff 0,transparent 32%),var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
-.wrap{width:min(100%,760px);margin:0 auto}
-.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
-.brand{font-weight:850;letter-spacing:.2px}.brand span{color:var(--blue)}
-.home{color:var(--muted);text-decoration:none;font-size:14px;font-weight:650;padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff}
-.hero{text-align:center;margin:18px 0 24px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:2px;color:var(--blue);text-transform:uppercase}
-h1{font-size:clamp(32px,6vw,48px);margin:8px 0 7px;letter-spacing:-1.8px}
-h2.seo-sub{font-size:15px;font-weight:600;color:var(--muted);margin:0 0 6px;letter-spacing:.2px}
-.sub{color:var(--muted);margin:0;font-size:14px}
-.card{background:rgba(255,255,255,.94);border:1px solid #e9edf7;border-radius:24px;padding:clamp(16px,4vw,28px);box-shadow:0 18px 55px rgba(51,70,130,.09)}
-.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#f2f4fb;padding:6px;border-radius:14px;margin-bottom:16px}
-.mode{border:0;background:transparent;padding:12px 8px;border-radius:10px;font-weight:750;color:var(--muted);cursor:pointer}
-.mode.active{background:#fff;color:var(--blue);box-shadow:0 2px 9px #1c2c5012}
-.settings{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-select{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px 12px;color:var(--ink);font-weight:650}
-.status{background:#f6f8ff;border:1px solid #edf0fa;border-radius:14px;padding:13px;text-align:center;font-weight:800;margin-bottom:16px}
-.status small{display:block;color:var(--muted);font-size:11px;font-weight:650;margin-top:3px}
-.scores{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:18px}
-.score{border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;background:#fff}
-.score strong{display:block;font-size:25px;line-height:1.2}.score span{font-size:11px;color:var(--muted);font-weight:750;text-transform:uppercase;letter-spacing:.6px}
-.score.x strong{color:var(--x)}.score.o strong{color:var(--o)}.score.draw strong{color:var(--purple)}
-.board{width:min(100%,390px);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.cell{aspect-ratio:1;border:1px solid #e8ecf6;border-radius:19px;background:linear-gradient(145deg,#fff,#f8faff);box-shadow:0 5px 14px #263b6810;display:grid;place-items:center;font-size:clamp(42px,11vw,68px);font-weight:850;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s}
-.cell:not(:disabled):hover{transform:translateY(-2px);box-shadow:0 9px 20px #263b6818;border-color:#cbd6ff}
-.cell:disabled{cursor:default}.cell.x{color:var(--x)}.cell.o{color:var(--o)}.cell.win{background:#eafff5;border-color:#8cddbd;box-shadow:0 0 0 3px #20a87818}
-.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:20px}
-.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800;cursor:pointer;background:linear-gradient(110deg,var(--blue),var(--purple));color:#fff;box-shadow:0 7px 15px #5478f533}
-.btn.secondary{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
-.note{text-align:center;color:var(--muted);font-size:12px;margin:17px 0 0}
-.faq{max-width:760px;margin:34px auto 0;padding:0 4px}
-.faq h2{font-size:22px;letter-spacing:-.6px;margin:0 0 14px}
-.faq h3{font-size:15px;margin:18px 0 4px}
-.faq p{margin:0;color:var(--muted);font-size:14px;line-height:1.6}
-.related{max-width:760px;margin:30px auto 0;padding:0 4px;text-align:center}
-.related h2{font-size:18px;margin:0 0 10px}
-.related a{display:inline-block;margin:4px 6px;padding:9px 14px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--blue);text-decoration:none;font-weight:700;font-size:13px}
-@media(max-width:480px){body{padding:16px 12px 30px}.top{margin-bottom:12px}.card{border-radius:19px}.board{gap:7px}.cell{border-radius:14px}}
+:root {
+  --bg-deep: #050b18;
+  --bg-panel: rgba(11, 23, 46, 0.85);
+  --bg-card: rgba(16, 34, 68, 0.7);
+  --border-neon: rgba(57, 119, 237, 0.35);
+  --border-glow: rgba(54, 120, 245, 0.6);
+  --blue: #3977ed;
+  --blue-glow: #5478f5;
+  --cyan: #00f0ff;
+  --purple: #8a62ed;
+  --pink: #ff007f;
+  --green: #00ff88;
+  --gold: #ffd700;
+  --orange: #ee8b45;
+  --ink: #ffffff;
+  --muted: #94a3b8;
+  --dark-nav: #0b2b5c;
+  --btn-blue: #1e40af;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 12px 40px;
+  background: var(--bg-deep);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(30, 64, 175, 0.25) 0%, transparent 40%),
+    radial-gradient(circle at 85% 85%, rgba(138, 98, 237, 0.2) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(0, 240, 255, 0.08) 0%, transparent 60%);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+.wrap { width: min(100%, 1200px); margin: 0 auto; }
+
+/* TOP HEADER & TOP BAR STATS */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  padding: 12px 20px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.brand-wrap { display: flex; align-items: center; gap: 12px; }
+.home-btn {
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 8px 14px;
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(0, 240, 255, 0.05);
+  transition: all 0.2s;
+}
+.home-btn:hover { background: rgba(0, 240, 255, 0.15); box-shadow: 0 0 12px rgba(0, 240, 255, 0.4); }
+
+.brand { font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 18px; letter-spacing: 1px; color: #fff; }
+.brand span { color: var(--cyan); text-shadow: 0 0 10px var(--cyan); }
+
+.top-stats {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(5, 11, 24, 0.8);
+  border: 1px solid var(--border-neon);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.stat-pill.coins { border-color: rgba(255, 215, 0, 0.4); color: var(--gold); }
+.stat-pill.coins span { text-shadow: 0 0 8px rgba(255, 215, 0, 0.6); }
+.stat-pill.streak { border-color: rgba(255, 0, 127, 0.4); color: var(--pink); }
+.stat-pill.winrate { border-color: rgba(0, 255, 136, 0.4); color: var(--green); }
+
+.icon-btn-top {
+  background: rgba(30, 64, 175, 0.4);
+  border: 1px solid var(--border-neon);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.icon-btn-top:hover { background: var(--btn-blue); box-shadow: 0 0 12px var(--blue-glow); }
+
+/* HERO TITLE */
+.hero { text-align: center; margin: 10px 0 24px; position: relative; }
+.eyebrow { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 6px; text-shadow: 0 0 8px rgba(0, 240, 255, 0.5); }
+.game-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(36px, 6vw, 62px);
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #00f0ff 0%, #3977ed 50%, #ff007f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 25px rgba(57, 119, 237, 0.5));
+}
+.tagline {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin-top: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* MAIN DASHBOARD LAYOUT */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+@media(max-width: 1024px) {
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+
+.dash-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  border-radius: 20px;
+  padding: 18px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.panel-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--cyan);
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+
+/* GAME MODES LIST */
+.modes-list { display: flex; flex-direction: column; gap: 8px; }
+.mode-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-card);
+  border: 1px solid rgba(57, 119, 237, 0.2);
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+.mode-btn:hover {
+  background: linear-gradient(110deg, #1e40af, #3977ed);
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+  transform: translateX(3px);
+}
+.mode-btn.active {
+  background: linear-gradient(110deg, #1e40af, #8a62ed);
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(54, 120, 245, 0.5);
+}
+
+/* CENTER ARENA & BOARD PREVIEW */
+.center-arena {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.preview-board-container {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at center, rgba(30, 64, 175, 0.3) 0%, rgba(5, 11, 24, 0.9) 100%);
+  border: 2px solid var(--border-glow);
+  border-radius: 28px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  box-shadow: 0 0 40px rgba(54, 120, 245, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.2);
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.preview-cell {
+  background: rgba(11, 23, 46, 0.9);
+  border: 1px solid rgba(57, 119, 237, 0.5);
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 900;
+  box-shadow: inset 0 4px 12px rgba(0,0,0,0.6);
+  transition: all 0.2s;
+}
+.preview-cell.x { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); }
+.preview-cell.o { color: var(--pink); text-shadow: 0 0 15px var(--pink); }
+
+.play-action-wrap {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.play-big-btn {
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(135deg, #00ff88 0%, #00a8cc 100%);
+  color: #050b18;
+  border: none;
+  padding: 16px 36px;
+  font-size: 18px;
+  font-weight: 900;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.6), inset 0 2px 5px rgba(255, 255, 255, 0.6);
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.play-big-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 45px rgba(0, 255, 136, 0.9);
+}
+
+/* SETTINGS CONTROLS (Difficulty, Board Size, Themes) */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  width: 100%;
+  margin-top: 15px;
+}
+.setting-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  border-radius: 16px;
+  padding: 14px;
+}
+.setting-box h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 11px;
+  color: var(--cyan);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.option-buttons { display: flex; gap: 6px; flex-wrap: wrap; }
+.opt-btn {
+  flex: 1;
+  padding: 8px 4px;
+  background: var(--bg-card);
+  border: 1px solid rgba(57, 119, 237, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.opt-btn:hover { background: var(--btn-blue); border-color: var(--cyan); }
+.opt-btn.active {
+  background: var(--blue);
+  border-color: var(--cyan);
+  box-shadow: 0 0 10px var(--blue-glow);
+}
+
+.theme-thumbs { display: flex; gap: 8px; }
+.theme-thumb {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 2px solid var(--border-neon);
+  cursor: pointer;
+  background-size: cover;
+  transition: all 0.2s;
+}
+.theme-thumb.active { border-color: var(--cyan); box-shadow: 0 0 12px var(--cyan); transform: scale(1.1); }
+
+/* RIGHT COLUMN (Daily Rewards, Profile, Shop Preview) */
+.right-column { display: flex; flex-direction: column; gap: 16px; }
+
+.daily-rewards-widget {
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.4) 0%, rgba(11, 23, 46, 0.9) 100%);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 18px;
+  padding: 14px;
+}
+.daily-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.daily-box {
+  background: rgba(5, 11, 24, 0.8);
+  border: 1px solid var(--border-neon);
+  border-radius: 10px;
+  padding: 8px 4px;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+.daily-box.claimed { border-color: var(--green); color: var(--green); background: rgba(0, 255, 136, 0.05); }
+.daily-box.active { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 10px rgba(255, 215, 0, 0.4); }
+.daily-box .coin-val { font-size: 11px; margin-top: 2px; }
+
+.claim-timer { font-size: 11px; color: var(--muted); text-align: center; font-weight: 600; }
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profile-avatar-name { display: flex; align-items: center; gap: 10px; }
+.avatar-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--purple));
+  border: 2px solid var(--gold);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+}
+.profile-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: rgba(5, 11, 24, 0.6);
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(57, 119, 237, 0.2);
+  font-size: 12px;
+}
+.stat-row { display: flex; justify-content: space-between; color: var(--muted); font-weight: 600; }
+.stat-row span:last-child { color: #fff; font-weight: 750; }
+
+/* BOTTOM ACTION BUTTONS BAR */
+.bottom-actions-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.action-pill-btn {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  backdrop-filter: blur(10px);
+}
+.action-pill-btn:hover {
+  background: var(--btn-blue);
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+}
+
+/* MODALS / OVERLAYS */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 11, 24, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+.modal-card {
+  width: min(100%, 540px);
+  background: #0b172e;
+  border: 2px solid var(--cyan);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 0 50px rgba(0, 240, 255, 0.4);
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  border-bottom: 1px solid rgba(57, 119, 237, 0.3);
+  padding-bottom: 12px;
+}
+.modal-title { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 900; color: var(--cyan); margin: 0; }
+.close-modal { background: none; border: none; color: var(--muted); font-size: 22px; cursor: pointer; font-weight: 700; }
+.close-modal:hover { color: var(--pink); }
+
+/* IN-GAME ACTIVE SCREEN */
+.game-arena-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: min(100%, 540px);
+  margin: 0 auto;
+}
+.game-arena-screen.active { display: flex; }
+
+.game-top-bar {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 16px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  padding: 10px 16px;
+  border-radius: 14px;
+}
+
+.game-status-banner {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.6), rgba(11, 23, 46, 0.9));
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  box-shadow: 0 0 20px rgba(54, 120, 245, 0.3);
+}
+.game-status-banner small { display: block; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); margin-top: 4px; font-weight: 600; }
+
+.live-board {
+  width: min(100%, 420px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle at center, rgba(30, 64, 175, 0.3) 0%, rgba(5, 11, 24, 0.95) 100%);
+  border: 2px solid var(--cyan);
+  border-radius: 24px;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+  margin-bottom: 20px;
+}
+.live-board.grid-3x3 { grid-template-columns: repeat(3, 1fr); }
+.live-board.grid-4x4 { grid-template-columns: repeat(4, 1fr); }
+.live-board.grid-5x5 { grid-template-columns: repeat(5, 1fr); }
+
+.live-cell {
+  background: rgba(11, 23, 46, 0.9);
+  border: 1px solid rgba(57, 119, 237, 0.5);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(28px, 7vw, 48px);
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: inset 0 4px 10px rgba(0,0,0,0.5);
+  transition: all 0.15s ease;
+}
+.live-cell:hover:not(:disabled) {
+  border-color: var(--cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.4), inset 0 4px 10px rgba(0,0,0,0.5);
+}
+.live-cell:disabled { cursor: default; }
+.live-cell.x { color: var(--cyan); text-shadow: 0 0 15px var(--cyan); }
+.live-cell.o { color: var(--pink); text-shadow: 0 0 15px var(--pink); }
+.live-cell.win { background: rgba(0, 255, 136, 0.2); border-color: var(--green); box-shadow: 0 0 20px var(--green); }
+
+.scoreboard-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.score-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-neon);
+  border-radius: 14px;
+  padding: 10px;
+  text-align: center;
+}
+.score-box strong { display: block; font-family: 'Orbitron', sans-serif; font-size: 22px; }
+.score-box span { font-size: 11px; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+.score-box.x strong { color: var(--cyan); text-shadow: 0 0 8px var(--cyan); }
+.score-box.o strong { color: var(--pink); text-shadow: 0 0 8px var(--pink); }
+.score-box.draw strong { color: var(--purple); text-shadow: 0 0 8px var(--purple); }
+
+/* SHOP GRID & ACHIEVEMENTS */
+.shop-grid, .achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.shop-item, .achievement-item {
+  background: rgba(5, 11, 24, 0.8);
+  border: 1px solid var(--border-neon);
+  border-radius: 16px;
+  padding: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.shop-item.owned { border-color: var(--green); }
+.shop-item h4, .achievement-item h4 { margin: 0; font-size: 13px; font-family: 'Orbitron', sans-serif; }
+.shop-item p, .achievement-item p { margin: 0; font-size: 11px; color: var(--muted); }
+
+/* RESPONSIVE */
+@media(max-width: 600px) {
+  body { padding: 10px 8px 30px; }
+  .top-bar { padding: 10px 12px; }
+}
+/* LOADING SCREEN */
+#loading-screen {
+  position: fixed; inset: 0; background: #050b18; z-index: 9999;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  transition: opacity 0.5s;
+}
+.loader-circle {
+  width: 60px; height: 60px; border: 4px solid rgba(0, 240, 255, 0.2);
+  border-top-color: #00f0ff; border-radius: 50%;
+  animation: spin 1s linear infinite; margin-bottom: 20px;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <div class="brand">GAMEZONE <span>203</span></div>
-    <a class="home" href="/gamezone-203/index.html">← Home</a>
-  </header>
-  <section class="hero">
-    <div class="eyebrow">Classic • Strategy • Fun</div>
-    <h1>Tic Tac Toe</h1>
-    <h2 class="seo-sub">Play Free Online Tic Tac Toe vs Computer or a Friend</h2>
-    <p class="sub">Choose your mode, make your move, and get three in a row.</p>
-  </section>
-  <main class="card">
-    <div class="modes" role="group" aria-label="Game mode">
-      <button class="mode active" id="computerMode" type="button">🤖 Play vs Computer</button>
-      <button class="mode" id="twoPlayerMode" type="button">👥 2 Players</button>
-    </div>
-    <div class="settings" id="difficultyWrap">
-      <label for="difficulty"><strong>Difficulty</strong></label>
-      <select id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium" selected>Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-    </div>
-    <div class="status" id="status" aria-live="polite">Your turn — you are X</div>
-    <div class="scores" aria-label="Scoreboard">
-      <div class="score x"><strong id="xScore">0</strong><span id="xLabel">You (X)</span></div>
-      <div class="score draw"><strong id="drawScore">0</strong><span>Draws</span></div>
-      <div class="score o"><strong id="oScore">0</strong><span id="oLabel">Computer (O)</span></div>
-    </div>
-    <div class="board" id="board" role="group" aria-label="Tic Tac Toe board">
-      <button class="cell" data-i="0" aria-label="Cell 1" type="button"></button>
-      <button class="cell" data-i="1" aria-label="Cell 2" type="button"></button>
-      <button class="cell" data-i="2" aria-label="Cell 3" type="button"></button>
-      <button class="cell" data-i="3" aria-label="Cell 4" type="button"></button>
-      <button class="cell" data-i="4" aria-label="Cell 5" type="button"></button>
-      <button class="cell" data-i="5" aria-label="Cell 6" type="button"></button>
-      <button class="cell" data-i="6" aria-label="Cell 7" type="button"></button>
-      <button class="cell" data-i="7" aria-label="Cell 8" type="button"></button>
-      <button class="cell" data-i="8" aria-label="Cell 9" type="button"></button>
-    </div>
-    <div class="actions">
-      <button class="btn" id="newRound" type="button">↻ New Round</button>
-      <button class="btn secondary" id="resetScores" type="button">Reset Scores</button>
-    </div>
-    <p class="note">First to make a line of three wins. Your scores stay on this device.</p>
-  </main>
 
-  <!-- FAQ SECTION -->
-  <section class="faq" aria-labelledby="faq-heading">
-    <h2 id="faq-heading">How to Play Tic Tac Toe</h2>
-    <p>Take turns placing X or O on a 3×3 grid. The first player to get three marks in a row horizontally, vertically, or diagonally wins the game!</p>
-    
-    <h2 style="margin-top: 20px;">Frequently Asked Questions</h2>
-    <h3>Can I play against the computer?</h3>
-    <p>Yes, you can play against our AI with three difficulty levels: Easy, Medium, and Hard.</p>
-    <h3>Is it free?</h3>
-    <p>Yes, it is 100% free to play on GameZone 203.</p>
-  </section>
+<!-- LOADING SCREEN -->
+<div id="loading-screen">
+  <div class="loader-circle"></div>
+  <div style="color:#00f0ff;font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px;font-size:20px;">LOADING TIC TAC TOE 203</div>
+</div>
+
+<div class="wrap">
+  
+  <!-- TOP BAR -->
+  <header class="top-bar">
+    <div class="brand-wrap">
+      <a class="home-btn" href="../index.html">← Back to Games</a>
+      <div class="brand">GAMEZONE <span>203</span></div>
+    </div>
+    <div class="top-stats">
+      <div class="stat-pill coins">🪙 <span id="topCoins">100</span></div>
+      <div class="stat-pill streak">🔥 <span id="topStreak">0</span> Streak</div>
+      <div class="stat-pill winrate">⭐ <span id="topWinRate">0%</span> Win Rate</div>
+      <button class="icon-btn-top" id="soundToggleBtn" title="Toggle Sound">🔊</button>
+      <button class="icon-btn-top" id="settingsModalBtn" title="Settings">⚙️</button>
+    </div>
+  </header>
+
+  <!-- DASHBOARD MAIN CONTAINER -->
+  <div id="dashboardContainer">
+    <section class="hero">
+      <div class="eyebrow">Classic • Strategy • Neon Arcade</div>
+      <h1 class="game-title">Tic Tac Toe 203</h1>
+      <div class="tagline">Play • Compete • Win</div>
+    </section>
+
+    <div class="dashboard-grid">
+      
+      <!-- LEFT COLUMN: GAME MODES & SETTINGS -->
+      <div class="dash-panel">
+        <h2 class="panel-title">🎮 Game Modes</h2>
+        <div class="modes-list" id="modesList">
+          <button class="mode-btn active" data-mode="computer">🤖 Player vs AI <span style="font-size:16px">›</span></button>
+          <button class="mode-btn" data-mode="two">👥 Two Players <span style="font-size:16px">›</span></button>
+          <button class="mode-btn" data-mode="ai_demo">⚡ AI vs AI Demo <span style="font-size:16px">›</span></button>
+          <button class="mode-btn" data-mode="tournament">🏆 Tournament Mode <span style="font-size:16px">›</span></button>
+          <button class="mode-btn" data-mode="time_challenge">⏱️ Time Challenge <span style="font-size:16px">›</span></button>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <h2 class="panel-title">⚙️ Match Settings</h2>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <div style="font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; text-transform:uppercase;">Difficulty Level</div>
+              <div class="option-buttons" id="difficultyBtns">
+                <button class="opt-btn" data-diff="easy">Easy</button>
+                <button class="opt-btn active" data-diff="medium">Medium</button>
+                <button class="opt-btn" data-diff="hard">Hard</button>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; text-transform:uppercase;">Board Size</div>
+              <div class="option-buttons" id="boardSizeBtns">
+                <button class="opt-btn active" data-size="3">3x3</button>
+                <button class="opt-btn" data-size="4">4x4</button>
+                <button class="opt-btn" data-size="5">5x5</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER ARENA: PREVIEW & START -->
+      <div class="center-arena">
+        <div class="preview-board-container" id="previewBoard">
+          <div class="preview-cell x">X</div>
+          <div class="preview-cell o">O</div>
+          <div class="preview-cell x">X</div>
+          <div class="preview-cell o">O</div>
+          <div class="preview-cell x">X</div>
+          <div class="preview-cell o">O</div>
+          <div class="preview-cell x">X</div>
+          <div class="preview-cell"></div>
+          <div class="preview-cell o">O</div>
+        </div>
+        <div class="play-action-wrap">
+          <button class="play-big-btn" id="startGameBtn">▶ PLAY GAME</button>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN: DAILY REWARDS & PROFILE -->
+      <div class="right-column">
+        
+        <!-- DAILY REWARDS WIDGET -->
+        <div class="daily-rewards-widget">
+          <h2 class="panel-title" style="margin-bottom:10px;">🎁 Daily Rewards</h2>
+          <div class="daily-grid" id="dailyGrid"></div>
+          <div class="claim-timer" id="claimTimerText">Next Reward In: 23h 52m</div>
+        </div>
+
+        <!-- PLAYER PROFILE WIDGET -->
+        <div class="dash-panel profile-card">
+          <div class="profile-header">
+            <h2 class="panel-title" style="margin:0;">👤 Your Profile</h2>
+            <button class="opt-btn" id="viewProfileBtn" style="width:auto; padding:6px 10px;">View Details</button>
+          </div>
+          <div class="profile-avatar-name">
+            <div class="avatar-circle">👑</div>
+            <div>
+              <div style="font-family:'Orbitron',sans-serif; font-weight:900; font-size:15px;" id="profileNameDisplay">Player</div>
+              <div style="font-size:11px; color:var(--muted); font-weight:700;">GameZone 203 Player</div>
+            </div>
+          </div>
+          <div class="profile-stats-grid">
+            <div class="stat-row"><span>Total Matches</span><span id="statMatches">0</span></div>
+            <div class="stat-row"><span>Total Wins</span><span id="statWins">0</span></div>
+            <div class="stat-row"><span>Total Draws</span><span id="statDraws">0</span></div>
+            <div class="stat-row"><span>Total Coins</span><span id="statCoins">100</span></div>
+            <div class="stat-row"><span>Win Rate</span><span id="statWinRate">0%</span></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- BOTTOM ACTION PILLS BAR -->
+    <div class="bottom-actions-bar">
+      <button class="action-pill-btn" id="openAchievementsBtn">🏆 Achievements</button>
+      <button class="action-pill-btn" id="openLeaderboardBtn">📊 Leaderboard</button>
+      <button class="action-pill-btn" id="openShopBtn">🛒 Reward Shop</button>
+      <button class="action-pill-btn" id="openHowToPlayBtn">❓ How to Play</button>
+      <a class="action-pill-btn" href="../index.html" style="text-decoration:none;">⬅️ Back to Games</a>
+    </div>
+  </div>
+
+
+  <!-- IN-GAME ARENA SCREEN -->
+  <div class="game-arena-screen" id="gameArenaScreen">
+    <div class="game-top-bar">
+      <button class="opt-btn" id="backToDashBtn" style="width:auto;">🏠 Dashboard</button>
+      <div id="gameModeTitle" style="font-family:'Orbitron',sans-serif; font-weight:800; font-size:14px; color:var(--cyan);">Player vs Computer</div>
+      <button class="opt-btn" id="pauseGameBtn" style="width:auto;">⏸️ Pause</button>
+    </div>
+
+    <div class="game-status-banner" id="gameStatusBanner">
+      Your turn — you are X
+      <small id="gameStatusDetail">Make your move</small>
+    </div>
+
+    <div class="scoreboard-row">
+      <div class="score-box x"><strong id="liveXScore">0</strong><span id="liveXLabel">You (X)</span></div>
+      <div class="score-box draw"><strong id="liveDrawScore">0</strong><span>Draws</span></div>
+      <div class="score-box o"><strong id="liveOScore">0</strong><span id="liveOLabel">Computer (O)</span></div>
+    </div>
+
+    <div class="live-board grid-3x3" id="liveBoard"></div>
+
+    <div class="actions" style="display:flex; gap:12px; margin-top:20px;">
+      <button class="play-big-btn" id="newRoundBtn" style="font-size:14px; padding:12px 24px;">↻ New Round</button>
+      <button class="opt-btn" id="resetLiveScoresBtn" style="padding:12px 20px; font-weight:800;">Reset Scores</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="shopModal">
+  <div class="modal-card">
+    <div class="modal-header"><h3 class="modal-title">🛒 Reward Shop</h3><button class="close-modal" data-close="shopModal">×</button></div>
+    <div style="font-size:13px; color:var(--muted); margin-bottom:14px;">Equip custom neon skins, boards, and winning effects with your earned coins!</div>
+    <div class="shop-grid" id="shopGrid"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="achievementsModal">
+  <div class="modal-card">
+    <div class="modal-header"><h3 class="modal-title">🏆 Achievements</h3><button class="close-modal" data-close="achievementsModal">×</button></div>
+    <div class="achievements-grid" id="achievementsGrid"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="leaderboardModal">
+  <div class="modal-card">
+    <div class="modal-header"><h3 class="modal-title">📊 Local Leaderboard</h3><button class="close-modal" data-close="leaderboardModal">×</button></div>
+    <div id="leaderboardContent"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="howToPlayModal">
+  <div class="modal-card">
+    <div class="modal-header"><h3 class="modal-title">❓ How to Play</h3><button class="close-modal" data-close="howToPlayModal">×</button></div>
+    <div style="font-size:14px; line-height:1.6; color:var(--muted); display:flex; flex-direction:column; gap:10px;">
+      <p><strong>Classic Rules:</strong> Take turns placing X or O on the grid. First player to align 3 (or 4/5 depending on board size) marks horizontally, vertically, or diagonally wins!</p>
+      <p><strong>Coins & Shop:</strong> Win matches, claim daily rewards, and unlock incredible neon skins and custom audio effects.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="profileModal">
+  <div class="modal-card">
+    <div class="modal-header"><h3 class="modal-title">👤 Player Profile</h3><button class="close-modal" data-close="profileModal">×</button></div>
+    <div style="display:flex; flex-direction:column; gap:14px;">
+      <label style="font-size:12px; font-weight:700; color:var(--muted);">Player Name</label>
+      <input type="text" id="playerNameInput" value="Player" style="background:#051118; border:1px solid var(--border-neon); padding:10px; border-radius:10px; color:#fff; font-weight:700;">
+      <button class="play-big-btn" id="saveProfileBtn" style="font-size:14px; padding:12px;">Save Profile</button>
+    </div>
+  </div>
 </div>
 
 <script>
 (() => {
   "use strict";
   const $ = id => document.getElementById(id);
-  const cells = [...document.querySelectorAll(".cell")];
-  const wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
-  let board = Array(9).fill("");
-  let current = "X";
-  let mode = "computer";
-  let gameOver = false;
-  let thinking = false;
-  let scores = {X:0,O:0,D:0};
-  let computerTimer = null;
-
+  const STORAGE_KEY = "gz203-tictactoe-pro-state";
+  const defaults = {
+    coins: 100, streak: 0, matches: 0, wins: 0, draws: 0, losses: 0,
+    playerName: "Player", soundEnabled: true, difficulty: "medium", boardSize: 3,
+    mode: "computer", ownedItems: ["skin_x_default", "skin_o_default", "theme_neon"],
+    equippedX: "skin_x_default", equippedO: "skin_o_default", equippedTheme: "theme_neon",
+    dailyClaimedDay: 1, lastClaimDate: "", achievements: {}, tournamentWins: 0
+  };
+  let state = { ...defaults };
   try {
-    const saved = JSON.parse(localStorage.getItem("gz203-tictactoe-scores") || "null");
-    if (saved && Number.isFinite(saved.X) && Number.isFinite(saved.O) && Number.isFinite(saved.D)) scores = saved;
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
+    if (saved && typeof saved === "object") state = { ...defaults, ...saved };
   } catch (_) {}
-  renderScores();
+  state.coins = Math.max(0, Number(state.coins) || 0);
+  ["streak", "matches", "wins", "draws", "losses"].forEach(k => state[k] = Math.max(0, Number(state[k]) || 0));
+  state.ownedItems = Array.isArray(state.ownedItems) ? state.ownedItems : [...defaults.ownedItems];
+  state.achievements = state.achievements && typeof state.achievements === "object" ? state.achievements : {};
 
-  function renderScores(){
-    $("xScore").textContent = scores.X;
-    $("oScore").textContent = scores.O;
-    $("drawScore").textContent = scores.D;
-    $("xLabel").textContent = mode === "computer" ? "You (X)" : "Player X";
-    $("oLabel").textContent = mode === "computer" ? "Computer (O)" : "Player O";
-    try { localStorage.setItem("gz203-tictactoe-scores", JSON.stringify(scores)); } catch (_) {}
+  const rewards = [50, 75, 100, 125, 150, 200, 500];
+  const shopItems = [
+    {id:"skin_x_neon", type:"skin_x", name:"Neon Blue X", price:500, symbol:"❌"},
+    {id:"skin_o_pink", type:"skin_o", name:"Neon Pink O", price:500, symbol:"⭕"},
+    {id:"skin_gold_crown", type:"skin_x", name:"Golden Crown X", price:1000, symbol:"👑"},
+    {id:"theme_cosmic", type:"theme", name:"Cosmic Nebula", price:750, symbol:"🌌"},
+    {id:"theme_wooden", type:"theme", name:"Rustic Wood", price:750, symbol:"🪵"}
+  ];
+  const achievements = [
+    {id:"first_win", name:"First Victory", desc:"Win your first match", reward:100, test:()=>state.wins>=1},
+    {id:"wins_5", name:"5 Wins", desc:"Win 5 matches", reward:250, test:()=>state.wins>=5},
+    {id:"wins_10", name:"10 Wins", desc:"Win 10 matches", reward:400, test:()=>state.wins>=10},
+    {id:"hard_ai", name:"Hard AI Defeated", desc:"Beat Hard AI", reward:500, test:()=>!!state.achievements._hardWin},
+    {id:"draws_5", name:"Peace Maker", desc:"Finish 5 drawn matches", reward:200, test:()=>state.draws>=5},
+    {id:"tournament_champ", name:"Tournament Champion", desc:"Win a tournament", reward:600, test:()=>state.tournamentWins>=1}
+  ];
+  let liveBoardState = [], currentPlayer = "X", gameActive = false, isThinking = false, paused = false;
+  let liveScores = {X:0,O:0,D:0}, aiTimer = null, demoTimer = null, challengeTimer = null;
+  let challengeSeconds = 60, tournamentScore = {X:0,O:0}, tournamentRound = 0;
+
+  function saveState(){ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){} updateTopUI(); }
+  function updateTopUI(){
+    const rate = state.matches ? Math.round(state.wins/state.matches*100) : 0;
+    $("topCoins").textContent = state.coins.toLocaleString(); $("topStreak").textContent = state.streak;
+    $("topWinRate").textContent = rate+"%"; $("profileNameDisplay").textContent = state.playerName;
+    $("statMatches").textContent = state.matches; $("statWins").textContent = state.wins;
+    $("statDraws").textContent = state.draws; $("statCoins").textContent = state.coins.toLocaleString();
+    $("statWinRate").textContent = rate+"%"; $("soundToggleBtn").textContent = state.soundEnabled?"🔊":"🔇";
+    $("playerNameInput").value = state.playerName;
   }
-  function setStatus(main, detail=""){
-    $("status").textContent = main;
-    if(detail){ const small=document.createElement("small"); small.textContent=detail; $("status").appendChild(small); }
-  }
-  function winner(b=board){
-    for(const line of wins){ const [a,c,d]=line; if(b[a] && b[a]===b[c] && b[a]===b[d]) return {player:b[a],line}; }
-    return null;
-  }
-  function render(){
-    cells.forEach((cell,i)=>{
-      cell.textContent=board[i];
-      cell.className="cell"+(board[i] ? " "+board[i].toLowerCase() : "");
-      const won=winner();
-      if(won && won.line.includes(i)) cell.classList.add("win");
-      cell.disabled=gameOver || thinking || !!board[i];
-      cell.setAttribute("aria-label",`Cell ${i+1}${board[i] ? ", "+board[i] : ", empty"}`);
+  let audioCtx=null;
+  function playSound(type){ if(!state.soundEnabled)return; try{
+    audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();
+    const osc=audioCtx.createOscillator(), gain=audioCtx.createGain(), now=audioCtx.currentTime;
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    const freq={click:420,move:560,win:880,coin:1100}[type]||440;
+    osc.frequency.setValueAtTime(freq,now); if(type==="win")osc.type="triangle";
+    gain.gain.setValueAtTime(.12,now);gain.gain.exponentialRampToValueAtTime(.001,now+(type==="win"?.35:.09));
+    osc.start(now);osc.stop(now+(type==="win"?.35:.09));
+  }catch(e){} }
+  function localDate(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;}
+  function renderDailyRewards(){
+    const grid=$("dailyGrid");grid.innerHTML="";
+    const today=localDate(); let claimedToday=state.lastClaimDate===today;
+    rewards.forEach((amt,i)=>{const day=i+1, done=day<state.dailyClaimedDay || (claimedToday&&day===state.dailyClaimedDay);
+      const active=!claimedToday&&day===state.dailyClaimedDay;const el=document.createElement("button");
+      el.type="button";el.className="daily-box"+(done?" claimed":"")+(active?" active":"");
+      el.innerHTML=`Day ${day}<div class="coin-val">🪙${amt}</div>${done?"✓":active?"CLAIM":"🔒"}`;
+      el.disabled=!active; if(active)el.onclick=()=>claimDaily(day,amt);grid.appendChild(el);
     });
+    $("claimTimerText").textContent=claimedToday?"Next daily reward available tomorrow":"Claim today's highlighted reward";
   }
-  function finish(){
-    const won=winner();
-    if(won){
-      gameOver=true; scores[won.player]++;
-      setStatus(mode==="computer" ? (won.player==="X" ? "🎉 You win!" : "🤖 Computer wins!") : `🎉 Player ${won.player} wins!`, "Press New Round to play again.");
-    } else if(board.every(Boolean)){
-      gameOver=true; scores.D++; setStatus("It's a draw!","Press New Round to play again.");
-    } else return false;
-    renderScores(); render(); return true;
+  function claimDaily(day,amt){if(state.lastClaimDate===localDate()||day!==state.dailyClaimedDay)return;
+    state.coins+=amt;state.lastClaimDate=localDate();state.dailyClaimedDay=day===7?1:day+1;
+    saveState();renderDailyRewards();playSound("coin");alert(`Daily reward claimed: +${amt} coins!`);
   }
-  function play(index, player=current){
-    if(gameOver || thinking || board[index]) return;
-    board[index]=player;
-    current=player==="X" ? "O" : "X";
-    if(finish()) return;
-    if(mode==="computer" && current==="O") computerTurn();
-    else { setStatus(mode==="computer" ? "Your turn — you are X" : `Player ${current}'s turn`); render(); }
+  function renderShop(){const grid=$("shopGrid");grid.innerHTML="";shopItems.forEach(item=>{
+    const owned=state.ownedItems.includes(item.id), equipped=state.equippedX===item.id||state.equippedO===item.id||state.equippedTheme===item.id;
+    const card=document.createElement("div");card.className="shop-item"+(owned?" owned":"");
+    const title=document.createElement("h4");title.textContent=item.name;const icon=document.createElement("div");icon.style.fontSize="24px";icon.textContent=item.symbol;
+    const info=document.createElement("p");info.textContent=owned?(equipped?"Equipped":"Owned"):`🪙 ${item.price}`;
+    const btn=document.createElement("button");btn.className="opt-btn";btn.style.width="100%";btn.textContent=owned?(equipped?"Equipped":"Equip"):"Buy";btn.disabled=equipped;
+    btn.onclick=()=>{if(!owned){if(state.coins<item.price){alert("Not enough coins!");return;}state.coins-=item.price;state.ownedItems.push(item.id);}if(item.type==="skin_x")state.equippedX=item.id;if(item.type==="skin_o")state.equippedO=item.id;if(item.type==="theme")state.equippedTheme=item.id;saveState();renderShop();playSound("coin");};
+    card.append(icon,title,info,btn);grid.appendChild(card);
+  });}
+  function renderAchievements(){const grid=$("achievementsGrid");grid.innerHTML="";achievements.forEach(a=>{
+    const el=document.createElement("div");el.className="achievement-item";const done=!!state.achievements[a.id];
+    el.style.borderColor=done?"var(--green)":"var(--border-neon)";
+    el.innerHTML=`<div style="font-size:20px">${done?"🏆":"🔒"}</div><h4>${a.name}</h4><p>${a.desc}</p><div style="font-size:10px;color:var(--gold)">${done?"Unlocked":"Reward: 🪙"+a.reward}</div>`;grid.appendChild(el);
+  });}
+  function checkAchievements(){let changed=false;achievements.forEach(a=>{if(!state.achievements[a.id]&&a.test()){state.achievements[a.id]=true;state.coins+=a.reward;changed=true;}});if(changed)alert("🏆 New achievement unlocked! Coins added to your wallet.");}
+  function renderLeaderboard(){const c=$("leaderboardContent");c.innerHTML="";const row=document.createElement("div");row.style.cssText="padding:12px;background:rgba(30,64,175,.3);border-radius:10px;font-weight:800;";row.textContent=`${state.playerName} — ${state.wins} wins · ${state.coins} coins`;c.appendChild(row);}
+  function modeName(){return ({computer:"Player vs AI",two:"Two Players Local",ai_demo:"AI vs AI Demo",tournament:"Tournament Mode",time_challenge:"60-Second Challenge"})[state.mode]||"Player vs AI";}
+  
+  function stopTimers(){clearTimeout(aiTimer);clearInterval(demoTimer);clearInterval(challengeTimer);aiTimer=demoTimer=challengeTimer=null;}
+  function initGame(){stopTimers();const size=state.boardSize;liveBoardState=Array(size*size).fill("");currentPlayer="X";gameActive=true;isThinking=false;paused=false;
+    $("pauseGameBtn").textContent="⏸️ Pause";$("gameModeTitle").textContent=modeName();
+    $("liveBoard").className=`live-board grid-${size}x${size}`;$("liveBoard").innerHTML="";
+    for(let i=0;i<size*size;i++){const b=document.createElement("button");b.className="live-cell";b.type="button";b.onclick=()=>handleCellClick(i);$("liveBoard").appendChild(b);}
+    
+    if(state.mode==="time_challenge"){challengeSeconds=60;challengeTimer=setInterval(()=>{if(!gameActive||paused)return;challengeSeconds--;updateGameStatus();if(challengeSeconds<=0){gameActive=false;stopTimers();$("gameStatusBanner").textContent="⏱️ Time is up!";renderLiveBoard();}},1000);}
+    updateLiveScoresUI();renderLiveBoard();updateGameStatus();
+    if(state.mode==="ai_demo")startAIDemo();
   }
-  function chooseMove(){
-    const empty=board.map((v,i)=>v ? -1 : i).filter(i=>i>=0);
-    if(!empty.length) return -1;
-    const difficulty=$("difficulty").value;
-    const random=()=>empty[Math.floor(Math.random()*empty.length)];
-    const immediate=(player)=>{
-      for(const i of empty){ board[i]=player; const won=!!winner(); board[i]=""; if(won) return i; }
-      return -1;
-    };
-    if(difficulty==="easy") return random();
-    const win=immediate("O"); if(win>=0) return win;
-    const block=immediate("X"); if(block>=0 && (difficulty==="hard" || Math.random()<.8)) return block;
-    if(difficulty==="medium"){
-      if(board[4]==="") return 4;
-      const corners=[0,2,6,8].filter(i=>board[i]==="");
-      if(corners.length) return corners[Math.floor(Math.random()*corners.length)];
-      return random();
-    }
-    let best=-Infinity, move=empty[0];
-    for(const i of empty){
-      board[i]="O";
-      const score=minimax(board,false,0);
-      board[i]="";
-      if(score>best){best=score;move=i;}
-    }
-    return move;
+  function updateGameStatus(){if(!gameActive)return;let msg=state.mode==="computer"?(currentPlayer==="X"?"Your turn — you are X":"Computer is thinking..."): `Player ${currentPlayer}'s turn`;
+    if(state.mode==="time_challenge")msg+=` · ${challengeSeconds}s left`;
+    $("gameStatusBanner").innerHTML=`${msg}<small>${paused?"Game paused":"Make your move"}</small>`;
   }
-  function minimax(b,isMax,depth){
-    const w=winner(b);
-    if(w) return w.player==="O" ? 10-depth : depth-10;
-    if(b.every(Boolean)) return 0;
-    let best=isMax ? -Infinity : Infinity;
-    for(let i=0;i<9;i++) if(!b[i]){
-      b[i]=isMax ? "O" : "X";
-      const score=minimax(b,!isMax,depth+1);
-      b[i]="";
-      best=isMax ? Math.max(best,score) : Math.min(best,score);
-    }
-    return best;
+  function updateLiveScoresUI(){$("liveXScore").textContent=liveScores.X; $("liveOScore").textContent=liveScores.O;$("liveDrawScore").textContent=liveScores.D;}
+  function renderLiveBoard(){document.querySelectorAll(".live-cell").forEach((cell,i)=>{const v=liveBoardState[i];cell.textContent=v==="X"?(state.equippedX==="skin_gold_crown"?"👑":"X"):v==="O"?"O":"";cell.className="live-cell"+(v?" "+v.toLowerCase():"");cell.disabled=!gameActive||paused||isThinking||!!v;});}
+  
+  function checkWinCondition(board,size){const k=size;const dirs=[[0,1],[1,0],[1,1],[1,-1]];for(let i=0;i<board.length;i++){const p=board[i];if(!p)continue;const r=Math.floor(i/size),c=i%size;for(const [dr,dc] of dirs){const er=r+(k-1)*dr,ec=c+(k-1)*dc;if(er<0||er>=size||ec<0||ec>=size)continue;const line=[];let ok=true;for(let n=0;n<k;n++){const idx=(r+n*dr)*size+c+n*dc;line.push(idx);if(board[idx]!==p){ok=false;break;}}if(ok)return {player:p,line};}}return null;}
+  function handleCellClick(i){if(!gameActive||paused||isThinking||liveBoardState[i])return;if(state.mode==="ai_demo")return;makeMove(i);}
+  function makeMove(i){liveBoardState[i]=currentPlayer;playSound("move");renderLiveBoard();const won=checkWinCondition(liveBoardState,state.boardSize);if(won){endGame(won.player,won.line);return;}if(liveBoardState.every(Boolean)){endGame("D",[]);return;}currentPlayer=currentPlayer==="X"?"O":"X";updateGameStatus();if(state.mode==="computer"&&currentPlayer==="O")triggerComputerTurn();}
+  
+  function triggerComputerTurn(){isThinking=true;renderLiveBoard();updateGameStatus();aiTimer=setTimeout(()=>{if(!gameActive)return;if(paused){triggerComputerTurn();return;}isThinking=false;const move=chooseAIMove("O","X");if(move>=0)makeMove(move);},420);}
+  function chooseAIMove(me="O",opponent="X"){
+    const empty=liveBoardState.map((v,i)=>v===""?i:-1).filter(i=>i>=0);if(!empty.length)return -1;
+    const immediate=p=>{for(const i of empty){liveBoardState[i]=p;const w=checkWinCondition(liveBoardState,state.boardSize);liveBoardState[i]="";if(w)return i;}return -1;};
+    if(state.difficulty==="easy"&&Math.random()<.75)return empty[Math.floor(Math.random()*empty.length)];
+    let m=immediate(me);if(m>=0)return m;m=immediate(opponent);if(m>=0)return m;
+    if(state.boardSize===3&&state.difficulty==="hard")return minimaxBestMove(me,opponent);
+    const center=(state.boardSize*state.boardSize-1)/2;const preferred=empty.sort((a,b)=>Math.abs(a-center)-Math.abs(b-center));
+    if(state.difficulty==="hard")return preferred[0];return Math.random()<.65?preferred[0]:empty[Math.floor(Math.random()*empty.length)];
   }
-  function computerTurn(){
-    thinking=true; setStatus("Computer is thinking…"); render();
-    computerTimer=setTimeout(()=>{
-      thinking=false;
-      const move=chooseMove();
-      if(move>=0){ board[move]="O"; current="X"; if(!finish()){setStatus("Your turn — you are X");render();} }
-    },380);
+  function minimaxBestMove(me,op){let best=-Infinity,bestMove=-1;for(let i=0;i<9;i++)if(!liveBoardState[i]){liveBoardState[i]=me;const score=minimax(liveBoardState,0,false,me,op);liveBoardState[i]="";if(score>best){best=score;bestMove=i;}}return bestMove;}
+  function minimax(b,depth,maximizing,me,op){const w=checkWinCondition(b,3);if(w)return w.player===me?10-depth:depth-10;if(b.every(Boolean))return 0;let best=maximizing?-Infinity:Infinity;for(let i=0;i<9;i++)if(!b[i]){b[i]=maximizing?me:op;const s=minimax(b,depth+1,!maximizing,me,op);b[i]="";best=maximizing?Math.max(best,s):Math.min(best,s);}return best;}
+  function startAIDemo(){demoTimer=setInterval(()=>{if(!gameActive||paused)return;const empties=liveBoardState.map((v,i)=>v===""?i:-1).filter(i=>i>=0);if(!empties.length)return;const move=chooseAIMove(currentPlayer,currentPlayer==="X"?"O":"X");if(move>=0)makeMove(move);},650);}
+  
+  function endGame(winner,line){gameActive=false;isThinking=false;stopTimers();const cells=document.querySelectorAll(".live-cell");if(winner!=="D")line.forEach(i=>cells[i]?.classList.add("win"));
+    if(winner==="D"){liveScores.D++;state.draws++;state.coins+=15;$("gameStatusBanner").innerHTML="🤝 It's a draw!<small>+15 coins earned</small>";}
+    else{liveScores[winner]++;if(state.mode==="computer"){if(winner==="X"){state.wins++;state.coins+=50;state.streak++;$("gameStatusBanner").innerHTML="🎉 You win!<small>+50 coins earned</small>";if(state.difficulty==="hard")state.achievements._hardWin=true;}else{state.losses++;state.streak=0;$("gameStatusBanner").innerHTML="🤖 AI wins!";}}
+      else{$("gameStatusBanner").innerHTML=`🏆 Player ${winner} wins!`;}}
+    state.matches++;checkAchievements();saveState();updateLiveScoresUI();renderLiveBoard();playSound("win");
   }
-  function newRound(){
-    clearTimeout(computerTimer); thinking=false; board=Array(9).fill(""); current="X"; gameOver=false;
-    setStatus(mode==="computer" ? "Your turn — you are X" : "Player X's turn"); render();
-  }
-  function setMode(next){
-    mode=next;
-    $("computerMode").classList.toggle("active",mode==="computer");
-    $("twoPlayerMode").classList.toggle("active",mode==="two");
-    $("difficultyWrap").hidden=mode!=="computer";
-    newRound(); renderScores();
-  }
-  cells.forEach(cell=>cell.addEventListener("click",()=>play(Number(cell.dataset.i))));
-  $("computerMode").addEventListener("click",()=>setMode("computer"));
-  $("twoPlayerMode").addEventListener("click",()=>setMode("two"));
-  $("difficulty").addEventListener("change",newRound);
-  $("newRound").addEventListener("click",newRound);
-  $("resetScores").addEventListener("click",()=>{scores={X:0,O:0,D:0};renderScores();newRound();});
-  render();
+  
+  function openModal(id){$(id).classList.add("open");}function closeModal(id){$(id).classList.remove("open");}
+  
+  $("startGameBtn").onclick=()=>{$("dashboardContainer").style.display="none";$("gameArenaScreen").classList.add("active");initGame();};
+  $("backToDashBtn").onclick=()=>{stopTimers();gameActive=false;$("gameArenaScreen").classList.remove("active");$("dashboardContainer").style.display="block";updateTopUI();renderDailyRewards();};
+  document.querySelectorAll(".mode-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".mode-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.mode=b.dataset.mode;saveState();playSound("click");});
+  document.querySelectorAll("#difficultyBtns .opt-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll("#difficultyBtns .opt-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.difficulty=b.dataset.diff;saveState();playSound("click");});
+  document.querySelectorAll("#boardSizeBtns .opt-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll("#boardSizeBtns .opt-btn").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.boardSize=Number(b.dataset.size);saveState();playSound("click");});
+  $("openShopBtn").onclick=()=>{renderShop();openModal("shopModal");};$("openAchievementsBtn").onclick=()=>{renderAchievements();openModal("achievementsModal");};$("openLeaderboardBtn").onclick=()=>{renderLeaderboard();openModal("leaderboardModal");};$("openHowToPlayBtn").onclick=()=>openModal("howToPlayModal");$("viewProfileBtn").onclick=$("settingsModalBtn").onclick=()=>openModal("profileModal");
+  document.querySelectorAll(".close-modal").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));document.querySelectorAll(".modal-overlay").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)closeModal(m.id);}));
+  $("saveProfileBtn").onclick=()=>{state.playerName=$("playerNameInput").value.trim().slice(0,24)||"Player";saveState();closeModal("profileModal");};
+  $("soundToggleBtn").onclick=()=>{state.soundEnabled=!state.soundEnabled;saveState();playSound("click");};
+  $("newRoundBtn").onclick=initGame;$("resetLiveScoresBtn").onclick=()=>{liveScores={X:0,O:0,D:0};updateLiveScoresUI();initGame();};
+  $("pauseGameBtn").onclick=()=>{if(!gameActive)return;paused=!paused;$("pauseGameBtn").textContent=paused?"▶️ Resume":"⏸️ Pause";renderLiveBoard();updateGameStatus();if(!paused&&state.mode==="computer"&&currentPlayer==="O"&&isThinking)triggerComputerTurn();};
+  
+  // Hide Loading Screen
+  setTimeout(()=>{ const loader = document.getElementById('loading-screen'); if(loader) { loader.style.opacity='0'; setTimeout(()=>loader.style.display='none', 500); } }, 600);
+
+  updateTopUI();renderDailyRewards();
 })();
 </script>
 </body>
