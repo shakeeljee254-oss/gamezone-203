@@ -1,25 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/</loc>
+    <lastmod>2026-11-17</lastmod>
     <priority>1.0</priority>
   </url>
+
+  <!-- Metro 3D (VIP) -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/subway-surfers.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Tic Tac Toe 203 -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/tic-tac-toe/tic-tac-toe.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.8</priority>
   </url>
+
+  <!-- 2048 Ultimate Pro -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/2048/2048.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Neon Snake 203 -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/neon-snake/NEON-SNAKE.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.8</priority>
   </url>
+
+  <!-- Slither.io (Neon Snake) -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/neon-snake/slither.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Memory Game -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/memory-game.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
   </url>
+
+  <!-- Color Match -->
   <url>
     <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/color-match.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Fruit Ninja -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Car Racing -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/car-racing.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Bubble Blast 3D -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/bubble-blast-3d.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Connect Four -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/connect-four.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Tower Stack -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/tower-stack.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Flappy Bird -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Ping Pong -->
+  <url>
+    <loc>https://shakeeljee254-oss.github.io/gamezone-203/games/ping-pong.html</loc>
+    <lastmod>2026-11-17</lastmod>
+    <priority>0.7</priority>
   </url>
 </urlset>
