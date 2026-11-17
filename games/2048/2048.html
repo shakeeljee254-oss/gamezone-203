@@ -1,298 +1,3779 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#f7f4ed">
-  
-  <title>2048 Game - Play Free Online | GameZone 203</title>
-  <meta name="description" content="Play the classic 2048 puzzle game for free online at GameZone 203. Join the numbers and get to the 2048 tile! Works on mobile and desktop.">
-  <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/2048/2048.html">
-<meta property="og:title" content="2048 Game - Play Free Online | GameZone 203">
-<meta property="og:description" content="Play the classic 2048 puzzle game for free online at GameZone 203.">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/games/2048/2048.html">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>2048 Ultimate Pro – Complete Premium Puzzle Gaming Platform</title>
+  <meta name="description" content="Play 2048 Ultimate Pro – a modern, feature-rich 2048 puzzle platform with 8 game modes, daily rewards, coin shop, achievements, missions, power-ups, and statistics." />
+  <meta name="theme-color" content="#8B5CF6" />
+  <meta property="og:title" content="2048 Ultimate Pro – Premium Puzzle Gaming Platform" />
+  <meta property="og:description" content="Master 3x3 to 6x6 grids, Time Attack, Daily Challenges, unlock pastel & cyber themes, earn XP, and climb your personal records." />
+  <meta property="og:type" content="website" />
+
   <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & THEME VARIABLES
+       ========================================================================== */
     :root {
-      --page: #f7f4ed;
-      --ink: #514b43;
-      --muted: #8b8378;
-      --board: #b9afa1;
-      --empty: #d8d0c4;
-      --accent: #8f7a66;
-      --white: #fffdf9;
+      --bg-app: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-surface-2: #F1F5F9;
+      --bg-glass: rgba(255, 255, 255, 0.85);
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-soft: #64748B;
+      --border-color: #E2E8F0;
+      --border-strong: #CBD5E1;
+
+      /* Soft Pastel & Crisp Accents */
+      --lavender: #8B5CF6;
+      --lavender-soft: #EDE9FE;
+      --lavender-pastel: #C4B5FD;
+      --mint: #10B981;
+      --mint-soft: #D1FAE5;
+      --mint-pastel: #6EE7B7;
+      --sky: #0284C7;
+      --sky-soft: #E0F2FE;
+      --sky-pastel: #7DD3FC;
+      --peach: #EA580C;
+      --peach-soft: #FFEDD5;
+      --peach-pastel: #FDBA74;
+      --pink: #DB2777;
+      --pink-soft: #FCE7F3;
+      --pink-pastel: #F9A8D4;
+      --amber: #D97706;
+      --amber-soft: #FEF3C7;
+
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
+      --shadow-lg: 0 16px 40px rgba(139, 92, 246, 0.12);
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 28px;
+
+      --board-bg: #E2E8F0;
+      --cell-empty: rgba(255, 255, 255, 0.65);
+      --sidebar-w: 265px;
+      --topbar-h: 68px;
+      --transition: 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    * { box-sizing: border-box; }
-    body {
+
+    [data-theme="dark"] {
+      --bg-app: #0B1120;
+      --bg-surface: #131C31;
+      --bg-surface-2: #1E293B;
+      --bg-glass: rgba(19, 28, 49, 0.88);
+      --text-main: #F8FAFC;
+      --text-muted: #CBD5E1;
+      --text-soft: #94A3B8;
+      --border-color: #24324A;
+      --border-strong: #334155;
+
+      --lavender: #A78BFA;
+      --lavender-soft: rgba(139, 92, 246, 0.18);
+      --mint: #34D399;
+      --mint-soft: rgba(16, 185, 129, 0.18);
+      --sky: #38BDF8;
+      --sky-soft: rgba(2, 132, 199, 0.18);
+      --peach: #FB923C;
+      --peach-soft: rgba(234, 88, 12, 0.18);
+      --pink: #F472B6;
+      --pink-soft: rgba(219, 39, 119, 0.18);
+      --amber: #FBBF24;
+      --amber-soft: rgba(217, 119, 6, 0.18);
+
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 10px 28px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 18px 44px rgba(0, 0, 0, 0.5);
+
+      --board-bg: #1E293B;
+      --cell-empty: rgba(15, 23, 42, 0.55);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    body.no-anim *, body.no-anim *::before, body.no-anim *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    /* ==========================================================================
+       2. RESET & BASE TYPOGRAPHY
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      min-height: 100vh;
-      padding: 28px 16px 40px;
-      background: radial-gradient(circle at top, #fffdf8 0, var(--page) 58%, #eee8dd 100%);
-      color: var(--ink);
-      font-family: Inter, ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
-      display: flex;
-      justify-content: center;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      min-height: 100%;
+      background-color: var(--bg-app);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
       overflow-x: hidden;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
-    .app { width: min(100%, 480px); }
-    .topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 24px; }
-    .brand { font-size: 12px; font-weight: 800; letter-spacing: .16em; color: var(--muted); text-transform: uppercase; }
-    .back {
-      color: var(--accent); text-decoration: none; font-size: 13px; font-weight: 700;
-      border: 1px solid #ded6ca; border-radius: 999px; padding: 9px 13px;
-      background: rgba(255,255,255,.55);
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
     }
-    .heading { display: flex; align-items: end; justify-content: space-between; gap: 12px; }
-    h1 { margin: 0; font-size: clamp(54px, 13vw, 76px); line-height: .95; letter-spacing: -.075em; color: #77634f; }
-    .subtitle { margin: 12px 0 0; color: var(--muted); font-size: 14px; }
-    .scores { display: flex; gap: 8px; }
-    .score-box {
-      min-width: 76px; padding: 9px 12px 8px; border-radius: 12px;
-      background: #e8dfd2; text-align: center;
-    }
-    .score-label { display: block; color: #8a7b69; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-    .score-value { display: block; color: #625342; font-size: 21px; font-weight: 800; line-height: 1.2; }
-    .toolbar { display: flex; gap: 9px; margin: 22px 0 14px; }
+
     button {
-      border: 0; cursor: pointer; font: inherit; font-weight: 750;
-      border-radius: 10px; padding: 11px 14px; transition: transform .12s, filter .12s;
+      cursor: pointer;
+      border: none;
+      background: none;
     }
-    button:active { transform: scale(.97); }
-    .primary { background: #8f7a66; color: white; flex: 1; }
-    .secondary { background: #e9e1d6; color: #6e5d4b; }
-    .board {
-      position: relative; display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 10px; padding: 10px; background: var(--board); border-radius: 15px;
-      aspect-ratio: 1; touch-action: none; user-select: none;
-      box-shadow: 0 12px 30px rgba(83, 68, 50, .12);
+
+    button:focus-visible, input:focus-visible, select:focus-visible, [tabindex]:focus-visible {
+      outline: 3px solid var(--lavender);
+      outline-offset: 2px;
     }
-    .cell {
-      min-width: 0; border-radius: 10px; background: var(--empty);
-      display: flex; align-items: center; justify-content: center;
-      font-size: clamp(23px, 7vw, 39px); font-weight: 850; letter-spacing: -.06em;
-      color: #64584b; transition: background .1s;
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
     }
-    .v2 { background: #f1e8dc; }
-    .v4 { background: #ede0ca; }
-    .v8 { background: #e9b978; color: #fffaf2; }
-    .v16 { background: #e69b61; color: white; }
-    .v32 { background: #df805b; color: white; }
-    .v64 { background: #d85f45; color: white; }
-    .v128 { background: #d9bd68; color: white; font-size: clamp(20px, 6vw, 33px); }
-    .v256 { background: #cdae4e; color: white; font-size: clamp(20px, 6vw, 33px); }
-    .v512 { background: #b99b42; color: white; font-size: clamp(20px, 6vw, 33px); }
-    .v1024, .v2048, .vhigh { background: #9c813b; color: white; font-size: clamp(17px, 5vw, 28px); }
-    .help { margin: 18px 2px 0; color: var(--muted); font-size: 13px; line-height: 1.6; text-align: center; }
-    .help strong { color: #6e5d4b; }
-    .message {
-      position: absolute; inset: 10px; display: none; align-items: center; justify-content: center;
-      flex-direction: column; gap: 12px; border-radius: 10px;
-      background: rgba(247,244,237,.86); backdrop-filter: blur(3px); text-align: center;
+
+    /* ==========================================================================
+       3. APP SHELL LAYOUT (SIDEBAR + TOPBAR + MAIN)
+       ========================================================================== */
+    .app-shell {
+      display: flex;
+      min-height: 100vh;
     }
-    .message.show { display: flex; }
-    .message h2 { margin: 0; font-size: 32px; color: #705d49; }
-    .message p { margin: 0; color: #776d61; }
-    .message button { background: #8f7a66; color: white; }
-    @media (max-width: 380px) {
-      body { padding: 18px 12px 28px; }
-      .board { gap: 7px; padding: 7px; }
-      .cell { border-radius: 8px; }
-      .scores { gap: 5px; }
-      .score-box { min-width: 65px; padding-inline: 8px; }
+
+    /* Sidebar */
+    .sidebar {
+      width: var(--sidebar-w);
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 40;
+      transition: transform 0.28s ease;
+      overflow-y: auto;
+    }
+
+    .brand-header {
+      padding: 20px 20px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B);
+      color: #fff;
+      font-weight: 900;
+      font-size: 15px;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(139, 92, 246, 0.32);
+      flex-shrink: 0;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--lavender);
+    }
+
+    /* Profile Widget in Sidebar */
+    .sidebar-profile {
+      margin: 14px 14px 8px;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--lavender-soft), var(--sky-soft));
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .avatar-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      display: grid;
+      place-items: center;
+      font-size: 19px;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .profile-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .profile-name {
+      font-weight: 700;
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .level-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--lavender);
+      background: var(--bg-surface);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .xp-bar-wrap {
+      width: 100%;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    [data-theme="dark"] .xp-bar-wrap {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    .xp-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--lavender), var(--pink));
+      border-radius: 999px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .xp-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* Navigation Menu */
+    .nav-group {
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .nav-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-soft);
+      padding: 8px 12px 4px;
+    }
+
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      padding: 10px 13px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+      text-align: left;
+      position: relative;
+    }
+
+    .nav-btn:hover {
+      background: var(--bg-surface-2);
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background: var(--lavender-soft);
+      color: var(--lavender);
+      font-weight: 700;
+    }
+
+    .nav-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--mint-soft);
+      color: var(--mint);
+    }
+
+    .nav-badge.pulse {
+      background: var(--peach-soft);
+      color: var(--peach);
+    }
+
+    /* Main Content Wrapper */
+    .main-wrap {
+      flex: 1;
+      margin-left: var(--sidebar-w);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    /* Top Bar */
+    .topbar {
+      height: var(--topbar-h);
+      background: var(--bg-glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg-surface-2);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .page-heading {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.15s ease;
+    }
+
+    .stat-chip:hover {
+      transform: translateY(-1px);
+    }
+
+    .coin-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FBBF24, #F59E0B);
+      color: #fff;
+      display: inline-grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 2px 6px rgba(245, 158, 11, 0.35);
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      display: grid;
+      place-items: center;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-surface-2);
+      color: var(--lavender);
+    }
+
+    /* Main Container */
+    .content-area {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px;
+      flex: 1;
+    }
+
+    .view-section {
+      display: none;
+      animation: fadeSlideIn 0.25s ease;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       4. REUSABLE UI COMPONENTS (CARDS, BUTTONS, GRIDS, BADGES)
+       ========================================================================== */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      color: #FFFFFF;
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.28);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(139, 92, 246, 0.36);
+    }
+
+    .btn-mint {
+      background: linear-gradient(135deg, #10B981, #059669);
+      color: #FFFFFF;
+      box-shadow: 0 6px 18px rgba(16, 185, 129, 0.25);
+    }
+
+    .btn-mint:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .btn-peach {
+      background: linear-gradient(135deg, #F97316, #EA580C);
+      color: #FFFFFF;
+    }
+
+    .btn-soft {
+      background: var(--bg-surface-2);
+      color: var(--text-main);
+      border-color: var(--border-color);
+    }
+
+    .btn-soft:hover:not(:disabled) {
+      background: var(--lavender-soft);
+      color: var(--lavender);
+      border-color: var(--lavender-pastel);
+    }
+
+    .btn-danger {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    [data-theme="dark"] .btn-danger {
+      background: rgba(220, 38, 38, 0.2);
+      color: #F87171;
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 12.5px;
+      border-radius: 10px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .pill-lavender { background: var(--lavender-soft); color: var(--lavender); }
+    .pill-mint { background: var(--mint-soft); color: var(--mint); }
+    .pill-sky { background: var(--sky-soft); color: var(--sky); }
+    .pill-peach { background: var(--peach-soft); color: var(--peach); }
+    .pill-pink { background: var(--pink-soft); color: var(--pink); }
+    .pill-amber { background: var(--amber-soft); color: var(--amber); }
+
+    /* ==========================================================================
+       5. HOME DASHBOARD HERO & QUICK CARDS
+       ========================================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, #EDE9FE 0%, #E0F2FE 52%, #FCE7F3 100%);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    [data-theme="dark"] .hero-banner {
+      background: linear-gradient(135deg, rgba(139,92,246,0.22) 0%, rgba(2,132,199,0.2) 52%, rgba(219,39,119,0.2) 100%);
+    }
+
+    .hero-content {
+      max-width: 580px;
+      z-index: 1;
+    }
+
+    .hero-title {
+      font-size: clamp(24px, 3.2vw, 34px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin: 10px 0 12px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-preview-tiles {
+      display: grid;
+      grid-template-columns: repeat(2, 74px);
+      gap: 10px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      flex-shrink: 0;
+    }
+
+    [data-theme="dark"] .hero-preview-tiles {
+      background: rgba(15, 23, 42, 0.55);
+    }
+
+    .mini-demo-tile {
+      width: 74px;
+      height: 74px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .kpi-val {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .kpi-label {
+      font-size: 12.5px;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       6. PLAY GAME ARENA & 2048 BOARD ENGINE
+       ========================================================================== */
+    .play-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .board-stage {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hud-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .mode-badge-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .score-boxes {
+      display: flex;
+      gap: 8px;
+    }
+
+    .score-box {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 6px 14px;
+      min-width: 84px;
+      text-align: center;
+      position: relative;
+    }
+
+    .score-box-label {
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-soft);
+    }
+
+    .score-box-val {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .score-float {
+      position: absolute;
+      right: 10px;
+      top: -6px;
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--mint);
+      pointer-events: none;
+      animation: floatUpScore 0.75s ease-out forwards;
+    }
+
+    @keyframes floatUpScore {
+      0% { opacity: 1; transform: translateY(0) scale(1); }
+      100% { opacity: 0; transform: translateY(-24px) scale(1.12); }
+    }
+
+    .hud-subbar {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      background: var(--bg-surface-2);
+      border-radius: 14px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hud-metrics {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hud-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Board Container */
+    .board-outer {
+      position: relative;
+      width: 100%;
+      max-width: 460px;
+      aspect-ratio: 1 / 1;
+      border-radius: 20px;
+      padding: 12px;
+      background: var(--board-bg);
+      box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.08);
+      touch-action: none;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+
+    /* Board Background Themes */
+    .board-outer.bg-cloud { background: linear-gradient(135deg, #E2E8F0, #CBD5E1); }
+    .board-outer.bg-lavender { background: linear-gradient(135deg, #DDD6FE, #C4B5FD); }
+    .board-outer.bg-ocean { background: linear-gradient(135deg, #BAE6FD, #7DD3FC); }
+    .board-outer.bg-rose { background: linear-gradient(135deg, #FBCFE8, #F9A8D4); }
+    .board-outer.bg-midnight { background: linear-gradient(135deg, #1E293B, #0F172A); }
+
+    [data-theme="dark"] .board-outer.bg-cloud { background: linear-gradient(135deg, #1E293B, #273549); }
+
+    .board-grid {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      gap: 10px;
+      position: relative;
+    }
+
+    .grid-cell {
+      background: var(--cell-empty);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .tile {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+      transition: transform 0.14s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tile.tile-new {
+      animation: tileSpawn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .tile.tile-merged {
+      animation: tilePop 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes tileSpawn {
+      0% { transform: scale(0.25); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes tilePop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.14); }
+      100% { transform: scale(1); }
+    }
+
+    .board-outer.remove-mode .tile {
+      cursor: crosshair;
+      outline: 2.5px dashed #EF4444;
+      animation: pulseTarget 0.9s infinite alternate;
+    }
+
+    @keyframes pulseTarget {
+      from { transform: scale(0.96); }
+      to { transform: scale(1.03); }
+    }
+
+    /* Tile Color Themes */
+    /* 1. Pastel Dream (Default) */
+    .theme-pastel .t-2 { background: #FFFFFF; color: #334155; }
+    .theme-pastel .t-4 { background: #F3E8FF; color: #6B21A8; }
+    .theme-pastel .t-8 { background: #DDD6FE; color: #4C1D95; }
+    .theme-pastel .t-16 { background: #BAE6FD; color: #075985; }
+    .theme-pastel .t-32 { background: #A7F3D0; color: #065F46; }
+    .theme-pastel .t-64 { background: #FED7AA; color: #9A3412; }
+    .theme-pastel .t-128 { background: #FBCFE8; color: #9D174D; }
+    .theme-pastel .t-256 { background: #C4B5FD; color: #FFFFFF; }
+    .theme-pastel .t-512 { background: #38BDF8; color: #FFFFFF; }
+    .theme-pastel .t-1024 { background: #34D399; color: #FFFFFF; }
+    .theme-pastel .t-2048 { background: linear-gradient(135deg, #8B5CF6, #EC4899); color: #FFFFFF; box-shadow: 0 0 20px rgba(139, 92, 246, 0.45); }
+    .theme-pastel .t-super { background: linear-gradient(135deg, #F59E0B, #EF4444); color: #FFFFFF; }
+
+    /* 2. Neon Cyber */
+    .theme-cyber .t-2 { background: #1E293B; color: #38BDF8; border: 1px solid #38BDF8; }
+    .theme-cyber .t-4 { background: #1E1B4B; color: #A78BFA; border: 1px solid #A78BFA; }
+    .theme-cyber .t-8 { background: #064E3B; color: #34D399; border: 1px solid #34D399; }
+    .theme-cyber .t-16 { background: #4C1D95; color: #F472B6; }
+    .theme-cyber .t-32 { background: #0284C7; color: #FFFFFF; }
+    .theme-cyber .t-64 { background: #7C3AED; color: #FFFFFF; }
+    .theme-cyber .t-128 { background: #DB2777; color: #FFFFFF; }
+    .theme-cyber .t-256 { background: #059669; color: #FFFFFF; }
+    .theme-cyber .t-512 { background: #EA580C; color: #FFFFFF; }
+    .theme-cyber .t-1024 { background: linear-gradient(135deg, #06B6D4, #8B5CF6); color: #FFFFFF; }
+    .theme-cyber .t-2048 { background: linear-gradient(135deg, #EC4899, #F59E0B); color: #FFFFFF; box-shadow: 0 0 22px rgba(236, 72, 153, 0.6); }
+    .theme-cyber .t-super { background: linear-gradient(135deg, #10B981, #3B82F6); color: #FFFFFF; }
+
+    /* 3. Sunset Peach */
+    .theme-sunset .t-2 { background: #FFF7ED; color: #7C2D12; }
+    .theme-sunset .t-4 { background: #FFEDD5; color: #9A3412; }
+    .theme-sunset .t-8 { background: #FED7AA; color: #9A3412; }
+    .theme-sunset .t-16 { background: #FDBA74; color: #FFFFFF; }
+    .theme-sunset .t-32 { background: #FB923C; color: #FFFFFF; }
+    .theme-sunset .t-64 { background: #F97316; color: #FFFFFF; }
+    .theme-sunset .t-128 { background: #F43F5E; color: #FFFFFF; }
+    .theme-sunset .t-256 { background: #E11D48; color: #FFFFFF; }
+    .theme-sunset .t-512 { background: #D946EF; color: #FFFFFF; }
+    .theme-sunset .t-1024 { background: #9333EA; color: #FFFFFF; }
+    .theme-sunset .t-2048 { background: linear-gradient(135deg, #F59E0B, #E11D48); color: #FFFFFF; }
+    .theme-sunset .t-super { background: linear-gradient(135deg, #7C3AED, #DB2777); color: #FFFFFF; }
+
+    /* 4. Mint Forest */
+    .theme-mint .t-2 { background: #ECFDF5; color: #064E3B; }
+    .theme-mint .t-4 { background: #D1FAE5; color: #065F46; }
+    .theme-mint .t-8 { background: #A7F3D0; color: #065F46; }
+    .theme-mint .t-16 { background: #6EE7B7; color: #064E3B; }
+    .theme-mint .t-32 { background: #34D399; color: #FFFFFF; }
+    .theme-mint .t-64 { background: #10B981; color: #FFFFFF; }
+    .theme-mint .t-128 { background: #0D9488; color: #FFFFFF; }
+    .theme-mint .t-256 { background: #0284C7; color: #FFFFFF; }
+    .theme-mint .t-512 { background: #2563EB; color: #FFFFFF; }
+    .theme-mint .t-1024 { background: #4F46E5; color: #FFFFFF; }
+    .theme-mint .t-2048 { background: linear-gradient(135deg, #10B981, #0284C7); color: #FFFFFF; }
+    .theme-mint .t-super { background: linear-gradient(135deg, #059669, #7C3AED); color: #FFFFFF; }
+
+    /* 5. Royal Gold */
+    .theme-royal .t-2 { background: #FEFCE8; color: #713F12; }
+    .theme-royal .t-4 { background: #FEF9C3; color: #854D0E; }
+    .theme-royal .t-8 { background: #FDE047; color: #713F12; }
+    .theme-royal .t-16 { background: #FACC15; color: #422006; }
+    .theme-royal .t-32 { background: #EAB308; color: #FFFFFF; }
+    .theme-royal .t-64 { background: #D97706; color: #FFFFFF; }
+    .theme-royal .t-128 { background: #B45309; color: #FFFFFF; }
+    .theme-royal .t-256 { background: #7E22CE; color: #FFFFFF; }
+    .theme-royal .t-512 { background: #6B21A8; color: #FFFFFF; }
+    .theme-royal .t-1024 { background: #4338CA; color: #FFFFFF; }
+    .theme-royal .t-2048 { background: linear-gradient(135deg, #F59E0B, #7E22CE); color: #FFFFFF; }
+    .theme-royal .t-super { background: linear-gradient(135deg, #B45309, #1E1B4B); color: #FDE047; }
+
+    /* Board Overlay (Pause / Win / Game Over) */
+    .board-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(8px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      z-index: 15;
+    }
+
+    [data-theme="dark"] .board-overlay {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .board-overlay.active {
+      display: flex;
+      animation: fadeSlideIn 0.22s ease;
+    }
+
+    /* Touch / D-Pad Controls */
+    .touch-dpad {
+      display: grid;
+      grid-template-columns: repeat(3, 54px);
+      grid-template-rows: repeat(2, 48px);
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .dpad-btn {
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.1s ease, background 0.15s ease;
+    }
+
+    .dpad-btn:active {
+      transform: scale(0.93);
+      background: var(--lavender-soft);
+      color: var(--lavender);
+    }
+
+    /* Power-ups Panel */
+    .powerup-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .powerup-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 14px;
+      background: var(--bg-surface-2);
+      border: 1px solid var(--border-color);
+      transition: var(--transition);
+    }
+
+    .powerup-item:hover {
+      border-color: var(--lavender-pastel);
+    }
+
+    .powerup-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .pu-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .pu-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pu-desc {
+      font-size: 11.5px;
+      color: var(--text-soft);
+    }
+
+    /* ==========================================================================
+       7. DAILY BONUS CALENDAR
+       ========================================================================== */
+    .daily-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .day-card {
+      background: var(--bg-surface-2);
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px 8px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .day-card.claimed {
+      background: var(--mint-soft);
+      border-color: var(--mint);
+    }
+
+    .day-card.today {
+      background: linear-gradient(180deg, var(--lavender-soft), var(--bg-surface));
+      border-color: var(--lavender);
+      box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+      transform: translateY(-3px);
+    }
+
+    .day-card.day-7 {
+      background: linear-gradient(135deg, var(--amber-soft), var(--pink-soft));
+    }
+
+    /* ==========================================================================
+       8. SHOP, ACHIEVEMENTS, MISSIONS & TABLES
+       ========================================================================== */
+    .shop-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .swatch-preview {
+      display: flex;
+      gap: 6px;
+      padding: 10px;
+      border-radius: 12px;
+      background: var(--bg-surface-2);
+      justify-content: center;
+    }
+
+    .swatch-dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 8px;
+      background: var(--bg-surface-2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--lavender), var(--mint));
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-soft);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       9. OPTIONAL ADSENSE-READY SLOTS (NON-INTRUSIVE & CLEAN)
+       ========================================================================== */
+    .ad-slot-container {
+      width: 100%;
+      margin: 16px 0;
+      padding: 10px 14px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 12px;
+      background: var(--bg-surface-2);
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-soft);
+      display: none; /* Hidden by default until AdSense publisher snippet is enabled */
+    }
+
+    .ad-slot-container.ad-preview-visible {
+      display: block;
+    }
+
+    /* ==========================================================================
+       10. MODALS, TOASTS & CONFETTI CANVAS
+       ========================================================================== */
+    #confetti-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.52);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 90;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeSlideIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      max-width: 440px;
+      width: 100%;
+      padding: 24px;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+    }
+
+    .toast-stack {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 95;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--lavender);
+      box-shadow: var(--shadow-md);
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--text-main);
+      animation: fadeSlideIn 0.22s ease;
+    }
+
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      z-index: 35;
+    }
+
+    /* ==========================================================================
+       11. RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1060px) {
+      .play-layout {
+        grid-template-columns: 1fr;
+      }
+      .daily-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 860px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+      }
+      .sidebar-backdrop.open {
+        display: block;
+      }
+      .main-wrap {
+        margin-left: 0;
+      }
+      .mobile-menu-btn {
+        display: inline-flex;
+      }
+      .grid-4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .hero-preview-tiles {
+        display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .content-area {
+        padding: 14px;
+      }
+      .topbar {
+        padding: 0 14px;
+      }
+      .grid-2, .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+      .daily-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .board-outer {
+        padding: 8px;
+      }
+      .board-grid {
+        gap: 7px;
+      }
     }
   </style>
 </head>
 <body>
-  <main class="app">
-    <div class="topline">
-      <div class="brand">GameZone 203 · Original Games</div>
-      <a class="back" href="../../index.html">← Home</a>
-    </div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+  <div class="sidebar-backdrop" id="sidebar-backdrop" onclick="toggleSidebar(false)"></div>
 
-    <div class="heading">
-      <div>
-        <h1>2048</h1>
-        <p class="subtitle">Join the tiles. Reach the 2048 tile.</p>
+  <div class="app-shell">
+    <!-- ======================================================================
+         SIDEBAR NAVIGATION
+         ====================================================================== -->
+    <aside class="sidebar" id="sidebar" aria-label="Primary Navigation">
+      <div class="brand-header">
+        <div class="brand-logo" aria-hidden="true">2048</div>
+        <div>
+          <div class="brand-title">2048 Ultimate Pro</div>
+          <div class="brand-sub">Premium Puzzle Hub</div>
+        </div>
       </div>
-      <div class="scores" aria-live="polite">
-        <div class="score-box"><span class="score-label">Score</span><span class="score-value" id="score">0</span></div>
-        <div class="score-box"><span class="score-label">Best</span><span class="score-value" id="best">0</span></div>
-      </div>
-    </div>
 
-    <div class="toolbar">
-      <button class="primary" id="newGame">New Game</button>
-      <button class="secondary" id="undo" disabled>Undo</button>
-    </div>
-
-    <section class="board" id="board" aria-label="2048 game board">
-      <div class="message" id="message">
-        <h2 id="messageTitle">Game Over</h2>
-        <p id="messageText">No more moves available.</p>
-        <button id="messageButton">Try Again</button>
+      <!-- Player Profile Card -->
+      <div class="sidebar-profile">
+        <div class="profile-top">
+          <div class="avatar-badge" id="sidebar-avatar" aria-hidden="true">🦊</div>
+          <div style="min-width: 0; flex: 1;">
+            <div class="profile-name-row">
+              <span class="profile-name" id="sidebar-nickname">Player One</span>
+              <button class="btn-soft" style="padding:2px 6px; border-radius:6px; font-size:11px;" onclick="openProfileModal()" title="Edit Profile" aria-label="Edit Player Profile">✎</button>
+            </div>
+            <div style="margin-top: 3px;">
+              <span class="level-pill" id="sidebar-level">Level 1</span>
+            </div>
+          </div>
+        </div>
+        <div class="xp-bar-wrap" role="progressbar" aria-label="Level XP Progress">
+          <div class="xp-bar-fill" id="sidebar-xp-bar"></div>
+        </div>
+        <div class="xp-meta">
+          <span id="sidebar-xp-text">0 / 250 XP</span>
+          <span id="sidebar-best-mini">Best: 0</span>
+        </div>
       </div>
-    </section>
-    <p class="help"><strong>How to play:</strong> Use your arrow keys, swipe on mobile, or drag with mouse. Combine matching numbers to make bigger tiles. Reach <strong>2048</strong> to win!</p>
-  </main>
+
+      <nav class="nav-group">
+        <div class="nav-label">Arcade</div>
+        <button class="nav-btn active" data-view="home" onclick="navigate('home')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9.5z"/></svg>
+          Home Dashboard
+        </button>
+        <button class="nav-btn" data-view="play" onclick="navigate('play')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+          Play Game
+          <span class="nav-badge" id="nav-active-mode">4×4</span>
+        </button>
+        <button class="nav-btn" data-view="modes" onclick="navigate('modes')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Game Modes (8)
+        </button>
+        <button class="nav-btn" data-view="daily" onclick="navigate('daily')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Daily Bonus
+          <span class="nav-badge pulse" id="nav-daily-badge">Claim!</span>
+        </button>
+
+        <div class="nav-label">Progression & Economy</div>
+        <button class="nav-btn" data-view="shop" onclick="navigate('shop')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Reward Shop
+        </button>
+        <button class="nav-btn" data-view="achievements" onclick="navigate('achievements')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          Achievements
+          <span class="nav-badge" id="nav-ach-count">0/14</span>
+        </button>
+        <button class="nav-btn" data-view="missions" onclick="navigate('missions')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Missions
+        </button>
+
+        <div class="nav-label">Analytics & Info</div>
+        <button class="nav-btn" data-view="stats" onclick="navigate('stats')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          Statistics
+        </button>
+        <button class="nav-btn" data-view="history" onclick="navigate('history')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Game History
+        </button>
+        <button class="nav-btn" data-view="settings" onclick="navigate('settings')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Settings
+        </button>
+        <button class="nav-btn" data-view="guide" onclick="navigate('guide')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          How to Play & FAQ
+        </button>
+        <button class="nav-btn" data-view="about" onclick="navigate('about')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          About & Legal
+        </button>
+      </nav>
+    </aside>
+
+    <!-- ======================================================================
+         MAIN CONTENT AREA
+         ====================================================================== -->
+    <div class="main-wrap">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-menu-btn" onclick="toggleSidebar(true)" aria-label="Open navigation menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          </button>
+          <h1 class="page-heading" id="topbar-title">Home Dashboard</h1>
+        </div>
+
+        <div class="topbar-right">
+          <button class="stat-chip" onclick="navigate('shop')" title="Virtual Coin Wallet">
+            <span class="coin-icon" aria-hidden="true">C</span>
+            <span id="topbar-coins">250</span>
+          </button>
+          <button class="stat-chip" onclick="navigate('daily')" title="Daily Login Streak">
+            <span style="color:var(--peach);" aria-hidden="true">🔥</span>
+            <span id="topbar-streak">0d</span>
+          </button>
+          <button class="icon-btn" id="sound-toggle-btn" onclick="toggleSound()" title="Toggle Sound Effects" aria-label="Toggle Sound Effects">
+            <svg id="icon-sound-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <svg id="icon-sound-off" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+          <button class="icon-btn" onclick="toggleTheme()" title="Toggle Light/Dark Mode" aria-label="Toggle Light or Dark Theme">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <!-- Optional AdSense Header Slot (Hidden until AdSense publisher snippet is placed) -->
+        <aside class="ad-slot-container" id="ad-header" aria-label="Optional Advertisement Space">
+          <!-- Optional AdSense Header Unit (728x90 / Responsive) -->
+          <span>Optional Advertisement Slot – Header (Configure in Settings or HTML)</span>
+        </aside>
+
+        <!-- ==================================================================
+             VIEW 1: HOME DASHBOARD
+             ================================================================== -->
+        <section id="view-home" class="view-section active">
+          <div class="hero-banner">
+            <div class="hero-content">
+              <span class="pill pill-lavender">✨ Season 1 • Ultimate Puzzle Platform</span>
+              <h2 class="hero-title">Merge Smarter. Unlock Themes. Master 2048.</h2>
+              <p class="hero-desc">Experience 8 distinct game modes from 3×3 blitzes to 6×6 marathons, daily seeded challenges, tactical power-ups, and a rich virtual reward economy.</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" onclick="navigate('play')">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Play Now
+                </button>
+                <button class="btn btn-soft" onclick="startGameMode('daily')">
+                  📅 Today's Daily Challenge
+                </button>
+                <button class="btn btn-soft" onclick="navigate('daily')">
+                  🎁 Daily Bonus
+                </button>
+              </div>
+            </div>
+            <div class="hero-preview-tiles" aria-hidden="true">
+              <div class="mini-demo-tile" style="background:#DDD6FE; color:#4C1D95;">128</div>
+              <div class="mini-demo-tile" style="background:#BAE6FD; color:#075985;">256</div>
+              <div class="mini-demo-tile" style="background:#A7F3D0; color:#065F46;">512</div>
+              <div class="mini-demo-tile" style="background:linear-gradient(135deg,#8B5CF6,#EC4899); color:#fff;">2048</div>
+            </div>
+          </div>
+
+          <div class="grid-4" style="margin-bottom: 22px;">
+            <div class="kpi-card">
+              <div class="kpi-icon" style="background:var(--lavender-soft); color:var(--lavender);">🏆</div>
+              <div>
+                <div class="kpi-val" id="home-best-score">0</div>
+                <div class="kpi-label">All-Time Best Score</div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon" style="background:var(--mint-soft); color:var(--mint);">🧩</div>
+              <div>
+                <div class="kpi-val" id="home-best-tile">0</div>
+                <div class="kpi-label">Highest Tile Merged</div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon" style="background:var(--amber-soft); color:var(--amber);">🪙</div>
+              <div>
+                <div class="kpi-val" id="home-coins">250</div>
+                <div class="kpi-label">Virtual Coin Balance</div>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-icon" style="background:var(--pink-soft); color:var(--pink);">⚡</div>
+              <div>
+                <div class="kpi-val" id="home-games-played">0</div>
+                <div class="kpi-label">Total Games Played</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">🎯 Featured Game Modes</h3>
+                <button class="btn btn-soft btn-sm" onclick="navigate('modes')">View All 8 →</button>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:10px;" id="home-featured-modes"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">📋 Active Daily Missions</h3>
+                <button class="btn btn-soft btn-sm" onclick="navigate('missions')">All Missions →</button>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:12px;" id="home-missions-preview"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 2: PLAY GAME ARENA
+             ================================================================== -->
+        <section id="view-play" class="view-section">
+          <div class="play-layout">
+            <!-- Left: Board Stage -->
+            <div class="board-stage">
+              <div class="hud-top">
+                <div class="mode-badge-wrap">
+                  <span class="pill pill-lavender" id="hud-mode-name">Classic 2048 (4×4)</span>
+                  <span class="pill pill-mint" id="hud-double-badge" style="display:none;">2× SCORE ACTIVE (<span id="hud-double-moves">0</span>)</span>
+                  <span class="pill pill-peach" id="hud-target-badge" style="display:none;">Target: <span id="hud-target-val">2048</span></span>
+                </div>
+
+                <div class="score-boxes">
+                  <div class="score-box" id="score-box-current">
+                    <div class="score-box-label">Score</div>
+                    <div class="score-box-val" id="hud-score">0</div>
+                  </div>
+                  <div class="score-box">
+                    <div class="score-box-label">Best</div>
+                    <div class="score-box-val" id="hud-best">0</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hud-subbar">
+                <div class="hud-metrics">
+                  <span>Moves: <strong id="hud-moves">0</strong></span>
+                  <span>Time: <strong id="hud-timer">00:00</strong></span>
+                  <span>Max Tile: <strong id="hud-max-tile">0</strong></span>
+                </div>
+                <div class="hud-actions">
+                  <button class="btn btn-soft btn-sm" onclick="togglePause()" id="btn-pause">⏸ Pause</button>
+                  <button class="btn btn-soft btn-sm" onclick="confirmRestart()">↻ Restart</button>
+                  <button class="btn btn-primary btn-sm" onclick="confirmNewGame()">+ New</button>
+                </div>
+              </div>
+
+              <!-- Interactive 2048 Board -->
+              <div class="board-outer theme-pastel bg-cloud" id="board-outer" role="region" aria-label="2048 Game Board">
+                <div class="board-grid" id="board-grid"></div>
+
+                <!-- Overlay for Pause / Win / Game Over -->
+                <div class="board-overlay" id="board-overlay">
+                  <div style="font-size:40px; margin-bottom:8px;" id="overlay-emoji">🏆</div>
+                  <h2 style="font-size:24px; font-weight:900; margin-bottom:6px;" id="overlay-title">You Reached 2048!</h2>
+                  <p style="color:var(--text-muted); font-size:14px; max-width:300px; margin-bottom:18px;" id="overlay-desc">Amazing strategy! Continue playing for an even higher score or start a fresh run.</p>
+                  <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;" id="overlay-buttons"></div>
+                </div>
+              </div>
+
+              <!-- Touch & Mouse D-Pad Controls -->
+              <div class="touch-dpad" aria-label="Directional Game Controls">
+                <div></div>
+                <button class="dpad-btn" onclick="handleMove('up')" aria-label="Move Up">▲</button>
+                <div></div>
+                <button class="dpad-btn" onclick="handleMove('left')" aria-label="Move Left">◀</button>
+                <button class="dpad-btn" onclick="handleMove('down')" aria-label="Move Down">▼</button>
+                <button class="dpad-btn" onclick="handleMove('right')" aria-label="Move Right">▶</button>
+              </div>
+              <p style="font-size:12px; color:var(--text-soft); margin-top:10px;">Use <strong>Arrow Keys</strong>, <strong>WASD</strong>, <strong>Swipe</strong>, or buttons above.</p>
+            </div>
+
+            <!-- Right: Power-Ups & Quick Mode Switch -->
+            <div style="display:flex; flex-direction:column; gap:18px;">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">⚡ Tactical Power-Ups</h3>
+                  <span class="pill pill-amber">🪙 <span id="pu-wallet-display">250</span></span>
+                </div>
+                <div class="powerup-grid">
+                  <div class="powerup-item">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--lavender-soft); color:var(--lavender);">↩</div>
+                      <div>
+                        <div class="pu-title">Undo Move <span class="pill pill-lavender" id="undo-stock-pill">2 free</span></div>
+                        <div class="pu-desc">Revert previous board state</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" id="btn-undo" onclick="usePowerup('undo')">Use</button>
+                  </div>
+
+                  <div class="powerup-item">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--sky-soft); color:var(--sky);">↪</div>
+                      <div>
+                        <div class="pu-title">Redo Move</div>
+                        <div class="pu-desc">Re-apply undone move</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" id="btn-redo" onclick="usePowerup('redo')" disabled>Redo</button>
+                  </div>
+
+                  <div class="powerup-item">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--mint-soft); color:var(--mint);">🔀</div>
+                      <div>
+                        <div class="pu-title">Shuffle Tiles</div>
+                        <div class="pu-desc">Fairly re-arrange existing tiles</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" onclick="usePowerup('shuffle')">75 🪙</button>
+                  </div>
+
+                  <div class="powerup-item">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--pink-soft); color:var(--pink);">🎯</div>
+                      <div>
+                        <div class="pu-title">Remove Tile</div>
+                        <div class="pu-desc">Click any single tile to clear it</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" id="btn-remove-tile" onclick="usePowerup('remove')">100 🪙</button>
+                  </div>
+
+                  <div class="powerup-item">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--peach-soft); color:var(--peach);">2×</div>
+                      <div>
+                        <div class="pu-title">Double Score</div>
+                        <div class="pu-desc">2× merge points for 10 moves</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" onclick="usePowerup('double')">120 🪙</button>
+                  </div>
+
+                  <div class="powerup-item" id="pu-extratime-row">
+                    <div class="powerup-info">
+                      <div class="pu-badge" style="background:var(--amber-soft); color:var(--amber);">⏱</div>
+                      <div>
+                        <div class="pu-title">Extra Time (+30s)</div>
+                        <div class="pu-desc">Available in Time Attack mode</div>
+                      </div>
+                    </div>
+                    <button class="btn btn-soft btn-sm" id="btn-extratime" onclick="usePowerup('extratime')">80 🪙</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="card-title">🎮 Quick Switch Mode</h3>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;" id="quick-mode-buttons"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 3: ALL 8 GAME MODES
+             ================================================================== -->
+        <section id="view-modes" class="view-section">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">🕹️ Select Your Game Mode</h2>
+                <p style="font-size:13.5px; color:var(--text-muted); margin-top:4px;">Each mode features tailored grid physics, rulesets, XP multipliers, and personal high score records.</p>
+              </div>
+            </div>
+            <div class="grid-2" id="all-modes-grid"></div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 4: DAILY LOGIN BONUS SYSTEM
+             ================================================================== -->
+        <section id="view-daily" class="view-section">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">🎁 7-Day Daily Login Rewards</h2>
+                <p style="font-size:13.5px; color:var(--text-muted); margin-top:4px;">Check in every calendar day to build your streak and earn up to 500 virtual coins on Day 7!</p>
+              </div>
+              <div style="text-align:right;">
+                <span class="pill pill-peach" id="daily-streak-pill">🔥 Current Streak: 0 Days</span>
+                <div style="font-size:12px; color:var(--text-soft); margin-top:4px;">Next reset in: <strong id="daily-countdown">--:--:--</strong></div>
+              </div>
+            </div>
+
+            <div class="daily-grid" id="daily-calendar-grid"></div>
+
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:10px; border-top:1px solid var(--border-color);">
+              <div style="font-size:13px; color:var(--text-muted);">
+                Missing a calendar day resets the 7-day cycle back to Day 1. Complete a 7-day cycle to unlock the <strong>Dedicated Player</strong> achievement!
+              </div>
+              <button class="btn btn-primary" id="btn-claim-daily" onclick="claimDailyBonus()">Claim Today's Reward</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">📜 Reward Claim History</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Date</th><th>Day Cycle</th><th>Reward</th></tr>
+                </thead>
+                <tbody id="daily-history-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 5: COIN WALLET & REWARD SHOP
+             ================================================================== -->
+        <section id="view-shop" class="view-section">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">🛍️ Virtual Reward Shop</h2>
+                <p style="font-size:13.5px; color:var(--text-muted); margin-top:4px;">Customize your tiles, board backgrounds, and stock up on Undo charges using virtual coins earned in-game.</p>
+              </div>
+              <div class="stat-chip" style="font-size:15px;">
+                <span class="coin-icon">C</span>
+                <span id="shop-coin-balance">250</span> Coins
+              </div>
+            </div>
+
+            <h3 style="font-size:15px; font-weight:800; margin:16px 0 12px;">🎨 Tile Color Themes</h3>
+            <div class="grid-3" id="shop-themes-grid"></div>
+
+            <h3 style="font-size:15px; font-weight:800; margin:24px 0 12px;">🖼️ Board Backgrounds</h3>
+            <div class="grid-3" id="shop-boards-grid"></div>
+
+            <h3 style="font-size:15px; font-weight:800; margin:24px 0 12px;">⚡ Power-Up Refills</h3>
+            <div class="grid-3" id="shop-consumables-grid"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">💳 Coin Transaction Ledger</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Activity</th><th>Amount</th><th>Date</th></tr>
+                </thead>
+                <tbody id="coin-ledger-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 6: ACHIEVEMENTS
+             ================================================================== -->
+        <section id="view-achievements" class="view-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">🏅 Achievements & Badges</h2>
+                <p style="font-size:13.5px; color:var(--text-muted); margin-top:4px;">Unlock milestones to earn virtual coin rewards and showcase your mastery.</p>
+              </div>
+              <span class="pill pill-lavender" id="ach-summary-pill">0 / 14 Unlocked</span>
+            </div>
+            <div class="grid-2" id="achievements-grid"></div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 7: DAILY & WEEKLY MISSIONS
+             ================================================================== -->
+        <section id="view-missions" class="view-section">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">☀️ Daily Missions</h2>
+                <span class="pill pill-sky">Resets Midnight</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:14px;" id="daily-missions-list"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">🗓️ Weekly Missions</h2>
+                <span class="pill pill-lavender">Resets Monday</span>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:14px;" id="weekly-missions-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 8: STATISTICS DASHBOARD
+             ================================================================== -->
+        <section id="view-stats" class="view-section">
+          <div class="card" style="margin-bottom:20px;">
+            <div class="card-header">
+              <h2 class="card-title">📊 Lifetime Player Statistics</h2>
+              <div style="display:flex; gap:8px;">
+                <button class="btn btn-soft btn-sm" onclick="shareStatsSummary()">📤 Share Stats</button>
+                <button class="btn btn-danger btn-sm" onclick="confirmResetStats()">Reset Stats</button>
+              </div>
+            </div>
+            <div class="grid-4" id="stats-kpi-grid"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">🏆 Personal Records by Mode</h3>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Game Mode</th><th>Best Score</th><th>Highest Tile</th><th>Games Played</th></tr>
+                </thead>
+                <tbody id="mode-records-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 9: GAME HISTORY
+             ================================================================== -->
+        <section id="view-history" class="view-section">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">🕒 Recent Match History</h2>
+                <p style="font-size:13.5px; color:var(--text-muted); margin-top:4px;">Your last 30 completed or ended sessions saved locally.</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Mode</th><th>Result</th><th>Score</th><th>Best Tile</th><th>Moves</th><th>Duration</th><th>Date</th><th>Share</th></tr>
+                </thead>
+                <tbody id="game-history-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 10: SETTINGS & DATA MANAGEMENT
+             ================================================================== -->
+        <section id="view-settings" class="view-section">
+          <div class="grid-2">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">⚙️ Preferences & Accessibility</h2>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:14px;">
+                <div class="powerup-item">
+                  <div>
+                    <div class="pu-title">Appearance Theme</div>
+                    <div class="pu-desc">Switch between Pastel Light and Midnight Dark</div>
+                  </div>
+                  <button class="btn btn-soft btn-sm" onclick="toggleTheme()" id="set-theme-btn">Light Mode</button>
+                </div>
+
+                <div class="powerup-item">
+                  <div>
+                    <div class="pu-title">Synthesized Sound Effects</div>
+                    <div class="pu-desc">Web Audio API chimes & merge feedback</div>
+                  </div>
+                  <button class="btn btn-soft btn-sm" onclick="toggleSound()" id="set-sound-btn">ON</button>
+                </div>
+
+                <div class="powerup-item">
+                  <div>
+                    <div class="pu-title">Smooth Tile & Confetti Animations</div>
+                    <div class="pu-desc">Disable for reduced-motion preference</div>
+                  </div>
+                  <button class="btn btn-soft btn-sm" onclick="toggleAnimations()" id="set-anim-btn">ON</button>
+                </div>
+
+                <div class="powerup-item">
+                  <div>
+                    <div class="pu-title">Haptic Vibration Feedback</div>
+                    <div class="pu-desc">Subtle mobile vibration on merges (if supported)</div>
+                  </div>
+                  <button class="btn btn-soft btn-sm" onclick="toggleVibration()" id="set-vib-btn">ON</button>
+                </div>
+
+                <div class="powerup-item">
+                  <div>
+                    <div class="pu-title">AdSense Layout Preview</div>
+                    <div class="pu-desc">Show optional placeholder slots for publishers</div>
+                  </div>
+                  <button class="btn btn-soft btn-sm" onclick="toggleAdSlots()" id="set-ad-btn">Hidden</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">💾 Save Data Backup & Controls</h2>
+              </div>
+              <div style="display:flex; flex-direction:column; gap:12px;">
+                <p style="font-size:13.5px; color:var(--text-muted);">All coins, unlocked themes, streaks, achievements, and high scores are stored locally in your browser.</p>
+                <div style="display:flex; flex-wrap:wrap; gap:10px;">
+                  <button class="btn btn-primary btn-sm" onclick="exportSaveData()">⬇ Export JSON Backup</button>
+                  <label class="btn btn-soft btn-sm" style="cursor:pointer;">
+                    ⬆ Import JSON Backup
+                    <input type="file" accept=".json" style="display:none;" onchange="importSaveData(event)" />
+                  </label>
+                </div>
+                <div style="padding:12px; background:var(--bg-surface-2); border-radius:12px; font-size:13px;">
+                  <strong>Keyboard Shortcuts:</strong><br/>
+                  • <strong>Arrow Keys / WASD:</strong> Slide tiles<br/>
+                  • <strong>Z / Ctrl+Z:</strong> Undo move<br/>
+                  • <strong>Y / Ctrl+Y:</strong> Redo move<br/>
+                  • <strong>P:</strong> Pause / Resume game
+                </div>
+                <div style="margin-top:8px; padding-top:12px; border-top:1px solid var(--border-color);">
+                  <button class="btn btn-danger btn-sm" onclick="confirmFactoryReset()">⚠️ Reset All Platform Data</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 11: HOW TO PLAY, RULES & FAQ
+             ================================================================== -->
+        <section id="view-guide" class="view-section">
+          <div class="grid-2" style="margin-bottom:20px;">
+            <div class="card">
+              <h2 class="card-title" style="margin-bottom:12px;">📖 How to Play & Core Rules</h2>
+              <ul style="padding-left:18px; display:flex; flex-direction:column; gap:8px; color:var(--text-muted); font-size:14px;">
+                <li><strong>Objective:</strong> Slide numbered tiles on the grid so matching numbers collide and merge into their sum (2 + 2 = 4, 4 + 4 = 8, up to 2048 and beyond).</li>
+                <li><strong>One Merge Per Move:</strong> Each tile can only merge once per directional swipe. For example, [2, 2, 2, 2] swiped left becomes [4, 4], not [8].</li>
+                <li><strong>New Tile Spawns:</strong> After every valid move, a new tile spawns in a random empty square (90% chance of 2, 10% chance of 4).</li>
+                <li><strong>Winning & Endless Play:</strong> Creating the 2048 tile triggers a Victory celebration! You can claim your win bonus or tap <em>Keep Going</em> to chase 4096, 8192, and higher.</li>
+                <li><strong>Pro Strategy Tip:</strong> Keep your highest-value tile anchored in one corner and build descending chains along an adjacent edge.</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title" style="margin-bottom:12px;">❓ Frequently Asked Questions</h2>
+              <div style="display:flex; flex-direction:column; gap:12px; font-size:14px;">
+                <div>
+                  <strong>How does the Daily Challenge work?</strong>
+                  <p style="color:var(--text-muted);">Every calendar day generates a deterministic seed based on today's date (YYYY-MM-DD), ensuring consistent tile spawns. Completing it awards a daily bonus once per day.</p>
+                </div>
+                <div>
+                  <strong>Are virtual coins real money?</strong>
+                  <p style="color:var(--text-muted);">No. Virtual coins are purely in-game entertainment points earned by playing, claiming daily check-ins, and finishing missions. There is no real-money gambling or cash redemption.</p>
+                </div>
+                <div>
+                  <strong>How do I keep my progress across devices?</strong>
+                  <p style="color:var(--text-muted);">Visit <em>Settings → Export JSON Backup</em> to download your save file, then import it on your other device.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             VIEW 12: ABOUT, CONTACT, PRIVACY & TERMS
+             ================================================================== -->
+        <section id="view-about" class="view-section">
+          <div class="grid-2">
+            <div class="card">
+              <h2 class="card-title" style="margin-bottom:10px;">🌟 About 2048 Ultimate Pro</h2>
+              <p style="font-size:14px; color:var(--text-muted); margin-bottom:12px;">
+                2048 Ultimate Pro is a modern, lightweight HTML5 puzzle platform crafted for smooth performance across desktop and mobile devices. Inspired by Gabriele Cirulli's classic 2048 number puzzle, this edition expands the experience with multiple grid sizes, Time Attack, daily seeded puzzles, tactical power-ups, and an accessible pastel UI.
+              </p>
+              <h3 style="font-size:15px; font-weight:800; margin:14px 0 6px;">📬 Contact & Feedback</h3>
+              <p style="font-size:13.5px; color:var(--text-muted);">
+                Have suggestions, bug reports, or partnership inquiries?<br/>
+                Email: <strong>support@example-2048pro.com</strong> (Replace with your publisher contact email before deployment).
+              </p>
+            </div>
+
+            <div class="card">
+              <h2 class="card-title" style="margin-bottom:10px;">🛡️ Privacy Policy & Terms of Use</h2>
+              <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">
+                <strong>Local-First Privacy:</strong> Your gameplay statistics, nickname, settings, and virtual coin balance are saved exclusively inside your browser's <code>localStorage</code>. We do not collect or transmit personal data to external servers.
+              </p>
+              <p style="font-size:13.5px; color:var(--text-muted); margin-bottom:10px;">
+                <strong>Advertising Disclosure:</strong> Optional Google AdSense containers are included in the page layout for site publishers. If enabled by the site owner, third-party ad networks may use cookies in accordance with their privacy policies.
+              </p>
+              <p style="font-size:13.5px; color:var(--text-muted);">
+                <strong>Terms of Use:</strong> Provided "as-is" for personal, non-commercial entertainment. All virtual coins, XP, and shop items hold zero monetary value.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Optional AdSense Content / Footer Slot -->
+        <aside class="ad-slot-container" id="ad-footer" aria-label="Optional Footer Advertisement Space">
+          <!-- Optional AdSense Responsive Footer Unit -->
+          <span>Optional Advertisement Slot – Footer (Configure in Settings or HTML)</span>
+        </aside>
+      </main>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL DIALOG & TOAST STACK
+       ======================================================================== -->
+  <div class="modal-backdrop" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <div style="font-size:38px; margin-bottom:8px;" id="modal-icon">✨</div>
+      <h3 style="font-size:20px; font-weight:900; margin-bottom:8px;" id="modal-title">Title</h3>
+      <div style="font-size:14px; color:var(--text-muted); margin-bottom:20px;" id="modal-body">Message</div>
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;" id="modal-actions"></div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
 
   <script>
-    (() => {
-      "use strict";
-      const SIZE = 4;
-      const boardEl = document.getElementById("board");
-      const scoreEl = document.getElementById("score");
-      const bestEl = document.getElementById("best");
-      const undoBtn = document.getElementById("undo");
-      const message = document.getElementById("message");
-      const messageTitle = document.getElementById("messageTitle");
-      const messageText = document.getElementById("messageText");
-      let grid, score, best, previous, won, keepPlaying;
+    /* ========================================================================
+       1. CONSTANTS, CATALOGS & GAME DEFINITIONS
+       ======================================================================== */
+    const STORAGE_KEY = '2048_ultimate_pro_save_v1';
 
-      try { best = Number(localStorage.getItem("gz203_2048_best")) || 0; }
-      catch (_) { best = 0; }
-      bestEl.textContent = best;
+    const GAME_MODES = [
+      { id: 'classic', name: 'Classic 2048', size: 4, desc: 'The authentic 4×4 strategic puzzle experience. Reach 2048 to win!', badge: 'Popular', pill: 'pill-lavender', target: 2048 },
+      { id: 'mini', name: 'Mini 3×3 Challenge', size: 3, desc: 'Tight quarters! Fast-paced tactical board where every tile counts.', badge: 'Hard', pill: 'pill-pink', target: 512 },
+      { id: 'large', name: 'Large 5×5 Challenge', size: 5, desc: 'Expanded 5×5 arena for massive combos and 8192+ tile runs.', badge: 'Combo', pill: 'pill-mint', target: 4096 },
+      { id: 'expert', name: 'Expert 6×6 Challenge', size: 6, desc: 'Grandmaster 6×6 grid built for marathon sessions and huge scores.', badge: 'Marathon', pill: 'pill-sky', target: 8192 },
+      { id: 'timeattack', name: 'Time Attack (120s)', size: 4, desc: 'Race against a 120-second clock! Big merges grant bonus seconds.', badge: 'Timed', pill: 'pill-peach', target: 2048, timeLimit: 120 },
+      { id: 'endless', name: 'Endless Mode', size: 4, desc: 'No 2048 pause—keep merging indefinitely until no valid moves remain.', badge: 'Zen', pill: 'pill-mint', target: 0 },
+      { id: 'daily', name: 'Daily Challenge', size: 4, desc: 'Today’s date-seeded puzzle board. Complete once daily for +250 coins!', badge: 'Daily Seed', pill: 'pill-amber', target: 2048 },
+      { id: 'highscore', name: 'High Score Challenge', size: 4, desc: 'Push past the 10,000-point benchmark for bonus coin payouts.', badge: '10K Goal', pill: 'pill-lavender', target: 2048, scoreGoal: 10000 }
+    ];
 
-      function emptyGrid() { return Array.from({ length: SIZE }, () => Array(SIZE).fill(0)); }
-      function snapshot() { return { grid: grid.map(row => row.slice()), score, won, keepPlaying }; }
-      function saveBest() {
-        if (score > best) {
-          best = score;
-          bestEl.textContent = best;
-          try { localStorage.setItem("gz203_2048_best", String(best)); } catch (_) {}
+    const DAILY_REWARDS = [
+      { day: 1, coins: 100 },
+      { day: 2, coins: 150 },
+      { day: 3, coins: 200 },
+      { day: 4, coins: 250 },
+      { day: 5, coins: 300 },
+      { day: 6, coins: 400 },
+      { day: 7, coins: 500 }
+    ];
+
+    const SHOP_THEMES = [
+      { id: 'pastel', name: 'Pastel Dream', price: 0, colors: ['#FFFFFF', '#DDD6FE', '#BAE6FD', '#A7F3D0'] },
+      { id: 'sunset', name: 'Sunset Peach', price: 300, colors: ['#FFEDD5', '#FDBA74', '#F97316', '#F43F5E'] },
+      { id: 'mint', name: 'Mint Forest', price: 450, colors: ['#D1FAE5', '#6EE7B7', '#10B981', '#0284C7'] },
+      { id: 'cyber', name: 'Neon Cyber', price: 650, colors: ['#1E293B', '#4C1D95', '#0284C7', '#EC4899'] },
+      { id: 'royal', name: 'Royal Gold', price: 900, colors: ['#FEF9C3', '#FACC15', '#D97706', '#7E22CE'] }
+    ];
+
+    const SHOP_BOARDS = [
+      { id: 'cloud', name: 'Cloud Soft', price: 0, bg: 'linear-gradient(135deg, #E2E8F0, #CBD5E1)' },
+      { id: 'lavender', name: 'Lavender Mist', price: 250, bg: 'linear-gradient(135deg, #DDD6FE, #C4B5FD)' },
+      { id: 'ocean', name: 'Ocean Breeze', price: 350, bg: 'linear-gradient(135deg, #BAE6FD, #7DD3FC)' },
+      { id: 'rose', name: 'Rose Quartz', price: 450, bg: 'linear-gradient(135deg, #FBCFE8, #F9A8D4)' },
+      { id: 'midnight', name: 'Midnight Slate', price: 600, bg: 'linear-gradient(135deg, #1E293B, #0F172A)' }
+    ];
+
+    const ACHIEVEMENTS_LIST = [
+      { id: 'first_move', title: 'First Step', desc: 'Make your very first move on the board.', reward: 50, icon: '👣', check: s => s.stats.totalMoves >= 1, prog: s => [Math.min(1, s.stats.totalMoves), 1] },
+      { id: 'first_merge', title: 'Twin Merger', desc: 'Merge two tiles together for the first time.', reward: 50, icon: '✨', check: s => s.stats.totalMerges >= 1, prog: s => [Math.min(1, s.stats.totalMerges), 1] },
+      { id: 'tile_128', title: 'Triple Digits', desc: 'Create a 128 tile.', reward: 100, icon: '🔹', check: s => s.stats.bestTile >= 128, prog: s => [Math.min(128, s.stats.bestTile), 128] },
+      { id: 'tile_512', title: 'Halfway Hero', desc: 'Create a 512 tile.', reward: 200, icon: '💠', check: s => s.stats.bestTile >= 512, prog: s => [Math.min(512, s.stats.bestTile), 512] },
+      { id: 'tile_1024', title: 'Grand Contender', desc: 'Create a 1024 tile.', reward: 350, icon: '🔮', check: s => s.stats.bestTile >= 1024, prog: s => [Math.min(1024, s.stats.bestTile), 1024] },
+      { id: 'tile_2048', title: '2048 Champion', desc: 'Reach the legendary 2048 tile!', reward: 600, icon: '👑', check: s => s.stats.bestTile >= 2048, prog: s => [Math.min(2048, s.stats.bestTile), 2048] },
+      { id: 'tile_4096', title: 'Beyond Limits', desc: 'Forge a massive 4096 tile.', reward: 1000, icon: '🚀', check: s => s.stats.bestTile >= 4096, prog: s => [Math.min(4096, s.stats.bestTile), 4096] },
+      { id: 'play_10', title: 'Dedicated Puzzler', desc: 'Complete 10 full games.', reward: 200, icon: '🎮', check: s => s.stats.gamesPlayed >= 10, prog: s => [Math.min(10, s.stats.gamesPlayed), 10] },
+      { id: 'win_5', title: 'Serial Winner', desc: 'Win 5 games across any mode.', reward: 400, icon: '🏆', check: s => s.stats.wins >= 5, prog: s => [Math.min(5, s.stats.wins), 5] },
+      { id: 'score_5000', title: 'High Roller', desc: 'Score 5,000+ points in a single game.', reward: 200, icon: '⭐', check: s => s.stats.highestScore >= 5000, prog: s => [Math.min(5000, s.stats.highestScore), 5000] },
+      { id: 'score_20000', title: 'Score Titan', desc: 'Score 20,000+ points in a single game.', reward: 600, icon: '💎', check: s => s.stats.highestScore >= 20000, prog: s => [Math.min(20000, s.stats.highestScore), 20000] },
+      { id: 'streak_7', title: 'Weekly Regular', desc: 'Reach a 7-day login bonus streak.', reward: 500, icon: '🔥', check: s => s.daily.maxStreak >= 7, prog: s => [Math.min(7, s.daily.maxStreak), 7] },
+      { id: 'shopaholic', title: 'Style Collector', desc: 'Unlock at least 3 tile or board themes.', reward: 250, icon: '🎨', check: s => (s.unlockedThemes.length + s.unlockedBoards.length) >= 5, prog: s => [Math.min(5, s.unlockedThemes.length + s.unlockedBoards.length), 5] },
+      { id: 'power_user', title: 'Tactician', desc: 'Use 5 power-ups during gameplay.', reward: 150, icon: '⚡', check: s => s.stats.powerupsUsed >= 5, prog: s => [Math.min(5, s.stats.powerupsUsed), 5] }
+    ];
+
+    const AVATARS = ['🦊', '🐼', '🐨', '🦁', '🦄', '🐸', '🐙', '🦉', '🚀', '💎'];
+
+    /* ========================================================================
+       2. DEFAULT STATE & PERSISTENCE
+       ======================================================================== */
+    function getTodayStr() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    }
+
+    function getWeekKey() {
+      const d = new Date();
+      const day = d.getDay();
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      const monday = new Date(d.setDate(diff));
+      return `${monday.getFullYear()}-${String(monday.getMonth() + 1).padStart(2, '0')}-${String(monday.getDate()).padStart(2, '0')}`;
+    }
+
+    function createDefaultState() {
+      return {
+        profile: { nickname: 'Player One', avatar: '🦊', xp: 0, level: 1 },
+        coins: 250,
+        undoCharges: 2,
+        unlockedThemes: ['pastel'],
+        equippedTheme: 'pastel',
+        unlockedBoards: ['cloud'],
+        equippedBoard: 'cloud',
+        settings: {
+          darkMode: false,
+          sound: true,
+          animations: true,
+          vibration: true,
+          showAdSlots: false
+        },
+        daily: {
+          streak: 0,
+          maxStreak: 0,
+          lastClaimDate: null,
+          history: []
+        },
+        dailyChallengeCompletedDate: null,
+        achievements: [], // unlocked IDs
+        missions: {
+          dailyDate: getTodayStr(),
+          dailyProgress: { moves: 0, merges: 0, score: 0 },
+          dailyClaimed: {},
+          weeklyKey: getWeekKey(),
+          weeklyProgress: { games: 0, tile512: 0, coinsEarned: 0 },
+          weeklyClaimed: {}
+        },
+        stats: {
+          gamesPlayed: 0,
+          wins: 0,
+          losses: 0,
+          highestScore: 0,
+          bestTile: 0,
+          totalScoreSum: 0,
+          totalMoves: 0,
+          totalMerges: 0,
+          totalPlaytimeSec: 0,
+          powerupsUsed: 0,
+          modeRecords: {}
+        },
+        coinLedger: [
+          { label: 'Welcome Starter Gift', amount: +250, date: getTodayStr() }
+        ],
+        gameHistory: [],
+        activeGame: null
+      };
+    }
+
+    let state = loadState();
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return createDefaultState();
+        const parsed = JSON.parse(raw);
+        const def = createDefaultState();
+        return {
+          ...def,
+          ...parsed,
+          profile: { ...def.profile, ...(parsed.profile || {}) },
+          settings: { ...def.settings, ...(parsed.settings || {}) },
+          daily: { ...def.daily, ...(parsed.daily || {}) },
+          missions: { ...def.missions, ...(parsed.missions || {}) },
+          stats: { ...def.stats, ...(parsed.stats || {}) }
+        };
+      } catch (e) {
+        console.error('State load error, using fresh state:', e);
+        return createDefaultState();
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.error('Failed to save to localStorage:', e);
+      }
+    }
+
+    /* ========================================================================
+       3. WEB AUDIO API PROCEDURAL SOUND ENGINE
+       ======================================================================== */
+    let audioCtx = null;
+
+    function ensureAudio() {
+      if (!state.settings.sound) return null;
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (Ctx) audioCtx = new Ctx();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(() => {});
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.09, gainVal = 0.08, delay = 0) {
+      const ctx = ensureAudio();
+      if (!ctx) return;
+      try {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+        gain.gain.setValueAtTime(gainVal, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + delay + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      } catch (_) {}
+    }
+
+    const SFX = {
+      click: () => playTone(520, 'triangle', 0.05, 0.05),
+      move: () => playTone(240, 'sine', 0.06, 0.04),
+      merge: (val) => {
+        const step = Math.min(12, Math.log2(val || 4));
+        playTone(320 + step * 48, 'triangle', 0.12, 0.09);
+      },
+      coin: () => {
+        playTone(880, 'sine', 0.09, 0.08, 0);
+        playTone(1320, 'sine', 0.16, 0.08, 0.07);
+      },
+      achievement: () => {
+        [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => playTone(f, 'triangle', 0.18, 0.09, i * 0.08));
+      },
+      win: () => {
+        [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => playTone(f, 'sine', 0.24, 0.1, i * 0.09));
+      },
+      gameover: () => {
+        [340, 290, 230].forEach((f, i) => playTone(f, 'sawtooth', 0.22, 0.05, i * 0.14));
+      }
+    };
+
+    function vibrate(ms = 12) {
+      if (state.settings.vibration && navigator.vibrate) {
+        try { navigator.vibrate(ms); } catch (_) {}
+      }
+    }
+
+    /* ========================================================================
+       4. DETERMINISTIC RNG FOR DAILY CHALLENGE
+       ======================================================================== */
+    function hashSeed(str) {
+      let h = 2166136261 >>> 0;
+      for (let i = 0; i < str.length; i++) {
+        h ^= str.charCodeAt(i);
+        h = Math.imul(h, 16777619);
+      }
+      return h >>> 0;
+    }
+
+    function seededRandom(seedObj) {
+      seedObj.val = (seedObj.val * 1664525 + 1013904223) >>> 0;
+      return seedObj.val / 4294967296;
+    }
+
+    /* ========================================================================
+       5. CORE 2048 GAME ENGINE
+       ======================================================================== */
+    let game = null;
+    let gameTimerInterval = null;
+    let isAnimating = false;
+    let removeTileMode = false;
+
+    function createNewGameObject(modeId) {
+      const mode = GAME_MODES.find(m => m.id === modeId) || GAME_MODES[0];
+      const size = mode.size;
+      const grid = Array.from({ length: size }, () => Array(size).fill(0));
+      const rngState = mode.id === 'daily' ? { val: hashSeed('2048-DAILY-' + getTodayStr()) } : null;
+
+      const g = {
+        modeId: mode.id,
+        size,
+        grid,
+        score: 0,
+        moves: 0,
+        elapsedSec: 0,
+        timeLeft: mode.timeLimit || 0,
+        won: false,
+        keepGoing: false,
+        over: false,
+        paused: false,
+        doubleMovesLeft: 0,
+        rngState,
+        undoStack: [],
+        redoStack: [],
+        lastNewCoords: [],
+        lastMergedCoords: [],
+        recorded: false
+      };
+
+      spawnTileInGame(g);
+      spawnTileInGame(g);
+      return g;
+    }
+
+    function nextRand(g) {
+      return g.rngState ? seededRandom(g.rngState) : Math.random();
+    }
+
+    function spawnTileInGame(g) {
+      const empty = [];
+      for (let r = 0; r < g.size; r++) {
+        for (let c = 0; c < g.size; c++) {
+          if (g.grid[r][c] === 0) empty.push([r, c]);
         }
       }
-      function addTile() {
-        const empty = [];
-        for (let r = 0; r < SIZE; r++) for (let c = 0; c < SIZE; c++) if (!grid[r][c]) empty.push([r,c]);
-        if (!empty.length) return;
-        const [r,c] = empty[Math.floor(Math.random() * empty.length)];
-        grid[r][c] = Math.random() < 0.9 ? 2 : 4;
+      if (empty.length === 0) return false;
+      const idx = Math.floor(nextRand(g) * empty.length);
+      const [r, c] = empty[idx];
+      g.grid[r][c] = nextRand(g) < 0.9 ? 2 : 4;
+      g.lastNewCoords.push(`${r},${c}`);
+      return true;
+    }
+
+    function cloneGrid(grid) {
+      return grid.map(row => [...row]);
+    }
+
+    function slideLine(line) {
+      const size = line.length;
+      const filtered = line.filter(v => v !== 0);
+      const merged = [];
+      const mergedIndices = [];
+      let points = 0;
+      let merges = 0;
+
+      for (let i = 0; i < filtered.length; i++) {
+        if (i + 1 < filtered.length && filtered[i] === filtered[i + 1]) {
+          const val = filtered[i] * 2;
+          merged.push(val);
+          mergedIndices.push(merged.length - 1);
+          points += val;
+          merges++;
+          i++;
+        } else {
+          merged.push(filtered[i]);
+        }
       }
-      function startGame() {
-        grid = emptyGrid(); score = 0; previous = null; won = false; keepPlaying = false;
-        addTile(); addTile(); hideMessage(); render();
+      while (merged.length < size) merged.push(0);
+      const moved = merged.some((v, idx) => v !== line[idx]);
+      return { result: merged, moved, points, merges, mergedIndices };
+    }
+
+    function handleMove(dir) {
+      if (!game || game.paused || game.over || isAnimating) return;
+      if (game.won && !game.keepGoing && game.modeId !== 'endless') return;
+
+      if (removeTileMode) {
+        removeTileMode = false;
+        document.getElementById('board-outer').classList.remove('remove-mode');
       }
-      function hideMessage() { message.classList.remove("show"); }
-      function showMessage(title, text, buttonText) {
-        messageTitle.textContent = title;
-        messageText.textContent = text;
-        document.getElementById("messageButton").textContent = buttonText;
-        message.classList.add("show");
+
+      const prevGrid = cloneGrid(game.grid);
+      const prevScore = game.score;
+      const prevMoves = game.moves;
+      const prevDouble = game.doubleMovesLeft;
+
+      let anyMoved = false;
+      let movePoints = 0;
+      let moveMerges = 0;
+      const newMergedCoords = [];
+      const size = game.size;
+
+      if (dir === 'left' || dir === 'right') {
+        for (let r = 0; r < size; r++) {
+          const row = dir === 'left' ? [...game.grid[r]] : [...game.grid[r]].reverse();
+          const { result, moved, points, merges, mergedIndices } = slideLine(row);
+          const finalRow = dir === 'left' ? result : result.reverse();
+          if (moved) anyMoved = true;
+          movePoints += points;
+          moveMerges += merges;
+          game.grid[r] = finalRow;
+          mergedIndices.forEach(idx => {
+            const actualC = dir === 'left' ? idx : size - 1 - idx;
+            newMergedCoords.push(`${r},${actualC}`);
+          });
+        }
+      } else if (dir === 'up' || dir === 'down') {
+        for (let c = 0; c < size; c++) {
+          const col = [];
+          for (let r = 0; r < size; r++) col.push(game.grid[r][c]);
+          const proc = dir === 'up' ? col : [...col].reverse();
+          const { result, moved, points, merges, mergedIndices } = slideLine(proc);
+          const finalCol = dir === 'up' ? result : result.reverse();
+          if (moved) anyMoved = true;
+          movePoints += points;
+          moveMerges += merges;
+          for (let r = 0; r < size; r++) game.grid[r][c] = finalCol[r];
+          mergedIndices.forEach(idx => {
+            const actualR = dir === 'up' ? idx : size - 1 - idx;
+            newMergedCoords.push(`${actualR},${c}`);
+          });
+        }
       }
-      function render() {
-        [...boardEl.querySelectorAll(".cell")].forEach(el => el.remove());
-        for (let r = 0; r < SIZE; r++) {
-          for (let c = 0; c < SIZE; c++) {
-            const value = grid[r][c];
-            const cell = document.createElement("div");
-            cell.className = "cell";
-            if (value) {
-              cell.textContent = value;
-              cell.classList.add(value <= 2048 ? "v" + value : "vhigh");
-              cell.setAttribute("aria-label", String(value));
-            } else {
-              cell.setAttribute("aria-label", "empty");
-            }
-            boardEl.insertBefore(cell, message);
+
+      if (!anyMoved) return;
+
+      // Save undo snapshot (cap at 25 steps)
+      game.undoStack.push({ grid: prevGrid, score: prevScore, moves: prevMoves, doubleMovesLeft: prevDouble });
+      if (game.undoStack.length > 25) game.undoStack.shift();
+      game.redoStack = [];
+
+      // Apply double score power-up if active
+      if (game.doubleMovesLeft > 0) {
+        movePoints *= 2;
+        game.doubleMovesLeft--;
+      }
+
+      game.score += movePoints;
+      game.moves++;
+      game.lastNewCoords = [];
+      game.lastMergedCoords = newMergedCoords;
+
+      // Time Attack bonus seconds on big merges (128+)
+      if (game.modeId === 'timeattack' && movePoints >= 128) {
+        const bonusSec = movePoints >= 512 ? 5 : 2;
+        game.timeLeft += bonusSec;
+        showToast(`⏱ +${bonusSec}s Time Bonus!`);
+      }
+
+      spawnTileInGame(game);
+
+      // Update lifetime stats & missions
+      state.stats.totalMoves++;
+      state.stats.totalMerges += moveMerges;
+      const maxTile = getBoardMaxTile(game.grid);
+      if (maxTile > state.stats.bestTile) state.stats.bestTile = maxTile;
+      if (game.score > state.stats.highestScore) state.stats.highestScore = game.score;
+
+      updateModeRecord(game.modeId, game.score, maxTile, false);
+      trackMissionProgress(1, moveMerges, movePoints, maxTile);
+      addXP(2 + Math.floor(movePoints / 16));
+
+      if (movePoints > 0) {
+        SFX.merge(maxTile);
+        vibrate(14);
+        showFloatingScore(movePoints);
+      } else {
+        SFX.move();
+      }
+
+      // Check win condition
+      const modeObj = GAME_MODES.find(m => m.id === game.modeId) || GAME_MODES[0];
+      const winTile = modeObj.target || 2048;
+      if (!game.won && game.modeId !== 'endless' && maxTile >= winTile) {
+        game.won = true;
+        handleGameWin(winTile);
+      } else if (!hasValidMoves(game.grid)) {
+        game.over = true;
+        handleGameOver();
+      }
+
+      isAnimating = true;
+      setTimeout(() => { isAnimating = false; }, 115);
+
+      state.activeGame = game;
+      saveState();
+      renderBoard();
+      updateAllUI();
+    }
+
+    function getBoardMaxTile(grid) {
+      let max = 0;
+      for (const row of grid) {
+        for (const v of row) if (v > max) max = v;
+      }
+      return max;
+    }
+
+    function hasValidMoves(grid) {
+      const size = grid.length;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          if (grid[r][c] === 0) return true;
+          if (c + 1 < size && grid[r][c] === grid[r][c + 1]) return true;
+          if (r + 1 < size && grid[r][c] === grid[r + 1][c]) return true;
+        }
+      }
+      return false;
+    }
+
+    function handleGameWin(winTile) {
+      SFX.win();
+      triggerConfetti();
+      state.stats.wins++;
+      const coinReward = game.modeId === 'daily' ? 250 : 120;
+      if (game.modeId === 'daily') {
+        if (state.dailyChallengeCompletedDate !== getTodayStr()) {
+          state.dailyChallengeCompletedDate = getTodayStr();
+          awardCoins(coinReward, 'Daily Challenge Victory');
+        } else {
+          awardCoins(50, 'Daily Challenge Replay');
+        }
+      } else {
+        awardCoins(coinReward, `Victory (${winTile} Tile)`);
+      }
+      addXP(120);
+      recordFinishedGame('Won');
+      checkAchievements();
+      showBoardOverlay('🏆', `You Reached ${winTile}!`, `Victory! You earned +${coinReward} virtual coins. Continue playing or start a new challenge?`, [
+        { label: 'Keep Going (Endless)', cls: 'btn-primary', action: () => { game.keepGoing = true; hideBoardOverlay(); saveState(); } },
+        { label: 'Share Victory', cls: 'btn-mint', action: () => shareResult(game.score, getBoardMaxTile(game.grid), game.modeId) },
+        { label: 'New Game', cls: 'btn-soft', action: () => startGameMode(game.modeId) }
+      ]);
+    }
+
+    function handleGameOver(reason = 'No more valid moves remain.') {
+      SFX.gameover();
+      if (!game.won) state.stats.losses++;
+      const participationCoins = Math.min(100, Math.floor(game.score / 150));
+      if (participationCoins > 0) {
+        awardCoins(participationCoins, 'Match Score Bonus');
+      }
+      addXP(35);
+      recordFinishedGame(game.won ? 'Won' : 'Completed');
+      checkAchievements();
+      showBoardOverlay('🎮', 'Game Over', `${reason} Final Score: ${game.score.toLocaleString()}`, [
+        { label: 'Play Again', cls: 'btn-primary', action: () => startGameMode(game.modeId) },
+        { label: 'Share Score', cls: 'btn-soft', action: () => shareResult(game.score, getBoardMaxTile(game.grid), game.modeId) }
+      ]);
+    }
+
+    function recordFinishedGame(status) {
+      if (game.recorded) return;
+      game.recorded = true;
+      state.stats.gamesPlayed++;
+      state.stats.totalScoreSum += game.score;
+      const maxTile = getBoardMaxTile(game.grid);
+      updateModeRecord(game.modeId, game.score, maxTile, true);
+      state.missions.weeklyProgress.games = (state.missions.weeklyProgress.games || 0) + 1;
+      if (maxTile >= 512) state.missions.weeklyProgress.tile512 = (state.missions.weeklyProgress.tile512 || 0) + 1;
+
+      const modeObj = GAME_MODES.find(m => m.id === game.modeId) || GAME_MODES[0];
+      state.gameHistory.unshift({
+        mode: modeObj.name,
+        modeId: game.modeId,
+        status,
+        score: game.score,
+        bestTile: maxTile,
+        moves: game.moves,
+        duration: formatDuration(game.elapsedSec),
+        date: getTodayStr()
+      });
+      if (state.gameHistory.length > 30) state.gameHistory.length = 30;
+    }
+
+    function updateModeRecord(modeId, score, tile, incrementGames) {
+      if (!state.stats.modeRecords[modeId]) {
+        state.stats.modeRecords[modeId] = { bestScore: 0, bestTile: 0, games: 0 };
+      }
+      const rec = state.stats.modeRecords[modeId];
+      if (score > rec.bestScore) rec.bestScore = score;
+      if (tile > rec.bestTile) rec.bestTile = tile;
+      if (incrementGames) rec.games++;
+    }
+
+    /* ========================================================================
+       6. POWER-UPS & BOARD CONTROLS
+       ======================================================================== */
+    function usePowerup(type) {
+      if (!game || game.paused || game.over) return;
+
+      if (type === 'undo') {
+        if (game.undoStack.length === 0) {
+          showToast('Nothing to undo yet!');
+          return;
+        }
+        const executeUndo = () => {
+          const snap = game.undoStack.pop();
+          game.redoStack.push({ grid: cloneGrid(game.grid), score: game.score, moves: game.moves, doubleMovesLeft: game.doubleMovesLeft });
+          game.grid = snap.grid;
+          game.score = snap.score;
+          game.moves = snap.moves;
+          game.doubleMovesLeft = snap.doubleMovesLeft;
+          game.lastNewCoords = [];
+          game.lastMergedCoords = [];
+          state.stats.powerupsUsed++;
+          SFX.click();
+          saveState();
+          renderBoard();
+          updateAllUI();
+        };
+
+        if (state.undoCharges > 0) {
+          state.undoCharges--;
+          executeUndo();
+          showToast('↩ Move undone (Free charge used)');
+        } else {
+          confirmAction('Undo Move', 'Use 40 virtual coins to undo your last move?', () => {
+            if (!spendCoins(40, 'Power-Up: Undo Move')) return;
+            executeUndo();
+          });
+        }
+      } else if (type === 'redo') {
+        if (game.redoStack.length === 0) return;
+        const snap = game.redoStack.pop();
+        game.undoStack.push({ grid: cloneGrid(game.grid), score: game.score, moves: game.moves, doubleMovesLeft: game.doubleMovesLeft });
+        game.grid = snap.grid;
+        game.score = snap.score;
+        game.moves = snap.moves;
+        game.doubleMovesLeft = snap.doubleMovesLeft;
+        SFX.click();
+        saveState();
+        renderBoard();
+        updateAllUI();
+      } else if (type === 'shuffle') {
+        confirmAction('Shuffle Tiles', 'Spend 75 virtual coins to randomly redistribute existing tiles across the board?', () => {
+          if (!spendCoins(75, 'Power-Up: Shuffle Tiles')) return;
+          const flat = game.grid.flat();
+          for (let i = flat.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [flat[i], flat[j]] = [flat[j], flat[i]];
           }
+          for (let r = 0; r < game.size; r++) {
+            for (let c = 0; c < game.size; c++) {
+              game.grid[r][c] = flat[r * game.size + c];
+            }
+          }
+          state.stats.powerupsUsed++;
+          SFX.achievement();
+          saveState();
+          renderBoard();
+          updateAllUI();
+          showToast('🔀 Board tiles shuffled!');
+        });
+      } else if (type === 'remove') {
+        const nonZeroCount = game.grid.flat().filter(v => v > 0).length;
+        if (nonZeroCount <= 2) {
+          showToast('At least 3 tiles must be on the board to remove one.');
+          return;
         }
-        scoreEl.textContent = score;
-        undoBtn.disabled = !previous;
-        if (!won && grid.some(row => row.includes(2048))) {
-          won = true;
-          showMessage("You Win!", "You made the 2048 tile. Keep playing or start a new game.", "Keep Playing");
-        } else if (!canMove()) {
-          showMessage("Game Over", "No more moves available. Give it another try!", "Try Again");
+        confirmAction('Remove Single Tile', 'Spend 100 virtual coins to select and remove any single tile from the board?', () => {
+          if (!spendCoins(100, 'Power-Up: Remove Tile')) return;
+          removeTileMode = true;
+          document.getElementById('board-outer').classList.add('remove-mode');
+          showToast('🎯 Tap any tile on the board to remove it!');
+        });
+      } else if (type === 'double') {
+        if (game.doubleMovesLeft > 0) {
+          showToast('2× Score is already active!');
+          return;
         }
+        confirmAction('Double Score (10 Moves)', 'Spend 120 virtual coins to double all merge points for your next 10 moves?', () => {
+          if (!spendCoins(120, 'Power-Up: 2× Score')) return;
+          game.doubleMovesLeft = 10;
+          state.stats.powerupsUsed++;
+          SFX.achievement();
+          saveState();
+          updateAllUI();
+          showToast('⚡ 2× Score activated for 10 moves!');
+        });
+      } else if (type === 'extratime') {
+        if (game.modeId !== 'timeattack') {
+          showToast('Extra Time is only available in Time Attack mode.');
+          return;
+        }
+        confirmAction('Extra Time (+30s)', 'Spend 80 virtual coins to add 30 seconds to the Time Attack clock?', () => {
+          if (!spendCoins(80, 'Power-Up: +30s Time')) return;
+          game.timeLeft += 30;
+          state.stats.powerupsUsed++;
+          SFX.coin();
+          saveState();
+          updateAllUI();
+          showToast('⏱ +30 seconds added!');
+        });
       }
-      function canMove() {
-        for (let r = 0; r < SIZE; r++) for (let c = 0; c < SIZE; c++) {
-          if (!grid[r][c]) return true;
-          if (c < SIZE - 1 && grid[r][c] === grid[r][c+1]) return true;
-          if (r < SIZE - 1 && grid[r][c] === grid[r+1][c]) return true;
+    }
+
+    function handleTileClick(r, c) {
+      if (!removeTileMode || !game) return;
+      if (game.grid[r][c] === 0) return;
+      game.grid[r][c] = 0;
+      removeTileMode = false;
+      document.getElementById('board-outer').classList.remove('remove-mode');
+      state.stats.powerupsUsed++;
+      SFX.merge(64);
+      saveState();
+      renderBoard();
+      updateAllUI();
+      showToast('✨ Tile removed!');
+    }
+
+    function startGameMode(modeId) {
+      SFX.click();
+      removeTileMode = false;
+      document.getElementById('board-outer').classList.remove('remove-mode');
+      game = createNewGameObject(modeId);
+      state.activeGame = game;
+      saveState();
+      hideBoardOverlay();
+      navigate('play');
+      renderBoard();
+      updateAllUI();
+    }
+
+    function confirmRestart() {
+      confirmAction('Restart Current Mode?', 'Your current board progress will be reset.', () => startGameMode(game.modeId));
+    }
+
+    function confirmNewGame() {
+      confirmAction('Start New Game?', 'Begin a fresh board in ' + (GAME_MODES.find(m => m.id === game.modeId)?.name || 'Classic') + '?', () => startGameMode(game.modeId));
+    }
+
+    function togglePause() {
+      if (!game || game.over) return;
+      game.paused = !game.paused;
+      SFX.click();
+      if (game.paused) {
+        showBoardOverlay('⏸', 'Game Paused', 'Take a breather! Your timer is paused.', [
+          { label: 'Resume Game', cls: 'btn-primary', action: () => togglePause() }
+        ]);
+      } else {
+        hideBoardOverlay();
+      }
+      updateAllUI();
+    }
+
+    function showBoardOverlay(emoji, title, desc, buttons) {
+      const ov = document.getElementById('board-overlay');
+      document.getElementById('overlay-emoji').textContent = emoji;
+      document.getElementById('overlay-title').textContent = title;
+      document.getElementById('overlay-desc').textContent = desc;
+      const btnWrap = document.getElementById('overlay-buttons');
+      btnWrap.innerHTML = '';
+      buttons.forEach(b => {
+        const el = document.createElement('button');
+        el.className = `btn ${b.cls}`;
+        el.textContent = b.label;
+        el.onclick = b.action;
+        btnWrap.appendChild(el);
+      });
+      ov.classList.add('active');
+    }
+
+    function hideBoardOverlay() {
+      document.getElementById('board-overlay').classList.remove('active');
+    }
+
+    /* ========================================================================
+       7. TIMER LOOP (GAME TIMER + DAILY COUNTDOWN)
+       ======================================================================== */
+    function startLoops() {
+      if (gameTimerInterval) clearInterval(gameTimerInterval);
+      gameTimerInterval = setInterval(() => {
+        // Daily countdown to local midnight
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+        const diffSec = Math.max(0, Math.floor((tomorrow - now) / 1000));
+        const hh = String(Math.floor(diffSec / 3600)).padStart(2, '0');
+        const mm = String(Math.floor((diffSec % 3600) / 60)).padStart(2, '0');
+        const ss = String(diffSec % 60).padStart(2, '0');
+        const cdEl = document.getElementById('daily-countdown');
+        if (cdEl) cdEl.textContent = `${hh}:${mm}:${ss}`;
+
+        // Active game clock
+        const playActive = document.getElementById('view-play').classList.contains('active');
+        if (game && playActive && !game.paused && !game.over) {
+          game.elapsedSec++;
+          state.stats.totalPlaytimeSec++;
+          if (game.modeId === 'timeattack') {
+            game.timeLeft = Math.max(0, game.timeLeft - 1);
+            if (game.timeLeft === 0) {
+              game.over = true;
+              handleGameOver('Time ran out in Time Attack!');
+              saveState();
+              updateAllUI();
+            }
+          }
+          updateTimerDisplay();
         }
+      }, 1000);
+    }
+
+    function formatDuration(sec) {
+      const m = String(Math.floor(sec / 60)).padStart(2, '0');
+      const s = String(sec % 60).padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function updateTimerDisplay() {
+      if (!game) return;
+      const el = document.getElementById('hud-timer');
+      if (game.modeId === 'timeattack') {
+        el.textContent = formatDuration(game.timeLeft);
+        el.style.color = game.timeLeft <= 15 ? '#EF4444' : 'inherit';
+      } else {
+        el.textContent = formatDuration(game.elapsedSec);
+        el.style.color = 'inherit';
+      }
+    }
+
+    /* ========================================================================
+       8. ECONOMY, XP, DAILY BONUS, ACHIEVEMENTS & MISSIONS
+       ======================================================================== */
+    function awardCoins(amount, reason) {
+      if (amount <= 0) return;
+      state.coins += amount;
+      state.missions.weeklyProgress.coinsEarned = (state.missions.weeklyProgress.coinsEarned || 0) + amount;
+      state.coinLedger.unshift({ label: reason, amount: +amount, date: getTodayStr() });
+      if (state.coinLedger.length > 40) state.coinLedger.length = 40;
+      saveState();
+      updateAllUI();
+    }
+
+    function spendCoins(amount, reason) {
+      if (state.coins < amount) {
+        showToast('Not enough virtual coins!');
         return false;
       }
-      function move(direction) {
-        if (message.classList.contains("show")) return;
-        const before = snapshot();
-        let changed = false, gained = 0;
-        const next = emptyGrid();
-        for (let i = 0; i < SIZE; i++) {
-          let line = [];
-          for (let j = 0; j < SIZE; j++) {
-            const r = direction === "up" ? j : direction === "down" ? SIZE - 1 - j : i;
-            const c = direction === "left" ? j : direction === "right" ? SIZE - 1 - j : i;
-            line.push(grid[r][c]);
-          }
-          const compact = line.filter(Boolean);
-          const merged = [];
-          for (let k = 0; k < compact.length; k++) {
-            if (compact[k] === compact[k+1]) {
-              const value = compact[k] * 2;
-              merged.push(value); gained += value; k++;
-            } else merged.push(compact[k]);
-          }
-          while (merged.length < SIZE) merged.push(0);
-          for (let j = 0; j < SIZE; j++) {
-            const r = direction === "up" ? j : direction === "down" ? SIZE - 1 - j : i;
-            const c = direction === "left" ? j : direction === "right" ? SIZE - 1 - j : i;
-            next[r][c] = merged[j];
-            if (next[r][c] !== grid[r][c]) changed = true;
-          }
+      state.coins -= amount;
+      state.coinLedger.unshift({ label: reason, amount: -amount, date: getTodayStr() });
+      if (state.coinLedger.length > 40) state.coinLedger.length = 40;
+      saveState();
+      updateAllUI();
+      return true;
+    }
+
+    function addXP(amount) {
+      state.profile.xp += amount;
+      let needed = state.profile.level * 250;
+      let leveledUp = false;
+      while (state.profile.xp >= needed) {
+        state.profile.xp -= needed;
+        state.profile.level++;
+        needed = state.profile.level * 250;
+        leveledUp = true;
+      }
+      if (leveledUp) {
+        const bonus = state.profile.level * 50;
+        awardCoins(bonus, `Level ${state.profile.level} Promotion Bonus`);
+        SFX.win();
+        triggerConfetti();
+        showModal('🎉', `Level Up! Level ${state.profile.level}`, `Congratulations! You reached Level ${state.profile.level} and received +${bonus} virtual coins!`, [
+          { label: 'Awesome!', cls: 'btn-primary', action: closeModal }
+        ]);
+      }
+    }
+
+    function evaluateDailyStreakState() {
+      const today = getTodayStr();
+      const last = state.daily.lastClaimDate;
+      if (!last) return;
+      const d1 = new Date(last + 'T00:00:00');
+      const d2 = new Date(today + 'T00:00:00');
+      const diffDays = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+      if (diffDays > 1) {
+        state.daily.streak = 0; // Missed a day -> reset cycle
+        saveState();
+      }
+    }
+
+    function claimDailyBonus() {
+      evaluateDailyStreakState();
+      const today = getTodayStr();
+      if (state.daily.lastClaimDate === today) {
+        showToast('You have already claimed today’s reward!');
+        return;
+      }
+      const nextDayIndex = state.daily.streak % 7;
+      const rewardObj = DAILY_REWARDS[nextDayIndex];
+      state.daily.streak++;
+      if (state.daily.streak > state.daily.maxStreak) state.daily.maxStreak = state.daily.streak;
+      state.daily.lastClaimDate = today;
+      state.daily.history.unshift({ date: today, day: rewardObj.day, coins: rewardObj.coins });
+
+      awardCoins(rewardObj.coins, `Daily Bonus (Day ${rewardObj.day})`);
+      addXP(60);
+      SFX.coin();
+      triggerConfetti();
+      checkAchievements();
+      saveState();
+      renderDailyBonus();
+      updateAllUI();
+      showModal('🎁', `Day ${rewardObj.day} Reward Claimed!`, `You collected +${rewardObj.coins} virtual coins! Current streak: ${state.daily.streak} day(s).`, [
+        { label: 'Collect', cls: 'btn-primary', action: closeModal }
+      ]);
+    }
+
+    function checkAchievements() {
+      let newlyUnlocked = false;
+      ACHIEVEMENTS_LIST.forEach(ach => {
+        if (!state.achievements.includes(ach.id) && ach.check(state)) {
+          state.achievements.push(ach.id);
+          awardCoins(ach.reward, `Achievement: ${ach.title}`);
+          SFX.achievement();
+          showToast(`🏅 Achievement Unlocked: ${ach.title} (+${ach.reward} 🪙)`);
+          newlyUnlocked = true;
         }
-        if (!changed) return;
-        previous = before;
-        grid = next; score += gained; addTile(); saveBest(); render();
+      });
+      if (newlyUnlocked) saveState();
+    }
+
+    function ensureMissionsFresh() {
+      const today = getTodayStr();
+      if (state.missions.dailyDate !== today) {
+        state.missions.dailyDate = today;
+        state.missions.dailyProgress = { moves: 0, merges: 0, score: 0 };
+        state.missions.dailyClaimed = {};
       }
-      function undo() {
-        if (!previous) return;
-        const old = previous;
-        grid = old.grid.map(row => row.slice()); score = old.score;
-        won = old.won; keepPlaying = old.keepPlaying; previous = null;
-        hideMessage(); render();
+      const wk = getWeekKey();
+      if (state.missions.weeklyKey !== wk) {
+        state.missions.weeklyKey = wk;
+        state.missions.weeklyProgress = { games: 0, tile512: 0, coinsEarned: 0 };
+        state.missions.weeklyClaimed = {};
       }
-      
-      // Keyboard Controls
-      document.addEventListener("keydown", e => {
-        const keys = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right" };
-        if (keys[e.key]) { e.preventDefault(); move(keys[e.key]); }
-      });
+    }
 
-      // Touch & Mouse Swipe Controls
-      let startX = 0, startY = 0;
-      
-      boardEl.addEventListener("touchstart", e => {
-        const t = e.changedTouches[0]; startX = t.clientX; startY = t.clientY;
-      }, { passive: true });
+    function trackMissionProgress(moves, merges, points) {
+      ensureMissionsFresh();
+      state.missions.dailyProgress.moves += moves;
+      state.missions.dailyProgress.merges += merges;
+      state.missions.dailyProgress.score += points;
+    }
 
-      boardEl.addEventListener("touchend", e => {
-        const t = e.changedTouches[0], dx = t.clientX - startX, dy = t.clientY - startY;
-        handleSwipe(dx, dy);
-      }, { passive: true });
-      
-      // Mouse Drag Support
-      boardEl.addEventListener("mousedown", e => {
-        startX = e.clientX; startY = e.clientY;
-      });
-      boardEl.addEventListener("mouseup", e => {
-        const dx = e.clientX - startX, dy = e.clientY - startY;
-        handleSwipe(dx, dy);
-      });
+    function getMissionsCatalog() {
+      ensureMissionsFresh();
+      const dp = state.missions.dailyProgress;
+      const wp = state.missions.weeklyProgress;
+      return {
+        daily: [
+          { id: 'd_moves', title: 'Make 50 Moves Today', cur: dp.moves, goal: 50, reward: 80, claimed: !!state.missions.dailyClaimed.d_moves },
+          { id: 'd_merges', title: 'Complete 25 Tile Merges', cur: dp.merges, goal: 25, reward: 100, claimed: !!state.missions.dailyClaimed.d_merges },
+          { id: 'd_score', title: 'Earn 2,500 Total Points Today', cur: dp.score, goal: 2500, reward: 150, claimed: !!state.missions.dailyClaimed.d_score }
+        ],
+        weekly: [
+          { id: 'w_games', title: 'Finish 7 Games This Week', cur: wp.games, goal: 7, reward: 300, claimed: !!state.missions.weeklyClaimed.w_games },
+          { id: 'w_512', title: 'Reach a 512+ Tile 3 Times', cur: wp.tile512, goal: 3, reward: 400, claimed: !!state.missions.weeklyClaimed.w_512 },
+          { id: 'w_coins', title: 'Earn 600 Virtual Coins', cur: wp.coinsEarned, goal: 600, reward: 350, claimed: !!state.missions.weeklyClaimed.w_coins }
+        ]
+      };
+    }
 
-      function handleSwipe(dx, dy) {
-        if (Math.max(Math.abs(dx), Math.abs(dy)) < 30) return;
-        move(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "right" : "left") : (dy > 0 ? "down" : "up"));
+    function claimMission(type, id, reward) {
+      ensureMissionsFresh();
+      if (type === 'daily') {
+        if (state.missions.dailyClaimed[id]) return;
+        state.missions.dailyClaimed[id] = true;
+      } else {
+        if (state.missions.weeklyClaimed[id]) return;
+        state.missions.weeklyClaimed[id] = true;
+      }
+      awardCoins(reward, 'Mission Completed');
+      addXP(45);
+      SFX.coin();
+      saveState();
+      renderMissions();
+      updateAllUI();
+      showToast(`✅ Mission Reward Claimed (+${reward} 🪙)`);
+    }
+
+    /* ========================================================================
+       9. RENDERING ENGINE (BOARD, SHOP, DAILY, STATS, HISTORY, MODALS)
+       ======================================================================== */
+    function renderBoard() {
+      if (!game) return;
+      const gridEl = document.getElementById('board-grid');
+      const outerEl = document.getElementById('board-outer');
+      outerEl.className = `board-outer theme-${state.equippedTheme} bg-${state.equippedBoard}` + (removeTileMode ? ' remove-mode' : '');
+
+      gridEl.style.gridTemplateColumns = `repeat(${game.size}, 1fr)`;
+      gridEl.style.gridTemplateRows = `repeat(${game.size}, 1fr)`;
+      gridEl.innerHTML = '';
+
+      const fontBase = game.size === 3 ? '34px' : game.size === 4 ? '28px' : game.size === 5 ? '22px' : '18px';
+
+      for (let r = 0; r < game.size; r++) {
+        for (let c = 0; c < game.size; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'grid-cell';
+          const val = game.grid[r][c];
+          if (val > 0) {
+            const tile = document.createElement('div');
+            const colorClass = val <= 2048 ? `t-${val}` : 't-super';
+            const isNew = game.lastNewCoords.includes(`${r},${c}`);
+            const isMerged = game.lastMergedCoords.includes(`${r},${c}`);
+            tile.className = `tile ${colorClass}` + (isNew ? ' tile-new' : '') + (isMerged ? ' tile-merged' : '');
+            tile.textContent = val;
+            const digits = String(val).length;
+            tile.style.fontSize = digits >= 4 ? `calc(${fontBase} * 0.72)` : digits === 3 ? `calc(${fontBase} * 0.86)` : fontBase;
+            tile.onclick = () => handleTileClick(r, c);
+            cell.appendChild(tile);
+          }
+          gridEl.appendChild(cell);
+        }
+      }
+    }
+
+    function showFloatingScore(pts) {
+      const box = document.getElementById('score-box-current');
+      const span = document.createElement('span');
+      span.className = 'score-float';
+      span.textContent = `+${pts}`;
+      box.appendChild(span);
+      setTimeout(() => span.remove(), 750);
+    }
+
+    function updateAllUI() {
+      // Theme & settings classes
+      document.documentElement.setAttribute('data-theme', state.settings.darkMode ? 'dark' : 'light');
+      document.body.classList.toggle('no-anim', !state.settings.animations);
+      document.getElementById('ad-header').classList.toggle('ad-preview-visible', !!state.settings.showAdSlots);
+      document.getElementById('ad-footer').classList.toggle('ad-preview-visible', !!state.settings.showAdSlots);
+
+      // Sound icon
+      document.getElementById('icon-sound-on').style.display = state.settings.sound ? 'block' : 'none';
+      document.getElementById('icon-sound-off').style.display = state.settings.sound ? 'none' : 'block';
+
+      // Profile & XP
+      const xpNeeded = state.profile.level * 250;
+      const pct = Math.min(100, Math.round((state.profile.xp / xpNeeded) * 100));
+      document.getElementById('sidebar-avatar').textContent = state.profile.avatar;
+      document.getElementById('sidebar-nickname').textContent = state.profile.nickname;
+      document.getElementById('sidebar-level').textContent = `Level ${state.profile.level}`;
+      document.getElementById('sidebar-xp-bar').style.width = `${pct}%`;
+      document.getElementById('sidebar-xp-text').textContent = `${state.profile.xp} / ${xpNeeded} XP`;
+      document.getElementById('sidebar-best-mini').textContent = `Best: ${state.stats.highestScore.toLocaleString()}`;
+
+      // Topbar & KPIs
+      document.getElementById('topbar-coins').textContent = state.coins.toLocaleString();
+      document.getElementById('topbar-streak').textContent = `${state.daily.streak}d`;
+      document.getElementById('home-best-score').textContent = state.stats.highestScore.toLocaleString();
+      document.getElementById('home-best-tile').textContent = state.stats.bestTile.toLocaleString();
+      document.getElementById('home-coins').textContent = state.coins.toLocaleString();
+      document.getElementById('home-games-played').textContent = state.stats.gamesPlayed;
+      document.getElementById('pu-wallet-display').textContent = state.coins.toLocaleString();
+      document.getElementById('shop-coin-balance').textContent = state.coins.toLocaleString();
+
+      // Nav badges
+      const claimedToday = state.daily.lastClaimDate === getTodayStr();
+      const dailyBadge = document.getElementById('nav-daily-badge');
+      dailyBadge.textContent = claimedToday ? 'Done' : 'Claim!';
+      dailyBadge.className = 'nav-badge' + (claimedToday ? '' : ' pulse');
+      document.getElementById('nav-ach-count').textContent = `${state.achievements.length}/${ACHIEVEMENTS_LIST.length}`;
+
+      // Active game HUD
+      if (game) {
+        const modeObj = GAME_MODES.find(m => m.id === game.modeId) || GAME_MODES[0];
+        document.getElementById('nav-active-mode').textContent = `${game.size}×${game.size}`;
+        document.getElementById('hud-mode-name').textContent = modeObj.name;
+        document.getElementById('hud-score').textContent = game.score.toLocaleString();
+        const modeBest = Math.max(game.score, state.stats.modeRecords[game.modeId]?.bestScore || 0);
+        document.getElementById('hud-best').textContent = modeBest.toLocaleString();
+        document.getElementById('hud-moves').textContent = game.moves;
+        document.getElementById('hud-max-tile').textContent = getBoardMaxTile(game.grid);
+        document.getElementById('btn-pause').textContent = game.paused ? '▶ Resume' : '⏸ Pause';
+
+        const dblBadge = document.getElementById('hud-double-badge');
+        dblBadge.style.display = game.doubleMovesLeft > 0 ? 'inline-flex' : 'none';
+        document.getElementById('hud-double-moves').textContent = game.doubleMovesLeft;
+
+        const tgtBadge = document.getElementById('hud-target-badge');
+        if (modeObj.target > 0) {
+          tgtBadge.style.display = 'inline-flex';
+          document.getElementById('hud-target-val').textContent = modeObj.target;
+        } else {
+          tgtBadge.style.display = 'none';
+        }
+
+        // Power-up buttons
+        document.getElementById('undo-stock-pill').textContent = state.undoCharges > 0 ? `${state.undoCharges} free` : '40 🪙';
+        document.getElementById('btn-undo').disabled = game.undoStack.length === 0;
+        document.getElementById('btn-redo').disabled = game.redoStack.length === 0;
+        document.getElementById('btn-extratime').disabled = game.modeId !== 'timeattack';
+        updateTimerDisplay();
       }
 
-      document.getElementById("newGame").addEventListener("click", startGame);
-      undoBtn.addEventListener("click", undo);
-      document.getElementById("messageButton").addEventListener("click", () => {
-        if (won && !keepPlaying) { keepPlaying = true; hideMessage(); }
-        else startGame();
+      // Settings buttons text
+      document.getElementById('set-theme-btn').textContent = state.settings.darkMode ? 'Dark Mode' : 'Light Mode';
+      document.getElementById('set-sound-btn').textContent = state.settings.sound ? 'ON' : 'OFF';
+      document.getElementById('set-anim-btn').textContent = state.settings.animations ? 'ON' : 'OFF';
+      document.getElementById('set-vib-btn').textContent = state.settings.vibration ? 'ON' : 'OFF';
+      document.getElementById('set-ad-btn').textContent = state.settings.showAdSlots ? 'Visible' : 'Hidden';
+    }
+
+    function renderModes() {
+      const allGrid = document.getElementById('all-modes-grid');
+      const featured = document.getElementById('home-featured-modes');
+      const quickBtns = document.getElementById('quick-mode-buttons');
+
+      allGrid.innerHTML = GAME_MODES.map(m => {
+        const rec = state.stats.modeRecords[m.id] || { bestScore: 0, bestTile: 0 };
+        const dailyDone = m.id === 'daily' && state.dailyChallengeCompletedDate === getTodayStr();
+        return `
+          <div class="shop-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;">
+                <strong style="font-size:16px;">${m.name}</strong>
+                <span class="pill ${m.pill}">${dailyDone ? '✓ Completed Today' : m.badge}</span>
+              </div>
+              <p style="font-size:13px; color:var(--text-muted); margin-bottom:10px;">${m.desc}</p>
+              <div style="font-size:12px; color:var(--text-soft); font-weight:700;">
+                Best Score: ${rec.bestScore.toLocaleString()} • Best Tile: ${rec.bestTile}
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="startGameMode('${m.id}')">Play ${m.name}</button>
+          </div>
+        `;
+      }).join('');
+
+      featured.innerHTML = GAME_MODES.slice(0, 4).map(m => `
+        <div class="powerup-item">
+          <div>
+            <div class="pu-title">${m.name} <span class="pill ${m.pill}">${m.badge}</span></div>
+            <div class="pu-desc">${m.desc}</div>
+          </div>
+          <button class="btn btn-soft btn-sm" onclick="startGameMode('${m.id}')">Play</button>
+        </div>
+      `).join('');
+
+      quickBtns.innerHTML = GAME_MODES.map(m => `
+        <button class="btn btn-soft btn-sm" style="justify-content:flex-start; font-size:12px;" onclick="startGameMode('${m.id}')">
+          ${m.size}×${m.size} ${m.name.replace(' Challenge', '').replace(' 2048', '')}
+        </button>
+      `).join('');
+    }
+
+    function renderDailyBonus() {
+      evaluateDailyStreakState();
+      const grid = document.getElementById('daily-calendar-grid');
+      const today = getTodayStr();
+      const claimedToday = state.daily.lastClaimDate === today;
+      const activeDayIdx = claimedToday ? ((state.daily.streak - 1) % 7) : (state.daily.streak % 7);
+
+      document.getElementById('daily-streak-pill').textContent = `🔥 Current Streak: ${state.daily.streak} Day${state.daily.streak === 1 ? '' : 's'}`;
+      const btn = document.getElementById('btn-claim-daily');
+      btn.disabled = claimedToday;
+      btn.textContent = claimedToday ? '✓ Claimed Today' : `Claim Day ${activeDayIdx + 1} (+${DAILY_REWARDS[activeDayIdx].coins} 🪙)`;
+
+      grid.innerHTML = DAILY_REWARDS.map((r, idx) => {
+        const isClaimed = claimedToday ? idx <= activeDayIdx : idx < activeDayIdx;
+        const isToday = !claimedToday && idx === activeDayIdx;
+        return `
+          <div class="day-card ${isClaimed ? 'claimed' : ''} ${isToday ? 'today' : ''} ${r.day === 7 ? 'day-7' : ''}">
+            <span style="font-size:11px; font-weight:800; color:var(--text-soft);">DAY ${r.day}</span>
+            <span style="font-size:24px;">${isClaimed ? '✅' : r.day === 7 ? '👑' : '🪙'}</span>
+            <strong style="font-size:14px;">+${r.coins}</strong>
+            <span style="font-size:11px; font-weight:700; color:${isClaimed ? 'var(--mint)' : isToday ? 'var(--lavender)' : 'var(--text-soft)'};">
+              ${isClaimed ? 'Claimed' : isToday ? 'Available' : 'Locked'}
+            </span>
+          </div>
+        `;
+      }).join('');
+
+      const histBody = document.getElementById('daily-history-body');
+      histBody.innerHTML = state.daily.history.length
+        ? state.daily.history.slice(0, 10).map(h => `<tr><td>${h.date}</td><td>Day ${h.day}</td><td><span class="pill pill-mint">+${h.coins} Coins</span></td></tr>`).join('')
+        : '<tr><td colspan="3" style="color:var(--text-soft);">No daily claims yet. Claim Day 1 above!</td></tr>';
+    }
+
+    function renderShop() {
+      const themesGrid = document.getElementById('shop-themes-grid');
+      themesGrid.innerHTML = SHOP_THEMES.map(t => {
+        const owned = state.unlockedThemes.includes(t.id);
+        const equipped = state.equippedTheme === t.id;
+        return `
+          <div class="shop-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <strong>${t.name}</strong>
+                <span class="pill ${equipped ? 'pill-mint' : 'pill-lavender'}">${equipped ? 'Equipped' : owned ? 'Owned' : t.price + ' 🪙'}</span>
+              </div>
+              <div class="swatch-preview">
+                ${t.colors.map((c, i) => `<div class="swatch-dot" style="background:${c}; color:${i >= 2 ? '#fff' : '#1E293B'};">${Math.pow(2, i + 2)}</div>`).join('')}
+              </div>
+            </div>
+            <button class="btn ${equipped ? 'btn-soft' : owned ? 'btn-mint' : 'btn-primary'} btn-sm" ${equipped ? 'disabled' : ''} onclick="buyOrEquipTheme('${t.id}')">
+              ${equipped ? 'Active Theme' : owned ? 'Equip Theme' : `Unlock (${t.price} 🪙)`}
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      const boardsGrid = document.getElementById('shop-boards-grid');
+      boardsGrid.innerHTML = SHOP_BOARDS.map(b => {
+        const owned = state.unlockedBoards.includes(b.id);
+        const equipped = state.equippedBoard === b.id;
+        return `
+          <div class="shop-card">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <strong>${b.name}</strong>
+                <span class="pill ${equipped ? 'pill-mint' : 'pill-sky'}">${equipped ? 'Equipped' : owned ? 'Owned' : b.price + ' 🪙'}</span>
+              </div>
+              <div style="height:46px; border-radius:12px; background:${b.bg}; border:1px solid var(--border-color);"></div>
+            </div>
+            <button class="btn ${equipped ? 'btn-soft' : owned ? 'btn-mint' : 'btn-primary'} btn-sm" ${equipped ? 'disabled' : ''} onclick="buyOrEquipBoard('${b.id}')">
+              ${equipped ? 'Active Board' : owned ? 'Equip Board' : `Unlock (${b.price} 🪙)`}
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      const consGrid = document.getElementById('shop-consumables-grid');
+      consGrid.innerHTML = [
+        { id: 'undo3', name: '3× Undo Pack', desc: 'Adds 3 free Undo charges to your inventory.', price: 100 },
+        { id: 'undo10', name: '10× Undo Bundle', desc: 'Best value! Adds 10 free Undo charges.', price: 280 }
+      ].map(item => `
+        <div class="shop-card">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <strong>${item.name}</strong>
+              <span class="pill pill-amber">${item.price} 🪙</span>
+            </div>
+            <p style="font-size:13px; color:var(--text-muted);">${item.desc}</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="buyConsumable('${item.id}', ${item.price})">Purchase</button>
+        </div>
+      `).join('');
+
+      document.getElementById('coin-ledger-body').innerHTML = state.coinLedger.slice(0, 15).map(entry => `
+        <tr>
+          <td>${entry.label}</td>
+          <td><span class="pill ${entry.amount >= 0 ? 'pill-mint' : 'pill-pink'}">${entry.amount >= 0 ? '+' : ''}${entry.amount} 🪙</span></td>
+          <td>${entry.date}</td>
+        </tr>
+      `).join('');
+    }
+
+    function buyOrEquipTheme(id) {
+      const item = SHOP_THEMES.find(t => t.id === id);
+      if (!item) return;
+      if (state.unlockedThemes.includes(id)) {
+        state.equippedTheme = id;
+        SFX.click();
+        saveState();
+        renderShop();
+        renderBoard();
+        showToast(`🎨 Equipped ${item.name}`);
+      } else {
+        confirmAction(`Unlock ${item.name}`, `Purchase the ${item.name} tile theme for ${item.price} virtual coins?`, () => {
+          if (!spendCoins(item.price, `Shop: ${item.name} Theme`)) return;
+          state.unlockedThemes.push(id);
+          state.equippedTheme = id;
+          SFX.achievement();
+          checkAchievements();
+          saveState();
+          renderShop();
+          renderBoard();
+          showToast(`✨ Unlocked & equipped ${item.name}!`);
+        });
+      }
+    }
+
+    function buyOrEquipBoard(id) {
+      const item = SHOP_BOARDS.find(b => b.id === id);
+      if (!item) return;
+      if (state.unlockedBoards.includes(id)) {
+        state.equippedBoard = id;
+        SFX.click();
+        saveState();
+        renderShop();
+        renderBoard();
+        showToast(`🖼️ Equipped ${item.name}`);
+      } else {
+        confirmAction(`Unlock ${item.name}`, `Purchase the ${item.name} board background for ${item.price} virtual coins?`, () => {
+          if (!spendCoins(item.price, `Shop: ${item.name} Board`)) return;
+          state.unlockedBoards.push(id);
+          state.equippedBoard = id;
+          SFX.achievement();
+          checkAchievements();
+          saveState();
+          renderShop();
+          renderBoard();
+          showToast(`✨ Unlocked & equipped ${item.name}!`);
+        });
+      }
+    }
+
+    function buyConsumable(id, price) {
+      const qty = id === 'undo10' ? 10 : 3;
+      confirmAction('Purchase Undo Charges', `Spend ${price} virtual coins for +${qty} Undo charges?`, () => {
+        if (!spendCoins(price, `Shop: +${qty} Undo Charges`)) return;
+        state.undoCharges += qty;
+        SFX.coin();
+        saveState();
+        updateAllUI();
+        renderShop();
+        showToast(`↩ Added +${qty} Undo charges!`);
       });
-      startGame();
-    })();
+    }
+
+    function renderAchievements() {
+      document.getElementById('ach-summary-pill').textContent = `${state.achievements.length} / ${ACHIEVEMENTS_LIST.length} Unlocked`;
+      document.getElementById('achievements-grid').innerHTML = ACHIEVEMENTS_LIST.map(a => {
+        const unlocked = state.achievements.includes(a.id);
+        const [cur, max] = a.prog(state);
+        const pct = Math.min(100, Math.round((cur / max) * 100));
+        return `
+          <div class="shop-card" style="opacity:${unlocked ? '1' : '0.82'}; border-color:${unlocked ? 'var(--mint)' : 'var(--border-color)'};">
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <div class="kpi-icon" style="background:${unlocked ? 'var(--mint-soft)' : 'var(--bg-surface-2)'}; font-size:22px;">${a.icon}</div>
+              <div style="flex:1;">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:6px;">
+                  <strong>${a.title}</strong>
+                  <span class="pill ${unlocked ? 'pill-mint' : 'pill-amber'}">${unlocked ? '✓ Unlocked' : '+' + a.reward + ' 🪙'}</span>
+                </div>
+                <p style="font-size:12.5px; color:var(--text-muted); margin:4px 0 8px;">${a.desc}</p>
+                <div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div>
+                <div style="font-size:11px; color:var(--text-soft); margin-top:4px; font-weight:700;">Progress: ${cur.toLocaleString()} / ${max.toLocaleString()}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderMissions() {
+      const cat = getMissionsCatalog();
+      const renderList = (items, type) => items.map(m => {
+        const done = m.cur >= m.goal;
+        const pct = Math.min(100, Math.round((m.cur / m.goal) * 100));
+        return `
+          <div class="powerup-item" style="flex-direction:column; align-items:stretch;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+              <strong>${m.title}</strong>
+              <span class="pill pill-amber">+${m.reward} 🪙</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width:${pct}%;"></div></div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:12px; color:var(--text-soft); font-weight:700;">${Math.min(m.cur, m.goal).toLocaleString()} / ${m.goal.toLocaleString()}</span>
+              ${m.claimed
+                ? '<span class="pill pill-mint">✓ Claimed</span>'
+                : done
+                  ? `<button class="btn btn-mint btn-sm" onclick="claimMission('${type}', '${m.id}', ${m.reward})">Claim Reward</button>`
+                  : '<span style="font-size:12px; color:var(--text-soft);">In Progress</span>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('daily-missions-list').innerHTML = renderList(cat.daily, 'daily');
+      document.getElementById('weekly-missions-list').innerHTML = renderList(cat.weekly, 'weekly');
+      document.getElementById('home-missions-preview').innerHTML = renderList(cat.daily.slice(0, 2), 'daily');
+    }
+
+    function renderStatsAndHistory() {
+      const s = state.stats;
+      const winRate = s.gamesPlayed > 0 ? Math.round((s.wins / s.gamesPlayed) * 100) : 0;
+      const avgScore = s.gamesPlayed > 0 ? Math.round(s.totalScoreSum / s.gamesPlayed) : 0;
+      const hours = (s.totalPlaytimeSec / 3600).toFixed(1);
+
+      const cards = [
+        { label: 'Games Played', val: s.gamesPlayed },
+        { label: 'Total Wins', val: s.wins },
+        { label: 'Total Losses', val: s.losses },
+        { label: 'Win Percentage', val: `${winRate}%` },
+        { label: 'Highest Score', val: s.highestScore.toLocaleString() },
+        { label: 'Best Tile', val: s.bestTile.toLocaleString() },
+        { label: 'Average Score', val: avgScore.toLocaleString() },
+        { label: 'Total Moves', val: s.totalMoves.toLocaleString() },
+        { label: 'Total Playtime', val: `${hours} hrs` }
+      ];
+
+      document.getElementById('stats-kpi-grid').innerHTML = cards.map(c => `
+        <div class="kpi-card">
+          <div>
+            <div class="kpi-val">${c.val}</div>
+            <div class="kpi-label">${c.label}</div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('mode-records-body').innerHTML = GAME_MODES.map(m => {
+        const rec = s.modeRecords[m.id] || { bestScore: 0, bestTile: 0, games: 0 };
+        return `<tr><td><strong>${m.name}</strong></td><td>${rec.bestScore.toLocaleString()}</td><td>${rec.bestTile}</td><td>${rec.games}</td></tr>`;
+      }).join('');
+
+      document.getElementById('game-history-body').innerHTML = state.gameHistory.length
+        ? state.gameHistory.map(h => `
+            <tr>
+              <td><strong>${h.mode}</strong></td>
+              <td><span class="pill ${h.status === 'Won' ? 'pill-mint' : 'pill-sky'}">${h.status}</span></td>
+              <td>${h.score.toLocaleString()}</td>
+              <td>${h.bestTile}</td>
+              <td>${h.moves}</td>
+              <td>${h.duration}</td>
+              <td>${h.date}</td>
+              <td><button class="btn btn-soft btn-sm" onclick="shareResult(${h.score}, ${h.bestTile}, '${h.modeId}')">Share</button></td>
+            </tr>
+          `).join('')
+        : '<tr><td colspan="8" style="color:var(--text-soft);">No completed matches recorded yet.</td></tr>';
+    }
+
+    /* ========================================================================
+       10. NAVIGATION, MODALS, TOASTS, CONFETTI & SHARING
+       ======================================================================== */
+    const VIEW_TITLES = {
+      home: 'Home Dashboard',
+      play: 'Play 2048 Arena',
+      modes: 'Game Modes',
+      daily: 'Daily Login Bonus',
+      shop: 'Reward Shop',
+      achievements: 'Achievements',
+      missions: 'Daily & Weekly Missions',
+      stats: 'Statistics & Records',
+      history: 'Game History',
+      settings: 'Settings & Backup',
+      guide: 'How to Play & FAQ',
+      about: 'About, Privacy & Terms'
+    };
+
+    function navigate(viewId) {
+      document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById(`view-${viewId}`);
+      if (target) target.classList.add('active');
+      const navBtn = document.querySelector(`.nav-btn[data-view="${viewId}"]`);
+      if (navBtn) navBtn.classList.add('active');
+      document.getElementById('topbar-title').textContent = VIEW_TITLES[viewId] || '2048 Ultimate Pro';
+      toggleSidebar(false);
+
+      if (viewId === 'modes' || viewId === 'home') renderModes();
+      if (viewId === 'daily') renderDailyBonus();
+      if (viewId === 'shop') renderShop();
+      if (viewId === 'achievements') renderAchievements();
+      if (viewId === 'missions' || viewId === 'home') renderMissions();
+      if (viewId === 'stats' || viewId === 'history') renderStatsAndHistory();
+      updateAllUI();
+    }
+
+    function toggleSidebar(open) {
+      document.getElementById('sidebar').classList.toggle('open', open);
+      document.getElementById('sidebar-backdrop').classList.toggle('open', open);
+    }
+
+    function toggleTheme() {
+      state.settings.darkMode = !state.settings.darkMode;
+      SFX.click();
+      saveState();
+      updateAllUI();
+    }
+
+    function toggleSound() {
+      state.settings.sound = !state.settings.sound;
+      if (state.settings.sound) SFX.click();
+      saveState();
+      updateAllUI();
+    }
+
+    function toggleAnimations() {
+      state.settings.animations = !state.settings.animations;
+      saveState();
+      updateAllUI();
+    }
+
+    function toggleVibration() {
+      state.settings.vibration = !state.settings.vibration;
+      saveState();
+      updateAllUI();
+    }
+
+    function toggleAdSlots() {
+      state.settings.showAdSlots = !state.settings.showAdSlots;
+      saveState();
+      updateAllUI();
+    }
+
+    function openProfileModal() {
+      const bodyHTML = `
+        <div style="text-align:left; display:flex; flex-direction:column; gap:12px;">
+          <label style="font-size:13px; font-weight:700;">Player Nickname
+            <input id="input-nickname" type="text" maxlength="20" value="${state.profile.nickname}" style="width:100%; margin-top:4px; padding:10px 12px; border-radius:10px; border:1px solid var(--border-color); background:var(--bg-surface-2);" />
+          </label>
+          <div>
+            <div style="font-size:13px; font-weight:700; margin-bottom:6px;">Choose Avatar Badge</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;" id="avatar-picker">
+              ${AVATARS.map(av => `<button type="button" class="btn btn-soft btn-sm avatar-opt" data-av="${av}" style="font-size:20px; ${av === state.profile.avatar ? 'border-color:var(--lavender); background:var(--lavender-soft);' : ''}" onclick="selectAvatarOption('${av}')">${av}</button>`).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+      showModal('👤', 'Customize Player Profile', bodyHTML, [
+        {
+          label: 'Save Profile',
+          cls: 'btn-primary',
+          action: () => {
+            const val = document.getElementById('input-nickname').value.trim();
+            if (val) state.profile.nickname = val;
+            saveState();
+            updateAllUI();
+            closeModal();
+            showToast('Profile updated!');
+          }
+        },
+        { label: 'Cancel', cls: 'btn-soft', action: closeModal }
+      ]);
+    }
+
+    function selectAvatarOption(av) {
+      state.profile.avatar = av;
+      document.querySelectorAll('.avatar-opt').forEach(btn => {
+        btn.style.borderColor = btn.dataset.av === av ? 'var(--lavender)' : 'var(--border-color)';
+        btn.style.background = btn.dataset.av === av ? 'var(--lavender-soft)' : 'var(--bg-surface-2)';
+      });
+    }
+
+    function showModal(icon, title, body, actions) {
+      document.getElementById('modal-icon').textContent = icon;
+      document.getElementById('modal-title').textContent = title;
+      const bodyEl = document.getElementById('modal-body');
+      if (typeof body === 'string' && body.includes('<')) bodyEl.innerHTML = body;
+      else bodyEl.textContent = body;
+
+      const actWrap = document.getElementById('modal-actions');
+      actWrap.innerHTML = '';
+      actions.forEach(a => {
+        const b = document.createElement('button');
+        b.className = `btn ${a.cls}`;
+        b.textContent = a.label;
+        b.onclick = () => { a.action(); };
+        actWrap.appendChild(b);
+      });
+      document.getElementById('app-modal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('app-modal').classList.remove('open');
+    }
+
+    function confirmAction(title, text, onConfirm) {
+      showModal('❓', title, text, [
+        { label: 'Confirm', cls: 'btn-primary', action: () => { closeModal(); onConfirm(); } },
+        { label: 'Cancel', cls: 'btn-soft', action: closeModal }
+      ]);
+    }
+
+    function showToast(msg) {
+      const stack = document.getElementById('toast-stack');
+      const el = document.createElement('div');
+      el.className = 'toast';
+      el.textContent = msg;
+      stack.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 220); }, 2800);
+    }
+
+    /* Social Sharing with Web Share API & Clipboard Fallback */
+    function shareResult(score, bestTile, modeId) {
+      const modeName = GAME_MODES.find(m => m.id === modeId)?.name || 'Classic 2048';
+      const text = `🎮 2048 Ultimate Pro (${modeName})\n🏆 Score: ${score.toLocaleString()} | Highest Tile: ${bestTile}\nCan you beat my record?`;
+      performShare(text);
+    }
+
+    function shareStatsSummary() {
+      const text = `📊 My 2048 Ultimate Pro Profile (${state.profile.nickname} • Level ${state.profile.level})\n🏆 All-Time Best: ${state.stats.highestScore.toLocaleString()} | Max Tile: ${state.stats.bestTile}\n🔥 Login Streak: ${state.daily.streak} days`;
+      performShare(text);
+    }
+
+    function performShare(text) {
+      if (navigator.share) {
+        navigator.share({ title: '2048 Ultimate Pro', text, url: window.location.href }).catch(() => {});
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('📋 Result copied to clipboard!'); } catch (_) {}
+        ta.remove();
+      }
+    }
+
+    /* Export / Import / Reset Data */
+    function exportSaveData() {
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `2048-ultimate-pro-backup-${getTodayStr()}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('⬇ Save backup downloaded!');
+    }
+
+    function importSaveData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (!imported || typeof imported.coins !== 'number') throw new Error('Invalid format');
+          state = { ...createDefaultState(), ...imported };
+          saveState();
+          if (state.activeGame) game = state.activeGame;
+          renderBoard();
+          updateAllUI();
+          showToast('✅ Progress restored from backup!');
+        } catch (_) {
+          showToast('❌ Invalid JSON backup file.');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function confirmResetStats() {
+      confirmAction('Reset Lifetime Statistics?', 'This resets your games played, wins, and mode records while keeping your unlocked themes and coins.', () => {
+        state.stats = createDefaultState().stats;
+        state.gameHistory = [];
+        saveState();
+        renderStatsAndHistory();
+        updateAllUI();
+        showToast('Statistics reset.');
+      });
+    }
+
+    function confirmFactoryReset() {
+      confirmAction('Reset All Platform Data?', 'This permanently erases all coins, themes, streaks, achievements, and save progress.', () => {
+        localStorage.removeItem(STORAGE_KEY);
+        state = createDefaultState();
+        game = createNewGameObject('classic');
+        state.activeGame = game;
+        saveState();
+        renderBoard();
+        updateAllUI();
+        showToast('All data reset to default.');
+      });
+    }
+
+    /* Confetti Celebration Canvas */
+    function triggerConfetti() {
+      if (!state.settings.animations) return;
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const colors = ['#8B5CF6', '#EC4899', '#10B981', '#38BDF8', '#F59E0B'];
+      const pieces = Array.from({ length: 85 }, () => ({
+        x: Math.random() * canvas.width,
+        y: -20 - Math.random() * 140,
+        w: 7 + Math.random() * 6,
+        h: 10 + Math.random() * 8,
+        vy: 3 + Math.random() * 4,
+        vx: (Math.random() - 0.5) * 3,
+        rot: Math.random() * 360,
+        vrot: (Math.random() - 0.5) * 10,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      }));
+
+      let frames = 0;
+      function step() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rot += p.vrot;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rot * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+          ctx.restore();
+        });
+        frames++;
+        if (frames < 140) requestAnimationFrame(step);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      requestAnimationFrame(step);
+    }
+
+    /* ========================================================================
+       11. INPUT LISTENERS (KEYBOARD + MOBILE SWIPE) & BOOTSTRAP
+       ======================================================================== */
+    document.addEventListener('keydown', e => {
+      if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+      const playActive = document.getElementById('view-play').classList.contains('active');
+      if (!playActive) return;
+
+      const key = e.key.toLowerCase();
+      if (key === 'arrowup' || key === 'w') { e.preventDefault(); handleMove('up'); }
+      else if (key === 'arrowdown' || key === 's') { e.preventDefault(); handleMove('down'); }
+      else if (key === 'arrowleft' || key === 'a') { e.preventDefault(); handleMove('left'); }
+      else if (key === 'arrowright' || key === 'd') { e.preventDefault(); handleMove('right'); }
+      else if (key === 'z') { e.preventDefault(); usePowerup('undo'); }
+      else if (key === 'y') { e.preventDefault(); usePowerup('redo'); }
+      else if (key === 'p') { e.preventDefault(); togglePause(); }
+    });
+
+    // Touch swipe gesture detection on the 2048 board
+    let touchStartX = 0;
+    let touchStartY = 0;
+    const boardOuter = document.getElementById('board-outer');
+
+    boardOuter.addEventListener('touchstart', e => {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    boardOuter.addEventListener('touchend', e => {
+      if (!e.changedTouches.length) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) return;
+      if (Math.abs(dx) > Math.abs(dy)) handleMove(dx > 0 ? 'right' : 'left');
+      else handleMove(dy > 0 ? 'down' : 'up');
+    }, { passive: true });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      evaluateDailyStreakState();
+      ensureMissionsFresh();
+      if (state.activeGame && state.activeGame.grid) {
+        game = state.activeGame;
+      } else {
+        game = createNewGameObject('classic');
+        state.activeGame = game;
+      }
+      renderModes();
+      renderMissions();
+      renderBoard();
+      updateAllUI();
+      startLoops();
+    });
   </script>
 </body>
 </html>
