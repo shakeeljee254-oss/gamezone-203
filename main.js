@@ -742,7 +742,7 @@ window.GZ_CONFIG = {
       bg: "#e9efff"
     },
     {
-      id: "plants-vs-zombies",
+     id: "plants-vs-zombies",
       name: "Plants vs. Zombies",
       category: "Strategy & Casual",
       emoji: "🌻",
@@ -764,7 +764,7 @@ window.GZ_CONFIG = {
       popular: false,
       kids: true,
       bg: "#fff0e5"
-     },
+    },
     {
       id: "cookie-clicker",
       name: "Cookie Clicker",
@@ -777,20 +777,6 @@ window.GZ_CONFIG = {
       kids: true,
       bg: "#fff1df"
     },
-    {
-      id: "metro-rush",
-      name: "Metro Rush 3D",
-      category: "Arcade",
-      emoji: "🚇",
-      tag: "NEW",
-      description: "Run, dodge trains, collect coins, and unlock new characters in this 3D endless runner!",
-      url: "games/metro-rush.html",
-      popular: true,
-      kids: true,
-      bg: "#0b1026"
-    }
-  ]
-};
     {
       id: "metro-rush",
       name: "Metro Rush 3D",
