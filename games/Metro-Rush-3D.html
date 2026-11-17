@@ -2,7 +2,24 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="theme-color" content="#0b1026">
-<title>Metro Rush 3D – GameZone 203</title>
+
+<!-- SEO TAGS -->
+<title>Metro Rush 3D - Play Free Online Endless Runner | GameZone 203</title>
+<meta name="description" content="Play Metro Rush 3D free online at GameZone 203! Run, dodge trains, collect coins, and unlock new characters in this exciting 3D endless runner.">
+<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/metro-rush.html">
+<meta property="og:title" content="Metro Rush 3D - Play Free Online | GameZone 203">
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Metro Rush 3D",
+  "description": "Run, dodge trains, and collect coins in this 3D endless runner.",
+  "genre": ["Runner", "Arcade", "Action"]
+}
+</script>
+
 <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Barlow+Condensed:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#0b1026;--amb:#ffb21a;--teal:#19d3c5;--red:#ff4155;--w:#f3f6ff}
@@ -36,9 +53,26 @@ h2{font-size:28px}h3{margin:14px 0 2px;color:var(--teal);font-size:20px}
 #hM{position:absolute;left:12px;right:12px;bottom:max(10px,env(safe-area-inset-bottom));font-size:18px;font-weight:700;text-shadow:0 2px 0 #000a;opacity:.9}
 #toast{position:fixed;top:30%;left:0;right:0;text-align:center;font:400 34px Bungee,Impact,sans-serif;color:var(--amb);text-shadow:0 4px 0 #000a;opacity:0;transition:opacity .25s;pointer-events:none;z-index:6}
 #toast.on{opacity:1}input[type=range]{accent-color:var(--amb)}
+
+/* FAQ Section */
+.faq-section { max-width: 800px; margin: 40px auto 0; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #ffb21a; color: #cbd5e1; text-align: left; position: relative; z-index: 100; font-family: 'Barlow Condensed', sans-serif; }
+.faq-section h2 { color: #ffb21a; margin-top: 0; }
+.faq-section h3 { color: #fff; margin-bottom: 5px; }
+
+/* Jab game chal raha ho toh FAQ ko chhupa dein */
+body.game #game-faq { display: none !important; }
 </style></head><body>
+
+<!-- Loading Screen -->
+<div id="loading-screen" style="position:fixed;inset:0;background:#0b1026;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
+  <h1 style="color:#ffb21a;font-family:Bungee,sans-serif;font-size:2.5rem;text-shadow:0 0 20px #ffb21a;margin-bottom:20px;">METRO RUSH 3D</h1>
+  <div style="width:200px;height:6px;background:#1a233a;border-radius:10px;overflow:hidden;">
+    <div id="loading-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#ffb21a,#19d3c5);transition:width 0.1s linear;"></div>
+  </div>
+  <p style="color:#9ca3af;margin-top:15px;font-family:sans-serif;letter-spacing:2px;">LOADING...</p>
+</div>
+
 <canvas id="c"></canvas>
-<div id="load" class="scr on" style="align-items:center;justify-content:center;text-align:center;z-index:99;background:#0b1026"><h1>METRO RUSH 3D</h1><p id="lt">Loading…</p></div>
 <div id="hud"><div class="tp"><div><b id="hS">0</b><span id="hD">0 m</span></div><div class="r"><span id="hC">🪙 0</span><button class="b sm" id="bPause" data-act="pause" aria-label="Pause">❚❚</button></div></div><div id="chips"></div><div id="hM"></div></div>
 <div id="toast"></div>
 <div id="menu" class="scr">
@@ -54,14 +88,21 @@ h2{font-size:28px}h3{margin:14px 0 2px;color:var(--teal);font-size:20px}
 <button class="b" data-act="open" data-i="shop" data-t="upg">Shop</button>
 <button class="b" data-act="open" data-i="settings">Settings</button></div></div></div>
 <div id="panel" class="scr"><div class="pn" id="pb"></div></div>
+
+<!-- FAQ SECTION FOR SEO (Now hidden by default) -->
+<div id="game-faq" class="faq-section" style="display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #ffb21a; color: #cbd5e1; text-align: left; position: relative; z-index: 100; font-family: 'Barlow Condensed', sans-serif;">
+  <h2 style="color: #ffb21a; margin-top: 0;">How to Play Metro Rush 3D</h2>
+  <p>Use your arrow keys or swipe on mobile to change lanes, jump, and slide. Dodge trains, barriers, and other obstacles. Collect coins and power-ups to boost your score and unlock new characters.</p>
+  <h3 style="color: #fff; margin-bottom: 5px;">Frequently Asked Questions</h3>
+  <p><b>Can I play on mobile?</b><br>Yes, the game has full swipe controls for mobile.</p>
+  <p><b>How do I unlock new characters?</b><br>Collect coins during your runs and use them in the Shop to unlock new characters and hoverboards.</p>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 'use strict';
-/* ===== Metro Rush 3D · GameZone 203 ===== */
 const $=s=>document.querySelector(s),rnd=n=>Math.floor(Math.random()*n);
 const LW=2.2,LANES=[-LW,0,LW],TL=24,NT=9;
-
-/* ---- Declare state vars FIRST to avoid TDZ ---- */
 let M={},NP,pPos,pVel,pLife,PS;
 let R,scene,cam,sun,hemi,state='boot',T=0,G=null,pw={},P={lane:1,x:0,y:0,vy:0,sl:0},obs=[],coins=[],picks=[],tiles=[],dayT=0,menuT=2,shopTab='chars',curP='',from='',lastCS=0,tick=0;
 const lk=new THREE.Vector3(),camP=new THREE.Vector3(),lkT=new THREE.Vector3();
@@ -70,8 +111,6 @@ const MC={};function mat(c,e){const k=c+'|'+(e||'');return MC[k]||(MC[k]=new THR
 function box(w,h,d,m,x,y,z,par,cs){const o=new THREE.Mesh(BX,m);o.scale.set(w,h,d);o.position.set(x,y,z);o.castShadow=!!cs;if(par)par.add(o);return o}
 function cyl(r,h,m,x,y,z,par){const o=new THREE.Mesh(CYG,m);o.scale.set(r,h,r);o.position.set(x,y,z);par.add(o);return o}
 function ctex(w,h,fn){const c=document.createElement('canvas');c.width=w;c.height=h;fn(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;return t}
-
-/* ---- Data ---- */
 const CH=[
 {n:'Kai',d:'Cap and backpack. The classic.',p:0,shirt:'#ff7a00',pants:'#2a3f8f',skin:'#e0a97a',hat:'#ffd400',cap:1,acc:'pack',ac:'#1a1a1a'},
 {n:'Mira',d:'Beanie and neon scarf.',p:300,shirt:'#19d3c5',pants:'#5b2a86',skin:'#8d5a3b',hat:'#111827',acc:'scarf',ac:'#ff4d8d'},
@@ -85,8 +124,6 @@ const MS=[
 {id:'w1',s:'w',t:'dist',g:10000,r:500,n:'Run 10,000 m this week'},{id:'w2',s:'w',t:'coins',g:800,r:450,n:'Collect 800 coins this week'},{id:'w3',s:'w',t:'pow',g:25,r:400,n:'Grab 25 power-ups this week'},
 {id:'a1',s:'a',t:'dist',g:5000,r:300,n:'Marathoner: 5 km in total'},{id:'a2',s:'a',t:'jump',g:200,r:200,n:'Hopper: 200 jumps'},{id:'a3',s:'a',t:'score',g:20000,r:500,n:'High roller: 20,000 in one run'},{id:'a4',s:'a',t:'coins',g:1000,r:400,n:'Collector: 1000 coins'}];
 const DR=[50,100,150,200,300,400,600];
-
-/* ---- Save system ---- */
 const D={coins:0,best:0,dist:0,tc:0,runs:0,xp:0,up:0,chars:[0],ch:0,boards:[0],bd:0,mu:1,sf:1,mv:.5,sv:.8,q:2,cam:1,ms:{},mk:{d:0,w:0},daily:0,streak:0,scores:[]};
 function loadS(){
   let o={};try{o=JSON.parse(localStorage.getItem('mr3d'))||{}}catch(e){}
@@ -114,8 +151,6 @@ function loadS(){
 }
 let S=loadS();
 function save(){try{localStorage.setItem('mr3d',JSON.stringify(S))}catch(e){}}
-
-/* ---- Audio ---- */
 let AC,mG,sG,audioLoopStarted=false;
 function initAudio(){
   if(AC){if(AC.state==='suspended')AC.resume();return}
@@ -158,8 +193,6 @@ const SND={
   step:()=>tone(90,.05,'triangle',.08)
 };
 const snd=n=>{try{SND[n]()}catch(e){}};
-
-/* ---- Characters ---- */
 function buildChar(d){
   const g=new THREE.Group(),m=c=>mat(c),u={};
   box(.6,.7,.35,m(d.shirt),0,1.05,0,g,1);
@@ -188,8 +221,6 @@ function pose(g,t,m){
   else if(m==='slide'){g.rotation.x=1.15;g.position.y=.12;u.lL.rotation.x=u.lR.rotation.x=0;u.aL.rotation.x=u.aR.rotation.x=-1.2}
   else{u.lL.rotation.x=s;u.lR.rotation.x=-s;u.aL.rotation.x=-s;u.aR.rotation.x=s;g.position.y=Math.abs(Math.sin(t*13))*.06}
 }
-
-/* ---- World ---- */
 function init3D(){
   R=new THREE.WebGLRenderer({canvas:$('#c'),antialias:S.q>0});
   R.shadowMap.enabled=true;
@@ -372,7 +403,6 @@ function spawnRow(){
   } else {
     row.forEach((t,l)=>{if(t)addObs(t,l,z)});
   }
-  /* --- FIXED: coin lane logic --- */
   let cl;
   if(tun){
     cl=free;
@@ -390,8 +420,6 @@ function spawnRow(){
   }
   G.gap=G.nz=Math.max(22,sp*1.05)+(hasT?12:0);
 }
-
-/* ---- Particles ---- */
 function burst(x,y,z,col,n){
   if(!PS)return;
   PS.material.color.set(col);
@@ -419,8 +447,6 @@ function partUpd(dt){
   }
   PS.geometry.attributes.position.needsUpdate=true;
 }
-
-/* ---- Input ---- */
 const left=()=>{if(state==='play'&&P.lane>0){P.lane--;snd('swish')}};
 const right=()=>{if(state==='play'&&P.lane<2){P.lane++;snd('swish')}};
 function jump(){
@@ -462,8 +488,6 @@ addEventListener('touchmove',e=>{
 },{passive:false});
 addEventListener('contextmenu',e=>e.preventDefault());
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&state==='play')pauseGame()});
-
-/* ---- Flow ---- */
 const dayNum=()=>Math.floor(Date.now()/864e5);
 const lvl=()=>1+Math.floor(Math.sqrt(S.xp/40));
 function checkReset(){
@@ -553,8 +577,6 @@ function activate(k){
   toast(PU[k][1]+'!');
   burst(P.x,1,0,PU[k][3],14);
 }
-
-/* ---- Main update ---- */
 function play(dt){
   G.t+=dt;G.inv=Math.max(0,G.inv-dt);
   for(const k in pw){
@@ -563,7 +585,7 @@ function play(dt){
       if(pw[k]<=0){
         pw[k]=0;
         if(k==='jet')G.inv=1.5;
-        if(k==='boost')G.inv=1.0; /* FIX: boost khatam hote hi invincibility */
+        if(k==='boost')G.inv=1.0;
       }
     }
   }
@@ -701,8 +723,6 @@ function update(dt){
   partUpd(dt);
   if(state==='play')hudUpd();
 }
-
-/* ---- Panels ---- */
 const H=(t,b)=>`<h2>${t}</h2>${b}<button class="b" style="width:100%;margin-top:10px" data-act="back">Back</button>`;
 const PNL={
   shop(){
@@ -857,8 +877,6 @@ function resize(){
 }
 addEventListener('resize',resize);
 addEventListener('orientationchange',()=>setTimeout(resize,200));
-
-/* ---- Boot ---- */
 let last=0;
 function loop(t){
   requestAnimationFrame(loop);
@@ -883,4 +901,27 @@ function boot(){
   }
 }
 window.addEventListener('load',boot);
-</script></body></html>
+</script>
+
+<!-- LOADING SCREEN LOGIC -->
+<script>
+  let loadProgress = 0;
+  const loadInterval = setInterval(() => {
+    loadProgress += Math.random() * 10;
+    if (loadProgress >= 100) {
+      loadProgress = 100;
+      clearInterval(loadInterval);
+      setTimeout(() => {
+        const loader = document.getElementById('loading-screen');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 500);
+        }
+      }, 1000);
+    }
+    const bar = document.getElementById('loading-bar');
+    if (bar) bar.style.width = loadProgress + '%';
+  }, 200);
+</script>
+</body>
+</html>
