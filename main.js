@@ -203,12 +203,12 @@ window.GZ_CONFIG = {
     },
     {
       id: "subway-surfers",
-      name: "Subway Surfers",
+      name: "Metro Rush 3D",
       category: "Kids & Family",
-      emoji: "🚆",
-      tag: "KIDS PICK",
-      description: "Run, jump and dodge obstacles in a colourful world.",
-      url: "",
+      emoji: "🏃",
+      tag: "VIP EDITION",
+      description: "Play the VIP Edition! Run, jump and dodge trains in this epic 3D endless runner.",
+      url: "games/subway-surfers.html",
       popular: true,
       kids: true,
       bg: "#e5f4ff"
