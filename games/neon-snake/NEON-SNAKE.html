@@ -2066,42 +2066,132 @@
       return safe[Math.floor(Math.random() * safe.length)];
     }
 
-    stepSimulation() {
-      if (this.boardLocked) return;
-      const plannedHeads = new Map();
+  
+stepSimulation() {
+  if (this.boardLocked) return;
 
-      for (const s of this.snakes) {
-        if (!s.alive) continue;
-        s.prevSegments = s.segments.map(seg => ({ ...seg }));
-        if (s.eatAnim > 0) s.eatAnim = Math.max(0, s.eatAnim - 0.35);
-        if (!s.isPlayer) s.nextDir = this.chooseAIDirection(s);
-        s.dir = s.nextDir;
-        const vec = DIRS[s.dir];
-        plannedHeads.set(s.id, { x: (s.segments[0].x + vec.x + GRID_COLS) % GRID_COLS, y: (s.segments[0].y + vec.y + GRID_ROWS) % GRID_ROWS });
-      }
+  const plannedHeads = new Map();
+  const eliminated = new Set();
 
-      for (const s of this.snakes) {
-        if (!s.alive) continue;
-        const nh = plannedHeads.get(s.id);
-        s.segments.unshift(nh);
-        if (s.growPending > 0) s.growPending--; else s.segments.pop();
+  // 1. Plan movement for all living snakes
+  for (const s of this.snakes) {
+    if (!s.alive) continue;
 
-        for (let i = this.fruits.length - 1; i >= 0; i--) {
-          const f = this.fruits[i];
-          if (f.x === nh.x && f.y === nh.y) {
-            s.score += f.meta.points;
-            s.fruits++;
-            s.growPending += f.meta.type === "golden" ? 2 : 1;
-            if (s.isPlayer) {
-              sfx.eatFruit(f.meta.type === "golden");
-              addCoins(f.meta.coins);
-            }
-            this.fruits.splice(i, 1);
-            this.spawnFruit();
-          }
-        }
+    s.prevSegments = s.segments.map(seg => ({ ...seg }));
+
+    if (s.eatAnim > 0) {
+      s.eatAnim = Math.max(0, s.eatAnim - 0.35);
+    }
+
+    if (!s.isPlayer) {
+      s.nextDir = this.chooseAIDirection(s);
+    }
+
+    s.dir = s.nextDir;
+
+    const vec = DIRS[s.dir];
+    const head = s.segments[0];
+
+    plannedHeads.set(s.id, {
+      x: (head.x + vec.x + GRID_COLS) % GRID_COLS,
+      y: (head.y + vec.y + GRID_ROWS) % GRID_ROWS
+    });
+  }
+
+  const livingSnakes = this.snakes.filter(s => s.alive);
+
+  // 2. Detect head-to-head and head-swap collisions
+  for (let i = 0; i < livingSnakes.length; i++) {
+    const a = livingSnakes[i];
+    const ah = plannedHeads.get(a.id);
+
+    for (let j = i + 1; j < livingSnakes.length; j++) {
+      const b = livingSnakes[j];
+      const bh = plannedHeads.get(b.id);
+
+      const sameCell =
+        ah.x === bh.x && ah.y === bh.y;
+
+      const headSwap =
+        ah.x === b.segments[0].x &&
+        ah.y === b.segments[0].y &&
+        bh.x === a.segments[0].x &&
+        bh.y === a.segments[0].y;
+
+      if (sameCell || headSwap) {
+        eliminated.add(a.id);
+        eliminated.add(b.id);
       }
     }
+  }
+
+  // 3. Detect head-to-body and self-body collisions
+  for (const s of livingSnakes) {
+    const nh = plannedHeads.get(s.id);
+
+    for (const other of livingSnakes) {
+      for (let i = 1; i < other.segments.length; i++) {
+        const segment = other.segments[i];
+
+        // Tail is ignored if it moves away this turn
+        const isVacatingTail =
+          i === other.segments.length - 1 &&
+          other.growPending <= 0;
+
+        if (isVacatingTail) continue;
+
+        if (nh.x === segment.x && nh.y === segment.y) {
+          eliminated.add(s.id);
+          break;
+        }
+      }
+
+      if (eliminated.has(s.id)) break;
+    }
+  }
+
+  // 4. Eliminate collided snakes
+  for (const s of livingSnakes) {
+    if (eliminated.has(s.id)) {
+      s.alive = false;
+    }
+  }
+
+  // 5. Move surviving snakes and collect fruits
+  for (const s of livingSnakes) {
+    if (!s.alive) continue;
+
+    const nh = plannedHeads.get(s.id);
+
+    s.segments.unshift(nh);
+
+    if (s.growPending > 0) {
+      s.growPending--;
+    } else {
+      s.segments.pop();
+    }
+
+    for (let i = this.fruits.length - 1; i >= 0; i--) {
+      const f = this.fruits[i];
+
+      if (f.x === nh.x && f.y === nh.y) {
+        s.score += f.meta.points;
+        s.fruits++;
+
+        s.growPending +=
+          f.meta.type === "golden" ? 2 : 1;
+
+        if (s.isPlayer) {
+          sfx.eatFruit(f.meta.type === "golden");
+          addCoins(f.meta.coins);
+        }
+
+        this.fruits.splice(i, 1);
+        this.spawnFruit();
+      }
+    }
+  }
+}
 
     update(dt) {
       if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
