@@ -2150,12 +2150,19 @@ stepSimulation() {
     }
   }
 
+
   // 4. Eliminate collided snakes
   for (const s of livingSnakes) {
     if (eliminated.has(s.id)) {
       s.alive = false;
+
+      // Respawn AI after 10 seconds
+      if (!s.isPlayer) {
+        s.respawnAt = this.elapsedSec + 10;
+      }
     }
   }
+
 
   // 5. Move surviving snakes and collect fruits
   for (const s of livingSnakes) {
