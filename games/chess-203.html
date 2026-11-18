@@ -53,14 +53,21 @@
   }
   </script>
 
-  <!-- Google Fonts -->
+  <!-- Fonts & CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
 
-  <!-- Custom CSS (No External Dependencies) -->
   <style>
-    :root { --bg: #070913; --panel: #0E1326; --cyan: #00F0FF; --magenta: #FF2A85; --violet: #8B5CF6; --text: #F1F5F9; --muted: #94a3b8; }
+    :root {
+      --bg: #070913;
+      --panel: #0E1326;
+      --cyan: #00F0FF;
+      --magenta: #FF2A85;
+      --violet: #8B5CF6;
+      --text: #F1F5F9;
+      --muted: #94a3b8;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background-color: var(--bg);
@@ -71,6 +78,7 @@
       display: flex;
       flex-direction: column;
     }
+
     /* Navigation */
     header {
       border-bottom: 1px solid #1e293b;
@@ -103,7 +111,7 @@
     .brand-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
     .brand-title span { color: var(--cyan); }
 
-    /* Main Content */
+    /* Main */
     main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px; display: flex; flex-direction: column; gap: 40px; }
 
     /* Start Screen */
@@ -307,14 +315,12 @@
         } else if(piece && isWhite(piece)){
           h={r,c}; renderBoard();
         } else {
-          // Move piece
           p[r][c] = p[h.r][h.c];
           p[h.r][h.c] = "";
           h=null;
           f++;
           document.getElementById("move-counter").textContent = `Moves: ${f}`;
           
-          // Simple AI move
           setTimeout(()=>{
             const moves=[];
             for(let tr=0;tr<7;tr++){
@@ -339,7 +345,6 @@
       }
     }
     
-    // Initialize
     document.addEventListener("DOMContentLoaded", function(){
       renderBoard();
       
