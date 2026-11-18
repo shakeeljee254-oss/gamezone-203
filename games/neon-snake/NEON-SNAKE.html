@@ -2067,6 +2067,7 @@
     }
 
   
+
 stepSimulation() {
   if (this.boardLocked) return;
 
@@ -2100,7 +2101,7 @@ stepSimulation() {
 
   const livingSnakes = this.snakes.filter(s => s.alive);
 
-  // 2. Detect head-to-head and head-swap collisions
+  // 2. Detect head-to-head collisions
   for (let i = 0; i < livingSnakes.length; i++) {
     const a = livingSnakes[i];
     const ah = plannedHeads.get(a.id);
@@ -2125,7 +2126,7 @@ stepSimulation() {
     }
   }
 
-  // 3. Detect head-to-body and self-body collisions
+  // 3. Detect body and self collisions
   for (const s of livingSnakes) {
     const nh = plannedHeads.get(s.id);
 
@@ -2133,7 +2134,6 @@ stepSimulation() {
       for (let i = 1; i < other.segments.length; i++) {
         const segment = other.segments[i];
 
-        // Tail is ignored if it moves away this turn
         const isVacatingTail =
           i === other.segments.length - 1 &&
           other.growPending <= 0;
@@ -2191,9 +2191,53 @@ stepSimulation() {
       }
     }
   }
+
+ 
+  // 6. Show Game Over when player is eliminated
+  const player = this.snakes.find(s => s.isPlayer);
+
+  if (player && !player.alive && !this.matchOver) {
+    this.matchOver = true;
+    this.paused = true;
+
+    openModal("GAME OVER!", body => {
+      body.innerHTML = `
+        <div style="text-align:center;color:#dbe6ff;padding:12px;">
+          <div style="font-size:3rem;">🐍</div>
+          <h2 style="color:#ff4d6d;">You Were Eliminated!</h2>
+          <p>Your Score: <strong>${player.score}</strong></p>
+
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
+            <button class="arcade-btn btn-blue" id="playAgainBtn">
+              🔄 PLAY AGAIN
+            </button>
+
+            <button class="arcade-btn btn-orange" id="gameOverMenuBtn">
+              🏠 MAIN MENU
+            </button>
+          </div>
+        </div>
+      `;
+
+      body.querySelector("#playAgainBtn").addEventListener("click", () => {
+        closeModal();
+        this.startNewMatch();
+
+        this.boardLocked = false;
+        document.getElementById("playNowOverlayGate").classList.add("hidden");
+      });
+
+      body.querySelector("#gameOverMenuBtn").addEventListener("click", () => {
+        closeModal();
+        switchToDashboard();
+      });
+    });
+  }
 }
 
-    update(dt) {
+update(dt) {
+
+
       if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
       this.elapsedSec += dt;
       if (this.screenShake > 0) this.screenShake = Math.max(0, this.screenShake - dt * 32);
