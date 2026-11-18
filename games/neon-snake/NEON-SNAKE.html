@@ -1995,19 +1995,105 @@
       this.updateHud();
     }
 
-    createSnake({ id, name, isPlayer, x, y, dir, palette, rainbow = false }) {
-      const d = DIRS[dir];
-      const segments = [], prevSegments = [];
-      for (let i = 0; i < 5; i++) {
-        const sx = (x - d.x * i + GRID_COLS) % GRID_COLS;
-        const sy = (y - d.y * i + GRID_ROWS) % GRID_ROWS;
-        segments.push({ x: sx, y: sy });
-        prevSegments.push({ x: sx, y: sy });
-      }
-      return { id, name, isPlayer, alive: true, dir, nextDir: dir, segments, prevSegments, growPending: 0, score: 0, fruits: 0, palette, rainbow, eatAnim: 0, effects: { speed: 0, slow: 0, shield: 0, magnet: 0, double: 0, freeze: 0 } };
+createSnake({ id, name, isPlayer, x, y, dir, palette, rainbow = false }) {
+  const d = DIRS[dir];
+  const segments = [], prevSegments = [];
+
+  for (let i = 0; i < 5; i++) {
+    const sx = (x - d.x * i + GRID_COLS) % GRID_COLS;
+    const sy = (y - d.y * i + GRID_ROWS) % GRID_ROWS;
+
+    segments.push({ x: sx, y: sy });
+    prevSegments.push({ x: sx, y: sy });
+  }
+
+  return {
+    id,
+    name,
+    isPlayer,
+    alive: true,
+    dir,
+    nextDir: dir,
+    segments,
+    prevSegments,
+    growPending: 0,
+    score: 0,
+    fruits: 0,
+    palette,
+    rainbow,
+    eatAnim: 0,
+    effects: {
+      speed: 0,
+      slow: 0,
+      shield: 0,
+      magnet: 0,
+      double: 0,
+      freeze: 0
+    }
+  };
+}
+
+respawnEliminatedAIs() {
+  for (let i = 0; i < this.snakes.length; i++) {
+    const deadSnake = this.snakes[i];
+
+    if (
+      deadSnake.isPlayer ||
+      deadSnake.alive ||
+      deadSnake.respawnAt === undefined ||
+      this.elapsedSec < deadSnake.respawnAt
+    ) {
+      continue;
     }
 
-    getPlayer() { return this.snakes[0]; }
+    const directions = Object.keys(DIRS);
+    let newSnake = null;
+
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const x = Math.floor(Math.random() * GRID_COLS);
+      const y = Math.floor(Math.random() * GRID_ROWS);
+
+      const dir = directions[
+        Math.floor(Math.random() * directions.length)
+      ];
+
+      const candidate = this.createSnake({
+        id: deadSnake.id,
+        name: deadSnake.name,
+        isPlayer: false,
+        x,
+        y,
+        dir,
+        palette: deadSnake.palette,
+        rainbow: deadSnake.rainbow
+      });
+
+      const isSafe = candidate.segments.every(seg =>
+        !this.isCellBlocked(seg.x, seg.y)
+      );
+
+      if (isSafe) {
+        newSnake = candidate;
+        break;
+      }
+    }
+
+    if (!newSnake) {
+      deadSnake.respawnAt = this.elapsedSec + 1;
+      continue;
+    }
+
+    newSnake.score = deadSnake.score;
+    newSnake.fruits = deadSnake.fruits;
+
+    this.snakes[i] = newSnake;
+  }
+}
+
+getPlayer() {
+  return this.snakes[0];
+}
+
     setPlayerDirection(newDir) {
       if (this.boardLocked) return;
       const p = this.getPlayer();
@@ -2242,21 +2328,29 @@ stepSimulation() {
   }
 }
 
+
 update(dt) {
+  if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
 
+  this.elapsedSec += dt;
 
-      if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
-      this.elapsedSec += dt;
-      if (this.screenShake > 0) this.screenShake = Math.max(0, this.screenShake - dt * 32);
+  // Respawn eliminated AI snakes
+  this.respawnEliminatedAIs();
 
-      this.stepAccumulator += dt;
-      const interval = 0.125;
-      while (this.stepAccumulator >= interval) {
-        this.stepAccumulator -= interval;
-        this.stepSimulation();
-      }
-      this.updateHud();
-    }
+  if (this.screenShake > 0) {
+    this.screenShake = Math.max(0, this.screenShake - dt * 32);
+  }
+
+  this.stepAccumulator += dt;
+  const interval = 0.125;
+
+  while (this.stepAccumulator >= interval) {
+    this.stepAccumulator -= interval;
+    this.stepSimulation();
+  }
+
+  this.updateHud();
+}
 
     updateHud() {
       const p = this.getPlayer();
