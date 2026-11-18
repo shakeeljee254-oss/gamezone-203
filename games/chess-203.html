@@ -239,14 +239,17 @@
         if (bar) bar.style.width = loadProgress + '%';
       }, 200);
 
-      // Play Button
+          // Play Button
       const startBtn = document.getElementById("btn-start-game");
       if(startBtn) {
         startBtn.addEventListener("click", function(){
           document.getElementById("start-screen").style.display = "none";
           const gameView = document.getElementById("chess-game-view");
           gameView.classList.remove("hidden");
-          gameView.classList.add("flex");
+          gameView.style.display = "flex";
+          gameView.style.flexDirection = "row";
+          gameView.style.flexWrap = "wrap";
+          gameView.style.gap = "24px";
           b();
         });
       }
