@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
   <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Orbitron','sans-serif']},colors:{gz:{bg:'#070913',panel:'#0E1326',card:'#131A33',cyan:'#00F0FF',magenta:'#FF2A85',violet:'#8B5CF6'}}}}};</script>
-  <style>body{background-color:#070913;background-image:radial-gradient(circle at 15% 15%,rgba(0,240,255,.08),transparent 35%),radial-gradient(circle at 85% 80%,rgba(255,42,133,.08),transparent 40%);color:#F1F5F9}.neon-border-cyan{border:1px solid rgba(0,240,255,.35);box-shadow:0 0 20px rgba(0,240,255,.12),inset 0 0 12px rgba(0,240,255,.05)}.neon-modal{background:linear-gradient(160deg,rgba(16,22,46,.96) 0%,rgba(9,12,26,.98) 100%);border:1px solid rgba(0,240,255,.45);box-shadow:0 0 35px rgba(0,240,255,.18),0 0 70px rgba(139,92,246,.16),inset 0 1px 0 rgba(255,255,255,.12);backdrop-filter:blur(16px)}.neon-btn-primary{background:linear-gradient(135deg,#00F0FF 0%,#3B82F6 50%,#8B5CF6 100%);box-shadow:0 0 18px rgba(0,240,255,.35);transition:all .2s ease}.neon-btn-primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 26px rgba(0,240,255,.55)}.neon-btn-primary:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}.star-btn{transition:transform .16s cubic-bezier(.34,1.56,.64,1),filter .16s ease}.star-btn:hover,.star-btn:focus-visible{transform:scale(1.16)}.star-active svg{fill:#FBBF24;stroke:#F59E0B;filter:drop-shadow(0 0 10px rgba(251,191,36,.65))}.star-inactive svg{fill:rgba(30,41,59,.7);stroke:#64748B}@keyframes modalIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}.animate-modal-in{animation:modalIn .24s cubic-bezier(.16,1,.3,1) forwards}::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:#070913}::-webkit-scrollbar-thumb{background:#1E293B;border-radius:9999px}</style>
+  <style>body{background-color:#070913;background-image:radial-gradient(circle at 15% 15%,rgba(0,240,255,.08),transparent 35%),radial-gradient(circle at 85% 80%,rgba(255,42,133,.08),transparent 40%);color:#F1F5F9}.neon-border-cyan{border:1px solid rgba(0,240,255,.35);box-shadow:0 0 20px rgba(0,240,255,.12),inset 0 0 12px rgba(0,240,255,.05)}.neon-btn-primary{background:linear-gradient(135deg,#00F0FF 0%,#3B82F6 50%,#8B5CF6 100%);box-shadow:0 0 18px rgba(0,240,255,.35);transition:all .2s ease}.neon-btn-primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 26px rgba(0,240,255,.55)}</style>
 </head>
 <body class="min-h-screen font-sans antialiased selection:bg-cyan-400/30 selection:text-cyan-200 flex flex-col">
 
@@ -73,31 +73,18 @@
 
   <!-- Navigation -->
   <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-[#070913]/90 backdrop-blur-md">
-    <nav aria-label="Primary Navigation" class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3 sm:gap-5">
-        <a href="../../index.html" class="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 text-sm font-medium transition-all">
-          <svg aria-hidden="true" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-          </svg>
-          <span>Back to Games</span>
-        </a>
-        <div class="hidden sm:flex items-center gap-2.5">
-          <a href="../../index.html" class="px-2 py-0.5 rounded-md text-[11px] font-display font-bold tracking-wider uppercase bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:border-cyan-400 transition">
-            GameZone 203
-          </a>
-          <span class="text-slate-600">/</span>
-          <h1 class="font-display font-bold text-base sm:text-lg tracking-wide text-white">
-            CHESS <span class="text-cyan-400">203</span>
-          </h1>
-        </div>
-      </div>
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <a href="../../index.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-slate-200 hover:text-cyan-300 text-sm font-medium">
+        ← Back to Games
+      </a>
+      <h1 class="font-display font-bold text-white text-base sm:text-lg">CHESS <span class="text-cyan-400">203</span></h1>
     </nav>
   </header>
 
   <!-- Main -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-10">
     
-    <!-- Play Now Screen -->
+    <!-- Start Screen -->
     <div id="start-screen" class="flex flex-col items-center justify-center py-16 space-y-8">
       <div class="text-center space-y-4">
         <h1 class="font-display text-5xl sm:text-7xl font-extrabold text-white tracking-wider">
@@ -110,50 +97,38 @@
       </button>
     </div>
 
-    <!-- Game View (Hidden Initially) -->
-    <div id="chess-game-view" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <section class="lg:col-span-7 bg-[#0E1326]/90 rounded-2xl neon-border-cyan p-4 sm:p-6">
-        <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-xl bg-[#0E1326] border border-cyan-400 flex items-center justify-center text-cyan-400 text-2xl">♞</div>
-            <div>
-              <h2 class="font-display text-lg sm:text-xl font-bold text-white tracking-wide">Chess 203 Arena</h2>
-              <p id="turn-indicator" class="text-xs sm:text-sm text-slate-400 mt-0.5">Select a cyan piece to play against Cyber AI.</p>
-            </div>
+    <!-- Game View -->
+    <div id="chess-game-view" class="hidden flex-col lg:flex-row gap-6 items-start">
+      <section class="flex-1 bg-[#0E1326]/90 rounded-2xl neon-border-cyan p-4 sm:p-6">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="font-display text-lg sm:text-xl font-bold text-white">Chess 203 Arena</h2>
+            <p id="turn-indicator" class="text-xs sm:text-sm text-slate-400 mt-0.5">Select a cyan piece to play.</p>
           </div>
-          <button id="btn-new-match" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition">New Match</button>
+          <button id="btn-new-match" class="px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold">New Match</button>
         </div>
         <div class="max-w-md mx-auto">
-          <div class="p-2 sm:p-3 rounded-2xl bg-slate-950/90 border border-slate-800 shadow-2xl">
-            <div id="chessboard" role="grid" aria-label="Chess 203 8x8 Game Board" class="grid grid-cols-8 aspect-square w-full rounded-xl overflow-hidden border border-cyan-500/30 select-none"></div>
+          <div class="p-2 rounded-2xl bg-slate-950/90 border border-slate-800 shadow-2xl">
+            <div id="chessboard" class="grid grid-cols-8 aspect-square w-full rounded-xl overflow-hidden border border-cyan-500/30 select-none"></div>
           </div>
-          <div class="mt-4 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
-            <div class="flex items-center gap-3">
-              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> White (You)</span>
-              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span> Black (Cyber AI)</span>
-            </div>
-            <span id="move-counter" class="font-mono text-slate-300">Moves: 0</span>
+          <div class="mt-4 flex justify-between text-xs text-slate-400">
+            <span>⚪ White (You)</span>
+            <span id="move-counter" class="font-mono">Moves: 0</span>
+            <span>⚫ Black (AI)</span>
           </div>
         </div>
       </section>
 
-      <aside class="lg:col-span-5 bg-[#0E1326]/95 rounded-2xl border border-slate-800 shadow-xl overflow-hidden">
-        <div class="px-5 py-4 bg-slate-900/90 border-b border-slate-800">
-          <h2 class="font-display text-sm font-bold tracking-wider uppercase text-cyan-300">Game Info</h2>
-        </div>
-        <div class="p-5 space-y-5 text-sm">
-          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-3">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">How to Play</span>
-            <p class="text-xs text-slate-300 leading-relaxed">Click any cyan piece to select it, then click a target square to move. Try to checkmate the pink Cyber AI pieces!</p>
-          </div>
-          <div class="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800/90 space-y-2">
-            <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Quick Tips</span>
-            <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
-              <li>Control the center of the board</li>
-              <li>Protect your king early</li>
-              <li>Develop pieces before attacking</li>
-            </ul>
-          </div>
+      <aside class="w-full lg:w-80 bg-[#0E1326]/95 rounded-2xl border border-slate-800 p-5 space-y-4">
+        <h2 class="font-display text-sm font-bold text-cyan-300 uppercase tracking-wider">How to Play</h2>
+        <p class="text-xs text-slate-300 leading-relaxed">Click any cyan piece to select it, then click a target square to move. Try to checkmate the pink Cyber AI!</p>
+        <div class="pt-3 border-t border-slate-800">
+          <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">Tips</h3>
+          <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
+            <li>Control the center</li>
+            <li>Protect your king</li>
+            <li>Develop pieces early</li>
+          </ul>
         </div>
       </aside>
     </div>
@@ -165,23 +140,23 @@
         <strong>Chess 203</strong> brings classic 8x8 tactical board strategy into the futuristic neon world of GameZone 203. Play directly in your browser with instant loading, clean controls, and zero downloads.
       </p>
       <div class="space-y-4">
-        <h2 class="font-display text-lg sm:text-xl font-bold text-white">Frequently Asked Questions</h2>
+        <h2 class="font-display text-lg font-bold text-white">Frequently Asked Questions</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <details class="group p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
-            <summary class="font-semibold text-sm text-white cursor-pointer">How do I play Chess 203 online for free?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Click on any cyan piece on the board to select it, then click a target square to make your move. No downloads or sign-ups required.</p>
+          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
+            <summary class="font-semibold text-sm text-white cursor-pointer">How do I play Chess 203?</summary>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Click on any cyan piece to select it, then click a target square to make your move. No downloads required.</p>
           </details>
-          <details class="group p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
-            <summary class="font-semibold text-sm text-white cursor-pointer">Can I play Chess 203 on mobile?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes, Chess 203 is fully responsive and works on mobile, tablet, and desktop browsers.</p>
+          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
+            <summary class="font-semibold text-sm text-white cursor-pointer">Can I play on mobile?</summary>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes, Chess 203 is fully responsive and works on mobile, tablet, and desktop.</p>
           </details>
-          <details class="group p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-            <summary class="font-semibold text-sm text-white cursor-pointer">Is Chess 203 free to play?</summary>
+          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
+            <summary class="font-semibold text-sm text-white cursor-pointer">Is it free?</summary>
             <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes, Chess 203 is completely free to play on GameZone 203.</p>
           </details>
-          <details class="group p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-            <summary class="font-semibold text-sm text-white cursor-pointer">Are there more games on GameZone 203?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes! Explore dozens of free arcade, puzzle, and strategy games at <a href="../../index.html" class="text-cyan-400 hover:underline">GameZone 203</a>.</p>
+          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
+            <summary class="font-semibold text-sm text-white cursor-pointer">More games?</summary>
+            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes! Explore dozens of free games at <a href="../../index.html" class="text-cyan-400 hover:underline">GameZone 203</a>.</p>
           </details>
         </div>
       </div>
@@ -192,15 +167,13 @@
   <footer class="border-t border-slate-800/80 bg-[#05070F] py-5 px-4 sm:px-6 text-xs text-slate-400">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
       <div>&copy; 2026 <a href="../../index.html" class="text-cyan-400 hover:underline font-semibold">GameZone 203</a> — Free Online Games.</div>
-      <nav class="flex flex-wrap items-center gap-4">
-        <a href="../../index.html" class="hover:text-cyan-300 transition">Home</a>
-        <a href="../../index.html#all-games" class="hover:text-cyan-300 transition">All Games</a>
-        <a href="chess-203.html" class="text-cyan-300">Chess 203</a>
+      <nav class="flex items-center gap-4">
+        <a href="../../index.html" class="hover:text-cyan-300">Home</a>
+        <a href="../../index.html#all-games" class="hover:text-cyan-300">All Games</a>
       </nav>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
   (function(){
     "use strict";
@@ -213,10 +186,9 @@
       for(let t=0;t<8;t++)for(let n=0;n<8;n++){
         const a=(t+n)%2==1,o=p[t][n],s=h&&h.r===t&&h.c===n,r=document.createElement("button");
         r.type="button";
-        r.className=["flex items-center justify-center text-2xl sm:text-3xl transition-colors focus:outline-none",a?"bg-[#141D3B]":"bg-[#1E2B54]",s?"ring-2 ring-inset ring-cyan-400 bg-cyan-500/25":"hover:bg-cyan-500/10",o?v(o)?"text-cyan-300 drop-shadow-[0_0_6px_rgba(0,240,255,0.55)]":"text-pink-400 drop-shadow-[0_0_6px_rgba(244,114,182,0.5)]":""].join(" ");
+        r.className=["flex items-center justify-center text-2xl sm:text-3xl transition-colors",a?"bg-[#141D3B]":"bg-[#1E2B54]",s?"ring-2 ring-inset ring-cyan-400 bg-cyan-500/25":"hover:bg-cyan-500/10",o?v(o)?"text-cyan-300 drop-shadow-[0_0_6px_rgba(0,240,255,0.55)]":"text-pink-400 drop-shadow-[0_0_6px_rgba(244,114,182,0.5)]":""].join(" ");
         r.textContent=o;
-        r.setAttribute("aria-label",`Row ${t+1} Column ${n+1} ${o||"Empty"}`);
-        r.addEventListener("click",(()=>y(t,n)));
+        r.addEventListener("click",()=>y(t,n));
         e.appendChild(r);
       }
     }
@@ -230,12 +202,12 @@
           h=null;f++;
           document.getElementById("move-counter").textContent=`Moves: ${f}`;
           setTimeout(()=>{
-            const e=[];
-            for(let t=0;t<7;t++)for(let n=0;n<8;n++)p[t][n]&&!v(p[t][n])&&!p[t+1][n]&&e.push({fromR:t,fromC:n,toR:t+1,toC:n});
-            if(e.length>0){
-              const t=e[Math.floor(Math.random()*e.length)];
-              p[t.toR][t.toC]=p[t.fromR][t.fromC];
-              p[t.fromR][t.fromC]="";
+            const moves=[];
+            for(let t=0;t<7;t++)for(let n=0;n<8;n++)p[t][n]&&!v(p[t][n])&&!p[t+1][n]&&moves.push({fromR:t,fromC:n,toR:t+1,toC:n});
+            if(moves.length>0){
+              const m=moves[Math.floor(Math.random()*moves.length)];
+              p[m.toR][m.toC]=p[m.fromR][m.fromC];
+              p[m.fromR][m.fromC]="";
               b();
             }
           },260);
@@ -243,7 +215,9 @@
         }
       } else if(n&&v(n)){h={r:e,c:t};b();}
     }
-    window.addEventListener("DOMContentLoaded",()=>{
+    
+    // Initialize
+    document.addEventListener("DOMContentLoaded",function(){
       b();
       
       // Loading Screen
@@ -265,18 +239,27 @@
         if (bar) bar.style.width = loadProgress + '%';
       }, 200);
 
-      // Start Button
-      document.getElementById("btn-start-game").addEventListener("click",()=>{
-        document.getElementById("start-screen").classList.add("hidden");
-        document.getElementById("chess-game-view").classList.remove("hidden");
-      });
+      // Play Button
+      const startBtn = document.getElementById("btn-start-game");
+      if(startBtn) {
+        startBtn.addEventListener("click", function(){
+          document.getElementById("start-screen").style.display = "none";
+          const gameView = document.getElementById("chess-game-view");
+          gameView.classList.remove("hidden");
+          gameView.classList.add("flex");
+          b();
+        });
+      }
 
       // New Match Button
-      document.getElementById("btn-new-match").addEventListener("click",()=>{
-        p=g.map(e=>[...e]);f=0;h=null;
-        document.getElementById("move-counter").textContent="Moves: 0";
-        b();
-      });
+      const newBtn = document.getElementById("btn-new-match");
+      if(newBtn) {
+        newBtn.addEventListener("click", function(){
+          p=g.map(e=>[...e]);f=0;h=null;
+          document.getElementById("move-counter").textContent="Moves: 0";
+          b();
+        });
+      }
     });
   })();
   </script>
