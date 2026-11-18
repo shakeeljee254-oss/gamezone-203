@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,14 +53,127 @@
   }
   </script>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet" />
-  <script>tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],display:['Orbitron','sans-serif']},colors:{gz:{bg:'#070913',panel:'#0E1326',card:'#131A33',cyan:'#00F0FF',magenta:'#FF2A85',violet:'#8B5CF6'}}}}};</script>
-  <style>body{background-color:#070913;background-image:radial-gradient(circle at 15% 15%,rgba(0,240,255,.08),transparent 35%),radial-gradient(circle at 85% 80%,rgba(255,42,133,.08),transparent 40%);color:#F1F5F9}.neon-border-cyan{border:1px solid rgba(0,240,255,.35);box-shadow:0 0 20px rgba(0,240,255,.12),inset 0 0 12px rgba(0,240,255,.05)}.neon-btn-primary{background:linear-gradient(135deg,#00F0FF 0%,#3B82F6 50%,#8B5CF6 100%);box-shadow:0 0 18px rgba(0,240,255,.35);transition:all .2s ease}.neon-btn-primary:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 0 26px rgba(0,240,255,.55)}</style>
+
+  <!-- Custom CSS (No External Dependencies) -->
+  <style>
+    :root { --bg: #070913; --panel: #0E1326; --cyan: #00F0FF; --magenta: #FF2A85; --violet: #8B5CF6; --text: #F1F5F9; --muted: #94a3b8; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at 15% 15%, rgba(0,240,255,.08), transparent 35%), radial-gradient(circle at 85% 80%, rgba(255,42,133,.08), transparent 40%);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Navigation */
+    header {
+      border-bottom: 1px solid #1e293b;
+      background: rgba(7,9,19,0.9);
+      backdrop-filter: blur(10px);
+      padding: 0 16px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 30;
+    }
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      background: #0f172a;
+      border: 1px solid rgba(0,240,255,0.3);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+    .nav-link:hover { border-color: var(--cyan); color: var(--cyan); }
+    .brand-title { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+    .brand-title span { color: var(--cyan); }
+
+    /* Main Content */
+    main { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 24px 16px; display: flex; flex-direction: column; gap: 40px; }
+
+    /* Start Screen */
+    #start-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 0; gap: 30px; }
+    .game-logo { font-family: 'Orbitron', sans-serif; font-size: 56px; font-weight: 800; text-align: center; color: #fff; letter-spacing: 4px; }
+    .game-logo span { color: var(--cyan); }
+    .game-desc { color: var(--muted); max-width: 420px; text-align: center; font-size: 15px; line-height: 1.6; }
+    .btn-play {
+      background: linear-gradient(135deg, #00F0FF 0%, #3B82F6 50%, #8B5CF6 100%);
+      color: #070913;
+      border: 0;
+      border-radius: 16px;
+      padding: 18px 48px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,240,255,0.4);
+      transition: 0.2s;
+    }
+    .btn-play:hover { transform: translateY(-2px); box-shadow: 0 0 30px rgba(0,240,255,0.6); }
+
+    /* Game View */
+    #chess-game-view { display: none; flex-direction: row; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+    .board-section { flex: 1; min-width: 300px; background: rgba(14,19,38,0.9); border-radius: 20px; border: 1px solid rgba(0,240,255,0.35); padding: 20px; }
+    .board-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .board-header h2 { font-family: 'Orbitron', sans-serif; font-size: 18px; color: #fff; }
+    .board-header p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .btn-new { background: rgba(0,240,255,0.15); border: 1px solid rgba(0,240,255,0.4); color: var(--cyan); padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+    .board-container { max-width: 400px; margin: 0 auto; background: #05070F; border-radius: 16px; border: 1px solid #1e293b; padding: 10px; }
+    #chessboard { display: grid; grid-template-columns: repeat(8, 1fr); aspect-ratio: 1; width: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(0,240,255,0.3); }
+    .cell { display: flex; align-items: center; justify-content: center; font-size: 32px; cursor: pointer; user-select: none; }
+    .cell.light { background: #1E2B54; }
+    .cell.dark { background: #141D3B; }
+    .cell.selected { outline: 3px solid var(--cyan); outline-offset: -3px; background: rgba(0,240,255,0.2); }
+    .cell.white-piece { color: var(--cyan); text-shadow: 0 0 8px rgba(0,240,255,0.6); }
+    .cell.black-piece { color: #f472b6; text-shadow: 0 0 8px rgba(244,114,182,0.6); }
+    .board-footer { margin-top: 16px; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+
+    /* Info Panel */
+    .info-section { width: 100%; max-width: 350px; background: rgba(14,19,38,0.95); border-radius: 20px; border: 1px solid #1e293b; padding: 24px; }
+    .info-section h3 { font-family: 'Orbitron', sans-serif; font-size: 14px; color: var(--cyan); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .info-section p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+    .tips-list { list-style: disc; padding-left: 20px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+
+    /* FAQ Section */
+    .faq-section { background: rgba(14,19,38,0.8); border-radius: 20px; border: 1px solid #1e293b; padding: 30px; }
+    .faq-section h2 { font-family: 'Orbitron', sans-serif; font-size: 24px; color: #fff; margin-bottom: 16px; }
+    .faq-section p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .faq-item { background: #05070F; padding: 16px; border-radius: 12px; border: 1px solid #1e293b; }
+    .faq-item h3 { font-size: 14px; color: #fff; margin-bottom: 8px; }
+    .faq-item p { font-size: 13px; color: var(--muted); margin: 0; line-height: 1.5; }
+    .faq-item a { color: var(--cyan); text-decoration: none; }
+
+    /* Footer */
+    footer { border-top: 1px solid #1e293b; background: #05070F; padding: 20px 16px; text-align: center; font-size: 12px; color: var(--muted); }
+    footer a { color: var(--cyan); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      #chess-game-view { flex-direction: column; align-items: center; }
+      .board-section, .info-section { width: 100%; max-width: 100%; }
+      .faq-grid { grid-template-columns: 1fr; }
+      .game-logo { font-size: 40px; }
+      .cell { font-size: 26px; }
+    }
+  </style>
 </head>
-<body class="min-h-screen font-sans antialiased selection:bg-cyan-400/30 selection:text-cyan-200 flex flex-col">
+<body>
 
   <!-- Loading Screen -->
   <div id="loading-screen" style="position:fixed;inset:0;background:#070913;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
@@ -72,153 +185,163 @@
   </div>
 
   <!-- Navigation -->
-  <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-[#070913]/90 backdrop-blur-md">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <a href="../../index.html" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 border border-cyan-500/30 text-slate-200 hover:text-cyan-300 text-sm font-medium">
-        ← Back to Games
-      </a>
-      <h1 class="font-display font-bold text-white text-base sm:text-lg">CHESS <span class="text-cyan-400">203</span></h1>
-    </nav>
+  <header>
+    <a href="../../index.html" class="nav-link">← Back to Games</a>
+    <div class="brand-title">CHESS <span>203</span></div>
   </header>
 
   <!-- Main -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-10">
+  <main>
     
     <!-- Start Screen -->
-    <div id="start-screen" class="flex flex-col items-center justify-center py-16 space-y-8">
-      <div class="text-center space-y-4">
-        <h1 class="font-display text-5xl sm:text-7xl font-extrabold text-white tracking-wider">
-          CHESS <span class="text-cyan-400">203</span>
-        </h1>
-        <p class="text-slate-300 max-w-md mx-auto">Challenge Cyber AI in this neon cyber-chess strategy game. No download required.</p>
-      </div>
-      <button id="btn-start-game" class="neon-btn-primary px-12 py-5 rounded-2xl font-display font-bold text-slate-950 text-2xl tracking-wider">
-        ▶ PLAY NOW
-      </button>
+    <div id="start-screen">
+      <div class="game-logo">CHESS <span>203</span></div>
+      <p class="game-desc">Challenge Cyber AI in this neon cyber-chess strategy game. No download required.</p>
+      <button id="btn-start-game" class="btn-play">▶ PLAY NOW</button>
     </div>
 
     <!-- Game View -->
-    <div id="chess-game-view" class="hidden flex-col lg:flex-row gap-6 items-start">
-      <section class="flex-1 bg-[#0E1326]/90 rounded-2xl neon-border-cyan p-4 sm:p-6">
-        <div class="flex items-center justify-between mb-4">
+    <div id="chess-game-view">
+      <section class="board-section">
+        <div class="board-header">
           <div>
-            <h2 class="font-display text-lg sm:text-xl font-bold text-white">Chess 203 Arena</h2>
-            <p id="turn-indicator" class="text-xs sm:text-sm text-slate-400 mt-0.5">Select a cyan piece to play.</p>
+            <h2>Chess 203 Arena</h2>
+            <p id="turn-indicator">Select a cyan piece to play.</p>
           </div>
-          <button id="btn-new-match" class="px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold">New Match</button>
+          <button id="btn-new-match" class="btn-new">New Match</button>
         </div>
-        <div class="max-w-md mx-auto">
-          <div class="p-2 rounded-2xl bg-slate-950/90 border border-slate-800 shadow-2xl">
-            <div id="chessboard" class="grid grid-cols-8 aspect-square w-full rounded-xl overflow-hidden border border-cyan-500/30 select-none"></div>
-          </div>
-          <div class="mt-4 flex justify-between text-xs text-slate-400">
-            <span>⚪ White (You)</span>
-            <span id="move-counter" class="font-mono">Moves: 0</span>
-            <span>⚫ Black (AI)</span>
-          </div>
+        <div class="board-container">
+          <div id="chessboard"></div>
+        </div>
+        <div class="board-footer">
+          <span>⚪ White (You)</span>
+          <span id="move-counter">Moves: 0</span>
+          <span>⚫ Black (AI)</span>
         </div>
       </section>
 
-      <aside class="w-full lg:w-80 bg-[#0E1326]/95 rounded-2xl border border-slate-800 p-5 space-y-4">
-        <h2 class="font-display text-sm font-bold text-cyan-300 uppercase tracking-wider">How to Play</h2>
-        <p class="text-xs text-slate-300 leading-relaxed">Click any cyan piece to select it, then click a target square to move. Try to checkmate the pink Cyber AI!</p>
-        <div class="pt-3 border-t border-slate-800">
-          <h3 class="text-xs font-bold text-slate-400 uppercase mb-2">Tips</h3>
-          <ul class="text-xs text-slate-300 space-y-1 list-disc list-inside">
-            <li>Control the center</li>
-            <li>Protect your king</li>
-            <li>Develop pieces early</li>
-          </ul>
-        </div>
+      <aside class="info-section">
+        <h3>How to Play</h3>
+        <p>Click any cyan piece to select it, then click a target square to move. Try to checkmate the pink Cyber AI!</p>
+        <h3>Quick Tips</h3>
+        <ul class="tips-list">
+          <li>Control the center</li>
+          <li>Protect your king</li>
+          <li>Develop pieces early</li>
+        </ul>
       </aside>
     </div>
 
     <!-- FAQ Section -->
-    <section class="bg-[#0E1326]/80 rounded-2xl border border-slate-800/90 p-6 sm:p-8 space-y-6">
-      <h2 class="font-display text-xl sm:text-2xl font-bold text-white">About Chess 203</h2>
-      <p class="text-sm text-slate-300 leading-relaxed">
-        <strong>Chess 203</strong> brings classic 8x8 tactical board strategy into the futuristic neon world of GameZone 203. Play directly in your browser with instant loading, clean controls, and zero downloads.
-      </p>
-      <div class="space-y-4">
-        <h2 class="font-display text-lg font-bold text-white">Frequently Asked Questions</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
-            <summary class="font-semibold text-sm text-white cursor-pointer">How do I play Chess 203?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Click on any cyan piece to select it, then click a target square to make your move. No downloads required.</p>
-          </details>
-          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
-            <summary class="font-semibold text-sm text-white cursor-pointer">Can I play on mobile?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes, Chess 203 is fully responsive and works on mobile, tablet, and desktop.</p>
-          </details>
-          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-            <summary class="font-semibold text-sm text-white cursor-pointer">Is it free?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes, Chess 203 is completely free to play on GameZone 203.</p>
-          </details>
-          <details class="p-4 rounded-xl bg-slate-950/70 border border-slate-800">
-            <summary class="font-semibold text-sm text-white cursor-pointer">More games?</summary>
-            <p class="text-xs text-slate-400 mt-2 leading-relaxed">Yes! Explore dozens of free games at <a href="../../index.html" class="text-cyan-400 hover:underline">GameZone 203</a>.</p>
-          </details>
+    <section class="faq-section">
+      <h2>About Chess 203</h2>
+      <p><strong>Chess 203</strong> brings classic 8x8 tactical board strategy into the futuristic neon world of GameZone 203. Play directly in your browser with instant loading, clean controls, and zero downloads.</p>
+      
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h3>How do I play Chess 203?</h3>
+          <p>Click on any cyan piece to select it, then click a target square to make your move.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Can I play on mobile?</h3>
+          <p>Yes, Chess 203 is fully responsive and works on mobile, tablet, and desktop.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is it free?</h3>
+          <p>Yes, Chess 203 is completely free to play on GameZone 203.</p>
+        </div>
+        <div class="faq-item">
+          <h3>More games?</h3>
+          <p>Yes! Explore dozens of free games at <a href="../../index.html">GameZone 203</a>.</p>
         </div>
       </div>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800/80 bg-[#05070F] py-5 px-4 sm:px-6 text-xs text-slate-400">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-      <div>&copy; 2026 <a href="../../index.html" class="text-cyan-400 hover:underline font-semibold">GameZone 203</a> — Free Online Games.</div>
-      <nav class="flex items-center gap-4">
-        <a href="../../index.html" class="hover:text-cyan-300">Home</a>
-        <a href="../../index.html#all-games" class="hover:text-cyan-300">All Games</a>
-      </nav>
-    </div>
+  <footer>
+    &copy; 2026 <a href="../../index.html">GameZone 203</a> — Free Online Games.
   </footer>
 
+  <!-- Scripts -->
   <script>
   (function(){
     "use strict";
+    
+    // Chess Logic
     const g=[["♜","♞","♝","♛","♚","♝","♞","♜"],["♟","♟","♟","♟","♟","♟","♟","♟"],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["","","","","","","",""],["♙","♙","♙","♙","♙","♙","♙","♙"],["♖","♘","♗","♕","♔","♗","♘","♖"]];
     let p=g.map(e=>[...e]),h=null,f=0;
-    function v(e){return["♙","♖","♘","♗","♕","♔"].includes(e)}
-    function b(){
+    
+    function isWhite(e){return["♙","♖","♘","♗","♕","♔"].includes(e)}
+    
+    function renderBoard(){
       const e=document.getElementById("chessboard");
       e.innerHTML="";
-      for(let t=0;t<8;t++)for(let n=0;n<8;n++){
-        const a=(t+n)%2==1,o=p[t][n],s=h&&h.r===t&&h.c===n,r=document.createElement("button");
-        r.type="button";
-        r.className=["flex items-center justify-center text-2xl sm:text-3xl transition-colors",a?"bg-[#141D3B]":"bg-[#1E2B54]",s?"ring-2 ring-inset ring-cyan-400 bg-cyan-500/25":"hover:bg-cyan-500/10",o?v(o)?"text-cyan-300 drop-shadow-[0_0_6px_rgba(0,240,255,0.55)]":"text-pink-400 drop-shadow-[0_0_6px_rgba(244,114,182,0.5)]":""].join(" ");
-        r.textContent=o;
-        r.addEventListener("click",()=>y(t,n));
-        e.appendChild(r);
+      for(let r=0;r<8;r++){
+        for(let c=0;c<8;c++){
+          const isLight=(r+c)%2===0;
+          const piece=p[r][c];
+          const isSelected=h&&h.r===r&&h.c===c;
+          
+          const cell=document.createElement("div");
+          cell.className = "cell " + (isLight ? "light" : "dark");
+          if(isSelected) cell.classList.add("selected");
+          if(piece) {
+            cell.textContent = piece;
+            if(isWhite(piece)) cell.classList.add("white-piece");
+            else cell.classList.add("black-piece");
+          }
+          
+          cell.addEventListener("click",()=>handleClick(r,c));
+          e.appendChild(cell);
+        }
       }
     }
-    function y(e,t){
-      const n=p[e][t];
+    
+    function handleClick(r,c){
+      const piece = p[r][c];
       if(h){
-        if(h.r===e&&h.c===t){h=null;b();}
-        else if(n&&v(n)){h={r:e,c:t};b();}
-        else{
-          p[e][t]=p[h.r][h.c];p[h.r][h.c]="";
-          h=null;f++;
-          document.getElementById("move-counter").textContent=`Moves: ${f}`;
+        if(h.r===r && h.c===c){
+          h=null; renderBoard();
+        } else if(piece && isWhite(piece)){
+          h={r,c}; renderBoard();
+        } else {
+          // Move piece
+          p[r][c] = p[h.r][h.c];
+          p[h.r][h.c] = "";
+          h=null;
+          f++;
+          document.getElementById("move-counter").textContent = `Moves: ${f}`;
+          
+          // Simple AI move
           setTimeout(()=>{
             const moves=[];
-            for(let t=0;t<7;t++)for(let n=0;n<8;n++)p[t][n]&&!v(p[t][n])&&!p[t+1][n]&&moves.push({fromR:t,fromC:n,toR:t+1,toC:n});
+            for(let tr=0;tr<7;tr++){
+              for(let tc=0;tc<8;tc++){
+                if(p[tr][tc] && !isWhite(p[tr][tc]) && !p[tr+1][tc]){
+                  moves.push({fromR:tr,fromC:tc,toR:tr+1,toC:tc});
+                }
+              }
+            }
             if(moves.length>0){
               const m=moves[Math.floor(Math.random()*moves.length)];
-              p[m.toR][m.toC]=p[m.fromR][m.fromC];
-              p[m.fromR][m.fromC]="";
-              b();
+              p[m.toR][m.toC] = p[m.fromR][m.fromC];
+              p[m.fromR][m.fromC] = "";
+              renderBoard();
             }
-          },260);
-          b();
+          }, 300);
+          
+          renderBoard();
         }
-      } else if(n&&v(n)){h={r:e,c:t};b();}
+      } else if(piece && isWhite(piece)){
+        h={r,c}; renderBoard();
+      }
     }
     
     // Initialize
-    document.addEventListener("DOMContentLoaded",function(){
-      b();
+    document.addEventListener("DOMContentLoaded", function(){
+      renderBoard();
       
       // Loading Screen
       let loadProgress = 0;
@@ -239,18 +362,13 @@
         if (bar) bar.style.width = loadProgress + '%';
       }, 200);
 
-          // Play Button
+      // Play Button
       const startBtn = document.getElementById("btn-start-game");
       if(startBtn) {
         startBtn.addEventListener("click", function(){
           document.getElementById("start-screen").style.display = "none";
-          const gameView = document.getElementById("chess-game-view");
-          gameView.classList.remove("hidden");
-          gameView.style.display = "flex";
-          gameView.style.flexDirection = "row";
-          gameView.style.flexWrap = "wrap";
-          gameView.style.gap = "24px";
-          b();
+          document.getElementById("chess-game-view").style.display = "flex";
+          renderBoard();
         });
       }
 
@@ -258,9 +376,11 @@
       const newBtn = document.getElementById("btn-new-match");
       if(newBtn) {
         newBtn.addEventListener("click", function(){
-          p=g.map(e=>[...e]);f=0;h=null;
+          p=g.map(e=>[...e]);
+          f=0;
+          h=null;
           document.getElementById("move-counter").textContent="Moves: 0";
-          b();
+          renderBoard();
         });
       }
     });
