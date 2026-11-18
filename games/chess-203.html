@@ -62,11 +62,20 @@
 </head>
 <body class="min-h-screen font-sans antialiased selection:bg-cyan-400/30 selection:text-cyan-200 flex flex-col">
 
+  <!-- Loading Screen -->
+  <div id="loading-screen" style="position:fixed;inset:0;background:#070913;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
+    <h1 style="color:#00F0FF;font-family:Orbitron,sans-serif;font-size:2.5rem;text-shadow:0 0 20px #00F0FF;margin-bottom:20px;">CHESS 203</h1>
+    <div style="width:200px;height:6px;background:#1a233a;border-radius:10px;overflow:hidden;">
+      <div id="loading-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#00F0FF,#FF2A85);transition:width 0.1s linear;"></div>
+    </div>
+    <p style="color:#94a3b8;margin-top:15px;font-family:sans-serif;letter-spacing:2px;">LOADING...</p>
+  </div>
+
   <!-- Navigation -->
   <header class="sticky top-0 z-30 border-b border-slate-800/80 bg-[#070913]/90 backdrop-blur-md">
     <nav aria-label="Primary Navigation" class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
       <div class="flex items-center gap-3 sm:gap-5">
-        <a href="../../index.html" id="nav-back-btn" class="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 text-sm font-medium transition-all">
+        <a href="../../index.html" class="group inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 text-sm font-medium transition-all">
           <svg aria-hidden="true" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
@@ -82,30 +91,37 @@
           </h1>
         </div>
       </div>
-      <div class="flex items-center gap-2.5 sm:gap-3">
-        <button id="header-exit-btn" type="button" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/40 text-rose-300 hover:text-rose-200 text-sm font-medium transition-all">
-          <span>Exit Game</span>
-        </button>
-      </div>
     </nav>
   </header>
 
   <!-- Main -->
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-10">
-    <div id="chess-game-view" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <!-- Board -->
+    
+    <!-- Play Now Screen -->
+    <div id="start-screen" class="flex flex-col items-center justify-center py-16 space-y-8">
+      <div class="text-center space-y-4">
+        <h1 class="font-display text-5xl sm:text-7xl font-extrabold text-white tracking-wider">
+          CHESS <span class="text-cyan-400">203</span>
+        </h1>
+        <p class="text-slate-300 max-w-md mx-auto">Challenge Cyber AI in this neon cyber-chess strategy game. No download required.</p>
+      </div>
+      <button id="btn-start-game" class="neon-btn-primary px-12 py-5 rounded-2xl font-display font-bold text-slate-950 text-2xl tracking-wider">
+        ▶ PLAY NOW
+      </button>
+    </div>
+
+    <!-- Game View (Hidden Initially) -->
+    <div id="chess-game-view" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       <section class="lg:col-span-7 bg-[#0E1326]/90 rounded-2xl neon-border-cyan p-4 sm:p-6">
         <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div class="flex items-center gap-3">
             <div class="w-11 h-11 rounded-xl bg-[#0E1326] border border-cyan-400 flex items-center justify-center text-cyan-400 text-2xl">♞</div>
             <div>
-              <h2 class="font-display text-lg sm:text-xl font-bold text-white tracking-wide">Play Chess 203 Online</h2>
+              <h2 class="font-display text-lg sm:text-xl font-bold text-white tracking-wide">Chess 203 Arena</h2>
               <p id="turn-indicator" class="text-xs sm:text-sm text-slate-400 mt-0.5">Select a cyan piece to play against Cyber AI.</p>
             </div>
           </div>
-          <div class="flex items-center gap-2">
-            <button id="btn-new-match" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition">New Match</button>
-          </div>
+          <button id="btn-new-match" type="button" class="px-3 py-1.5 rounded-xl bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/40 text-cyan-300 text-xs font-semibold transition">New Match</button>
         </div>
         <div class="max-w-md mx-auto">
           <div class="p-2 sm:p-3 rounded-2xl bg-slate-950/90 border border-slate-800 shadow-2xl">
@@ -121,7 +137,6 @@
         </div>
       </section>
 
-      <!-- Info Panel -->
       <aside class="lg:col-span-5 bg-[#0E1326]/95 rounded-2xl border border-slate-800 shadow-xl overflow-hidden">
         <div class="px-5 py-4 bg-slate-900/90 border-b border-slate-800">
           <h2 class="font-display text-sm font-bold tracking-wider uppercase text-cyan-300">Game Info</h2>
@@ -143,14 +158,14 @@
       </aside>
     </div>
 
-    <!-- FAQ Section (Visible - for SEO) -->
+    <!-- FAQ Section -->
     <section class="bg-[#0E1326]/80 rounded-2xl border border-slate-800/90 p-6 sm:p-8 space-y-6">
-      <h2 class="font-display text-xl sm:text-2xl font-bold text-white">About Chess 203 – Free Browser Strategy Game</h2>
+      <h2 class="font-display text-xl sm:text-2xl font-bold text-white">About Chess 203</h2>
       <p class="text-sm text-slate-300 leading-relaxed">
         <strong>Chess 203</strong> brings classic 8x8 tactical board strategy into the futuristic neon world of GameZone 203. Play directly in your browser with instant loading, clean controls, and zero downloads.
       </p>
       <div class="space-y-4">
-        <h2 class="font-display text-lg sm:text-xl font-bold text-white">Chess 203 Frequently Asked Questions</h2>
+        <h2 class="font-display text-lg sm:text-xl font-bold text-white">Frequently Asked Questions</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <details class="group p-4 rounded-xl bg-slate-950/70 border border-slate-800" open>
             <summary class="font-semibold text-sm text-white cursor-pointer">How do I play Chess 203 online for free?</summary>
@@ -230,6 +245,33 @@
     }
     window.addEventListener("DOMContentLoaded",()=>{
       b();
+      
+      // Loading Screen
+      let loadProgress = 0;
+      const loadInterval = setInterval(() => {
+        loadProgress += Math.random() * 10;
+        if (loadProgress >= 100) {
+          loadProgress = 100;
+          clearInterval(loadInterval);
+          setTimeout(() => {
+            const loader = document.getElementById('loading-screen');
+            if (loader) {
+              loader.style.opacity = '0';
+              setTimeout(() => loader.style.display = 'none', 500);
+            }
+          }, 800);
+        }
+        const bar = document.getElementById('loading-bar');
+        if (bar) bar.style.width = loadProgress + '%';
+      }, 200);
+
+      // Start Button
+      document.getElementById("btn-start-game").addEventListener("click",()=>{
+        document.getElementById("start-screen").classList.add("hidden");
+        document.getElementById("chess-game-view").classList.remove("hidden");
+      });
+
+      // New Match Button
       document.getElementById("btn-new-match").addEventListener("click",()=>{
         p=g.map(e=>[...e]);f=0;h=null;
         document.getElementById("move-counter").textContent="Moves: 0";
