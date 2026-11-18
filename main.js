@@ -18,6 +18,18 @@ window.GZ_CONFIG = {
     // 1. NAYE CHALNE WALE GAMES (Sabse Upar)
     // ==========================================
     {
+      id: "chess-203",
+      name: "Chess 203",
+      category: "Board & Classic",
+      emoji: "♟️",
+      tag: "NEW / PRO",
+      description: "Play free online neon cyber-chess against Cyber AI with instant browser play and exit feedback mechanics.",
+      url: "games/chess-203.html",
+      popular: true,
+      kids: true,
+      bg: "#070913"
+    },
+    {
       id: "fruit-ninja",
       name: "Fruit Ninja",
       category: "Arcade",
@@ -175,7 +187,7 @@ window.GZ_CONFIG = {
     },
 
     // ==========================================
-    // 2. BAAKI GAMES (Coming Soon)
+    // 2. BAAKI GAMES (Coming Soon / Existing)
     // ==========================================
     {
       id: "chess",
@@ -719,7 +731,7 @@ window.GZ_CONFIG = {
     },
     {
       id: "clash-of-clans",
-      name: "Clash of Clans",
+      name: "Clash Of Clans",
       category: "Strategy & Casual",
       emoji: "🏰",
       tag: "STRATEGY",
