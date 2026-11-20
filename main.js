@@ -208,7 +208,7 @@ window.GZ_CONFIG = {
       emoji: "🎲",
       tag: "FAMILY GAME",
       description: "Play Ludo with friends and family.",
-      url: "",
+     url: "games/ludo-king.html",
       popular: true,
       kids: true,
       bg: "#fff0e5"
