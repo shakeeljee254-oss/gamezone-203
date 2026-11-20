@@ -1,247 +1,2519 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Ping Pong - Play Free Online | GameZone 203</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#060913" />
+  <title>Ping Pong VIP | GameZone 203</title>
+  <style>
+    :root {
+      --bg-deep: #060913;
+      --bg-panel: rgba(12, 18, 38, 0.93);
+      --neon-cyan: #00f0ff;
+      --neon-blue: #3b82f6;
+      --neon-purple: #a855f7;
+      --neon-pink: #ec4899;
+      --neon-gold: #fbbf24;
+      --neon-green: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border-glow: rgba(0, 240, 255, 0.28);
+    }
 
-<!-- SEO TAGS -->
-<meta name="description" content="Play classic Ping Pong free online at GameZone 203. Test your reflexes in this fast-paced table tennis game!">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/ping-pong.html">
-<meta property="og:title" content="Ping Pong - Play Free Online | GameZone 203">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Ping Pong",
-  "description": "Play classic Ping Pong free online.",
-  "genre": ["Sports", "Arcade"]
-}
-</script>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
 
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background-color: #111;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-    touch-action: none;
-  }
-  canvas {
-    background-color: #000;
-    box-shadow: 0 0 30px rgba(80, 245, 208, 0.3);
-    border-radius: 8px;
-    max-width: 100%;
-    max-height: 100vh;
-  }
-  #startOverlay {
-    position: absolute;
-    background: rgba(0,0,0,0.85);
-    color: white;
-    padding: 40px;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 10;
-    border: 2px solid #50f5d0;
-    box-shadow: 0 0 20px #50f5d0;
-  }
-  h1 { color: #50f5d0; margin-top: 0; font-size: 40px; letter-spacing: 2px; }
-  p { color: #aab1ce; font-size: 16px; margin-bottom: 25px; }
-  button {
-    background: #50f5d0;
-    color: #000;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  button:hover {
-    background: #fff;
-    box-shadow: 0 0 15px #fff;
-  }
-</style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 15%, #131c3a 0%, #060913 75%);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      touch-action: none;
+    }
+
+    .hidden { display: none !important; }
+
+    .vip-glass {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-glow);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .vip-title-grad {
+      background: linear-gradient(135deg, #ffffff 0%, var(--neon-cyan) 48%, var(--neon-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.35px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: linear-gradient(145deg, rgba(28, 39, 74, 0.95), rgba(15, 22, 44, 0.98));
+      color: var(--text-main);
+      transition: transform 0.14s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      min-height: 44px;
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 6px 20px rgba(0, 240, 255, 0.28);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: scale(0.97);
+    }
+
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #7c3aed 100%);
+      border: 1px solid rgba(0, 240, 255, 0.6);
+      color: #ffffff;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 6px 22px rgba(0, 210, 255, 0.35);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      box-shadow: 0 8px 28px rgba(0, 240, 255, 0.55);
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg, rgba(185, 28, 28, 0.85), rgba(127, 29, 29, 0.95));
+      border-color: rgba(248, 113, 113, 0.45);
+    }
+
+    .btn-sm {
+      padding: 8px 12px;
+      font-size: 0.78rem;
+      min-height: 36px;
+      border-radius: 10px;
+    }
+
+    /* ==================== 1. LOADING SCREEN ==================== */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: radial-gradient(circle at 50% 30%, #151f42 0%, #05070f 80%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+      transition: opacity 0.45s ease;
+    }
+
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--neon-cyan);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .loading-title {
+      font-size: clamp(1.85rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .loading-sub {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 26px;
+    }
+
+    .pong-loader-stage {
+      position: relative;
+      width: 240px;
+      height: 76px;
+      border-radius: 16px;
+      background: rgba(10, 15, 32, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      margin-bottom: 26px;
+      overflow: hidden;
+      box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.12);
+    }
+
+    .loader-net {
+      position: absolute;
+      left: 50%;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.4) 0 6px, transparent 6px 12px);
+      transform: translateX(-50%);
+    }
+
+    .loader-paddle {
+      position: absolute;
+      width: 8px;
+      height: 28px;
+      border-radius: 4px;
+      top: 24px;
+    }
+
+    .loader-paddle.left {
+      left: 14px;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 12px var(--neon-cyan);
+      animation: paddleLeftAnim 1.4s ease-in-out infinite;
+    }
+
+    .loader-paddle.right {
+      right: 14px;
+      background: var(--neon-purple);
+      box-shadow: 0 0 12px var(--neon-purple);
+      animation: paddleRightAnim 1.4s ease-in-out infinite;
+    }
+
+    .loader-ball {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 0 14px #fff, 0 0 24px var(--neon-cyan);
+      top: 31px;
+      left: 24px;
+      animation: ballBounceAnim 1.4s linear infinite;
+    }
+
+    @keyframes ballBounceAnim {
+      0%   { left: 24px; top: 31px; }
+      25%  { left: 112px; top: 12px; }
+      50%  { left: 202px; top: 34px; }
+      75%  { left: 112px; top: 50px; }
+      100% { left: 24px; top: 31px; }
+    }
+
+    @keyframes paddleLeftAnim {
+      0%, 100% { top: 24px; }
+      50% { top: 34px; }
+    }
+
+    @keyframes paddleRightAnim {
+      0%, 100% { top: 16px; }
+      50% { top: 27px; }
+    }
+
+    .progress-wrap {
+      width: min(360px, 88vw);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      padding: 2px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue), var(--neon-purple));
+      box-shadow: 0 0 14px var(--neon-cyan);
+      transition: width 0.14s linear;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    #loading-error {
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(185, 28, 28, 0.25);
+      border: 1px solid #f87171;
+      color: #fecaca;
+      font-size: 0.85rem;
+      max-width: 380px;
+    }
+
+    /* ==================== 2. MAIN MENU SCREEN ==================== */
+    #main-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      overflow-y: auto;
+      padding: clamp(12px, 2.5vh, 24px) 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: safe center;
+    }
+
+    .menu-container {
+      width: 100%;
+      max-width: 840px;
+      border-radius: 24px;
+      padding: clamp(16px, 3vw, 28px);
+    }
+
+    .menu-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .menu-title-group h1 {
+      font-size: clamp(1.5rem, 3.8vw, 2.25rem);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .menu-title-group p {
+      font-size: 0.8rem;
+      color: var(--neon-cyan);
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .active-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .status-chip {
+      padding: 6px 11px;
+      border-radius: 10px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(168, 85, 247, 0.35);
+      color: #e2e8f0;
+    }
+
+    .status-chip span {
+      color: var(--neon-cyan);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media (max-width: 540px) {
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .menu-grid .btn {
+      justify-content: flex-start;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    .menu-grid .btn .icon {
+      font-size: 1.15rem;
+      width: 24px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .menu-grid .btn .btn-meta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .menu-grid .btn .btn-sub {
+      font-size: 0.71rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 1px;
+    }
+
+    .menu-footer-note {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ==================== 3. MODALS & SUB-PANELS ==================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(3, 6, 15, 0.82);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 540px;
+      border-radius: 22px;
+      padding: 20px;
+      animation: modalPop 0.2s ease-out;
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .modal-head h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .option-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .option-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .choice-card {
+      padding: 13px 10px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .choice-card:hover {
+      border-color: rgba(0, 240, 255, 0.5);
+    }
+
+    .choice-card.selected {
+      border-color: var(--neon-cyan);
+      background: linear-gradient(160deg, rgba(0, 240, 255, 0.18), rgba(124, 58, 237, 0.22));
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.28);
+    }
+
+    .choice-card .c-title {
+      font-weight: 800;
+      font-size: 0.94rem;
+      margin-bottom: 4px;
+    }
+
+    .choice-card .c-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .setting-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+    }
+
+    .setting-row label {
+      font-weight: 700;
+      font-size: 0.86rem;
+    }
+
+    input[type="range"] {
+      accent-color: var(--neon-cyan);
+      width: 140px;
+      cursor: pointer;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat-box {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(0, 240, 255, 0.18);
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+    }
+
+    .stat-lbl {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    .guide-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      margin-bottom: 14px;
+    }
+
+    .guide-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.8);
+      border-left: 3px solid var(--neon-cyan);
+    }
+
+    .guide-item strong {
+      color: #ffffff;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+
+    .modal-actions .btn {
+      flex: 1 1 auto;
+    }
+
+    /* ==================== 4. ACTIVE GAME ARENA ==================== */
+    #game-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 50% 50%, #0e1630 0%, #05070e 100%);
+    }
+
+    .game-hud {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 12px;
+      background: rgba(8, 12, 26, 0.92);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.22);
+      z-index: 25;
+    }
+
+    .hud-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hud-pill {
+      padding: 5px 10px;
+      border-radius: 9px;
+      background: rgba(20, 29, 56, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.74rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hud-pill span {
+      color: var(--neon-cyan);
+    }
+
+    .scoreboard-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 12px;
+      border-radius: 14px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .player-score-box {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .player-score-box.leading {
+      background: rgba(0, 240, 255, 0.18);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.28);
+    }
+
+    .player-score-box.p2.leading {
+      background: rgba(168, 85, 247, 0.24);
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.32);
+    }
+
+    .p-tag {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .p-pts {
+      font-size: 1.2rem;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .p1 .p-pts { color: var(--neon-cyan); }
+    .p2 .p-pts { color: var(--neon-purple); }
+
+    .serve-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-gold);
+      box-shadow: 0 0 8px var(--neon-gold);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .serve-dot.active { opacity: 1; }
+
+    .canvas-stage {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #pong-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
+
+    .game-footer-bar {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(8, 12, 26, 0.9);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 720px) {
+      .hide-mobile { display: none !important; }
+      .game-hud { padding: 6px 8px; }
+      .scoreboard-strip { padding: 3px 10px; gap: 6px; }
+      .p-pts { font-size: 1.05rem; }
+      .game-footer-bar { font-size: 0.68rem; }
+    }
+
+    #arena-banner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      text-align: center;
+      z-index: 30;
+      padding: 10px 18px;
+      border-radius: 16px;
+    }
+
+    .banner-main {
+      font-size: clamp(1.6rem, 5.5vw, 3.3rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0 0 20px var(--neon-cyan), 0 4px 14px rgba(0,0,0,0.9);
+    }
+
+    .banner-sub {
+      font-size: clamp(0.8rem, 2.4vw, 1.1rem);
+      font-weight: 800;
+      color: var(--neon-gold);
+      margin-top: 4px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.95);
+    }
+  </style>
 </head>
 <body>
 
-  <div id="startOverlay">
-    <h1>PING PONG</h1>
-    <p>Move your mouse or finger to control the paddle.</p>
-    <button id="startBtn">START GAME</button>
+  <!-- ==================== 1. LOADING SCREEN (5.4s) ==================== -->
+  <div id="loading-screen">
+    <div class="brand-pill">⚡ GAMEZONE 203 • VIP EDITION</div>
+    <h1 class="loading-title vip-title-grad">PING PONG VIP</h1>
+    <p class="loading-sub">3D Arcade Table Tennis • GameZone 203</p>
+
+    <div class="pong-loader-stage" aria-hidden="true">
+      <div class="loader-net"></div>
+      <div class="loader-paddle left"></div>
+      <div class="loader-paddle right"></div>
+      <div class="loader-ball"></div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-track">
+        <div id="loading-bar" class="progress-fill"></div>
+      </div>
+      <div class="progress-meta">
+        <span id="loading-status">Initializing Arena...</span>
+        <span id="loading-percent">0%</span>
+      </div>
+    </div>
+
+    <div id="loading-error" class="hidden"></div>
   </div>
 
-  <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <!-- ==================== 2. MAIN MENU ==================== -->
+  <div id="main-menu" class="hidden">
+    <div class="menu-container vip-glass">
+      <div class="menu-header">
+        <div class="menu-title-group">
+          <div class="brand-pill" style="margin-bottom:8px;">GAMEZONE 203 • VIP EDITION</div>
+          <h1 class="vip-title-grad">PING PONG VIP</h1>
+          <p>3D Arcade Table Tennis</p>
+        </div>
+        <div class="active-badges">
+          <div class="status-chip">AI: <span id="badge-diff">MEDIUM</span></div>
+          <div class="status-chip">GFX: <span id="badge-gfx">HIGH</span></div>
+          <div class="status-chip">SFX: <span id="badge-sfx">ON</span></div>
+        </div>
+      </div>
 
-<script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const startOverlay = document.getElementById("startOverlay");
-  const startBtn = document.getElementById("startBtn");
+      <div class="menu-grid">
+        <!-- 1. Play Game -->
+        <button id="btn-play-game" class="btn btn-primary">
+          <span class="icon">🚀</span>
+          <span class="btn-meta">
+            <span>1. Play Game</span>
+            <span class="btn-sub">Quick VIP Match vs AI (<span id="quick-diff-label">Medium</span>)</span>
+          </span>
+        </button>
 
-  // Game variables
-  let gameRunning = false;
-  let playerScore = 0;
-  let aiScore = 0;
+        <!-- 2. Play Against AI -->
+        <button id="btn-mode-ai" class="btn">
+          <span class="icon">🤖</span>
+          <span class="btn-meta">
+            <span>2. Play Against AI</span>
+            <span class="btn-sub">11-point match (Win by 2)</span>
+          </span>
+        </button>
 
-  // Player Paddle
-  const paddleWidth = 10;
-  const paddleHeight = 100;
-  let playerY = (canvas.height - paddleHeight) / 2;
-  
-  // AI Paddle
-  let aiY = (canvas.height - paddleHeight) / 2;
+        <!-- 3. Local 2 Player -->
+        <button id="btn-mode-2p" class="btn">
+          <span class="icon">👥</span>
+          <span class="btn-meta">
+            <span>3. Local 2 Player</span>
+            <span class="btn-sub">Same-device Keyboard &amp; Dual Touch</span>
+          </span>
+        </button>
 
-  // Ball
-  const ballRadius = 8;
-  let ballX = canvas.width / 2;
-  let ballY = canvas.height / 2;
-  let ballSpeedX = 6;
-  let ballSpeedY = 6;
+        <!-- 4. Practice Mode -->
+        <button id="btn-mode-practice" class="btn">
+          <span class="icon">🎯</span>
+          <span class="btn-meta">
+            <span>4. Practice Mode</span>
+            <span class="btn-sub">Rally &amp; spin training without pressure</span>
+          </span>
+        </button>
 
-  // Controls
-  let mouseY = canvas.height / 2;
+        <!-- 5. Difficulty -->
+        <button id="btn-open-diff" class="btn">
+          <span class="icon">⚡</span>
+          <span class="btn-meta">
+            <span>5. Difficulty</span>
+            <span class="btn-sub">Easy • Medium • Hard AI</span>
+          </span>
+        </button>
 
-  canvas.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const scaleY = canvas.height / rect.height;
-    mouseY = (e.clientY - rect.top) * scaleY;
-  });
+        <!-- 6. Graphics Quality -->
+        <button id="btn-open-gfx" class="btn">
+          <span class="icon">💎</span>
+          <span class="btn-meta">
+            <span>6. Graphics Quality</span>
+            <span class="btn-sub">Low • Medium • High Visuals</span>
+          </span>
+        </button>
 
-  canvas.addEventListener("touchmove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const scaleY = canvas.height / rect.height;
-    mouseY = (e.touches[0].clientY - rect.top) * scaleY;
-  }, {passive: true});
+        <!-- 7. Sound Settings -->
+        <button id="btn-open-sound" class="btn">
+          <span class="icon">🔊</span>
+          <span class="btn-meta">
+            <span>7. Sound Settings</span>
+            <span class="btn-sub">SFX, Music &amp; Volume</span>
+          </span>
+        </button>
 
-  function resetBall() {
-    ballX = canvas.width / 2;
-    ballY = canvas.height / 2;
-    ballSpeedX = -ballSpeedX; // Change direction on reset
-    ballSpeedY = (Math.random() * 6) - 3; // Random Y direction
-  }
+        <!-- 8. How to Play -->
+        <button id="btn-open-howto" class="btn">
+          <span class="icon">📖</span>
+          <span class="btn-meta">
+            <span>8. How to Play</span>
+            <span class="btn-sub">Controls, Spin &amp; Rules</span>
+          </span>
+        </button>
 
-  function update() {
-    if (!gameRunning) return;
+        <!-- 9. Statistics -->
+        <button id="btn-open-stats" class="btn">
+          <span class="icon">🏆</span>
+          <span class="btn-meta">
+            <span>9. Statistics</span>
+            <span class="btn-sub">Wins, Streak &amp; High Score</span>
+          </span>
+        </button>
 
-    // Move Player
-    playerY = mouseY - (paddleHeight / 2);
-    // Keep player in bounds
-    if (playerY < 0) playerY = 0;
-    if (playerY > canvas.height - paddleHeight) playerY = canvas.height - paddleHeight;
+        <!-- 10. Back to Menu -->
+        <button id="btn-back-menu" class="btn">
+          <span class="icon">🏠</span>
+          <span class="btn-meta">
+            <span>10. Back to Menu</span>
+            <span class="btn-sub">Return to clean VIP lobby</span>
+          </span>
+        </button>
+      </div>
 
-    // Move AI (Follow the ball with some delay/speed limit)
-    let aiTargetY = ballY - (paddleHeight / 2);
-    aiY += (aiTargetY - aiY) * 0.08; // AI Speed
-    if (aiY < 0) aiY = 0;
-    if (aiY > canvas.height - paddleHeight) aiY = canvas.height - paddleHeight;
+      <div class="menu-footer-note">
+        <span>GameZone 203 • Touch, Stylus, Mouse &amp; Keyboard Ready</span>
+        <button id="btn-fullscreen-menu" class="btn btn-sm">⛶ Fullscreen</button>
+      </div>
+    </div>
+  </div>
 
-    // Move Ball
-    ballX += ballSpeedX;
-    ballY += ballSpeedY;
+  <!-- ==================== 3. ACTIVE GAME ARENA ==================== -->
+  <div id="game-screen" class="hidden">
+    <header class="game-hud">
+      <div class="hud-group">
+        <button id="btn-hud-pause" class="btn btn-sm" title="Pause (Space / Esc)">⏸ Pause</button>
+        <div class="hud-pill hide-mobile">MODE: <span id="hud-mode">VS AI</span></div>
+        <div class="hud-pill hide-mobile">TIME: <span id="hud-timer">00:00</span></div>
+      </div>
 
-    // Top and Bottom Wall Collision
-    if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
-      ballSpeedY = -ballSpeedY;
-    }
+      <div class="scoreboard-strip">
+        <div id="score-box-p1" class="player-score-box p1">
+          <span id="serve-dot-p1" class="serve-dot active" title="Serving"></span>
+          <span id="label-p1" class="p-tag">YOU</span>
+          <span id="pts-p1" class="p-pts">0</span>
+        </div>
+        <span style="color:var(--text-muted);font-weight:900;">:</span>
+        <div id="score-box-p2" class="player-score-box p2">
+          <span id="pts-p2" class="p-pts">0</span>
+          <span id="label-p2" class="p-tag">AI</span>
+          <span id="serve-dot-p2" class="serve-dot" title="Serving"></span>
+        </div>
+      </div>
 
-    // Left Paddle Collision (Player)
-    if (
-      ballX - ballRadius < 30 + paddleWidth && 
-      ballY > playerY && 
-      ballY < playerY + paddleHeight
-    ) {
-      ballSpeedX = -ballSpeedX * 1.05; // Speed up slightly on hit
-      // Add spin based on where it hits the paddle
-      let hitPos = (ballY - playerY) / paddleHeight; // 0 to 1
-      ballSpeedY = (hitPos - 0.5) * 12;
-      ballX = 30 + paddleWidth + ballRadius; // Prevent sticking
-    }
+      <div class="hud-group">
+        <div class="hud-pill">RALLY: <span id="hud-rally">0</span></div>
+        <div class="hud-pill hide-mobile">SPEED: <span id="hud-speed">1.0x</span></div>
+        <button id="btn-hud-restart" class="btn btn-sm hide-mobile" title="Restart Match">↻</button>
+        <button id="btn-hud-fullscreen" class="btn btn-sm" title="Fullscreen">⛶</button>
+      </div>
+    </header>
 
-    // Right Paddle Collision (AI)
-    if (
-      ballX + ballRadius > canvas.width - 30 - paddleWidth && 
-      ballY > aiY && 
-      ballY < aiY + paddleHeight
-    ) {
-      ballSpeedX = -ballSpeedX * 1.05;
-      let hitPos = (ballY - aiY) / paddleHeight;
-      ballSpeedY = (hitPos - 0.5) * 12;
-      ballX = canvas.width - 30 - paddleWidth - ballRadius;
-    }
+    <div class="canvas-stage" id="canvas-stage">
+      <canvas id="pong-canvas"></canvas>
+      <div id="arena-banner" class="hidden">
+        <div id="banner-main" class="banner-main">3</div>
+        <div id="banner-sub" class="banner-sub">GET READY</div>
+      </div>
+    </div>
 
-    // Score Points
-    if (ballX - ballRadius < 0) {
-      aiScore++;
-      resetBall();
-    } else if (ballX + ballRadius > canvas.width) {
-      playerScore++;
-      resetBall();
-    }
-  }
+    <footer class="game-footer-bar">
+      <span id="footer-controls-hint">Move: W/S, ↑/↓, or Touch/Drag • Space/Esc: Pause</span>
+      <span id="footer-match-note">Target: 11 pts (Win by 2)</span>
+    </footer>
+  </div>
 
-  function draw() {
-    // Clear canvas
-    ctx.fillStyle = "#000";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  <!-- ==================== 4. DIFFICULTY MODAL ==================== -->
+  <div id="modal-difficulty" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass">
+      <div class="modal-head">
+        <h2>⚡ Select AI Difficulty</h2>
+        <button class="btn btn-sm close-modal-btn" data-close="modal-difficulty">✕</button>
+      </div>
+      <div class="option-cards">
+        <div class="choice-card" data-diff="easy">
+          <div class="c-title" style="color:var(--neon-green);">EASY</div>
+          <div class="c-desc">Slower AI reaction, gentle pace &amp; beginner-friendly rallies.</div>
+        </div>
+        <div class="choice-card selected" data-diff="medium">
+          <div class="c-title" style="color:var(--neon-cyan);">MEDIUM</div>
+          <div class="c-desc">Balanced AI speed, moderate reaction &amp; standard rally pace.</div>
+        </div>
+        <div class="choice-card" data-diff="hard">
+          <div class="c-title" style="color:var(--neon-purple);">HARD</div>
+          <div class="c-desc">Fast reflexes, sharp positioning &amp; intense high-speed rallies.</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn close-modal-btn" data-close="modal-difficulty">Save &amp; Back</button>
+        <button id="btn-diff-start-now" class="btn btn-primary">Play vs AI Now 🚀</button>
+      </div>
+    </div>
+  </div>
 
-    // Draw Net
-    ctx.strokeStyle = "#333";
-    ctx.lineWidth = 4;
-    ctx.setLineDash([15, 15]);
-    ctx.beginPath();
-    ctx.moveTo(canvas.width / 2, 0);
-    ctx.lineTo(canvas.width / 2, canvas.height);
-    ctx.stroke();
-    ctx.setLineDash([]); // Reset dash
+  <!-- ==================== 5. GRAPHICS QUALITY MODAL ==================== -->
+  <div id="modal-graphics" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass">
+      <div class="modal-head">
+        <h2>💎 Graphics Quality</h2>
+        <button class="btn btn-sm close-modal-btn" data-close="modal-graphics">✕</button>
+      </div>
+      <div class="option-cards">
+        <div class="choice-card" data-gfx="low">
+          <div class="c-title">LOW</div>
+          <div class="c-desc">Reduced glow &amp; minimal particles for smooth low-end mobile FPS.</div>
+        </div>
+        <div class="choice-card" data-gfx="medium">
+          <div class="c-title">MEDIUM</div>
+          <div class="c-desc">Balanced lighting, ball trail &amp; moderate impact particles.</div>
+        </div>
+        <div class="choice-card selected" data-gfx="high">
+          <div class="c-title" style="color:var(--neon-cyan);">HIGH</div>
+          <div class="c-desc">Enhanced neon glow, 3D depth shading &amp; rich particle effects.</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-primary close-modal-btn" data-close="modal-graphics">Apply Graphics</button>
+      </div>
+    </div>
+  </div>
 
-    // Draw Player Paddle (Neon)
-    ctx.fillStyle = "#50f5d0";
-    ctx.shadowBlur = 15;
-    ctx.shadowColor = "#50f5d0";
-    ctx.fillRect(30, playerY, paddleWidth, paddleHeight);
+  <!-- ==================== 6. SOUND SETTINGS MODAL ==================== -->
+  <div id="modal-sound" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass">
+      <div class="modal-head">
+        <h2>🔊 Sound Settings</h2>
+        <button class="btn btn-sm close-modal-btn" data-close="modal-sound">✕</button>
+      </div>
+      <div class="setting-row">
+        <label for="toggle-sfx">Sound Effects (SFX)</label>
+        <button id="toggle-sfx" class="btn btn-sm btn-primary">ON</button>
+      </div>
+      <div class="setting-row">
+        <label for="toggle-music">Background Music</label>
+        <button id="toggle-music" class="btn btn-sm">OFF</button>
+      </div>
+      <div class="setting-row">
+        <label for="slider-volume">Master Volume (<span id="volume-val">80%</span>)</label>
+        <input id="slider-volume" type="range" min="0" max="100" value="80" />
+      </div>
+      <div class="modal-actions">
+        <button id="btn-test-sound" class="btn">🔔 Test Sound</button>
+        <button class="btn btn-primary close-modal-btn" data-close="modal-sound">Done</button>
+      </div>
+    </div>
+  </div>
 
-    // Draw AI Paddle (Red)
-    ctx.fillStyle = "#ff4d79";
-    ctx.shadowColor = "#ff4d79";
-    ctx.fillRect(canvas.width - 30 - paddleWidth, aiY, paddleWidth, paddleHeight);
+  <!-- ==================== 7. HOW TO PLAY MODAL ==================== -->
+  <div id="modal-howto" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass">
+      <div class="modal-head">
+        <h2 id="howto-title">📖 How to Play</h2>
+        <button class="btn btn-sm close-modal-btn" data-close="modal-howto">✕</button>
+      </div>
+      <div class="guide-list">
+        <div class="guide-item">
+          <strong>🖥️ Desktop Controls</strong>
+          Single Player / Practice: <b>W / S</b> or <b>Arrow Up / Arrow Down</b> (or mouse drag).<br>
+          Local 2 Player: <b>Player 1 (Left)</b> uses <b>W / S</b> • <b>Player 2 (Right)</b> uses <b>↑ / ↓</b>.<br>
+          <b>Space</b>: Pause / Resume • <b>Esc</b>: Open Pause Menu.
+        </div>
+        <div class="guide-item">
+          <strong>📱 Mobile &amp; Touchscreen Controls</strong>
+          Touch and drag vertically on your side of the table. In <b>Local 2 Player</b>, left half moves Player 1 and right half moves Player 2 at the same time.
+        </div>
+        <div class="guide-item">
+          <strong>🏓 Angles, Spin &amp; Scoring</strong>
+          Hitting near the top or bottom edge of your paddle angles the ball sharply, and moving your paddle adds spin. Matches are played to <b>11 points</b> (must win by 2), alternating serves every 2 points.
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn close-modal-btn" data-close="modal-howto">Close</button>
+        <button id="btn-howto-start" class="btn btn-primary hidden">Start Match ▶</button>
+      </div>
+    </div>
+  </div>
 
-    // Draw Ball
-    ctx.fillStyle = "#fff";
-    ctx.shadowColor = "#fff";
-    ctx.beginPath();
-    ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.shadowBlur = 0; // Reset shadow
+  <!-- ==================== 8. STATISTICS MODAL ==================== -->
+  <div id="modal-stats" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass">
+      <div class="modal-head">
+        <h2>🏆 Player Statistics</h2>
+        <button class="btn btn-sm close-modal-btn" data-close="modal-stats">✕</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div id="stat-played" class="stat-val">0</div>
+          <div class="stat-lbl">Matches Played</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-won" class="stat-val" style="color:var(--neon-green);">0</div>
+          <div class="stat-lbl">Matches Won</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-lost" class="stat-val" style="color:var(--neon-pink);">0</div>
+          <div class="stat-lbl">Matches Lost</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-streak" class="stat-val" style="color:var(--neon-gold);">0</div>
+          <div class="stat-lbl">Best Win Streak</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-highscore" class="stat-val">0</div>
+          <div class="stat-lbl">Highest Score</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-totalpts" class="stat-val" style="color:var(--neon-purple);">0</div>
+          <div class="stat-lbl">Total Points Scored</div>
+        </div>
+      </div>
 
-    // Draw Scores
-    ctx.font = "bold 50px Arial";
-    ctx.fillStyle = "rgba(255,255,255,0.2)";
-    ctx.textAlign = "center";
-    ctx.fillText(playerScore, canvas.width / 2 - 80, 80);
-    ctx.fillText(aiScore, canvas.width / 2 + 80, 80);
-  }
+      <div id="reset-confirm-box" class="hidden" style="padding:12px;border-radius:12px;background:rgba(185,28,28,0.25);border:1px solid #f87171;margin-bottom:12px;text-align:center;">
+        <p style="font-size:0.84rem;margin-bottom:10px;font-weight:700;">Reset all saved statistics permanently?</p>
+        <div style="display:flex;gap:8px;justify-content:center;">
+          <button id="btn-reset-cancel" class="btn btn-sm">Cancel</button>
+          <button id="btn-reset-confirm" class="btn btn-sm btn-danger">Confirm Reset</button>
+        </div>
+      </div>
 
-  function gameLoop() {
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-  }
+      <div class="modal-actions">
+        <button id="btn-reset-stats" class="btn btn-danger">Reset Statistics</button>
+        <button class="btn btn-primary close-modal-btn" data-close="modal-stats">Close</button>
+      </div>
+    </div>
+  </div>
 
-  startBtn.addEventListener("click", () => {
-    startOverlay.style.display = "none";
-    gameRunning = true;
-  });
+  <!-- ==================== 9. PAUSE MENU MODAL ==================== -->
+  <div id="modal-pause" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass" style="max-width:420px;">
+      <div class="modal-head">
+        <h2>⏸ Game Paused</h2>
+        <span style="font-size:0.74rem;color:var(--neon-cyan);font-weight:700;">GAMEZONE 203</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <button id="btn-pause-resume" class="btn btn-primary">▶ Resume Game</button>
+        <button id="btn-pause-restart" class="btn">↻ Restart Match</button>
+        <button id="btn-pause-sound" class="btn">🔊 Sound Settings</button>
+        <button id="btn-pause-gfx" class="btn">💎 Graphics Settings</button>
+        <button id="btn-pause-menu" class="btn btn-danger">🏠 Main Menu</button>
+      </div>
+    </div>
+  </div>
 
-  // Start drawing immediately (shows background before start)
-  gameLoop();
+  <!-- ==================== 10. CONFIRM LEAVE MATCH MODAL ==================== -->
+  <div id="modal-confirm-leave" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass" style="max-width:400px;text-align:center;">
+      <h2 style="margin-bottom:8px;">Leave Active Match?</h2>
+      <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:14px;">Your current match progress will end if you return to the Main Menu.</p>
+      <div class="modal-actions">
+        <button id="btn-leave-cancel" class="btn">Keep Playing</button>
+        <button id="btn-leave-confirm" class="btn btn-danger">Main Menu</button>
+      </div>
+    </div>
+  </div>
 
-</script>
+  <!-- ==================== 11. GAME OVER / VICTORY MODAL ==================== -->
+  <div id="modal-gameover" class="modal-backdrop hidden">
+    <div class="modal-card vip-glass" style="max-width:460px;text-align:center;">
+      <div id="go-badge" class="brand-pill" style="margin-bottom:10px;">MATCH RESULT</div>
+      <h2 id="go-title" class="vip-title-grad" style="font-size:1.95rem;font-weight:900;margin-bottom:6px;">VICTORY!</h2>
+      <p id="go-subtitle" style="font-size:0.9rem;color:#cbd5e1;margin-bottom:14px;">Great match!</p>
+
+      <div class="stats-grid" style="margin-bottom:14px;">
+        <div class="stat-box">
+          <div id="go-score" class="stat-val">11 - 7</div>
+          <div class="stat-lbl">Final Score</div>
+        </div>
+        <div class="stat-box">
+          <div id="go-rally" class="stat-val" style="color:var(--neon-gold);">12</div>
+          <div class="stat-lbl">Best Rally</div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button id="btn-go-restart" class="btn btn-primary">↻ Play Again</button>
+        <button id="btn-go-menu" class="btn">🏠 Main Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      /* =========================================================================
+         1. SAFE LOCALSTORAGE & PERSISTENT STATE
+      ========================================================================= */
+      const STORAGE_KEY = 'gamezone203_pingpong_vip_state_v1';
+
+      const defaultStats = {
+        played: 0,
+        won: 0,
+        lost: 0,
+        currentStreak: 0,
+        bestStreak: 0,
+        highestScore: 0,
+        totalPoints: 0,
+        firstTimeSeen: false
+      };
+
+      const settings = {
+        difficulty: 'medium', // 'easy' | 'medium' | 'hard'
+        graphics: 'high',     // 'low' | 'medium' | 'high'
+        sfx: true,
+        music: false,
+        volume: 0.8
+      };
+
+      let stats = { ...defaultStats };
+
+      function loadPersistentData() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const data = JSON.parse(raw);
+            if (data && data.stats) stats = { ...defaultStats, ...data.stats };
+            if (data && data.settings) Object.assign(settings, data.settings);
+          }
+        } catch (err) {
+          // Safe fallback when localStorage is unavailable
+        }
+      }
+
+      function savePersistentData() {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ stats, settings }));
+        } catch (err) {
+          // Ignore write errors on restricted storage
+        }
+      }
+
+      /* =========================================================================
+         2. PROCEDURAL WEB AUDIO ENGINE (NO EXTERNAL FILES, ZERO CRASH RISK)
+      ========================================================================= */
+      class SoundEngine {
+        constructor() {
+          this.ctx = null;
+          this.musicTimer = null;
+          this.musicNoteIndex = 0;
+        }
+
+        unlock() {
+          try {
+            if (!this.ctx) {
+              const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+              if (AudioContextClass) this.ctx = new AudioContextClass();
+            }
+            if (this.ctx && this.ctx.state === 'suspended') {
+              this.ctx.resume().catch(() => {});
+            }
+          } catch (e) {}
+        }
+
+        tone(startFreq, duration, type = 'sine', gainScale = 0.25, endFreq = null) {
+          if (!settings.sfx || settings.volume <= 0) return;
+          try {
+            this.unlock();
+            if (!this.ctx) return;
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(startFreq, now);
+            if (endFreq !== null) {
+              osc.frequency.exponentialRampToValueAtTime(Math.max(40, endFreq), now + duration);
+            }
+            const peak = Math.max(0.001, settings.volume * gainScale);
+            gain.gain.setValueAtTime(peak, now);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + duration + 0.015);
+          } catch (e) {}
+        }
+
+        click() {
+          this.tone(660, 0.05, 'triangle', 0.16, 920);
+        }
+
+        hitPaddle(spin = 0) {
+          const base = 350 + Math.min(180, Math.abs(spin) * 130);
+          this.tone(base, 0.085, 'triangle', 0.32, base * 1.25);
+        }
+
+        hitWall() {
+          this.tone(220, 0.07, 'sine', 0.22, 145);
+        }
+
+        serve() {
+          this.tone(440, 0.1, 'sine', 0.22, 660);
+        }
+
+        score(player1Scored) {
+          if (player1Scored) {
+            this.tone(523.25, 0.11, 'triangle', 0.28);
+            setTimeout(() => this.tone(659.25, 0.16, 'triangle', 0.28), 85);
+          } else {
+            this.tone(330, 0.12, 'sawtooth', 0.18);
+            setTimeout(() => this.tone(246.94, 0.18, 'sawtooth', 0.18), 95);
+          }
+        }
+
+        victory() {
+          const chord = [523.25, 659.25, 783.99, 1046.5];
+          chord.forEach((freq, i) => {
+            setTimeout(() => this.tone(freq, 0.22, 'triangle', 0.3), i * 110);
+          });
+        }
+
+        defeat() {
+          const notes = [392.0, 349.23, 311.13, 261.63];
+          notes.forEach((freq, i) => {
+            setTimeout(() => this.tone(freq, 0.24, 'sine', 0.22), i * 130);
+          });
+        }
+
+        updateMusic() {
+          if (this.musicTimer) {
+            clearInterval(this.musicTimer);
+            this.musicTimer = null;
+          }
+          if (!settings.music || settings.volume <= 0) return;
+
+          const notes = [130.81, 164.81, 196.0, 246.94, 196.0, 164.81, 146.83, 196.0];
+          this.musicTimer = setInterval(() => {
+            if (!settings.music || settings.volume <= 0) return;
+            try {
+              this.unlock();
+              if (!this.ctx || this.ctx.state !== 'running') return;
+              const freq = notes[this.musicNoteIndex % notes.length];
+              this.musicNoteIndex++;
+              const now = this.ctx.currentTime;
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(freq, now);
+              const vol = Math.max(0.001, settings.volume * 0.055);
+              gain.gain.setValueAtTime(vol, now);
+              gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.32);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(now);
+              osc.stop(now + 0.34);
+            } catch (e) {}
+          }, 390);
+        }
+      }
+
+      const sound = new SoundEngine();
+
+      /* =========================================================================
+         3. GAME CONSTANTS & VIRTUAL ARENA STATE (1000 x 600)
+      ========================================================================= */
+      const VW = 1000;
+      const VH = 600;
+      const TABLE_TOP = 64;
+      const TABLE_BOTTOM = 536;
+      const TABLE_LEFT = 72;
+      const TABLE_RIGHT = 928;
+      const PADDLE_W = 16;
+      const PADDLE_H = 104;
+      const BALL_R = 11;
+
+      const AI_PRESETS = {
+        easy: {
+          speed: 300,
+          reaction: 0.25,
+          error: 56,
+          baseBall: 485,
+          maxBall: 820,
+          accel: 16
+        },
+        medium: {
+          speed: 470,
+          reaction: 0.12,
+          error: 26,
+          baseBall: 580,
+          maxBall: 1020,
+          accel: 24
+        },
+        hard: {
+          speed: 685,
+          reaction: 0.045,
+          error: 9,
+          baseBall: 675,
+          maxBall: 1220,
+          accel: 30
+        }
+      };
+
+      const game = {
+        screen: 'loading', // 'loading' | 'menu' | 'playing'
+        mode: 'ai',        // 'ai' | '2p' | 'practice'
+        paused: false,
+        over: false,
+        countdown: 0,
+        countdownAccum: 0,
+        bannerTimer: null,
+        rafId: null,
+        lastFrameTime: 0,
+        matchSeconds: 0,
+        rally: 0,
+        bestRally: 0,
+        server: 1,
+        serveCount: 0,
+        pointScoredLock: false,
+
+        p1: {
+          x: TABLE_LEFT + 22,
+          y: VH / 2,
+          targetY: VH / 2,
+          vy: 0,
+          score: 0,
+          pointerId: null
+        },
+        p2: {
+          x: TABLE_RIGHT - 22,
+          y: VH / 2,
+          targetY: VH / 2,
+          vy: 0,
+          score: 0,
+          pointerId: null,
+          aiTimer: 0,
+          aiTargetY: VH / 2
+        },
+        ball: {
+          x: VW / 2,
+          y: VH / 2,
+          vx: 0,
+          vy: 0,
+          spin: 0,
+          speed: 580,
+          arc: 0,
+          trail: []
+        },
+        particles: [],
+        keys: {
+          w: false,
+          s: false,
+          up: false,
+          down: false
+        }
+      };
+
+      /* =========================================================================
+         4. CANVAS SIZING & RESPONSIVE LAYOUT
+      ========================================================================= */
+      const canvas = document.getElementById('pong-canvas');
+      const ctx = canvas.getContext('2d');
+      const stage = document.getElementById('canvas-stage');
+
+      let view = { scale: 1, offsetX: 0, offsetY: 0, dpr: 1, cssW: 800, cssH: 500 };
+
+      function fitCanvas() {
+        if (!stage || !canvas) return;
+        const rect = stage.getBoundingClientRect();
+        const cssW = Math.max(260, rect.width);
+        const cssH = Math.max(180, rect.height);
+        const dpr = settings.graphics === 'low' ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = Math.floor(cssW * dpr);
+        canvas.height = Math.floor(cssH * dpr);
+
+        const scale = Math.min(cssW / VW, cssH / VH);
+        const offsetX = (cssW - VW * scale) / 2;
+        const offsetY = (cssH - VH * scale) / 2;
+
+        view = { scale, offsetX, offsetY, dpr, cssW, cssH };
+      }
+
+      window.addEventListener('resize', fitCanvas);
+      window.addEventListener('orientationchange', () => setTimeout(fitCanvas, 120));
+
+      /* =========================================================================
+         5. LOADING SCREEN (~5.4 SECONDS, SAFE ERROR HANDLING)
+      ========================================================================= */
+      function startLoader() {
+        const bar = document.getElementById('loading-bar');
+        const pctLabel = document.getElementById('loading-percent');
+        const statusLabel = document.getElementById('loading-status');
+        const loaderScreen = document.getElementById('loading-screen');
+        const errBox = document.getElementById('loading-error');
+
+        try {
+          if (!ctx) throw new Error('Canvas 2D rendering context is unavailable.');
+          loadPersistentData();
+          syncUI();
+        } catch (e) {
+          errBox.textContent = 'Failed to initialize game: ' + e.message;
+          errBox.classList.remove('hidden');
+          return;
+        }
+
+        const durationMs = 5400;
+        const t0 = performance.now();
+        const stages = [
+          { pct: 0,  msg: 'Loading GameZone 203 VIP Assets...' },
+          { pct: 25, msg: 'Constructing 3D Arcade Table...' },
+          { pct: 52, msg: 'Tuning Spin & Bounce Physics...' },
+          { pct: 78, msg: 'Preparing Touch & Keyboard Input...' },
+          { pct: 95, msg: 'Entering VIP Lobby...' }
+        ];
+
+        function stepLoad(now) {
+          const elapsed = now - t0;
+          const pct = Math.min(100, Math.floor((elapsed / durationMs) * 100));
+          bar.style.width = pct + '%';
+          pctLabel.textContent = pct + '%';
+
+          for (let i = stages.length - 1; i >= 0; i--) {
+            if (pct >= stages[i].pct) {
+              statusLabel.textContent = stages[i].msg;
+              break;
+            }
+          }
+
+          if (pct < 100) {
+            requestAnimationFrame(stepLoad);
+          } else {
+            setTimeout(() => {
+              loaderScreen.style.opacity = '0';
+              setTimeout(() => {
+                loaderScreen.classList.add('hidden');
+                openMainMenu();
+              }, 420);
+            }, 200);
+          }
+        }
+
+        requestAnimationFrame(stepLoad);
+      }
+
+      /* =========================================================================
+         6. SCREEN & MODAL MANAGEMENT
+      ========================================================================= */
+      function closeAllModals() {
+        document.querySelectorAll('.modal-backdrop').forEach(m => m.classList.add('hidden'));
+      }
+
+      function openModal(id) {
+        sound.unlock();
+        sound.click();
+        document.getElementById(id).classList.remove('hidden');
+      }
+
+      function closeModal(id) {
+        sound.click();
+        document.getElementById(id).classList.add('hidden');
+      }
+
+      function openMainMenu() {
+        stopLoop();
+        game.screen = 'menu';
+        game.paused = false;
+        game.over = false;
+        closeAllModals();
+        document.getElementById('game-screen').classList.add('hidden');
+        document.getElementById('main-menu').classList.remove('hidden');
+        syncUI();
+      }
+
+      function syncUI() {
+        const diffUp = settings.difficulty.toUpperCase();
+        const diffCap = settings.difficulty.charAt(0).toUpperCase() + settings.difficulty.slice(1);
+        document.getElementById('badge-diff').textContent = diffUp;
+        document.getElementById('quick-diff-label').textContent = diffCap;
+        document.getElementById('badge-gfx').textContent = settings.graphics.toUpperCase();
+        document.getElementById('badge-sfx').textContent = settings.sfx ? 'ON' : 'OFF';
+
+        document.querySelectorAll('[data-diff]').forEach(card => {
+          card.classList.toggle('selected', card.dataset.diff === settings.difficulty);
+        });
+
+        document.querySelectorAll('[data-gfx]').forEach(card => {
+          card.classList.toggle('selected', card.dataset.gfx === settings.graphics);
+        });
+
+        const sfxBtn = document.getElementById('toggle-sfx');
+        sfxBtn.textContent = settings.sfx ? 'ON' : 'OFF';
+        sfxBtn.classList.toggle('btn-primary', settings.sfx);
+
+        const musBtn = document.getElementById('toggle-music');
+        musBtn.textContent = settings.music ? 'ON' : 'OFF';
+        musBtn.classList.toggle('btn-primary', settings.music);
+
+        const volPct = Math.round(settings.volume * 100);
+        document.getElementById('slider-volume').value = volPct;
+        document.getElementById('volume-val').textContent = volPct + '%';
+
+        document.getElementById('stat-played').textContent = stats.played;
+        document.getElementById('stat-won').textContent = stats.won;
+        document.getElementById('stat-lost').textContent = stats.lost;
+        document.getElementById('stat-streak').textContent = stats.bestStreak;
+        document.getElementById('stat-highscore').textContent = stats.highestScore;
+        document.getElementById('stat-totalpts').textContent = stats.totalPoints;
+      }
+
+      function showBanner(mainText, subText = '', ms = 1000) {
+        const box = document.getElementById('arena-banner');
+        document.getElementById('banner-main').textContent = mainText;
+        document.getElementById('banner-sub').textContent = subText;
+        box.classList.remove('hidden');
+
+        if (game.bannerTimer) clearTimeout(game.bannerTimer);
+        if (ms > 0) {
+          game.bannerTimer = setTimeout(() => {
+            box.classList.add('hidden');
+          }, ms);
+        }
+      }
+
+      function hideBanner() {
+        if (game.bannerTimer) clearTimeout(game.bannerTimer);
+        document.getElementById('arena-banner').classList.add('hidden');
+      }
+
+      /* =========================================================================
+         7. GAME MODES, SERVE & SCORING SYSTEM
+      ========================================================================= */
+      function beginMatch(mode) {
+        sound.unlock();
+        sound.click();
+        closeAllModals();
+
+        game.mode = mode;
+        game.screen = 'playing';
+        game.paused = false;
+        game.over = false;
+        game.matchSeconds = 0;
+        game.rally = 0;
+        game.bestRally = 0;
+        game.server = 1;
+        game.serveCount = 0;
+        game.pointScoredLock = false;
+        game.particles = [];
+
+        game.p1.score = 0;
+        game.p1.y = VH / 2;
+        game.p1.targetY = VH / 2;
+        game.p1.vy = 0;
+        game.p1.pointerId = null;
+
+        game.p2.score = 0;
+        game.p2.y = VH / 2;
+        game.p2.targetY = VH / 2;
+        game.p2.vy = 0;
+        game.p2.pointerId = null;
+        game.p2.aiTimer = 0;
+        game.p2.aiTargetY = VH / 2;
+
+        const modeTitles = {
+          ai: `VS AI (${settings.difficulty.toUpperCase()})`,
+          '2p': 'LOCAL 2P',
+          practice: 'PRACTICE'
+        };
+        document.getElementById('hud-mode').textContent = modeTitles[mode];
+        document.getElementById('label-p1').textContent = mode === '2p' ? 'P1' : 'YOU';
+        document.getElementById('label-p2').textContent = mode === '2p' ? 'P2' : (mode === 'practice' ? 'TRAINER' : 'AI');
+
+        if (mode === '2p') {
+          document.getElementById('footer-controls-hint').textContent = 'P1: W/S or Left Touch • P2: ↑/↓ or Right Touch • Space/Esc: Pause';
+          document.getElementById('footer-match-note').textContent = '2-Player Match • First to 11 (Win by 2)';
+        } else if (mode === 'practice') {
+          document.getElementById('footer-controls-hint').textContent = 'Move: W/S, ↑/↓, or Drag • Hit edges for spin!';
+          document.getElementById('footer-match-note').textContent = 'Practice Mode • Endless Rally';
+        } else {
+          document.getElementById('footer-controls-hint').textContent = 'Move: W/S, ↑/↓, or Drag • Space/Esc: Pause';
+          document.getElementById('footer-match-note').textContent = 'Target: 11 pts (Win by 2)';
+        }
+
+        document.getElementById('main-menu').classList.add('hidden');
+        document.getElementById('game-screen').classList.remove('hidden');
+        fitCanvas();
+        refreshScoreboard();
+        setupBallForServe(true);
+        startLoop();
+      }
+
+      function setupBallForServe(withCountdown) {
+        const preset = AI_PRESETS[settings.difficulty];
+        game.rally = 0;
+        game.pointScoredLock = false;
+        game.ball.trail = [];
+        game.ball.spin = 0;
+        game.ball.speed = preset.baseBall;
+
+        const atDeuce = game.p1.score >= 10 && game.p2.score >= 10;
+        const swapEvery = atDeuce ? 1 : 2;
+        if (game.serveCount > 0 && game.serveCount % swapEvery === 0) {
+          game.server = game.server === 1 ? 2 : 1;
+        }
+        game.serveCount++;
+
+        document.getElementById('serve-dot-p1').classList.toggle('active', game.server === 1);
+        document.getElementById('serve-dot-p2').classList.toggle('active', game.server === 2);
+        document.getElementById('hud-rally').textContent = '0';
+        document.getElementById('hud-speed').textContent = '1.0x';
+
+        const dir = game.server === 1 ? 1 : -1;
+        game.ball.x = game.server === 1 ? (game.p1.x + 34) : (game.p2.x - 34);
+        game.ball.y = VH / 2;
+
+        const angle = (Math.random() * 0.42 - 0.21);
+        game.ball.vx = Math.cos(angle) * game.ball.speed * dir;
+        game.ball.vy = Math.sin(angle) * game.ball.speed;
+
+        if (withCountdown) {
+          game.countdown = 3;
+          game.countdownAccum = 0;
+          const who = game.server === 1 ? (game.mode === '2p' ? 'P1 SERVE' : 'YOUR SERVE') : (game.mode === '2p' ? 'P2 SERVE' : 'AI SERVE');
+          showBanner('3', who, 0);
+        } else {
+          const who = game.server === 1 ? (game.mode === '2p' ? 'PLAYER 1 SERVES' : 'YOUR SERVE') : (game.mode === '2p' ? 'PLAYER 2 SERVES' : 'AI SERVES');
+          showBanner(who, 'RALLY ON', 850);
+          sound.serve();
+        }
+      }
+
+      function refreshScoreboard() {
+        const s1 = game.p1.score;
+        const s2 = game.p2.score;
+        document.getElementById('pts-p1').textContent = s1;
+        document.getElementById('pts-p2').textContent = s2;
+        document.getElementById('score-box-p1').classList.toggle('leading', s1 > s2);
+        document.getElementById('score-box-p2').classList.toggle('leading', s2 > s1);
+      }
+
+      function awardPoint(winnerSide) {
+        if (game.pointScoredLock || game.over) return;
+        game.pointScoredLock = true;
+
+        if (winnerSide === 1) {
+          game.p1.score++;
+          if (game.mode !== '2p') stats.totalPoints++;
+        } else {
+          game.p2.score++;
+        }
+
+        refreshScoreboard();
+        sound.score(winnerSide === 1);
+        burstParticles(game.ball.x, game.ball.y, winnerSide === 1 ? '#00f0ff' : '#a855f7', 24);
+
+        if (game.mode === 'practice') {
+          const label = winnerSide === 1 ? 'NICE RETURN!' : 'MISS — KEEP PRACTICING';
+          showBanner(label, `Rally: ${game.rally} • Best: ${game.bestRally}`, 900);
+          setTimeout(() => {
+            if (!game.over && game.screen === 'playing') setupBallForServe(false);
+          }, 900);
+          return;
+        }
+
+        const s1 = game.p1.score;
+        const s2 = game.p2.score;
+        if ((s1 >= 11 || s2 >= 11) && Math.abs(s1 - s2) >= 2) {
+          endMatch(s1 > s2 ? 1 : 2);
+          return;
+        }
+
+        let sub = `${s1} - ${s2}`;
+        if (s1 >= 10 && s2 >= 10 && s1 === s2) {
+          sub = 'DEUCE — WIN BY 2!';
+        } else if ((s1 >= 10 && s1 - s2 >= 1) || (s2 >= 10 && s2 - s1 >= 1)) {
+          sub = 'MATCH POINT!';
+        }
+
+        const title = winnerSide === 1
+          ? (game.mode === '2p' ? 'PLAYER 1 POINT!' : 'POINT FOR YOU!')
+          : (game.mode === '2p' ? 'PLAYER 2 POINT!' : 'AI SCORES');
+
+        showBanner(title, sub, 1000);
+        setTimeout(() => {
+          if (!game.over && game.screen === 'playing') {
+            setupBallForServe(false);
+          }
+        }, 1000);
+      }
+
+      function endMatch(winnerSide) {
+        game.over = true;
+        hideBanner();
+
+        const s1 = game.p1.score;
+        const s2 = game.p2.score;
+
+        if (game.mode === 'ai') {
+          stats.played++;
+          if (s1 > stats.highestScore) stats.highestScore = s1;
+          if (winnerSide === 1) {
+            stats.won++;
+            stats.currentStreak++;
+            if (stats.currentStreak > stats.bestStreak) stats.bestStreak = stats.currentStreak;
+          } else {
+            stats.lost++;
+            stats.currentStreak = 0;
+          }
+          savePersistentData();
+          syncUI();
+        } else if (game.mode === '2p') {
+          const topPts = Math.max(s1, s2);
+          if (topPts > stats.highestScore) {
+            stats.highestScore = topPts;
+            savePersistentData();
+            syncUI();
+          }
+        }
+
+        const badge = document.getElementById('go-badge');
+        const title = document.getElementById('go-title');
+        const sub = document.getElementById('go-subtitle');
+
+        if (game.mode === '2p') {
+          badge.textContent = '2-PLAYER MATCH COMPLETE';
+          title.textContent = winnerSide === 1 ? 'PLAYER 1 WINS!' : 'PLAYER 2 WINS!';
+          sub.textContent = 'Awesome head-to-head match on GameZone 203!';
+          sound.victory();
+        } else if (winnerSide === 1) {
+          badge.textContent = `VICTORY • ${settings.difficulty.toUpperCase()} AI`;
+          title.textContent = 'YOU WIN!';
+          sub.textContent = 'Great reflexes and table control!';
+          sound.victory();
+        } else {
+          badge.textContent = 'MATCH OVER';
+          title.textContent = 'AI WINS THE MATCH';
+          sub.textContent = 'Nice try! Ready for a rematch?';
+          sound.defeat();
+        }
+
+        document.getElementById('go-score').textContent = `${s1} - ${s2}`;
+        document.getElementById('go-rally').textContent = game.bestRally;
+        openModal('modal-gameover');
+      }
+
+      /* =========================================================================
+         8. PHYSICS, SPIN, COLLISIONS & AI UPDATE
+      ========================================================================= */
+      function burstParticles(x, y, color, count) {
+        if (settings.graphics === 'low') count = Math.min(4, count);
+        else if (settings.graphics === 'medium') count = Math.max(5, Math.floor(count * 0.6));
+
+        for (let i = 0; i < count; i++) {
+          const ang = Math.random() * Math.PI * 2;
+          const spd = 75 + Math.random() * 250;
+          game.particles.push({
+            x,
+            y,
+            vx: Math.cos(ang) * spd,
+            vy: Math.sin(ang) * spd,
+            life: 1,
+            decay: 1.9 + Math.random() * 1.2,
+            size: 2 + Math.random() * 3.2,
+            color
+          });
+        }
+      }
+
+      function stepSimulation(dt) {
+        if (game.paused || game.over) return;
+
+        if (game.countdown > 0) {
+          game.countdownAccum += dt;
+          if (game.countdownAccum >= 0.85) {
+            game.countdownAccum = 0;
+            game.countdown--;
+            if (game.countdown > 0) {
+              showBanner(String(game.countdown), 'GET READY', 0);
+              sound.click();
+            } else {
+              hideBanner();
+              sound.serve();
+            }
+          }
+          stepPaddles(dt);
+          return;
+        }
+
+        game.matchSeconds += dt;
+        stepPaddles(dt);
+
+        if (game.pointScoredLock) {
+          stepParticles(dt);
+          return;
+        }
+
+        const preset = AI_PRESETS[settings.difficulty];
+        const b = game.ball;
+
+        // Spin curve
+        b.vy += b.spin * 250 * dt;
+        b.spin *= Math.pow(0.86, dt);
+
+        if (settings.graphics !== 'low') {
+          b.trail.push({ x: b.x, y: b.y });
+          const cap = settings.graphics === 'high' ? 13 : 6;
+          if (b.trail.length > cap) b.trail.shift();
+        }
+
+        // Sub-stepping avoids fast-ball tunneling through paddles/walls
+        const subSteps = 3;
+        const h = dt / subSteps;
+
+        for (let i = 0; i < subSteps; i++) {
+          b.x += b.vx * h;
+          b.y += b.vy * h;
+
+          if (b.y - BALL_R <= TABLE_TOP) {
+            b.y = TABLE_TOP + BALL_R;
+            b.vy = Math.abs(b.vy);
+            sound.hitWall();
+            burstParticles(b.x, TABLE_TOP, '#38bdf8', 6);
+          } else if (b.y + BALL_R >= TABLE_BOTTOM) {
+            b.y = TABLE_BOTTOM - BALL_R;
+            b.vy = -Math.abs(b.vy);
+            sound.hitWall();
+            burstParticles(b.x, TABLE_BOTTOM, '#38bdf8', 6);
+          }
+
+          const p1 = game.p1;
+          if (
+            b.vx < 0 &&
+            b.x - BALL_R <= p1.x + PADDLE_W / 2 &&
+            b.x + BALL_R >= p1.x - PADDLE_W / 2 &&
+            Math.abs(b.y - p1.y) <= PADDLE_H / 2 + BALL_R
+          ) {
+            b.x = p1.x + PADDLE_W / 2 + BALL_R + 1;
+            bounceOffPaddle(p1, 1, preset);
+          }
+
+          const p2 = game.p2;
+          if (
+            b.vx > 0 &&
+            b.x + BALL_R >= p2.x - PADDLE_W / 2 &&
+            b.x - BALL_R <= p2.x + PADDLE_W / 2 &&
+            Math.abs(b.y - p2.y) <= PADDLE_H / 2 + BALL_R
+          ) {
+            b.x = p2.x - PADDLE_W / 2 - BALL_R - 1;
+            bounceOffPaddle(p2, -1, preset);
+          }
+
+          if (b.x < TABLE_LEFT - 26) {
+            awardPoint(2);
+            break;
+          } else if (b.x > TABLE_RIGHT + 26) {
+            awardPoint(1);
+            break;
+          }
+        }
+
+        const netDist = Math.abs(b.x - VW / 2);
+        b.arc = Math.max(0, 1 - netDist / 360) * 18;
+
+        stepParticles(dt);
+      }
+
+      function bounceOffPaddle(paddle, dirX, preset) {
+        const b = game.ball;
+        const offsetRatio = Math.max(-1, Math.min(1, (b.y - paddle.y) / (PADDLE_H / 2)));
+        const angle = offsetRatio * ((52 * Math.PI) / 180);
+
+        game.rally++;
+        if (game.rally > game.bestRally) game.bestRally = game.rally;
+
+        b.speed = Math.min(preset.maxBall, b.speed + preset.accel);
+        b.vx = Math.cos(angle) * b.speed * dirX;
+        b.vy = Math.sin(angle) * b.speed;
+
+        const spin = Math.max(-1.35, Math.min(1.35, paddle.vy / 520));
+        b.spin = spin;
+        b.vy += spin * 105;
+
+        sound.hitPaddle(spin);
+        burstParticles(b.x, b.y, dirX === 1 ? '#00f0ff' : '#a855f7', 12);
+      }
+
+      function stepPaddles(dt) {
+        const keySpeed = 650;
+        const minY = TABLE_TOP + PADDLE_H / 2 + 4;
+        const maxY = TABLE_BOTTOM - PADDLE_H / 2 - 4;
+
+        const prev1 = game.p1.y;
+        if (game.mode === '2p') {
+          if (game.keys.w) game.p1.targetY -= keySpeed * dt;
+          if (game.keys.s) game.p1.targetY += keySpeed * dt;
+        } else {
+          if (game.keys.w || game.keys.up) game.p1.targetY -= keySpeed * dt;
+          if (game.keys.s || game.keys.down) game.p1.targetY += keySpeed * dt;
+        }
+        game.p1.targetY = Math.max(minY, Math.min(maxY, game.p1.targetY));
+        game.p1.y += (game.p1.targetY - game.p1.y) * Math.min(1, dt * 24);
+        game.p1.vy = (game.p1.y - prev1) / Math.max(0.001, dt);
+
+        const prev2 = game.p2.y;
+        if (game.mode === '2p') {
+          if (game.keys.up) game.p2.targetY -= keySpeed * dt;
+          if (game.keys.down) game.p2.targetY += keySpeed * dt;
+          game.p2.targetY = Math.max(minY, Math.min(maxY, game.p2.targetY));
+          game.p2.y += (game.p2.targetY - game.p2.y) * Math.min(1, dt * 24);
+        } else {
+          stepAI(dt, minY, maxY);
+        }
+        game.p2.vy = (game.p2.y - prev2) / Math.max(0.001, dt);
+      }
+
+      function stepAI(dt, minY, maxY) {
+        const preset = game.mode === 'practice'
+          ? { speed: 530, reaction: 0.08, error: 16 }
+          : AI_PRESETS[settings.difficulty];
+
+        const p2 = game.p2;
+        const b = game.ball;
+
+        p2.aiTimer += dt;
+        if (p2.aiTimer >= preset.reaction) {
+          p2.aiTimer = 0;
+          if (b.vx > 0) {
+            const eta = Math.max(0, (p2.x - b.x) / Math.max(120, b.vx));
+            let predY = b.y + b.vy * eta;
+            const span = TABLE_BOTTOM - TABLE_TOP - BALL_R * 2;
+            if (span > 0) {
+              let rel = predY - (TABLE_TOP + BALL_R);
+              const bounces = Math.floor(Math.abs(rel) / span);
+              rel = ((rel % span) + span) % span;
+              if (bounces % 2 === 1) rel = span - rel;
+              predY = TABLE_TOP + BALL_R + rel;
+            }
+            p2.aiTargetY = predY + (Math.random() * 2 - 1) * preset.error;
+          } else {
+            p2.aiTargetY = VH / 2 + (Math.random() * 2 - 1) * (preset.error * 0.5);
+          }
+        }
+
+        const clamped = Math.max(minY, Math.min(maxY, p2.aiTargetY));
+        const delta = clamped - p2.y;
+        const maxMove = preset.speed * dt;
+        if (Math.abs(delta) <= maxMove) p2.y = clamped;
+        else p2.y += Math.sign(delta) * maxMove;
+      }
+
+      function stepParticles(dt) {
+        for (let i = game.particles.length - 1; i >= 0; i--) {
+          const pt = game.particles[i];
+          pt.x += pt.vx * dt;
+          pt.y += pt.vy * dt;
+          pt.life -= pt.decay * dt;
+          if (pt.life <= 0) game.particles.splice(i, 1);
+        }
+      }
+
+      /* =========================================================================
+         9. RENDERER (LOW / MEDIUM / HIGH QUALITY)
+      ========================================================================= */
+      function drawArena() {
+        const { scale, offsetX, offsetY, dpr, cssW, cssH } = view;
+        ctx.save();
+        ctx.scale(dpr, dpr);
+
+        ctx.fillStyle = '#060913';
+        ctx.fillRect(0, 0, cssW, cssH);
+
+        ctx.translate(offsetX, offsetY);
+        ctx.scale(scale, scale);
+
+        const isHigh = settings.graphics === 'high';
+        const isLow = settings.graphics === 'low';
+
+        if (!isLow) {
+          const glow = ctx.createRadialGradient(VW / 2, VH / 2, 40, VW / 2, VH / 2, 520);
+          glow.addColorStop(0, 'rgba(0, 240, 255, 0.10)');
+          glow.addColorStop(0.55, 'rgba(168, 85, 247, 0.06)');
+          glow.addColorStop(1, 'rgba(6, 9, 19, 0)');
+          ctx.fillStyle = glow;
+          ctx.fillRect(0, 0, VW, VH);
+        }
+
+        const tw = TABLE_RIGHT - TABLE_LEFT;
+        const th = TABLE_BOTTOM - TABLE_TOP;
+
+        // 3D Base Chassis
+        ctx.fillStyle = '#090f22';
+        roundRect(ctx, TABLE_LEFT - 10, TABLE_TOP + 12, tw + 20, th + 14, 18);
+        ctx.fill();
+
+        // Playing Surface
+        const surf = ctx.createLinearGradient(TABLE_LEFT, TABLE_TOP, TABLE_RIGHT, TABLE_BOTTOM);
+        surf.addColorStop(0, '#0d1b3e');
+        surf.addColorStop(0.5, '#112452');
+        surf.addColorStop(1, '#0d1b3e');
+        ctx.fillStyle = surf;
+        roundRect(ctx, TABLE_LEFT, TABLE_TOP, tw, th, 14);
+        ctx.fill();
+
+        // Neon Border
+        ctx.lineWidth = 3.5;
+        ctx.strokeStyle = isHigh ? '#00f0ff' : '#38bdf8';
+        if (isHigh) {
+          ctx.shadowColor = 'rgba(0, 240, 255, 0.55)';
+          ctx.shadowBlur = 18;
+        }
+        roundRect(ctx, TABLE_LEFT, TABLE_TOP, tw, th, 14);
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        // Center Line & GameZone 203 Court Mark
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.22)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(TABLE_LEFT + 6, VH / 2);
+        ctx.lineTo(TABLE_RIGHT - 6, VH / 2);
+        ctx.stroke();
+
+        ctx.save();
+        ctx.fillStyle = 'rgba(0, 240, 255, 0.07)';
+        ctx.font = '900 32px system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('GAMEZONE 203', VW / 2, VH / 2 - 46);
+        ctx.font = '700 14px system-ui, sans-serif';
+        ctx.fillText('PING PONG VIP', VW / 2, VH / 2 + 46);
+        ctx.restore();
+
+        // Net
+        ctx.save();
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+        ctx.fillRect(VW / 2 + 4, TABLE_TOP - 4, 8, th + 8);
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fillRect(VW / 2 - 3, TABLE_TOP - 8, 6, th + 16);
+        ctx.strokeStyle = '#a855f7';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([8, 6]);
+        ctx.beginPath();
+        ctx.moveTo(VW / 2, TABLE_TOP - 6);
+        ctx.lineTo(VW / 2, TABLE_BOTTOM + 6);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+
+        // Ball Trail
+        const b = game.ball;
+        if (!isLow && b.trail.length > 1) {
+          for (let i = 0; i < b.trail.length; i++) {
+            const ratio = (i + 1) / b.trail.length;
+            ctx.beginPath();
+            ctx.arc(b.trail[i].x, b.trail[i].y, BALL_R * ratio * 0.85, 0, Math.PI * 2);
+            ctx.fillStyle = Math.abs(b.spin) > 0.25
+              ? `rgba(168, 85, 247, ${ratio * 0.28})`
+              : `rgba(0, 240, 255, ${ratio * 0.25})`;
+            ctx.fill();
+          }
+        }
+
+        // Paddles
+        drawPaddle(game.p1.x, game.p1.y, '#00f0ff', '#0284c7', isHigh);
+        drawPaddle(game.p2.x, game.p2.y, '#c084fc', '#7e22ce', isHigh);
+
+        // Ball & Shadow
+        const scaleBall = 1 + b.arc * 0.015;
+        ctx.beginPath();
+        ctx.ellipse(b.x + 6, b.y + 10 + b.arc * 0.5, BALL_R * 0.9, BALL_R * 0.65, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+        ctx.fill();
+
+        ctx.save();
+        if (isHigh) {
+          ctx.shadowColor = Math.abs(b.spin) > 0.25 ? '#c084fc' : '#00f0ff';
+          ctx.shadowBlur = 16;
+        }
+        const bGrad = ctx.createRadialGradient(
+          b.x - 3, b.y - 3 - b.arc * 0.3, 2,
+          b.x, b.y - b.arc * 0.3, BALL_R * scaleBall
+        );
+        bGrad.addColorStop(0, '#ffffff');
+        bGrad.addColorStop(0.7, '#e0f2fe');
+        bGrad.addColorStop(1, '#38bdf8');
+        ctx.fillStyle = bGrad;
+        ctx.beginPath();
+        ctx.arc(b.x, b.y - b.arc * 0.3, BALL_R * scaleBall, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+
+        // Particles
+        for (let i = 0; i < game.particles.length; i++) {
+          const pt = game.particles[i];
+          ctx.globalAlpha = Math.max(0, pt.life);
+          ctx.fillStyle = pt.color;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        ctx.restore();
+      }
+
+      function drawPaddle(x, y, hiCol, loCol, glow) {
+        const left = x - PADDLE_W / 2;
+        const top = y - PADDLE_H / 2;
+
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+        roundRect(ctx, left + 3, top + 6, PADDLE_W, PADDLE_H, 8);
+        ctx.fill();
+
+        ctx.save();
+        if (glow) {
+          ctx.shadowColor = hiCol;
+          ctx.shadowBlur = 16;
+        }
+        const grad = ctx.createLinearGradient(left, top, left + PADDLE_W, top + PADDLE_H);
+        grad.addColorStop(0, hiCol);
+        grad.addColorStop(1, loCol);
+        ctx.fillStyle = grad;
+        roundRect(ctx, left, top, PADDLE_W, PADDLE_H, 8);
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+        roundRect(ctx, left + 3, top + 8, 3, PADDLE_H - 16, 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function roundRect(context, x, y, w, h, r) {
+        context.beginPath();
+        context.moveTo(x + r, y);
+        context.arcTo(x + w, y, x + w, y + h, r);
+        context.arcTo(x + w, y + h, x, y + h, r);
+        context.arcTo(x, y + h, x, y, r);
+        context.arcTo(x, y, x + w, y, r);
+        context.closePath();
+      }
+
+      /* =========================================================================
+         10. LOOP & THROTTLED HUD UPDATES
+      ========================================================================= */
+      let hudTimer = 0;
+
+      function loop(now) {
+        if (game.screen !== 'playing') {
+          game.rafId = null;
+          return;
+        }
+        const dt = Math.min(0.05, Math.max(0.001, (now - game.lastFrameTime) / 1000));
+        game.lastFrameTime = now;
+
+        stepSimulation(dt);
+        drawArena();
+
+        hudTimer += dt;
+        if (hudTimer >= 0.2) {
+          hudTimer = 0;
+          const m = String(Math.floor(game.matchSeconds / 60)).padStart(2, '0');
+          const s = String(Math.floor(game.matchSeconds % 60)).padStart(2, '0');
+          document.getElementById('hud-timer').textContent = `${m}:${s}`;
+          document.getElementById('hud-rally').textContent = String(game.rally);
+          const base = AI_PRESETS[settings.difficulty].baseBall;
+          document.getElementById('hud-speed').textContent = `${(game.ball.speed / base).toFixed(1)}x`;
+        }
+
+        game.rafId = requestAnimationFrame(loop);
+      }
+
+      function startLoop() {
+        stopLoop();
+        game.lastFrameTime = performance.now();
+        game.rafId = requestAnimationFrame(loop);
+      }
+
+      function stopLoop() {
+        if (game.rafId !== null) {
+          cancelAnimationFrame(game.rafId);
+          game.rafId = null;
+        }
+      }
+
+      /* =========================================================================
+         11. POINTER EVENTS, KEYBOARD & TAB VISIBILITY
+      ========================================================================= */
+      function toVirtualPoint(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+          x: (clientX - rect.left - view.offsetX) / view.scale,
+          y: (clientY - rect.top - view.offsetY) / view.scale
+        };
+      }
+
+      canvas.addEventListener('pointerdown', (e) => {
+        if (game.screen !== 'playing' || game.paused || game.over) return;
+        sound.unlock();
+        try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+        const pt = toVirtualPoint(e.clientX, e.clientY);
+
+        if (game.mode === '2p') {
+          if (pt.x < VW / 2 && game.p1.pointerId === null) {
+            game.p1.pointerId = e.pointerId;
+            game.p1.targetY = pt.y;
+          } else if (pt.x >= VW / 2 && game.p2.pointerId === null) {
+            game.p2.pointerId = e.pointerId;
+            game.p2.targetY = pt.y;
+          }
+        } else if (game.p1.pointerId === null) {
+          game.p1.pointerId = e.pointerId;
+          game.p1.targetY = pt.y;
+        }
+      });
+
+      canvas.addEventListener('pointermove', (e) => {
+        if (game.screen !== 'playing' || game.paused || game.over) return;
+        const pt = toVirtualPoint(e.clientX, e.clientY);
+        if (e.pointerId === game.p1.pointerId) {
+          game.p1.targetY = pt.y;
+        } else if (e.pointerId === game.p2.pointerId && game.mode === '2p') {
+          game.p2.targetY = pt.y;
+        }
+      });
+
+      function clearPointer(e) {
+        if (e.pointerId === game.p1.pointerId) game.p1.pointerId = null;
+        if (e.pointerId === game.p2.pointerId) game.p2.pointerId = null;
+      }
+
+      canvas.addEventListener('pointerup', clearPointer);
+      canvas.addEventListener('pointercancel', clearPointer);
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'w' || e.key === 'W') game.keys.w = true;
+        if (e.key === 's' || e.key === 'S') game.keys.s = true;
+        if (e.key === 'ArrowUp') {
+          if (game.screen === 'playing') e.preventDefault();
+          game.keys.up = true;
+        }
+        if (e.key === 'ArrowDown') {
+          if (game.screen === 'playing') e.preventDefault();
+          game.keys.down = true;
+        }
+        if ((e.code === 'Space' || e.key === 'Escape') && game.screen === 'playing' && !game.over) {
+          e.preventDefault();
+          togglePauseState();
+        }
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (e.key === 'w' || e.key === 'W') game.keys.w = false;
+        if (e.key === 's' || e.key === 'S') game.keys.s = false;
+        if (e.key === 'ArrowUp') game.keys.up = false;
+        if (e.key === 'ArrowDown') game.keys.down = false;
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden && game.screen === 'playing' && !game.paused && !game.over) {
+          pauseMatch();
+        }
+      });
+
+      /* =========================================================================
+         12. PAUSE, FULLSCREEN & ALL BUTTON ACTIONS
+      ========================================================================= */
+      function pauseMatch() {
+        if (game.screen !== 'playing' || game.over) return;
+        game.paused = true;
+        openModal('modal-pause');
+      }
+
+      function resumeMatch() {
+        if (!game.paused) return;
+        closeModal('modal-pause');
+        game.paused = false;
+        game.lastFrameTime = performance.now();
+      }
+
+      function togglePauseState() {
+        if (game.paused) resumeMatch();
+        else pauseMatch();
+      }
+
+      function toggleScreenFullscreen() {
+        sound.click();
+        try {
+          if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen().catch(() => {});
+          } else {
+            document.exitFullscreen().catch(() => {});
+          }
+        } catch (e) {}
+      }
+
+      // Main Menu Buttons (1–10)
+      document.getElementById('btn-play-game').addEventListener('click', () => {
+        if (!stats.firstTimeSeen) {
+          stats.firstTimeSeen = true;
+          savePersistentData();
+          document.getElementById('howto-title').textContent = '📖 Quick Controls Guide';
+          const startBtn = document.getElementById('btn-howto-start');
+          startBtn.classList.remove('hidden');
+          startBtn.onclick = () => beginMatch('ai');
+          openModal('modal-howto');
+        } else {
+          beginMatch('ai');
+        }
+      });
+
+      document.getElementById('btn-mode-ai').addEventListener('click', () => beginMatch('ai'));
+
+      document.getElementById('btn-mode-2p').addEventListener('click', () => {
+        document.getElementById('howto-title').textContent = '👥 Local 2-Player Controls';
+        const startBtn = document.getElementById('btn-howto-start');
+        startBtn.classList.remove('hidden');
+        startBtn.onclick = () => beginMatch('2p');
+        openModal('modal-howto');
+      });
+
+      document.getElementById('btn-mode-practice').addEventListener('click', () => beginMatch('practice'));
+      document.getElementById('btn-open-diff').addEventListener('click', () => openModal('modal-difficulty'));
+      document.getElementById('btn-open-gfx').addEventListener('click', () => openModal('modal-graphics'));
+      document.getElementById('btn-open-sound').addEventListener('click', () => openModal('modal-sound'));
+      document.getElementById('btn-open-howto').addEventListener('click', () => {
+        document.getElementById('howto-title').textContent = '📖 How to Play';
+        document.getElementById('btn-howto-start').classList.add('hidden');
+        openModal('modal-howto');
+      });
+      document.getElementById('btn-open-stats').addEventListener('click', () => {
+        document.getElementById('reset-confirm-box').classList.add('hidden');
+        syncUI();
+        openModal('modal-stats');
+      });
+      document.getElementById('btn-back-menu').addEventListener('click', () => {
+        openMainMenu();
+      });
+
+      document.getElementById('btn-fullscreen-menu').addEventListener('click', toggleScreenFullscreen);
+      document.getElementById('btn-hud-fullscreen').addEventListener('click', toggleScreenFullscreen);
+
+      // Difficulty Cards
+      document.querySelectorAll('[data-diff]').forEach(card => {
+        card.addEventListener('click', () => {
+          sound.click();
+          settings.difficulty = card.dataset.diff;
+          savePersistentData();
+          syncUI();
+        });
+      });
+
+      document.getElementById('btn-diff-start-now').addEventListener('click', () => beginMatch('ai'));
+
+      // Graphics Cards
+      document.querySelectorAll('[data-gfx]').forEach(card => {
+        card.addEventListener('click', () => {
+          sound.click();
+          settings.graphics = card.dataset.gfx;
+          savePersistentData();
+          syncUI();
+          if (game.screen === 'playing') fitCanvas();
+        });
+      });
+
+      // Sound Controls
+      document.getElementById('toggle-sfx').addEventListener('click', () => {
+        settings.sfx = !settings.sfx;
+        sound.click();
+        savePersistentData();
+        syncUI();
+      });
+
+      document.getElementById('toggle-music').addEventListener('click', () => {
+        settings.music = !settings.music;
+        sound.unlock();
+        sound.click();
+        sound.updateMusic();
+        savePersistentData();
+        syncUI();
+      });
+
+      document.getElementById('slider-volume').addEventListener('input', (e) => {
+        settings.volume = Number(e.target.value) / 100;
+        document.getElementById('volume-val').textContent = e.target.value + '%';
+        savePersistentData();
+      });
+
+      document.getElementById('btn-test-sound').addEventListener('click', () => {
+        sound.unlock();
+        sound.hitPaddle(0.4);
+        setTimeout(() => sound.score(true), 130);
+      });
+
+      // Statistics Reset with Confirmation
+      document.getElementById('btn-reset-stats').addEventListener('click', () => {
+        sound.click();
+        document.getElementById('reset-confirm-box').classList.remove('hidden');
+      });
+
+      document.getElementById('btn-reset-cancel').addEventListener('click', () => {
+        sound.click();
+        document.getElementById('reset-confirm-box').classList.add('hidden');
+      });
+
+      document.getElementById('btn-reset-confirm').addEventListener('click', () => {
+        sound.click();
+        const keepFirst = stats.firstTimeSeen;
+        stats = { ...defaultStats, firstTimeSeen: keepFirst };
+        savePersistentData();
+        syncUI();
+        document.getElementById('reset-confirm-box').classList.add('hidden');
+      });
+
+      // In-Game HUD & Pause Buttons
+      document.getElementById('btn-hud-pause').addEventListener('click', () => {
+        sound.click();
+        pauseMatch();
+      });
+
+      document.getElementById('btn-hud-restart').addEventListener('click', () => {
+        beginMatch(game.mode);
+      });
+
+      document.getElementById('btn-pause-resume').addEventListener('click', () => {
+        sound.click();
+        resumeMatch();
+      });
+
+      document.getElementById('btn-pause-restart').addEventListener('click', () => {
+        beginMatch(game.mode);
+      });
+
+      document.getElementById('btn-pause-sound').addEventListener('click', () => {
+        openModal('modal-sound');
+      });
+
+      document.getElementById('btn-pause-gfx').addEventListener('click', () => {
+        openModal('modal-graphics');
+      });
+
+      document.getElementById('btn-pause-menu').addEventListener('click', () => {
+        openModal('modal-confirm-leave');
+      });
+
+      document.getElementById('btn-leave-cancel').addEventListener('click', () => {
+        closeModal('modal-confirm-leave');
+      });
+
+      document.getElementById('btn-leave-confirm').addEventListener('click', () => {
+        sound.click();
+        openMainMenu();
+      });
+
+      // Game Over Buttons
+      document.getElementById('btn-go-restart').addEventListener('click', () => {
+        beginMatch(game.mode);
+      });
+
+      document.getElementById('btn-go-menu').addEventListener('click', () => {
+        openMainMenu();
+      });
+
+      // Modal Close Buttons
+      document.querySelectorAll('.close-modal-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.close;
+          if (id) closeModal(id);
+        });
+      });
+
+      window.addEventListener('DOMContentLoaded', startLoader);
+    })();
+  </script>
 </body>
 </html>
