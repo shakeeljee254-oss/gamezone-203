@@ -3,7 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ludo King – Ultimate Edition | GameZone203</title>
+  <title>Ludo King – Ultimate Edition | GameZone 203</title>
+  <meta name="description" content="Play Ludo King Ultimate Edition on GameZone 203. Enjoy 2-4 player local & AI battles, Quick Ludo mode, custom themes, daily rewards, and achievements." />
+  <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/ludo_king_ultimate.html" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social Meta -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ludo King – Ultimate Edition | GameZone 203" />
+  <meta property="og:description" content="Roll the royal dice, capture rival tokens with particle effects, unlock board themes, and conquer the arena on GameZone 203!" />
+  <meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/games/ludo_king_ultimate.html" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,11 +46,8 @@
       margin: 0;
     }
 
-    .font-royal {
-      font-family: 'Cinzel', serif;
-    }
+    .font-royal { font-family: 'Cinzel', serif; }
 
-    /* Royal Glassmorphism & Gold Borders */
     .royal-panel {
       background: linear-gradient(145deg, rgba(26, 35, 58, 0.92), rgba(15, 21, 37, 0.96));
       border: 1px solid rgba(245, 185, 66, 0.25);
@@ -72,61 +79,30 @@
       transform: translateY(-1px);
       box-shadow: 0 6px 20px rgba(245, 185, 66, 0.5);
     }
-    .btn-gold:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-    .btn-gold:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+    .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    /* 3D Dice Animation */
-    .dice-scene {
-      width: 56px;
-      height: 56px;
-      perspective: 400px;
-    }
-
+    /* 3D Dice */
+    .dice-scene { width: 56px; height: 56px; perspective: 400px; }
     .dice-cube {
-      width: 100%;
-      height: 100%;
-      position: relative;
+      width: 100%; height: 100%; position: relative;
       transform-style: preserve-3d;
       transition: transform 0.45s cubic-bezier(0.2, 0.85, 0.3, 1.1);
     }
-
-    .dice-cube.rolling {
-      animation: diceSpin 0.45s infinite linear;
-    }
-
+    .dice-cube.rolling { animation: diceSpin 0.45s infinite linear; }
     @keyframes diceSpin {
       0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.08); }
       50% { transform: rotateX(190deg) rotateY(220deg) rotateZ(90deg) scale(1.15); }
       100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) scale(1.08); }
     }
-
     .dice-face {
-      position: absolute;
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      padding: 8px;
-      gap: 3px;
+      position: absolute; width: 56px; height: 56px; border-radius: 12px;
+      display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
+      padding: 8px; gap: 3px; background: linear-gradient(145deg, #ffffff, #e2e8f0);
       box-shadow: inset 0 0 8px rgba(0,0,0,0.22), 0 2px 6px rgba(0,0,0,0.4);
       backface-visibility: hidden;
     }
-
-    .pip {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      margin: auto;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
-    }
-
+    .pip { width: 9px; height: 9px; border-radius: 50%; margin: auto; background: #0f172a; }
+    .face-1 .pip, .face-6 .pip { background: #dc2626; }
     .face-1 { transform: rotateY(0deg) translateZ(28px); }
     .face-2 { transform: rotateY(90deg) translateZ(28px); }
     .face-3 { transform: rotateX(90deg) translateZ(28px); }
@@ -134,41 +110,37 @@
     .face-5 { transform: rotateY(-90deg) translateZ(28px); }
     .face-6 { transform: rotateY(180deg) translateZ(28px); }
 
-    /* Token Pulse Highlight */
     @keyframes tokenSelectable {
       0%, 100% { transform: scale(1); filter: drop-shadow(0 0 3px #fff); }
-      50% { transform: scale(1.14); filter: drop-shadow(0 0 9px #fde047); }
+      50% { transform: scale(1.16); filter: drop-shadow(0 0 10px #fde047); }
     }
-    .token-playable {
-      animation: tokenSelectable 0.9s infinite ease-in-out;
-      cursor: pointer;
+    .token-playable { animation: tokenSelectable 0.85s infinite ease-in-out; cursor: pointer; }
+
+    @keyframes boardShake {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-6px, 4px); }
+      40% { transform: translate(6px, -4px); }
+      60% { transform: translate(-4px, -3px); }
+      80% { transform: translate(4px, 3px); }
     }
+    .shake-active { animation: boardShake 0.35s ease-in-out; }
 
     @keyframes floatSlow {
       0%, 100% { transform: translateY(0px); }
       50% { transform: translateY(-6px); }
     }
-    .animate-float {
-      animation: floatSlow 2.6s ease-in-out infinite;
-    }
+    .animate-float { animation: floatSlow 2.6s ease-in-out infinite; }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); }
-    ::-webkit-scrollbar-thumb { background: rgba(245, 185, 66, 0.35); border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(245, 185, 66, 0.6); }
-
-    /* Board Container Responsive Aspect */
     #board-wrapper {
-      width: min(92vw, 66vh, 560px);
-      height: min(92vw, 66vh, 560px);
+      width: min(92vw, 64vh, 540px);
+      height: min(92vw, 64vh, 540px);
     }
     @media (min-width: 1024px) {
-      #board-wrapper {
-        width: min(74vh, 600px);
-        height: min(74vh, 600px);
-      }
+      #board-wrapper { width: min(72vh, 580px); height: min(72vh, 580px); }
     }
+
+    .star-btn { filter: grayscale(1); transition: transform 0.15s ease; cursor: pointer; background: none; border: none; font-size: 1.5rem; }
+    .star-btn.active, .star-btn:hover { filter: none; transform: scale(1.18); }
   </style>
 </head>
 <body class="antialiased selection:bg-amber-400 selection:text-slate-900">
@@ -178,38 +150,16 @@
     <div class="relative flex flex-col items-center max-w-md w-full px-6 text-center">
       <div class="w-24 h-24 rounded-3xl royal-panel flex items-center justify-center mb-5 animate-float relative">
         <div class="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-red-500 via-amber-400 to-blue-500 opacity-30 blur-md"></div>
-        <svg class="w-14 h-14 relative z-10" viewBox="0 0 64 64" fill="none">
-          <path d="M10 46L14 20L26 32L32 14L38 32L50 20L54 46H10Z" fill="url(#crownGrad)" stroke="#FFFBEB" stroke-width="2" stroke-linejoin="round"/>
-          <rect x="12" y="49" width="40" height="6" rx="3" fill="#F5B942"/>
-          <circle cx="14" cy="17" r="3" fill="#EF4444"/>
-          <circle cx="32" cy="11" r="3.5" fill="#10B981"/>
-          <circle cx="50" cy="17" r="3" fill="#3B82F6"/>
-          <defs>
-            <linearGradient id="crownGrad" x1="10" y1="14" x2="54" y2="46" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#FDE047"/>
-              <stop offset="1" stop-color="#D97706"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <span class="text-5xl relative z-10">👑</span>
       </div>
-
-      <span class="text-xs font-bold tracking-[0.25em] text-amber-400 uppercase mb-1">GameZone203 Presents</span>
+      <span class="text-xs font-bold tracking-[0.25em] text-amber-400 uppercase mb-1">GameZone 203 Presents</span>
       <h1 class="font-royal text-3xl sm:text-4xl font-black text-white tracking-wide mb-1">LUDO KING</h1>
       <p class="text-amber-300/90 font-semibold text-sm tracking-widest uppercase mb-7">Ultimate Edition</p>
-
-      <div class="flex items-center justify-center gap-4 mb-7">
-        <span class="w-5 h-5 rounded-full bg-red-500 ring-2 ring-white/70 shadow-lg animate-bounce" style="animation-delay:0ms"></span>
-        <span class="w-5 h-5 rounded-full bg-emerald-500 ring-2 ring-white/70 shadow-lg animate-bounce" style="animation-delay:120ms"></span>
-        <div class="w-10 h-10 rounded-xl bg-white text-slate-900 font-black text-xl flex items-center justify-center shadow-xl animate-spin" style="animation-duration: 1.4s;">⚄</div>
-        <span class="w-5 h-5 rounded-full bg-amber-400 ring-2 ring-white/70 shadow-lg animate-bounce" style="animation-delay:240ms"></span>
-        <span class="w-5 h-5 rounded-full bg-blue-500 ring-2 ring-white/70 shadow-lg animate-bounce" style="animation-delay:360ms"></span>
-      </div>
-
       <div class="w-full bg-slate-800/90 h-3 rounded-full overflow-hidden border border-amber-500/30 p-0.5 mb-2">
         <div id="loading-bar" class="h-full rounded-full bg-gradient-to-r from-red-500 via-amber-400 to-emerald-500 transition-all duration-150" style="width: 0%"></div>
       </div>
       <div class="w-full flex justify-between text-xs font-semibold text-slate-400">
-        <span id="loading-status">Preparing Your Game...</span>
+        <span id="loading-status">Preparing Royal Board...</span>
         <span id="loading-percent" class="text-amber-400">0%</span>
       </div>
     </div>
@@ -220,11 +170,10 @@
     <header class="sticky top-0 z-30 royal-panel border-x-0 border-t-0 px-3 sm:px-6 py-2.5">
       <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-3">
-          <a href="https://shakeeljee254-oss.github.io/gamezone-203/" title="Return to GameZone203 Portal"
+          <a href="https://shakeeljee254-oss.github.io/gamezone-203/index.html" title="Return to GameZone 203 Portal"
              class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-600/60 text-xs font-bold text-slate-200 transition">
             <span>←</span>
-            <span class="hidden sm:inline">GameZone203</span>
-            <span class="sm:hidden">Portal</span>
+            <span>Back to Games</span>
           </a>
           <div class="flex items-center gap-2">
             <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-lg shadow">👑</div>
@@ -236,66 +185,40 @@
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-          <button onclick="openModal('profile-modal')" class="flex items-center gap-2.5 bg-slate-800/90 hover:bg-slate-800 border border-amber-500/30 rounded-2xl px-3 py-1.5 transition">
+          <button onclick="openModal('profile-modal')" class="flex items-center gap-2 bg-slate-800/90 hover:bg-slate-800 border border-amber-500/30 rounded-2xl px-3 py-1.5 transition">
             <span id="hud-avatar" class="text-xl">🦁</span>
             <div class="text-left">
-              <div class="flex items-center gap-1.5">
-                <span id="hud-username" class="text-xs font-bold text-white max-w-[95px] truncate">RoyalPlayer</span>
-                <span id="hud-level" class="px-1.5 py-0.5 text-[10px] font-black rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">LVL 1</span>
-              </div>
-              <div class="w-20 h-1.5 bg-slate-700 rounded-full overflow-hidden mt-1">
-                <div id="hud-xp-bar" class="h-full bg-gradient-to-r from-amber-400 to-yellow-200" style="width: 20%"></div>
-              </div>
+              <span id="hud-username" class="text-xs font-bold text-white block max-w-[95px] truncate">RoyalPlayer</span>
+              <span id="hud-level" class="text-[10px] font-black text-amber-300">LVL 1</span>
             </div>
           </button>
 
           <div class="flex items-center gap-1.5 bg-slate-900/90 border border-amber-500/30 rounded-xl px-3 py-1.5">
-            <span class="text-base">🪙</span>
+            <span>🪙</span>
             <span id="hud-coins" class="text-xs sm:text-sm font-extrabold text-amber-300">1,000</span>
           </div>
 
-          <button onclick="openModal('daily-modal')" id="daily-btn" class="relative flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white text-xs font-bold px-3 py-2 rounded-xl shadow">
+          <button onclick="openModal('daily-modal')" class="relative flex items-center gap-1.5 bg-gradient-to-r from-emerald-600 to-teal-600 hover:brightness-110 text-white text-xs font-bold px-3 py-2 rounded-xl shadow">
             <span>🎁</span>
-            <span class="hidden md:inline">Daily</span>
+            <span>Daily</span>
             <span id="daily-dot" class="w-2 h-2 rounded-full bg-amber-300 animate-ping"></span>
           </button>
 
-          <button onclick="toggleMuteAll()" id="menu-mute-btn" title="Toggle Audio" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600/50 text-sm">
-            🔊
-          </button>
-
-          <button onclick="openModal('settings-modal')" title="Settings" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600/50 text-sm">
-            ⚙️
-          </button>
+          <button onclick="toggleMuteAll()" id="menu-mute-btn" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600/50 text-sm">🔊</button>
         </div>
       </div>
     </header>
 
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
       <div class="lg:col-span-8 flex flex-col gap-5">
-        <div id="resume-banner" class="hidden royal-panel rounded-2xl p-4 border-emerald-400/50 bg-gradient-to-r from-emerald-950/70 to-slate-900 flex flex-wrap items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
-            <span class="text-2xl">💾</span>
-            <div>
-              <h3 class="text-sm font-extrabold text-emerald-300">Saved Match Available</h3>
-              <p id="resume-desc" class="text-xs text-slate-300">Continue your unfinished Ludo match right where you left off.</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <button onclick="discardSavedMatch()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-red-950/70 text-xs font-semibold text-slate-300 border border-slate-700">Discard</button>
-            <button onclick="resumeSavedMatch()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold shadow">Resume Match ▶</button>
-          </div>
-        </div>
-
         <div class="royal-panel rounded-3xl p-5 sm:p-6 relative overflow-hidden">
-          <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full bg-amber-500/10 blur-2xl pointer-events-none"></div>
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
             <div>
               <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 mb-2">
-                ✨ ROYAL ARENA • 60 FPS ENGINE
+                ✨ ROYAL ARENA • PARTICLE & SHAKE ENGINE
               </span>
               <h2 class="font-royal text-2xl sm:text-3xl font-black text-white mb-1">Roll the Royal Dice &amp; Conquer</h2>
-              <p class="text-xs sm:text-sm text-slate-300 max-w-xl">Challenge smart tactical AI, gather friends on one screen, or configure custom house rules in Classic &amp; Quick Ludo modes.</p>
+              <p class="text-xs sm:text-sm text-slate-300 max-w-xl">Challenge smart tactical AI, play 2–4 player local multiplayer, or jump into fast-paced Quick Ludo.</p>
             </div>
             <button onclick="openSetupModal('solo')" class="btn-gold px-6 py-3.5 rounded-2xl text-sm sm:text-base whitespace-nowrap flex items-center justify-center gap-2">
               <span>🎲</span>
@@ -308,73 +231,53 @@
           <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400/90 mb-3">Select Game Mode</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div onclick="openSetupModal('solo')" class="royal-card rounded-2xl p-4 cursor-pointer flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-2xl shrink-0 shadow-lg">🤖</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-base text-white">Play vs Computer</h4>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-500/20 text-blue-300">1v1 / 1v3</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1">Battle Easy, Medium, or Hard strategic AI opponents with genuine tactical scoring.</p>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-700 flex items-center justify-center text-2xl shrink-0">🤖</div>
+              <div>
+                <h4 class="font-extrabold text-base text-white">Play vs Computer</h4>
+                <p class="text-xs text-slate-400 mt-1">1v1 or 1v3 against Easy, Medium, or Hard strategic AI bots.</p>
               </div>
             </div>
 
             <div onclick="openSetupModal('local')" class="royal-card rounded-2xl p-4 cursor-pointer flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-2xl shrink-0 shadow-lg">👥</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-base text-white">Local Multiplayer</h4>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">2–4 Players</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1">2P, 3P, 4P Pass &amp; Play, or mix 2 Humans vs 2 AI bots on the same device.</p>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-2xl shrink-0">👥</div>
+              <div>
+                <h4 class="font-extrabold text-base text-white">Local Multiplayer</h4>
+                <p class="text-xs text-slate-400 mt-1">2P, 3P, or 4P Pass &amp; Play on one device with custom player names.</p>
               </div>
             </div>
 
             <div onclick="openSetupModal('quick')" class="royal-card rounded-2xl p-4 cursor-pointer flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-2xl shrink-0 shadow-lg">⚡</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-base text-white">Quick Ludo</h4>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">Fast 5 Min</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1">High-speed action! First player to bring 1 token home (with 1 pre-deployed) wins.</p>
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-2xl shrink-0">⚡</div>
+              <div>
+                <h4 class="font-extrabold text-base text-white">Quick Ludo</h4>
+                <p class="text-xs text-slate-400 mt-1">Fast 5-minute mode! First player to bring 1 token home wins.</p>
               </div>
             </div>
 
-            <div onclick="openModal('online-modal')" class="royal-card rounded-2xl p-4 cursor-pointer flex items-start gap-4">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-purple-700 flex items-center justify-center text-2xl shrink-0 shadow-lg">🌐</div>
-              <div class="flex-1">
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-base text-white">Online &amp; Private Room</h4>
-                  <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">Socket.IO Ready</span>
-                </div>
-                <p class="text-xs text-slate-400 mt-1">Connect to a live Socket.IO game server or create/join a private room code.</p>
+            <div onclick="openModal('themes-modal')" class="royal-card rounded-2xl p-4 cursor-pointer flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-2xl shrink-0">🎨</div>
+              <div>
+                <h4 class="font-extrabold text-base text-white">Board Themes &amp; Shop</h4>
+                <p class="text-xs text-slate-400 mt-1">Unlock Royal Emerald, Midnight Obsidian, and Crimson Gold boards.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <button onclick="openModal('themes-modal')" class="royal-card rounded-2xl p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <span class="text-xl">🎨</span>
-            <span class="text-xs font-bold text-slate-200">Themes &amp; Skins</span>
-          </button>
-          <button onclick="openModal('profile-modal')" class="royal-card rounded-2xl p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <span class="text-xl">📊</span>
-            <span class="text-xs font-bold text-slate-200">Stats &amp; History</span>
-          </button>
-          <button onclick="openModal('achievements-modal')" class="royal-card rounded-2xl p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <span class="text-xl">🏆</span>
-            <span class="text-xs font-bold text-slate-200">Achievements</span>
-          </button>
-          <button onclick="openModal('rules-modal')" class="royal-card rounded-2xl p-3 flex flex-col items-center justify-center gap-1.5 text-center">
-            <span class="text-xl">📜</span>
-            <span class="text-xs font-bold text-slate-200">Rules &amp; Guide</span>
-          </button>
-          <button onclick="openModal('settings-modal')" class="royal-card rounded-2xl p-3 flex flex-col items-center justify-center gap-1.5 text-center col-span-2 sm:col-span-1">
-            <span class="text-xl">🛠️</span>
-            <span class="text-xs font-bold text-slate-200">Settings</span>
-          </button>
-        </div>
+        <!-- Visible SEO & FAQ Section -->
+        <section class="royal-panel rounded-2xl p-5 mt-2">
+          <h2 class="font-royal text-lg font-black text-amber-300 mb-3">How to Play Ludo King Ultimate &amp; FAQ</h2>
+          <div class="space-y-2.5 text-xs text-slate-300 leading-relaxed">
+            <div>
+              <strong class="text-white block">Q: How do I deploy and move tokens?</strong>
+              <span>A: Click Roll Dice (or press Spacebar). Roll a 6 to move a token out of your home yard onto the starting square, then click any glowing token to advance.</span>
+            </div>
+            <div>
+              <strong class="text-white block">Q: How do captures and safe zones work?</strong>
+              <span>A: Landing on an opponent's token outside a Star safe square captures it, sending it back to its yard and granting you a bonus roll!</span>
+            </div>
+          </div>
+        </section>
       </div>
 
       <div class="lg:col-span-4 flex flex-col gap-5">
@@ -386,25 +289,22 @@
           <div class="grid grid-cols-3 gap-2 text-center">
             <div class="bg-slate-900/80 rounded-xl p-2.5 border border-slate-800">
               <div id="stat-menu-matches" class="text-lg font-black text-white">0</div>
-              <div class="text-[10px] uppercase tracking-wider text-slate-400">Matches</div>
+              <div class="text-[10px] uppercase text-slate-400">Matches</div>
             </div>
             <div class="bg-slate-900/80 rounded-xl p-2.5 border border-slate-800">
               <div id="stat-menu-wins" class="text-lg font-black text-emerald-400">0</div>
-              <div class="text-[10px] uppercase tracking-wider text-slate-400">Wins</div>
+              <div class="text-[10px] uppercase text-slate-400">Wins</div>
             </div>
             <div class="bg-slate-900/80 rounded-xl p-2.5 border border-slate-800">
-              <div id="stat-menu-winrate" class="text-lg font-black text-amber-400">0%</div>
-              <div class="text-[10px] uppercase tracking-wider text-slate-400">Win Rate</div>
+              <div id="stat-menu-captures" class="text-lg font-black text-amber-400">0</div>
+              <div class="text-[10px] uppercase text-slate-400">Captures</div>
             </div>
           </div>
         </div>
 
         <div class="royal-panel rounded-2xl p-5 flex-1">
-          <div class="flex items-center justify-between mb-3">
-            <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400">Daily Quests</h3>
-            <span class="text-[11px] font-semibold text-slate-400">Auto-tracked</span>
-          </div>
-          <div id="daily-missions-list" class="space-y-2.5"></div>
+          <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400 mb-3">🏆 Achievements</h3>
+          <div id="achievements-list" class="space-y-2.5"></div>
         </div>
       </div>
     </main>
@@ -412,81 +312,43 @@
 
   <!-- ==================== 3. MATCH SETUP MODAL ==================== -->
   <div id="setup-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="royal-panel rounded-3xl max-w-2xl w-full p-5 sm:p-6 my-auto">
+    <div class="royal-panel rounded-3xl max-w-xl w-full p-5 sm:p-6 my-auto">
       <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <div>
-          <h2 id="setup-title" class="font-royal text-xl font-black text-white">Configure Match</h2>
-          <p class="text-xs text-slate-400">Choose players, AI difficulty, and match rules</p>
-        </div>
+        <h2 class="font-royal text-xl font-black text-white">Configure Royal Match</h2>
         <button onclick="closeModal('setup-modal')" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold">✕</button>
       </div>
 
       <div class="grid grid-cols-2 gap-2 bg-slate-900/90 p-1.5 rounded-2xl mb-4 border border-slate-800">
-        <button id="variant-classic-btn" onclick="setSetupVariant('classic')" class="py-2 rounded-xl text-xs font-extrabold transition bg-amber-500 text-slate-950">
-          👑 Classic Ludo (4 Tokens Home)
-        </button>
-        <button id="variant-quick-btn" onclick="setSetupVariant('quick')" class="py-2 rounded-xl text-xs font-extrabold transition text-slate-300 hover:text-white">
-          ⚡ Quick Ludo (1 Token Home)
-        </button>
+        <button id="variant-classic-btn" onclick="setSetupVariant('classic')" class="py-2 rounded-xl text-xs font-extrabold bg-amber-500 text-slate-950">👑 Classic (4 Tokens)</button>
+        <button id="variant-quick-btn" onclick="setSetupVariant('quick')" class="py-2 rounded-xl text-xs font-extrabold text-slate-300">⚡ Quick (1 Token)</button>
       </div>
 
       <div class="mb-4">
-        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Lineup Mode</label>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="lineup-presets">
-          <button onclick="applyLineupPreset('1v1_ai')" data-preset="1v1_ai" class="preset-btn py-2 px-3 rounded-xl border border-amber-500/60 bg-amber-500/15 text-xs font-bold text-amber-200">1 Human vs 1 AI</button>
-          <button onclick="applyLineupPreset('1v3_ai')" data-preset="1v3_ai" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">1 Human vs 3 AI</button>
-          <button onclick="applyLineupPreset('2p_local')" data-preset="2p_local" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">2 Players Local</button>
-          <button onclick="applyLineupPreset('3p_local')" data-preset="3p_local" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">3 Players Local</button>
-          <button onclick="applyLineupPreset('4p_local')" data-preset="4p_local" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">4 Players Local</button>
-          <button onclick="applyLineupPreset('2h_2ai')" data-preset="2h_2ai" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">2 Humans vs 2 AI</button>
+        <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Lineup Preset</label>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <button onclick="applyLineupPreset('1v1_ai')" class="preset-btn py-2 px-3 rounded-xl border border-amber-500/60 bg-amber-500/15 text-xs font-bold text-amber-200">1 Human vs 1 AI</button>
+          <button onclick="applyLineupPreset('1v3_ai')" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">1 Human vs 3 AI</button>
+          <button onclick="applyLineupPreset('2p_local')" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">2 Players Local</button>
+          <button onclick="applyLineupPreset('4p_local')" class="preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300">4 Players Local</button>
         </div>
       </div>
 
-      <div id="ai-difficulty-section" class="mb-4">
-        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Computer AI Intelligence</label>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          <div onclick="selectDifficulty('easy')" id="diff-card-easy" class="diff-card cursor-pointer rounded-2xl p-3 border border-slate-700 bg-slate-900/70 transition">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-black text-emerald-400">🌱 EASY</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Casual</span>
-            </div>
-            <p class="text-[11px] text-slate-400 leading-snug">Beginner-friendly AI with randomized legal token selection.</p>
-          </div>
-          <div onclick="selectDifficulty('medium')" id="diff-card-medium" class="diff-card cursor-pointer rounded-2xl p-3 border-2 border-amber-400 bg-amber-500/10 transition">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-black text-amber-300">⚔️ MEDIUM</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-300">Balanced</span>
-            </div>
-            <p class="text-[11px] text-slate-300 leading-snug">Prioritizes captures, deploying on 6s, and home stretches.</p>
-          </div>
-          <div onclick="selectDifficulty('hard')" id="diff-card-hard" class="diff-card cursor-pointer rounded-2xl p-3 border border-slate-700 bg-slate-900/70 transition">
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-black text-rose-400">👑 HARD</span>
-              <span class="text-[10px] px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300">Tactical</span>
-            </div>
-            <p class="text-[11px] text-slate-400 leading-snug">Evaluates opponent threat ranges, safe stars, and stack defense.</p>
-          </div>
+      <div class="mb-4">
+        <label class="block text-xs font-bold uppercase text-slate-400 mb-2">AI Difficulty</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="selectDifficulty('easy')" id="diff-easy" class="py-2 rounded-xl border border-slate-700 bg-slate-900 text-xs font-bold text-emerald-400">🌱 Easy</button>
+          <button onclick="selectDifficulty('medium')" id="diff-medium" class="py-2 rounded-xl border-2 border-amber-400 bg-amber-500/15 text-xs font-bold text-amber-300">⚔️ Medium</button>
+          <button onclick="selectDifficulty('hard')" id="diff-hard" class="py-2 rounded-xl border border-slate-700 bg-slate-900 text-xs font-bold text-rose-400">👑 Hard</button>
         </div>
       </div>
 
       <div class="mb-5">
-        <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Player Seats</label>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="seat-config-grid"></div>
+        <label class="block text-xs font-bold uppercase text-slate-400 mb-2">Player Seats</label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="seat-config-grid"></div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 p-3 rounded-2xl border border-slate-800 mb-5 text-xs">
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" id="rule-three-sixes" checked class="accent-amber-400 w-4 h-4 rounded">
-          <span class="text-slate-300 font-medium">3 Consecutive 6s = Forfeit Turn</span>
-        </label>
-        <label class="flex items-center gap-2 cursor-pointer">
-          <input type="checkbox" id="rule-turn-timer" class="accent-amber-400 w-4 h-4 rounded">
-          <span class="text-slate-300 font-medium">20s Turn Countdown</span>
-        </label>
-      </div>
-
-      <div class="flex items-center justify-end gap-3">
-        <button onclick="closeModal('setup-modal')" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300">Cancel</button>
+      <div class="flex justify-end gap-3">
+        <button onclick="closeModal('setup-modal')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-slate-300">Cancel</button>
         <button onclick="startNewMatchFromSetup()" class="btn-gold px-6 py-2.5 rounded-xl text-sm">Start Royal Match 🎲</button>
       </div>
     </div>
@@ -497,2130 +359,891 @@
     <header class="royal-panel border-x-0 border-t-0 px-3 sm:px-5 py-2">
       <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
         <div class="flex items-center gap-2">
-          <button onclick="confirmLeaveGame()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600/50 text-xs font-bold text-slate-200">
-            ← Lobby
-          </button>
-          <span id="game-mode-badge" class="hidden sm:inline-block px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-[11px] font-bold text-amber-300">
-            Classic Ludo
-          </span>
-          <span id="game-timer-display" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs font-mono font-bold text-slate-300">
-            00:00
-          </span>
+          <button onclick="confirmLeaveGame()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600/50 text-xs font-bold text-slate-200">← Lobby</button>
+          <span id="game-mode-badge" class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/30 text-[11px] font-bold text-amber-300">Classic Ludo</span>
         </div>
 
-        <div id="turn-banner" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-amber-400/40 shadow">
+        <div id="turn-banner" class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-amber-400/40 shadow">
           <span id="turn-color-dot" class="w-3 h-3 rounded-full bg-red-500"></span>
           <span id="turn-text" class="text-xs sm:text-sm font-extrabold text-white">Red's Turn</span>
-          <span id="turn-countdown-badge" class="hidden px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[11px] font-mono font-bold">20s</span>
         </div>
 
         <div class="flex items-center gap-1.5">
-          <button onclick="openModal('rules-modal')" title="Rules" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">📜</button>
-          <button onclick="toggleMuteAll()" id="game-mute-btn" title="Mute/Unmute" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">🔊</button>
-          <button onclick="togglePauseGame()" id="pause-btn" title="Pause" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">⏸️</button>
-          <button onclick="openModal('settings-modal')" title="Settings" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">⚙️</button>
+          <button onclick="toggleMuteAll()" id="game-mute-btn" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold">🔊</button>
         </div>
       </div>
     </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto px-2 sm:px-5 py-2 sm:py-4 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6">
-      <div class="w-full lg:w-64 flex flex-row lg:flex-col justify-between gap-2 order-1">
-        <div id="pod-red" class="player-pod flex-1 royal-panel rounded-2xl p-2.5 border-l-4 border-red-500 transition-all"></div>
-        <div id="pod-green" class="player-pod flex-1 royal-panel rounded-2xl p-2.5 border-l-4 border-emerald-500 transition-all"></div>
+    <main class="flex-1 max-w-7xl w-full mx-auto px-2 sm:px-5 py-3 flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6">
+      <!-- Left Player Pods -->
+      <div class="w-full lg:w-60 flex flex-row lg:flex-col justify-between gap-2 order-1">
+        <div id="pod-red" class="royal-panel rounded-2xl p-3 border-l-4 border-red-500 flex-1"></div>
+        <div id="pod-green" class="royal-panel rounded-2xl p-3 border-l-4 border-emerald-500 flex-1"></div>
       </div>
 
+      <!-- Center Board + Particle Layer + Play Now Overlay Gate -->
       <div class="flex flex-col items-center gap-3 order-2">
-        <div id="board-wrapper" class="relative rounded-2xl p-1.5 sm:p-2.5 royal-panel shadow-2xl">
-          <svg id="ludo-board-svg" viewBox="0 0 600 600" class="w-full h-full rounded-xl overflow-hidden block"></svg>
-          
-          <div id="pause-overlay" class="hidden absolute inset-0 bg-slate-950/85 backdrop-blur-md rounded-2xl flex flex-col items-center justify-center z-20 p-6 text-center">
-            <div class="text-4xl mb-2">⏸️</div>
-            <h3 class="font-royal text-2xl font-black text-white mb-1">Match Paused</h3>
-            <p class="text-xs text-slate-400 mb-5">Your progress is automatically saved.</p>
-            <div class="flex gap-3">
-              <button onclick="togglePauseGame()" class="btn-gold px-6 py-2.5 rounded-xl text-sm">Resume Game ▶</button>
-              <button onclick="saveAndExitToMenu()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200">Save &amp; Exit</button>
-            </div>
+        <div id="board-wrapper" class="relative rounded-2xl p-2 royal-panel shadow-2xl overflow-hidden">
+          <svg id="ludo-board-svg" viewBox="0 0 600 600" class="w-full h-full rounded-xl block"></svg>
+          <canvas id="fx-canvas" width="600" height="600" class="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] pointer-events-none z-10"></canvas>
+
+          <!-- Play Now Start Gate Overlay -->
+          <div id="board-start-gate" class="absolute inset-0 z-20 bg-slate-950/85 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center transition-opacity duration-300">
+            <div class="text-5xl mb-3 animate-bounce">🎲</div>
+            <h3 class="font-royal text-2xl font-black text-white mb-1">READY FOR ROYAL BATTLE?</h3>
+            <p class="text-xs text-slate-300 max-w-xs mb-5">Roll the dice, capture opponent tokens, and race all your pieces to the center crown!</p>
+            <button onclick="unlockBoardAndStart()" class="btn-gold px-7 py-3.5 rounded-2xl text-base tracking-wide">▶ PLAY NOW</button>
           </div>
         </div>
 
         <div class="royal-panel rounded-2xl px-4 py-2.5 flex items-center gap-4 shadow-xl">
-          <div id="dice-click-area" onclick="handleRollClick()" class="dice-scene cursor-pointer" title="Click or Press Spacebar to Roll">
+          <div onclick="handleRollClick()" class="dice-scene cursor-pointer">
             <div id="dice-cube" class="dice-cube"></div>
           </div>
           <div class="flex flex-col">
-            <button id="roll-btn" onclick="handleRollClick()" class="btn-gold px-5 py-2 rounded-xl text-xs sm:text-sm tracking-wide">
-              ROLL DICE (Space)
-            </button>
+            <button id="roll-btn" onclick="handleRollClick()" class="btn-gold px-5 py-2 rounded-xl text-xs sm:text-sm">ROLL DICE (Space)</button>
             <span id="dice-hint" class="text-[11px] text-slate-400 mt-1 font-medium">Roll a 6 to deploy a token</span>
           </div>
         </div>
       </div>
 
-      <div class="w-full lg:w-64 flex flex-col gap-2 order-3">
-        <div class="flex flex-row lg:flex-col gap-2">
-          <div id="pod-blue" class="player-pod flex-1 royal-panel rounded-2xl p-2.5 border-l-4 border-blue-500 transition-all"></div>
-          <div id="pod-yellow" class="player-pod flex-1 royal-panel rounded-2xl p-2.5 border-l-4 border-amber-400 transition-all"></div>
-        </div>
-
-        <div class="hidden lg:flex flex-col royal-panel rounded-2xl p-3 h-44">
-          <div class="flex items-center justify-between border-b border-slate-700/60 pb-1.5 mb-2">
-            <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-400">Royal Chronicle</span>
-            <button onclick="confirmRestartMatch()" class="text-[10px] text-slate-400 hover:text-rose-400 font-bold">↻ Restart</button>
-          </div>
-          <div id="move-log-list" class="flex-1 overflow-y-auto space-y-1.5 text-[11px] text-slate-300 pr-1"></div>
-        </div>
+      <!-- Right Player Pods -->
+      <div class="w-full lg:w-60 flex flex-row lg:flex-col justify-between gap-2 order-3">
+        <div id="pod-yellow" class="royal-panel rounded-2xl p-3 border-l-4 border-amber-400 flex-1"></div>
+        <div id="pod-blue" class="royal-panel rounded-2xl p-3 border-l-4 border-blue-500 flex-1"></div>
       </div>
     </main>
   </div>
 
-  <!-- ==================== 5. VICTORY PODIUM & SCOREBOARD MODAL ==================== -->
-  <div id="victory-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-    <div class="royal-panel rounded-3xl max-w-lg w-full p-6 relative z-10 text-center border-amber-400/60">
-      <div class="text-5xl mb-2 animate-bounce">🏆</div>
-      <span class="text-xs font-extrabold uppercase tracking-[0.2em] text-amber-400">Royal Match Complete</span>
-      <h2 id="winner-headline" class="font-royal text-2xl sm:text-3xl font-black text-white mt-1 mb-4">Red Wins the Crown!</h2>
-
-      <div id="podium-container" class="grid grid-cols-3 gap-2 items-end mb-5 pt-4"></div>
-
-      <div class="bg-slate-900/90 rounded-2xl p-3.5 border border-amber-500/30 mb-5 flex items-center justify-around">
-        <div>
-          <div class="text-[11px] text-slate-400 uppercase font-bold">Coins Earned</div>
-          <div id="reward-coins" class="text-lg font-black text-amber-400">+250 🪙</div>
-        </div>
-        <div class="h-8 w-px bg-slate-700"></div>
-        <div>
-          <div class="text-[11px] text-slate-400 uppercase font-bold">XP Gained</div>
-          <div id="reward-xp" class="text-lg font-black text-emerald-400">+120 XP</div>
+  <!-- ==================== 5. UNIVERSAL MODALS ==================== -->
+  <!-- Exit Match Guard + 5-Star Rating Modal -->
+  <div id="exit-guard-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="royal-panel rounded-3xl max-w-md w-full p-6 text-center border-amber-400/50">
+      <div class="text-4xl mb-2">⚠️</div>
+      <h3 class="font-royal text-xl font-black text-white mb-1">Leave Active Match?</h3>
+      <p class="text-xs text-slate-300 mb-4">Your current match is still in progress. Returning to the lobby will end this session.</p>
+      
+      <div class="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-3.5 mb-5">
+        <div class="text-xs font-extrabold text-amber-300">Enjoying Ludo King Ultimate?</div>
+        <div class="text-[11px] text-slate-400 mb-2">Rate your royal experience:</div>
+        <div class="flex justify-center gap-2" id="exit-stars">
+          <button class="star-btn" onclick="rateGame(1)">⭐</button>
+          <button class="star-btn" onclick="rateGame(2)">⭐</button>
+          <button class="star-btn" onclick="rateGame(3)">⭐</button>
+          <button class="star-btn" onclick="rateGame(4)">⭐</button>
+          <button class="star-btn" onclick="rateGame(5)">⭐</button>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center justify-center gap-2.5">
-        <button onclick="shareMatchResults()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-bold text-white">
-          📋 Share Results
-        </button>
-        <button onclick="rematchCurrentSetup()" class="btn-gold px-5 py-2.5 rounded-xl text-xs sm:text-sm">
-          ↻ Rematch
-        </button>
-        <button onclick="exitToLobbyFromVictory()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-300">
-          Main Menu
-        </button>
+      <div class="flex gap-3">
+        <button onclick="closeModal('exit-guard-modal')" class="flex-1 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white">Resume Match</button>
+        <button onclick="forceLeaveToLobby()" class="flex-1 btn-gold py-2.5 rounded-xl text-xs">Quit to Lobby</button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 6. ONLINE MULTIPLAYER / PRIVATE ROOM MODAL ==================== -->
-  <div id="online-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="royal-panel rounded-3xl max-w-lg w-full p-6">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">🌐 Online &amp; Private Rooms</h2>
-        <button onclick="closeModal('online-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
-      </div>
-
-      <div class="bg-amber-500/10 border border-amber-500/40 rounded-2xl p-3.5 mb-4 text-xs text-amber-200 leading-relaxed">
-        <strong class="block text-amber-300 mb-1">ℹ️ Server Status: Static Web Hosting Detected</strong>
-        Real-time cross-device multiplayer requires an active Node.js + Socket.IO authoritative backend server. Configure your backend endpoint below or launch an instant Local / AI room.
-      </div>
-
-      <div class="space-y-3 mb-5">
-        <div>
-          <label class="block text-xs font-bold text-slate-400 mb-1">Socket.IO Server Endpoint URL</label>
-          <div class="flex gap-2">
-            <input id="socket-url-input" type="text" placeholder="wss://your-ludo-server.example.com" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400">
-            <button onclick="testSocketEndpoint()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-amber-300 border border-slate-600">Connect</button>
-          </div>
-          <p id="socket-status-msg" class="text-[11px] text-slate-400 mt-1">Status: Offline (No server URL configured)</p>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3 pt-2">
-          <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
-            <div class="text-xs font-bold text-white mb-1">Create Private Room</div>
-            <div class="flex items-center justify-between bg-slate-950 px-2.5 py-1.5 rounded-lg border border-slate-700 mb-2">
-              <span id="generated-room-code" class="font-mono text-xs font-black text-amber-400 tracking-widest">GZ-8492</span>
-              <button onclick="copyRoomCode()" class="text-[10px] font-bold text-slate-300 hover:text-white">Copy</button>
-            </div>
-            <button onclick="generateNewRoomCode()" class="w-full py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold text-slate-200">New Code</button>
-          </div>
-
-          <div class="bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
-            <div class="text-xs font-bold text-white mb-1">Join Room Code</div>
-            <input id="join-room-input" type="text" maxlength="8" placeholder="Enter Code" class="w-full bg-slate-950 px-2.5 py-1.5 rounded-lg border border-slate-700 text-xs font-mono text-white uppercase mb-2">
-            <button onclick="testSocketEndpoint()" class="w-full py-1.5 rounded-lg bg-purple-600 hover:bg-purple-500 text-[11px] font-bold text-white">Join Room</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex items-center justify-between pt-3 border-t border-slate-800">
-        <button onclick="closeModal('online-modal')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-slate-300">Close</button>
-        <button onclick="closeModal('online-modal'); openSetupModal('local');" class="btn-gold px-4 py-2 rounded-xl text-xs">Play Offline / Local Instead ▶</button>
+  <!-- Victory Modal -->
+  <div id="victory-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="royal-panel rounded-3xl max-w-md w-full p-6 text-center border-amber-400">
+      <div class="text-5xl mb-2">🏆</div>
+      <h2 id="winner-title" class="font-royal text-2xl font-black text-amber-300 mb-1">RED WINS!</h2>
+      <p id="winner-subtitle" class="text-xs text-slate-300 mb-5">+250 Royal Coins Awarded!</p>
+      <div class="flex gap-3">
+        <button onclick="closeModal('victory-modal'); forceLeaveToLobby();" class="flex-1 py-2.5 rounded-xl bg-slate-800 text-xs font-bold text-white">Lobby</button>
+        <button onclick="closeModal('victory-modal'); startNewMatchFromSetup();" class="flex-1 btn-gold py-2.5 rounded-xl text-xs">Play Again 🎲</button>
       </div>
     </div>
   </div>
 
-  <!-- ==================== 7. THEMES & CUSTOMIZATION MODAL ==================== -->
-  <div id="themes-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="royal-panel rounded-3xl max-w-2xl w-full p-6 my-auto">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">🎨 Royal Customization</h2>
-        <button onclick="closeModal('themes-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
-      </div>
-
-      <div class="mb-5">
-        <label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Board Theme</label>
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5" id="theme-selector-grid"></div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Token Emblem Style</label>
-          <div class="grid grid-cols-2 gap-2" id="token-style-grid"></div>
-        </div>
-        <div>
-          <label class="block text-xs font-bold uppercase tracking-wider text-amber-400 mb-2">Dice Skin</label>
-          <div class="grid grid-cols-2 gap-2" id="dice-skin-grid"></div>
-        </div>
-      </div>
-
-      <div class="flex justify-end">
-        <button onclick="closeModal('themes-modal')" class="btn-gold px-6 py-2.5 rounded-xl text-xs">Save &amp; Apply ✓</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== 8. PLAYER PROFILE, STATS & HISTORY MODAL ==================== -->
-  <div id="profile-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="royal-panel rounded-3xl max-w-2xl w-full p-6 my-auto">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">👑 Royal Profile &amp; Statistics</h2>
-        <button onclick="closeModal('profile-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
-      </div>
-
-      <div class="flex flex-col sm:flex-row items-center gap-4 bg-slate-900/80 p-4 rounded-2xl border border-slate-800 mb-4">
-        <div id="profile-current-avatar" class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-4xl shadow-lg">🦁</div>
-        <div class="flex-1 w-full">
-          <label class="block text-[11px] font-bold text-slate-400 uppercase mb-1">Display Username</label>
-          <div class="flex gap-2">
-            <input id="profile-username-input" type="text" maxlength="16" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3 py-1.5 text-sm font-bold text-white">
-            <button onclick="saveUsername()" class="btn-gold px-4 py-1.5 rounded-xl text-xs">Save</button>
-          </div>
-          <div class="flex flex-wrap gap-1.5 mt-2.5" id="avatar-picker-row"></div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-4 text-center">
-        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-          <div id="pstat-matches" class="text-lg font-black text-white">0</div>
-          <div class="text-[10px] text-slate-400 uppercase">Matches</div>
-        </div>
-        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-          <div id="pstat-wins" class="text-lg font-black text-emerald-400">0</div>
-          <div class="text-[10px] text-slate-400 uppercase">Wins</div>
-        </div>
-        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-          <div id="pstat-losses" class="text-lg font-black text-rose-400">0</div>
-          <div class="text-[10px] text-slate-400 uppercase">Losses</div>
-        </div>
-        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800">
-          <div id="pstat-winrate" class="text-lg font-black text-amber-400">0%</div>
-          <div class="text-[10px] text-slate-400 uppercase">Win %</div>
-        </div>
-        <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 col-span-2 sm:col-span-1">
-          <div id="pstat-streak" class="text-lg font-black text-purple-400">0</div>
-          <div class="text-[10px] text-slate-400 uppercase">Best Streak</div>
-        </div>
-      </div>
-
-      <div>
-        <h3 class="text-xs font-extrabold uppercase tracking-wider text-amber-400 mb-2">Recent Match History</h3>
-        <div id="match-history-list" class="max-h-40 overflow-y-auto space-y-1.5 text-xs"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== 9. ACHIEVEMENTS MODAL ==================== -->
-  <div id="achievements-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="royal-panel rounded-3xl max-w-2xl w-full p-6 my-auto">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">🏆 Royal Achievements</h2>
-        <button onclick="closeModal('achievements-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
-      </div>
-      <div id="achievements-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-[65vh] overflow-y-auto pr-1"></div>
-    </div>
-  </div>
-
-  <!-- ==================== 10. DAILY REWARDS MODAL ==================== -->
+  <!-- Daily Rewards Modal -->
   <div id="daily-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="royal-panel rounded-3xl max-w-md w-full p-6 text-center">
-      <div class="text-4xl mb-2">🎁</div>
-      <h2 class="font-royal text-2xl font-black text-white">Daily Royal Tribute</h2>
-      <p class="text-xs text-slate-400 mb-4">Log in daily to build your streak and claim bonus coins &amp; XP!</p>
-      <div id="daily-streak-grid" class="grid grid-cols-4 gap-2 mb-5"></div>
-      <div class="flex gap-2 justify-center">
-        <button onclick="closeModal('daily-modal')" class="px-4 py-2.5 rounded-xl bg-slate-800 text-xs font-bold text-slate-300">Close</button>
-        <button id="claim-daily-btn" onclick="claimDailyReward()" class="btn-gold px-6 py-2.5 rounded-xl text-xs">Claim Today's Reward 🪙</button>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-royal text-lg font-black text-white">🎁 Daily Royal Bonus</h3>
+        <button onclick="closeModal('daily-modal')" class="text-slate-400 font-bold">✕</button>
       </div>
+      <p class="text-xs text-slate-300 mb-4">Claim your free daily treasury reward to unlock premium board themes!</p>
+      <button id="claim-daily-btn" onclick="claimDailyBonus()" class="btn-gold w-full py-3 rounded-xl text-sm">Claim +200 Coins 🪙</button>
     </div>
   </div>
 
-  <!-- ==================== 11. RULES & HOW TO PLAY MODAL ==================== -->
-  <div id="rules-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="royal-panel rounded-3xl max-w-xl w-full p-6 my-auto">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">📜 Official Ludo Rules</h2>
-        <button onclick="closeModal('rules-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
+  <!-- Themes Modal -->
+  <div id="themes-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="royal-panel rounded-3xl max-w-lg w-full p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-royal text-lg font-black text-white">🎨 Royal Board Themes</h3>
+        <button onclick="closeModal('themes-modal')" class="text-slate-400 font-bold">✕</button>
       </div>
-      <div class="space-y-3 text-xs text-slate-300 leading-relaxed max-h-[65vh] overflow-y-auto pr-1">
-        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <strong class="text-amber-400 block mb-0.5">1. Deploying Tokens (Rolling a 6)</strong>
-          Roll a <strong>6</strong> to move a token from your home yard onto your colored starting square. Rolling a 6 also awards a <strong>bonus roll</strong>! (Rolling three 6s in a row forfeits the turn if enabled).
-        </div>
-        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <strong class="text-amber-400 block mb-0.5">2. Movement &amp; Capturing Opponents</strong>
-          Tokens travel clockwise around the 52-square outer circuit. Landing on an opponent's single token on a non-safe square captures it, sending it back to its yard and granting you a <strong>bonus roll</strong>.
-        </div>
-        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <strong class="text-amber-400 block mb-0.5">3. Safe Zones &amp; Token Stacks</strong>
-          Colored starting squares and Star (★) tiles are <strong>Safe Zones</strong> where no token can be captured. Multiple tokens of the same color stacked on any square also form a safe barrier.
-        </div>
-        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <strong class="text-amber-400 block mb-0.5">4. Home Stretch &amp; Winning</strong>
-          After completing a full lap, tokens enter their colored 5-tile Home Column. An <strong>exact dice roll</strong> is required to enter the center crown triangle. Bring all 4 tokens home (or 1 in Quick Ludo) to win!
-        </div>
-      </div>
+      <div id="themes-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-3"></div>
     </div>
   </div>
 
-  <!-- ==================== 12. SETTINGS MODAL ==================== -->
-  <div id="settings-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+  <!-- Profile Modal -->
+  <div id="profile-modal" class="hidden fixed inset-0 z-40 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="royal-panel rounded-3xl max-w-md w-full p-6">
-      <div class="flex items-center justify-between border-b border-slate-700/70 pb-3 mb-4">
-        <h2 class="font-royal text-xl font-black text-white">⚙️ Game Settings</h2>
-        <button onclick="closeModal('settings-modal')" class="w-8 h-8 rounded-full bg-slate-800 text-slate-300 font-bold">✕</button>
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-royal text-lg font-black text-white">👤 Royal Profile</h3>
+        <button onclick="closeModal('profile-modal')" class="text-slate-400 font-bold">✕</button>
       </div>
-      <div class="space-y-4 text-xs">
-        <div class="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <span class="font-bold text-slate-200">Sound Effects (SFX)</span>
-          <input type="checkbox" id="set-sfx" checked onchange="updateAudioSettings()" class="accent-amber-400 w-4 h-4">
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <span class="font-bold text-slate-200">Ambient Royal Music</span>
-          <input type="checkbox" id="set-music" onchange="updateAudioSettings()" class="accent-amber-400 w-4 h-4">
-        </div>
-        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <div class="flex justify-between font-bold text-slate-200 mb-1.5">
-            <span>Master Volume</span>
-            <span id="vol-label" class="text-amber-400">75%</span>
-          </div>
-          <input type="range" id="set-volume" min="0" max="100" value="75" oninput="updateAudioSettings()" class="w-full accent-amber-400">
-        </div>
-        <div class="flex items-center justify-between bg-slate-900/80 p-3 rounded-xl border border-slate-800">
-          <span class="font-bold text-slate-200">Fast Token Animations</span>
-          <input type="checkbox" id="set-fast-anim" onchange="updateAudioSettings()" class="accent-amber-400 w-4 h-4">
-        </div>
-      </div>
-      <div class="mt-5 flex justify-end">
-        <button onclick="closeModal('settings-modal')" class="btn-gold px-5 py-2 rounded-xl text-xs">Done</button>
-      </div>
+      <label class="block text-xs text-slate-400 mb-1">Display Name</label>
+      <input id="profile-name-input" type="text" maxlength="14" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white mb-4" />
+      <button onclick="saveProfileName()" class="btn-gold w-full py-2.5 rounded-xl text-xs">Save Profile</button>
     </div>
   </div>
 
-  <!-- ==================== 13. CUSTOM CONFIRMATION & TOAST DIALOG ==================== -->
-  <div id="confirm-modal" class="hidden fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="royal-panel rounded-3xl max-w-sm w-full p-6 text-center">
-      <h3 id="confirm-title" class="font-royal text-lg font-black text-white mb-2">Confirm Action</h3>
-      <p id="confirm-message" class="text-xs text-slate-300 mb-5">Are you sure?</p>
-      <div class="flex justify-center gap-3">
-        <button onclick="closeModal('confirm-modal')" class="px-4 py-2 rounded-xl bg-slate-800 text-xs font-bold text-slate-300">Cancel</button>
-        <button id="confirm-yes-btn" class="btn-gold px-5 py-2 rounded-xl text-xs">Confirm</button>
-      </div>
-    </div>
-  </div>
+  <!-- Toast Container -->
+  <div id="toast-box" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-  <div id="toast-banner" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 bg-slate-900/95 border border-amber-400/60 text-amber-200 px-4 py-2 rounded-full text-xs font-bold shadow-2xl"></div>
-
-<script>
-/* -------------------- UTILITY: SAFE HTML ESCAPER -------------------- */
-function escapeHTML(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
-/* -------------------- 1. WEB AUDIO SYNTH ENGINE -------------------- */
-class RoyalAudioEngine {
-  constructor() {
-    this.ctx = null;
-    this.sfxEnabled = true;
-    this.musicEnabled = false;
-    this.volume = 0.75;
-    this.musicInterval = null;
-    this.musicStep = 0;
+  <!-- JSON-LD Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Ludo King – Ultimate Edition",
+    "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/ludo_king_ultimate.html",
+    "description": "Play Ludo King Ultimate Edition on GameZone 203 with AI opponents, local multiplayer, particle effects, and custom royal themes.",
+    "genre": "Board Game",
+    "applicationCategory": "BrowserGame"
   }
-
-  init() {
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) this.ctx = new AudioCtx();
-    }
-    if (this.ctx && this.ctx.state === 'suspended') {
-      this.ctx.resume();
-    }
-  }
-
-  playTone(freq, type = 'sine', duration = 0.15, gainMult = 0.3, delay = 0) {
-    if (!this.sfxEnabled || this.volume <= 0) return;
-    this.init();
-    if (!this.ctx) return;
-
-    const now = this.ctx.currentTime + delay;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = type;
-    osc.frequency.setValueAtTime(freq, now);
-    gain.gain.setValueAtTime(0.001, now);
-    gain.gain.exponentialRampToValueAtTime(Math.max(0.001, this.volume * gainMult), now + 0.015);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(now);
-    osc.stop(now + duration + 0.02);
-  }
-
-  playClick() { this.playTone(620, 'triangle', 0.07, 0.2); }
-
-  playDiceRoll() {
-    for (let i = 0; i < 6; i++) {
-      this.playTone(180 + Math.random() * 240, 'square', 0.045, 0.14, i * 0.055);
-    }
-  }
-
-  playStep() { this.playTone(440, 'sine', 0.08, 0.25); }
-
-  playSafeStar() {
-    this.playTone(587.33, 'triangle', 0.16, 0.25, 0);
-    this.playTone(880, 'triangle', 0.22, 0.25, 0.08);
-  }
-
-  playCapture() {
-    this.playTone(300, 'sawtooth', 0.18, 0.35, 0);
-    this.playTone(150, 'sawtooth', 0.28, 0.35, 0.1);
-  }
-
-  playHome() {
-    const notes = [523.25, 659.25, 783.99, 1046.5];
-    notes.forEach((n, i) => this.playTone(n, 'triangle', 0.22, 0.28, i * 0.08));
-  }
-
-  playVictory() {
-    const fanfare = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
-    fanfare.forEach((n, i) => this.playTone(n, 'triangle', 0.3, 0.35, i * 0.12));
-  }
-
-  updateMusicState() {
-    if (this.musicInterval) {
-      clearInterval(this.musicInterval);
-      this.musicInterval = null;
-    }
-    if (!this.musicEnabled || this.volume <= 0) return;
-    const scale = [261.63, 329.63, 392.0, 493.88, 523.25, 392.0, 329.63, 293.66];
-    this.musicInterval = setInterval(() => {
-      if (!this.musicEnabled) return;
-      this.init();
-      if (!this.ctx) return;
-      const note = scale[this.musicStep % scale.length];
-      this.musicStep++;
-      const now = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(note, now);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(this.volume * 0.07, now + 0.1);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.7);
-    }, 700);
-  }
-}
-
-const audio = new RoyalAudioEngine();
-
-/* -------------------- 2. CONSTANTS, THEMES & BOARD GEOMETRY -------------------- */
-const PLAYER_COLORS = ['red', 'green', 'yellow', 'blue'];
-
-const COLOR_META = {
-  red:    { name: 'Red',    hex: '#ef4444', dark: '#991b1b', light: '#fca5a5', startIdx: 0 },
-  green:  { name: 'Green',  hex: '#10b981', dark: '#065f46', light: '#6ee7b7', startIdx: 13 },
-  yellow: { name: 'Yellow', hex: '#eab308', dark: '#854d0e', light: '#fde047', startIdx: 26 },
-  blue:   { name: 'Blue',   hex: '#3b82f6', dark: '#1e40af', light: '#93c5fd', startIdx: 39 }
-};
-
-const MAIN_PATH_COORDS = [
-  [1,6],[2,6],[3,6],[4,6],[5,6],
-  [6,5],[6,4],[6,3],[6,2],[6,1],[6,0],
-  [7,0],
-  [8,0],[8,1],[8,2],[8,3],[8,4],[8,5],
-  [9,6],[10,6],[11,6],[12,6],[13,6],[14,6],
-  [14,7],
-  [14,8],[13,8],[12,8],[11,8],[10,8],[9,8],
-  [8,9],[8,10],[8,11],[8,12],[8,13],[8,14],
-  [7,14],
-  [6,14],[6,13],[6,12],[6,11],[6,10],[6,9],
-  [5,8],[4,8],[3,8],[2,8],[1,8],[0,8],
-  [0,7],
-  [0,6]
-];
-
-const SAFE_GLOBAL_INDICES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
-
-const HOME_STRETCH_COORDS = {
-  red:    [[1,7],[2,7],[3,7],[4,7],[5,7]],
-  green:  [[7,1],[7,2],[7,3],[7,4],[7,5]],
-  yellow: [[13,7],[12,7],[11,7],[10,7],[9,7]],
-  blue:   [[7,13],[7,12],[7,11],[7,10],[7,9]]
-};
-
-const YARD_TOKEN_COORDS = {
-  red:    [[1.8, 1.8], [4.2, 1.8], [1.8, 4.2], [4.2, 4.2]],
-  green:  [[10.8, 1.8], [13.2, 1.8], [10.8, 4.2], [13.2, 4.2]],
-  yellow: [[10.8, 10.8], [13.2, 10.8], [10.8, 13.2], [13.2, 13.2]],
-  blue:   [[1.8, 10.8], [4.2, 10.8], [1.8, 13.2], [4.2, 13.2]]
-};
-
-const HOME_CENTER_COORDS = {
-  red:    [[6.45, 7.15], [6.45, 7.85], [6.85, 7.35], [6.85, 7.65]],
-  green:  [[7.15, 6.45], [7.85, 6.45], [7.35, 6.85], [7.65, 6.85]],
-  yellow: [[8.55, 7.15], [8.55, 7.85], [8.15, 7.35], [8.15, 7.65]],
-  blue:   [[7.15, 8.55], [7.85, 8.55], [7.35, 8.15], [7.65, 8.15]]
-};
-
-const BOARD_THEMES = {
-  royal:   { name: 'Royal Gold',   tileBg: '#fffbeb', tileStroke: '#d97706', boardBg: '#fef3c7', starColor: '#d97706' },
-  classic: { name: 'Classic',      tileBg: '#ffffff', tileStroke: '#cbd5e1', boardBg: '#f8fafc', starColor: '#475569' },
-  dark:    { name: 'Midnight',     tileBg: '#1e293b', tileStroke: '#334155', boardBg: '#0f172a', starColor: '#f5b942' },
-  neon:    { name: 'Cyber Neon',   tileBg: '#090d16', tileStroke: '#38bdf8', boardBg: '#020617', starColor: '#f43f5e' },
-  nature:  { name: 'Emerald Wood', tileBg: '#ecfdf5', tileStroke: '#059669', boardBg: '#d1fae5', starColor: '#047857' }
-};
-
-const TOKEN_STYLES = {
-  crown:  { name: 'Royal Crown', symbol: '♛' },
-  gem:    { name: 'Star Gem',    symbol: '✦' },
-  shield: { name: 'Knight Crest',symbol: '❖' },
-  classic:{ name: 'Classic Pin', symbol: '●' }
-};
-
-const DICE_SKINS = {
-  ivory:   { name: 'Royal Ivory', bg: 'linear-gradient(145deg, #ffffff, #e2e8f0)', pip: '#0f172a', border: '#cbd5e1' },
-  gold:    { name: '24K Gold',    bg: 'linear-gradient(145deg, #fde047, #d97706)', pip: '#1e1b4b', border: '#fef08a' },
-  obsidian:{ name: 'Obsidian',    bg: 'linear-gradient(145deg, #334155, #0f172a)', pip: '#f5b942', border: '#f5b942' }
-};
-
-const AVATARS = ['🦁', '👑', '🐉', '🦅', '🐺', '🦊', '🐯', '🦄', '🤖', '🥷'];
-
-const ACHIEVEMENTS_DEF = [
-  { id: 'first_win',    title: 'First Coronation', desc: 'Win your first Ludo match.',       reward: 200, icon: '👑' },
-  { id: 'capturer_5',   title: 'Royal Hunter',     desc: 'Capture 5 opponent tokens total.', reward: 250, icon: '⚔️' },
-  { id: 'hard_victor',  title: 'Grand Tactician',  desc: 'Defeat a Hard AI opponent.',       reward: 500, icon: '🧠' },
-  { id: 'matches_10',   title: 'Arena Veteran',    desc: 'Complete 10 matches.',             reward: 300, icon: '🛡️' },
-  { id: 'streak_3',     title: 'Unstoppable',      desc: 'Achieve a 3-match win streak.',    reward: 400, icon: '🔥' },
-  { id: 'quick_champ',  title: 'Lightning King',   desc: 'Win a Quick Ludo match.',          reward: 200, icon: '⚡' }
-];
-
-/* -------------------- 3. PLAYER PROFILE & STORAGE -------------------- */
-const STORAGE_PROFILE_KEY = 'gz203_ludo_profile_v1';
-const STORAGE_SAVEGAME_KEY = 'gz203_ludo_savegame_v1';
-
-let profile = {
-  username: 'RoyalPlayer',
-  avatar: '🦁',
-  coins: 1000,
-  xp: 0,
-  level: 1,
-  matches: 0,
-  wins: 0,
-  losses: 0,
-  streak: 0,
-  bestStreak: 0,
-  totalCaptures: 0,
-  unlockedAchievements: [],
-  history: [],
-  dailyStreak: 0,
-  lastDailyClaim: null,
-  quests: {
-    date: new Date().toDateString(),
-    playedToday: 0,
-    capturesToday: 0,
-    winsToday: 0,
-    claimedPlayed: false,
-    claimedCaptures: false,
-    claimedWins: false
-  },
-  prefs: {
-    theme: 'royal',
-    tokenStyle: 'crown',
-    diceSkin: 'ivory',
-    sfx: true,
-    music: false,
-    volume: 75,
-    fastAnim: false
-  }
-};
-
-function ensureDailyQuestsReset() {
-  const today = new Date().toDateString();
-  if (profile.quests.date !== today) {
-    profile.quests = {
-      date: today,
-      playedToday: 0,
-      capturesToday: 0,
-      winsToday: 0,
-      claimedPlayed: false,
-      claimedCaptures: false,
-      claimedWins: false
-    };
-  }
-}
-
-function evaluateDailyQuestRewards() {
-  ensureDailyQuestsReset();
-  let bonusCoins = 0;
-  if (profile.quests.playedToday >= 1 && !profile.quests.claimedPlayed) {
-    profile.quests.claimedPlayed = true;
-    bonusCoins += 100;
-  }
-  if (profile.quests.capturesToday >= 2 && !profile.quests.claimedCaptures) {
-    profile.quests.claimedCaptures = true;
-    bonusCoins += 150;
-  }
-  if (profile.quests.winsToday >= 1 && !profile.quests.claimedWins) {
-    profile.quests.claimedWins = true;
-    bonusCoins += 200;
-  }
-  if (bonusCoins > 0) {
-    profile.coins += bonusCoins;
-    showToast(`✨ Daily Quest Completed! +${bonusCoins} 🪙`);
-  }
-}
-
-function loadProfile() {
-  try {
-    const raw = localStorage.getItem(STORAGE_PROFILE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      profile = {
-        ...profile,
-        ...parsed,
-        prefs: { ...profile.prefs, ...(parsed.prefs || {}) },
-        quests: { ...profile.quests, ...(parsed.quests || {}) }
-      };
-    }
-  } catch (e) {
-    console.warn('Could not load saved profile:', e);
-  }
-  ensureDailyQuestsReset();
-  audio.sfxEnabled = profile.prefs.sfx;
-  audio.musicEnabled = profile.prefs.music;
-  audio.volume = profile.prefs.volume / 100;
-}
-
-function saveProfile() {
-  evaluateDailyQuestRewards();
-  try {
-    localStorage.setItem(STORAGE_PROFILE_KEY, JSON.stringify(profile));
-  } catch (e) {
-    console.warn('Could not save profile:', e);
-  }
-  refreshProfileUI();
-}
-
-function grantRewards(coins, xp) {
-  profile.coins += coins;
-  profile.xp += xp;
-  let needed = profile.level * 250;
-  while (profile.xp >= needed) {
-    profile.xp -= needed;
-    profile.level += 1;
-    needed = profile.level * 250;
-    showToast(`🎉 LEVEL UP! You reached Royal Level ${profile.level}!`);
-  }
-  saveProfile();
-}
-
-function checkAchievements() {
-  const checks = {
-    first_win: profile.wins >= 1,
-    capturer_5: profile.totalCaptures >= 5,
-    matches_10: profile.matches >= 10,
-    streak_3: profile.bestStreak >= 3
-  };
-  for (const [id, unlocked] of Object.entries(checks)) {
-    if (unlocked && !profile.unlockedAchievements.includes(id)) {
-      unlockAchievement(id);
-    }
-  }
-}
-
-function unlockAchievement(id) {
-  if (profile.unlockedAchievements.includes(id)) return;
-  const def = ACHIEVEMENTS_DEF.find(a => a.id === id);
-  if (!def) return;
-  profile.unlockedAchievements.push(id);
-  profile.coins += def.reward;
-  showToast(`🏆 Achievement Unlocked: ${def.title} (+${def.reward} 🪙)`);
-  saveProfile();
-}
-
-/* -------------------- 4. MATCH SETUP STATE -------------------- */
-let setupState = {
-  variant: 'classic',
-  difficulty: 'medium',
-  threeSixesFoul: true,
-  turnTimer: false,
-  seats: {
-    red:    { active: true,  type: 'human', name: 'You',      avatar: '🦁' },
-    green:  { active: true,  type: 'ai',    name: 'Bot Aria', avatar: '🤖' },
-    yellow: { active: false, type: 'ai',    name: 'Bot Rex',  avatar: '🐉' },
-    blue:   { active: false, type: 'ai',    name: 'Bot Nova', avatar: '🦊' }
-  }
-};
-
-function openSetupModal(modeHint) {
-  audio.playClick();
-  setupState.seats.red.name = profile.username || 'Player 1';
-  setupState.seats.red.avatar = profile.avatar || '🦁';
-
-  if (modeHint === 'solo') {
-    setSetupVariant('classic');
-    applyLineupPreset('1v1_ai');
-  } else if (modeHint === 'local') {
-    setSetupVariant('classic');
-    applyLineupPreset('2p_local');
-  } else if (modeHint === 'quick') {
-    setSetupVariant('quick');
-    applyLineupPreset('1v3_ai');
-  }
-  openModal('setup-modal');
-}
-
-function setSetupVariant(variant) {
-  setupState.variant = variant;
-  const cBtn = document.getElementById('variant-classic-btn');
-  const qBtn = document.getElementById('variant-quick-btn');
-  if (variant === 'classic') {
-    cBtn.className = 'py-2 rounded-xl text-xs font-extrabold transition bg-amber-500 text-slate-950';
-    qBtn.className = 'py-2 rounded-xl text-xs font-extrabold transition text-slate-300 hover:text-white';
-  } else {
-    qBtn.className = 'py-2 rounded-xl text-xs font-extrabold transition bg-amber-500 text-slate-950';
-    cBtn.className = 'py-2 rounded-xl text-xs font-extrabold transition text-slate-300 hover:text-white';
-  }
-}
-
-function applyLineupPreset(preset) {
-  document.querySelectorAll('.preset-btn').forEach(btn => {
-    const isSel = btn.dataset.preset === preset;
-    btn.className = isSel
-      ? 'preset-btn py-2 px-3 rounded-xl border border-amber-500/60 bg-amber-500/15 text-xs font-bold text-amber-200'
-      : 'preset-btn py-2 px-3 rounded-xl border border-slate-700 bg-slate-800/70 text-xs font-bold text-slate-300';
-  });
-
-  const p1Name = profile.username || 'Player 1';
-  const p1Ava = profile.avatar || '🦁';
-
-  const configs = {
-    '1v1_ai': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', false, 'ai', 'Bot Aria', '🤖'],
-      ['yellow', true, 'ai', 'Bot Rex', '🐉'],
-      ['blue', false, 'ai', 'Bot Nova', '🦊']
-    ],
-    '1v3_ai': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', true, 'ai', 'Bot Aria', '🤖'],
-      ['yellow', true, 'ai', 'Bot Rex', '🐉'],
-      ['blue', true, 'ai', 'Bot Nova', '🦊']
-    ],
-    '2p_local': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', false, 'human', 'Player 2', '🐯'],
-      ['yellow', true, 'human', 'Player 2', '🐯'],
-      ['blue', false, 'human', 'Player 4', '🐺']
-    ],
-    '3p_local': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', true, 'human', 'Player 2', '🐯'],
-      ['yellow', true, 'human', 'Player 3', '🦅'],
-      ['blue', false, 'human', 'Player 4', '🐺']
-    ],
-    '4p_local': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', true, 'human', 'Player 2', '🐯'],
-      ['yellow', true, 'human', 'Player 3', '🦅'],
-      ['blue', true, 'human', 'Player 4', '🐺']
-    ],
-    '2h_2ai': [
-      ['red', true, 'human', p1Name, p1Ava],
-      ['green', true, 'ai', 'Bot Aria', '🤖'],
-      ['yellow', true, 'human', 'Player 2', '🐯'],
-      ['blue', true, 'ai', 'Bot Nova', '🦊']
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I deploy and move tokens in Ludo King Ultimate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Click Roll Dice or press Spacebar. Roll a 6 to deploy a token from your yard onto the starting square, then click any glowing token to move."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do captures and safe zones work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Landing on an opponent token outside a star safe square captures it back to its yard and awards an extra roll."
+        }
+      }
     ]
-  };
-
-  for (const [color, active, type, name, avatar] of configs[preset]) {
-    setupState.seats[color] = { active, type, name, avatar };
   }
-  renderSeatConfigGrid();
-}
+  </script>
 
-function selectDifficulty(diff) {
-  setupState.difficulty = diff;
-  ['easy', 'medium', 'hard'].forEach(d => {
-    const el = document.getElementById(`diff-card-${d}`);
-    el.className = d === diff
-      ? 'diff-card cursor-pointer rounded-2xl p-3 border-2 border-amber-400 bg-amber-500/10 transition'
-      : 'diff-card cursor-pointer rounded-2xl p-3 border border-slate-700 bg-slate-900/70 transition';
-  });
-}
+  <script>
+    (() => {
+      "use strict";
 
-function renderSeatConfigGrid() {
-  const container = document.getElementById('seat-config-grid');
-  container.innerHTML = '';
-  let hasAI = false;
+      /* ================= 1. PERSISTENT STATE ================= */
+      const STORE_KEY = "ludoKing203_save_v1";
+      const DEFAULT_DATA = {
+        username: "RoyalPlayer",
+        coins: 1000,
+        muted: false,
+        lastDaily: null,
+        activeTheme: "classic",
+        unlockedThemes: ["classic"],
+        stats: { matches: 0, wins: 0, captures: 0 }
+      };
 
-  PLAYER_COLORS.forEach(color => {
-    const seat = setupState.seats[color];
-    if (seat.active && seat.type === 'ai') hasAI = true;
-    const meta = COLOR_META[color];
+      let userData = (() => {
+        try {
+          const raw = localStorage.getItem(STORE_KEY);
+          return raw ? { ...DEFAULT_DATA, ...JSON.parse(raw) } : { ...DEFAULT_DATA };
+        } catch { return { ...DEFAULT_DATA }; }
+      })();
 
-    const card = document.createElement('div');
-    card.className = `rounded-2xl p-3 border transition ${seat.active ? 'bg-slate-900/95 border-slate-600' : 'bg-slate-950/50 border-slate-800/70 opacity-60'}`;
-    card.innerHTML = `
-      <div class="flex items-center justify-between mb-2">
-        <div class="flex items-center gap-2">
-          <span class="w-3.5 h-3.5 rounded-full" style="background:${meta.hex}"></span>
-          <span class="text-xs font-extrabold uppercase text-white">${meta.name}</span>
-        </div>
-        <select onchange="updateSeatRole('${color}', this.value)" class="bg-slate-800 border border-slate-700 rounded-lg px-2 py-1 text-[11px] font-bold text-slate-200">
-          <option value="human" ${seat.active && seat.type === 'human' ? 'selected' : ''}>👤 Human</option>
-          <option value="ai" ${seat.active && seat.type === 'ai' ? 'selected' : ''}>🤖 AI Bot</option>
-          <option value="off" ${!seat.active ? 'selected' : ''}>⛔ Off</option>
-        </select>
-      </div>
-      <div class="flex items-center gap-2">
-        <span class="text-lg">${seat.avatar}</span>
-        <input type="text" maxlength="14" value="${escapeHTML(seat.name)}" ${!seat.active ? 'disabled' : ''}
-               onchange="setupState.seats['${color}'].name = this.value.trim() || '${meta.name}'"
-               class="w-full bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-xs font-semibold text-white">
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  document.getElementById('ai-difficulty-section').style.display = hasAI ? 'block' : 'none';
-}
-
-function updateSeatRole(color, role) {
-  if (role === 'off') {
-    const activeCount = PLAYER_COLORS.filter(c => setupState.seats[c].active).length;
-    if (activeCount <= 2) {
-      showToast('⚠️ At least 2 players are required to play!');
-      renderSeatConfigGrid();
-      return;
-    }
-    setupState.seats[color].active = false;
-  } else {
-    setupState.seats[color].active = true;
-    setupState.seats[color].type = role;
-    if (role === 'ai' && !setupState.seats[color].name.startsWith('Bot')) {
-      setupState.seats[color].name = `Bot ${COLOR_META[color].name}`;
-      setupState.seats[color].avatar = '🤖';
-    }
-  }
-  renderSeatConfigGrid();
-}
-
-/* -------------------- 5. CORE LUDO GAME ENGINE -------------------- */
-let gameState = null;
-let gameTimerInterval = null;
-let turnCountdownInterval = null;
-let turnTimeLeft = 20;
-
-function startNewMatchFromSetup() {
-  const activeColors = PLAYER_COLORS.filter(c => setupState.seats[c].active);
-  if (activeColors.length < 2) {
-    showToast('Please enable at least 2 players.');
-    return;
-  }
-
-  setupState.threeSixesFoul = document.getElementById('rule-three-sixes').checked;
-  setupState.turnTimer = document.getElementById('rule-turn-timer').checked;
-
-  const isQuick = setupState.variant === 'quick';
-
-  const players = {};
-  activeColors.forEach(color => {
-    const s = setupState.seats[color];
-    players[color] = {
-      color,
-      name: s.name,
-      avatar: s.avatar,
-      type: s.type,
-      tokens: isQuick ? [0, -1, -1, -1] : [-1, -1, -1, -1],
-      finishedCount: 0,
-      captures: 0
-    };
-  });
-
-  gameState = {
-    variant: setupState.variant,
-    difficulty: setupState.difficulty,
-    threeSixesFoul: setupState.threeSixesFoul,
-    turnTimerEnabled: setupState.turnTimer,
-    turnOrder: activeColors,
-    currentTurnIdx: 0,
-    players,
-    diceValue: null,
-    phase: 'ROLL',
-    consecutiveSixes: 0,
-    legalMoves: [],
-    rankings: [],
-    elapsedSeconds: 0,
-    paused: false,
-    logs: []
-  };
-
-  closeModal('setup-modal');
-  enterGameArena();
-}
-
-function enterGameArena() {
-  document.getElementById('main-menu').classList.add('hidden');
-  document.getElementById('game-screen').classList.remove('hidden');
-  document.getElementById('pause-overlay').classList.add('hidden');
-
-  const modeLabel = gameState.variant === 'quick' ? '⚡ Quick Ludo' : '👑 Classic Ludo';
-  const hasAI = Object.values(gameState.players).some(p => p.type === 'ai');
-  document.getElementById('game-mode-badge').textContent = hasAI
-    ? `${modeLabel} • AI (${gameState.difficulty.toUpperCase()})`
-    : `${modeLabel} • Local`;
-
-  buildDiceCubeDOM();
-  renderBoardSVG();
-  renderAllPlayerPods();
-  renderMoveLogs();
-  startGameClock();
-  prepareTurn();
-}
-
-function getCurrentPlayer() {
-  const color = gameState.turnOrder[gameState.currentTurnIdx];
-  return gameState.players[color];
-}
-
-function localToGlobalIndex(color, progress) {
-  if (progress < 0 || progress > 50) return -1;
-  return (COLOR_META[color].startIdx + progress) % 52;
-}
-
-function getTokenGridCoords(color, progress, tokenIdx) {
-  if (progress === -1) return YARD_TOKEN_COORDS[color][tokenIdx];
-  if (progress >= 0 && progress <= 50) {
-    const gIdx = localToGlobalIndex(color, progress);
-    return MAIN_PATH_COORDS[gIdx];
-  }
-  if (progress >= 51 && progress <= 55) return HOME_STRETCH_COORDS[color][progress - 51];
-  return HOME_CENTER_COORDS[color][tokenIdx];
-}
-
-function computeLegalMoves(player, dice) {
-  const moves = [];
-  player.tokens.forEach((prog, idx) => {
-    if (prog === 56) return;
-    if (prog === -1) {
-      if (dice === 6) {
-        moves.push({ tokenIdx: idx, from: -1, to: 0, type: 'deploy' });
+      function saveUserData() {
+        try { localStorage.setItem(STORE_KEY, JSON.stringify(userData)); } catch {}
       }
-    } else if (prog + dice <= 56) {
-      const target = prog + dice;
-      moves.push({
-        tokenIdx: idx,
-        from: prog,
-        to: target,
-        type: target === 56 ? 'home' : 'advance'
-      });
-    }
-  });
-  return moves;
-}
 
-function prepareTurn() {
-  if (!gameState || gameState.phase === 'GAMEOVER') return;
-  const player = getCurrentPlayer();
+      /* ================= 2. AUDIO & PARTICLES & SCREEN SHAKE ================= */
+      let audioCtx = null;
+      function playTone(freq, type = "sine", dur = 0.12, slide = null) {
+        if (userData.muted) return;
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          if (audioCtx.state === "suspended") audioCtx.resume();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+          if (slide) osc.frequency.exponentialRampToValueAtTime(slide, audioCtx.currentTime + dur);
+          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+          osc.connect(gain); gain.connect(audioCtx.destination);
+          osc.start(); osc.stop(audioCtx.currentTime + dur);
+        } catch {}
+      }
 
-  const targetWins = gameState.variant === 'quick' ? 1 : 4;
-  if (player.finishedCount >= targetWins) {
-    advanceToNextTurn(false);
-    return;
-  }
+      function triggerScreenShake() {
+        const wrap = document.getElementById("board-wrapper");
+        wrap.classList.remove("shake-active");
+        void wrap.offsetWidth;
+        wrap.classList.add("shake-active");
+      }
 
-  gameState.phase = 'ROLL';
-  gameState.diceValue = null;
-  gameState.legalMoves = [];
+      const fxCanvas = document.getElementById("fx-canvas");
+      const fxCtx = fxCanvas.getContext("2d");
+      let particles = [];
 
-  updateTurnUI();
-  renderTokensOnBoard();
-  saveActiveMatch();
-  resetTurnCountdown();
+      function spawnParticles(x, y, color, count = 24) {
+        for (let i = 0; i < count; i++) {
+          const ang = Math.random() * Math.PI * 2;
+          const spd = Math.random() * 4 + 1.5;
+          particles.push({
+            x, y,
+            vx: Math.cos(ang) * spd,
+            vy: Math.sin(ang) * spd,
+            alpha: 1,
+            color,
+            size: Math.random() * 4 + 2
+          });
+        }
+      }
 
-  if (player.type === 'ai') {
-    document.getElementById('roll-btn').disabled = true;
-    document.getElementById('dice-hint').textContent = `${player.name} is thinking...`;
-    const delay = profile.prefs.fastAnim ? 350 : 650;
-    setTimeout(() => {
-      if (gameState && !gameState.paused && gameState.phase === 'ROLL' && getCurrentPlayer().color === player.color) {
+      function updateAndDrawParticles() {
+        fxCtx.clearRect(0, 0, 600, 600);
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.025;
+          if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+          fxCtx.globalAlpha = p.alpha;
+          fxCtx.fillStyle = p.color;
+          fxCtx.beginPath();
+          fxCtx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          fxCtx.fill();
+        }
+        fxCtx.globalAlpha = 1;
+        requestAnimationFrame(updateAndDrawParticles);
+      }
+      requestAnimationFrame(updateAndDrawParticles);
+
+      function showToast(msg) {
+        const box = document.getElementById("toast-box");
+        const el = document.createElement("div");
+        el.className = "royal-panel px-4 py-2.5 rounded-xl text-xs font-bold text-amber-300 border-amber-400/50 shadow-lg";
+        el.textContent = msg;
+        box.appendChild(el);
+        setTimeout(() => el.remove(), 2600);
+      }
+
+      /* ================= 3. LOADING SCREEN ================= */
+      let loadPct = 0;
+      const loadTimer = setInterval(() => {
+        loadPct += Math.floor(Math.random() * 25) + 18;
+        if (loadPct >= 100) {
+          loadPct = 100;
+          clearInterval(loadTimer);
+          document.getElementById("loading-bar").style.width = "100%";
+          document.getElementById("loading-percent").textContent = "100%";
+          setTimeout(() => {
+            document.getElementById("loading-screen").classList.add("hidden");
+            document.getElementById("main-menu").classList.remove("hidden");
+            refreshLobbyUI();
+          }, 300);
+        } else {
+          document.getElementById("loading-bar").style.width = loadPct + "%";
+          document.getElementById("loading-percent").textContent = loadPct + "%";
+        }
+      }, 110);
+
+      /* ================= 4. LOBBY, MODALS & THEMES ================= */
+      const THEMES = [
+        { id: "classic", name: "Royal Classic", price: 0, bg: "#f8fafc", cell: "#ffffff" },
+        { id: "obsidian", name: "Midnight Obsidian", price: 400, bg: "#0f172a", cell: "#1e293b" },
+        { id: "emerald", name: "Imperial Jade", price: 600, bg: "#064e3b", cell: "#ecfdf5" }
+      ];
+
+      function refreshLobbyUI() {
+        document.getElementById("hud-username").textContent = userData.username;
+        document.getElementById("hud-coins").textContent = userData.coins.toLocaleString();
+        document.getElementById("stat-menu-matches").textContent = userData.stats.matches;
+        document.getElementById("stat-menu-wins").textContent = userData.stats.wins;
+        document.getElementById("stat-menu-captures").textContent = userData.stats.captures;
+
+        const today = new Date().toDateString();
+        const dot = document.getElementById("daily-dot");
+        if (userData.lastDaily === today) dot.classList.add("hidden");
+        else dot.classList.remove("hidden");
+
+        const achList = document.getElementById("achievements-list");
+        const achs = [
+          { title: "First Victory", done: userData.stats.wins >= 1, desc: "Win 1 Royal Match" },
+          { title: "Token Hunter", done: userData.stats.captures >= 5, desc: "Capture 5 opponent tokens" },
+          { title: "Veteran Ruler", done: userData.stats.matches >= 10, desc: "Complete 10 matches" }
+        ];
+        achList.innerHTML = achs.map(a => `
+          <div class="bg-slate-900/80 border ${a.done ? 'border-amber-400/60' : 'border-slate-800'} rounded-xl p-2.5 flex items-center justify-between">
+            <div>
+              <div class="text-xs font-bold text-white">${a.title}</div>
+              <div class="text-[11px] text-slate-400">${a.desc}</div>
+            </div>
+            <span class="text-xs font-black ${a.done ? 'text-emerald-400' : 'text-slate-500'}">${a.done ? '✓ DONE' : 'LOCKED'}</span>
+          </div>
+        `).join("");
+      }
+
+      window.openModal = (id) => {
+        playTone(520, "triangle", 0.06);
+        if (id === "profile-modal") document.getElementById("profile-name-input").value = userData.username;
+        if (id === "themes-modal") renderThemesModal();
+        document.getElementById(id).classList.remove("hidden");
+      };
+      window.closeModal = (id) => document.getElementById(id).classList.add("hidden");
+
+      window.saveProfileName = () => {
+        const val = document.getElementById("profile-name-input").value.trim();
+        if (val) userData.username = val;
+        saveUserData(); refreshLobbyUI(); closeModal("profile-modal");
+        showToast("✅ Profile updated!");
+      };
+
+      window.claimDailyBonus = () => {
+        const today = new Date().toDateString();
+        if (userData.lastDaily === today) { showToast("⏳ Already claimed today!"); return; }
+        userData.lastDaily = today;
+        userData.coins += 200;
+        saveUserData(); refreshLobbyUI(); closeModal("daily-modal");
+        playTone(880, "sine", 0.18, 1320);
+        showToast("🪙 +200 Daily Coins Claimed!");
+      };
+
+      function renderThemesModal() {
+        const grid = document.getElementById("themes-grid");
+        grid.innerHTML = THEMES.map(t => {
+          const owned = userData.unlockedThemes.includes(t.id);
+          const active = userData.activeTheme === t.id;
+          return `
+            <div class="royal-card rounded-2xl p-3 text-center">
+              <div class="w-full h-14 rounded-xl mb-2 border border-white/10" style="background:${t.bg}"></div>
+              <div class="text-xs font-bold text-white mb-1">${t.name}</div>
+              <button onclick="selectOrBuyTheme('${t.id}')" class="w-full py-1.5 rounded-lg text-xs font-extrabold ${active ? 'bg-emerald-500 text-slate-950' : 'btn-gold'}">
+                ${active ? '✓ Equipped' : owned ? 'Equip' : `🪙 ${t.price}`}
+              </button>
+            </div>
+          `;
+        }).join("");
+      }
+
+      window.selectOrBuyTheme = (id) => {
+        const t = THEMES.find(x => x.id === id);
+        if (!t) return;
+        if (!userData.unlockedThemes.includes(id)) {
+          if (userData.coins < t.price) { showToast("🪙 Not enough coins!"); return; }
+          userData.coins -= t.price;
+          userData.unlockedThemes.push(id);
+        }
+        userData.activeTheme = id;
+        saveUserData(); refreshLobbyUI(); renderThemesModal();
+        showToast(`🎨 Equipped ${t.name}!`);
+      };
+
+      window.toggleMuteAll = () => {
+        userData.muted = !userData.muted;
+        saveUserData();
+        const icon = userData.muted ? "🔇" : "🔊";
+        document.getElementById("menu-mute-btn").textContent = icon;
+        document.getElementById("game-mute-btn").textContent = icon;
+      };
+
+      /* ================= 5. MATCH SETUP ================= */
+      let setupConfig = {
+        variant: "classic",
+        difficulty: "medium",
+        seats: [
+          { color: "red", name: "You", type: "human" },
+          { color: "green", name: "Emerald AI", type: "ai" },
+          { color: "yellow", name: "Solar AI", type: "off" },
+          { color: "blue", name: "Royal AI", type: "off" }
+        ]
+      };
+
+      window.openSetupModal = (mode) => {
+        if (mode === "quick") setSetupVariant("quick");
+        else setSetupVariant("classic");
+        if (mode === "local") applyLineupPreset("2p_local");
+        else applyLineupPreset("1v1_ai");
+        openModal("setup-modal");
+      };
+
+      window.setSetupVariant = (v) => {
+        setupConfig.variant = v;
+        document.getElementById("variant-classic-btn").className = v === "classic" ? "py-2 rounded-xl text-xs font-extrabold bg-amber-500 text-slate-950" : "py-2 rounded-xl text-xs font-extrabold text-slate-300";
+        document.getElementById("variant-quick-btn").className = v === "quick" ? "py-2 rounded-xl text-xs font-extrabold bg-amber-500 text-slate-950" : "py-2 rounded-xl text-xs font-extrabold text-slate-300";
+      };
+
+      window.selectDifficulty = (d) => {
+        setupConfig.difficulty = d;
+        ["easy", "medium", "hard"].forEach(k => {
+          const el = document.getElementById(`diff-${k}`);
+          el.classList.toggle("border-2", k === d);
+          el.classList.toggle("border-amber-400", k === d);
+        });
+      };
+
+      window.applyLineupPreset = (preset) => {
+        const uName = userData.username || "You";
+        if (preset === "1v1_ai") {
+          setupConfig.seats = [
+            { color: "red", name: uName, type: "human" },
+            { color: "green", name: "Off", type: "off" },
+            { color: "yellow", name: "Solar Bot", type: "ai" },
+            { color: "blue", name: "Off", type: "off" }
+          ];
+        } else if (preset === "1v3_ai") {
+          setupConfig.seats = [
+            { color: "red", name: uName, type: "human" },
+            { color: "green", name: "Jade Bot", type: "ai" },
+            { color: "yellow", name: "Solar Bot", type: "ai" },
+            { color: "blue", name: "Azure Bot", type: "ai" }
+          ];
+        } else if (preset === "2p_local") {
+          setupConfig.seats = [
+            { color: "red", name: "Player 1", type: "human" },
+            { color: "green", name: "Off", type: "off" },
+            { color: "yellow", name: "Player 2", type: "human" },
+            { color: "blue", name: "Off", type: "off" }
+          ];
+        } else {
+          setupConfig.seats = [
+            { color: "red", name: "Player 1", type: "human" },
+            { color: "green", name: "Player 2", type: "human" },
+            { color: "yellow", name: "Player 3", type: "human" },
+            { color: "blue", name: "Player 4", type: "human" }
+          ];
+        }
+        renderSeatGrid();
+      };
+
+      function renderSeatGrid() {
+        const grid = document.getElementById("seat-config-grid");
+        grid.innerHTML = setupConfig.seats.map((s, idx) => `
+          <div class="bg-slate-900/90 border border-slate-700 rounded-xl p-2.5 flex items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase text-white">${s.color}</span>
+            <select onchange="updateSeatType(${idx}, this.value)" class="bg-slate-800 text-xs text-white rounded-lg px-2 py-1 border border-slate-600">
+              <option value="human" ${s.type==='human'?'selected':''}>Human</option>
+              <option value="ai" ${s.type==='ai'?'selected':''}>AI Bot</option>
+              <option value="off" ${s.type==='off'?'selected':''}>Off</option>
+            </select>
+          </div>
+        `).join("");
+      }
+
+      window.updateSeatType = (idx, val) => {
+        setupConfig.seats[idx].type = val;
+        if (val === "human") setupConfig.seats[idx].name = `Player ${idx + 1}`;
+        else if (val === "ai") setupConfig.seats[idx].name = `${setupConfig.seats[idx].color.toUpperCase()} Bot`;
+      };
+
+      /* ================= 6. LUDO GAME ENGINE ================= */
+      const TRACK_COORDS = [
+        [1,6],[2,6],[3,6],[4,6],[5,6],
+        [6,5],[6,4],[6,3],[6,2],[6,1],[6,0],
+        [7,0],[8,0],
+        [8,1],[8,2],[8,3],[8,4],[8,5],
+        [9,6],[10,6],[11,6],[12,6],[13,6],[14,6],
+        [14,7],[14,8],
+        [13,8],[12,8],[11,8],[10,8],[9,8],
+        [8,9],[8,10],[8,11],[8,12],[8,13],[8,14],
+        [7,14],[6,14],
+        [6,13],[6,12],[6,11],[6,10],[6,9],
+        [5,8],[4,8],[3,8],[2,8],[1,8],[0,8],
+        [0,7],[0,6]
+      ];
+
+      const START_OFFSETS = { red: 0, green: 13, yellow: 26, blue: 39 };
+      const SAFE_INDICES = new Set([0, 8, 13, 21, 26, 34, 39, 47]);
+      const HOME_PATHS = {
+        red: [[1,7],[2,7],[3,7],[4,7],[5,7],[6,7]],
+        green: [[7,1],[7,2],[7,3],[7,4],[7,5],[7,6]],
+        yellow: [[13,7],[12,7],[11,7],[10,7],[9,7],[8,7]],
+        blue: [[7,13],[7,12],[7,11],[7,10],[7,9],[7,8]]
+      };
+      const YARD_SPOTS = {
+        red: [[1.8,1.8],[3.6,1.8],[1.8,3.6],[3.6,3.6]],
+        green: [[10.8,1.8],[12.6,1.8],[10.8,3.6],[12.6,3.6]],
+        yellow: [[10.8,10.8],[12.6,10.8],[10.8,12.6],[12.6,12.6]],
+        blue: [[1.8,10.8],[3.6,10.8],[1.8,12.6],[3.6,12.6]]
+      };
+      const COLOR_HEX = { red: "#ef4444", green: "#10b981", yellow: "#eab308", blue: "#3b82f6" };
+
+      let gameState = {
+        active: false,
+        boardLocked: true,
+        players: [],
+        turnIdx: 0,
+        diceValue: 1,
+        hasRolled: false,
+        rolling: false
+      };
+
+      function buildDiceFaces() {
+        const cube = document.getElementById("dice-cube");
+        const patterns = {
+          1: [4], 2: [2, 6], 3: [2, 4, 6], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8]
+        };
+        cube.innerHTML = [1, 2, 3, 4, 5, 6].map(num => {
+          let cells = "";
+          for (let i = 0; i < 9; i++) {
+            cells += patterns[num].includes(i) ? `<span class="pip"></span>` : `<span></span>`;
+          }
+          return `<div class="dice-face face-${num}">${cells}</div>`;
+        }).join("");
+      }
+      buildDiceFaces();
+
+      window.startNewMatchFromSetup = () => {
+        const activeSeats = setupConfig.seats.filter(s => s.type !== "off");
+        if (activeSeats.length < 2) { showToast("⚠️ Select at least 2 active players!"); return; }
+
+        closeModal("setup-modal");
+        document.getElementById("main-menu").classList.add("hidden");
+        document.getElementById("game-screen").classList.remove("hidden");
+
+        gameState = {
+          active: true,
+          boardLocked: true, // Locked until Play Now clicked
+          turnIdx: 0,
+          diceValue: 1,
+          hasRolled: false,
+          rolling: false,
+          players: activeSeats.map(s => ({
+            ...s,
+            tokens: setupConfig.variant === "quick" ? [0, -1, -1, -1] : [-1, -1, -1, -1]
+          }))
+        };
+
+        document.getElementById("board-start-gate").classList.remove("hidden");
+        document.getElementById("game-mode-badge").textContent = setupConfig.variant === "quick" ? "⚡ Quick Ludo" : "👑 Classic Ludo";
+        renderBoard();
+        updateTurnUI();
+      };
+
+      window.unlockBoardAndStart = () => {
+        playTone(660, "triangle", 0.12, 880);
+        gameState.boardLocked = false;
+        document.getElementById("board-start-gate").classList.add("hidden");
+        checkAITurn();
+      };
+
+      function getCurrentPlayer() { return gameState.players[gameState.turnIdx]; }
+
+      function getTokenCoords(color, step, tIdx) {
+        if (step === -1) return YARD_SPOTS[color][tIdx];
+        if (step >= 51) {
+          const hIdx = Math.min(5, step - 51);
+          return HOME_PATHS[color][hIdx];
+        }
+        const trackIdx = (START_OFFSETS[color] + step) % 52;
+        return TRACK_COORDS[trackIdx];
+      }
+
+      function getPlayableTokens(player, dice) {
+        const list = [];
+        player.tokens.forEach((step, idx) => {
+          if (step === 56) return; // Already finished
+          if (step === -1 && dice === 6) list.push(idx);
+          else if (step >= 0 && step + dice <= 56) list.push(idx);
+        });
+        return list;
+      }
+
+      window.handleRollClick = () => {
+        if (!gameState.active || gameState.boardLocked || gameState.rolling || gameState.hasRolled) return;
+        const p = getCurrentPlayer();
+        if (p.type !== "human") return;
         executeDiceRoll();
+      };
+
+      function executeDiceRoll() {
+        gameState.rolling = true;
+        const cube = document.getElementById("dice-cube");
+        cube.classList.add("rolling");
+        playTone(300, "square", 0.15, 500);
+
+        setTimeout(() => {
+          cube.classList.remove("rolling");
+          const val = Math.floor(Math.random() * 6) + 1;
+          gameState.diceValue = val;
+          gameState.rolling = false;
+          gameState.hasRolled = true;
+
+          const rotMap = {
+            1: "rotateX(0deg) rotateY(0deg)",
+            2: "rotateY(-90deg)",
+            3: "rotateX(-90deg)",
+            4: "rotateX(90deg)",
+            5: "rotateY(90deg)",
+            6: "rotateY(180deg)"
+          };
+          cube.style.transform = rotMap[val];
+
+          if (val === 6) {
+            playTone(780, "sine", 0.18, 1100);
+            spawnParticles(300, 300, "#fbbf24", 18);
+          }
+
+          const p = getCurrentPlayer();
+          const playable = getPlayableTokens(p, val);
+
+          if (playable.length === 0) {
+            document.getElementById("dice-hint").textContent = `Rolled ${val} — No valid moves`;
+            setTimeout(advanceTurn, 850);
+          } else if (p.type === "ai") {
+            const chosen = chooseAIMove(p, playable, val);
+            setTimeout(() => moveToken(chosen), 500);
+          } else if (playable.length === 1) {
+            setTimeout(() => moveToken(playable[0]), 350);
+          } else {
+            document.getElementById("dice-hint").textContent = `Rolled ${val} — Click a glowing token`;
+            renderBoard();
+          }
+        }, 420);
       }
-    }, delay);
-  } else {
-    document.getElementById('roll-btn').disabled = false;
-    document.getElementById('dice-hint').textContent = 'Click die or press Space to roll';
-  }
-}
 
-function handleRollClick() {
-  if (!gameState || gameState.paused || gameState.phase !== 'ROLL') return;
-  const player = getCurrentPlayer();
-  if (player.type !== 'human') return;
-  executeDiceRoll();
-}
+      function chooseAIMove(player, playable, dice) {
+        if (setupConfig.difficulty === "easy") {
+          return playable[Math.floor(Math.random() * playable.length)];
+        }
+        // Prioritize deploying from yard or capturing
+        for (const idx of playable) {
+          if (player.tokens[idx] === -1 && dice === 6) return idx;
+        }
+        return playable[0];
+      }
 
-function executeDiceRoll() {
-  if (!gameState || gameState.phase !== 'ROLL') return;
-  gameState.phase = 'ANIMATING';
-  document.getElementById('roll-btn').disabled = true;
+      window.moveToken = (tIdx) => {
+        if (!gameState.hasRolled || gameState.boardLocked) return;
+        const p = getCurrentPlayer();
+        const playable = getPlayableTokens(p, gameState.diceValue);
+        if (!playable.includes(tIdx)) return;
 
-  const cube = document.getElementById('dice-cube');
-  cube.classList.add('rolling');
-  audio.playDiceRoll();
+        let step = p.tokens[tIdx];
+        if (step === -1) step = 0;
+        else step += gameState.diceValue;
+        p.tokens[tIdx] = step;
 
-  const array = new Uint32Array(1);
-  window.crypto.getRandomValues(array);
-  const rolled = (array[0] % 6) + 1;
+        playTone(540, "sine", 0.1, 720);
+        let extraTurn = gameState.diceValue === 6;
 
-  const animTime = profile.prefs.fastAnim ? 240 : 450;
-  setTimeout(() => {
-    cube.classList.remove('rolling');
-    setDiceCubeFace(rolled);
-    onDiceRollSettled(rolled);
-  }, animTime);
-}
+        // Check Home Finish
+        if (step === 56) {
+          extraTurn = true;
+          playTone(880, "triangle", 0.25, 1320);
+          spawnParticles(300, 300, COLOR_HEX[p.color], 35);
+          triggerScreenShake();
+          showToast(`👑 ${p.name} brought a token HOME!`);
+        }
 
-function onDiceRollSettled(rolled) {
-  if (!gameState) return;
-  gameState.diceValue = rolled;
-  const player = getCurrentPlayer();
+        // Check Captures on Main Track
+        if (step >= 0 && step <= 50) {
+          const myTrackIdx = (START_OFFSETS[p.color] + step) % 52;
+          if (!SAFE_INDICES.has(myTrackIdx)) {
+            gameState.players.forEach(opp => {
+              if (opp.color === p.color) return;
+              opp.tokens.forEach((oStep, oIdx) => {
+                if (oStep >= 0 && oStep <= 50) {
+                  const oTrackIdx = (START_OFFSETS[opp.color] + oStep) % 52;
+                  if (oTrackIdx === myTrackIdx) {
+                    const [gx, gy] = TRACK_COORDS[myTrackIdx];
+                    opp.tokens[oIdx] = -1;
+                    extraTurn = true;
+                    if (p.type === "human") { userData.stats.captures++; saveUserData(); }
+                    playTone(180, "sawtooth", 0.25, 60);
+                    spawnParticles((gx + 0.5) * 40, (gy + 0.5) * 40, COLOR_HEX[opp.color], 32);
+                    triggerScreenShake();
+                    showToast(`💥 ${p.name} captured ${opp.name}'s token!`);
+                  }
+                }
+              });
+            });
+          }
+        }
 
-  if (rolled === 6) {
-    gameState.consecutiveSixes += 1;
-    if (gameState.threeSixesFoul && gameState.consecutiveSixes >= 3) {
-      addLog(`⚠️ ${player.name} rolled three 6s in a row! Turn forfeited.`);
-      showToast(`⚠️ Three 6s! ${player.name}'s turn is skipped.`);
-      gameState.consecutiveSixes = 0;
-      setTimeout(() => advanceToNextTurn(false), 750);
-      return;
-    }
-  } else {
-    gameState.consecutiveSixes = 0;
-  }
+        renderBoard();
 
-  const legal = computeLegalMoves(player, rolled);
-  gameState.legalMoves = legal;
+        // Check Victory
+        const targetCount = setupConfig.variant === "quick" ? 1 : 4;
+        const finishedCount = p.tokens.filter(s => s === 56).length;
+        if (finishedCount >= targetCount) {
+          endMatchWithVictory(p);
+          return;
+        }
 
-  if (legal.length === 0) {
-    addLog(`${player.name} rolled ${rolled} — no legal moves.`);
-    document.getElementById('dice-hint').textContent = `Rolled ${rolled}: No moves available`;
-    setTimeout(() => advanceToNextTurn(false), profile.prefs.fastAnim ? 450 : 800);
-    return;
-  }
+        if (extraTurn) {
+          gameState.hasRolled = false;
+          document.getElementById("dice-hint").textContent = "Bonus Roll! Roll again";
+          updateTurnUI();
+          checkAITurn();
+        } else {
+          advanceTurn();
+        }
+      };
 
-  gameState.phase = 'MOVE';
-  renderTokensOnBoard();
+      function advanceTurn() {
+        gameState.hasRolled = false;
+        gameState.turnIdx = (gameState.turnIdx + 1) % gameState.players.length;
+        updateTurnUI();
+        renderBoard();
+        checkAITurn();
+      }
 
-  const uniquePositions = new Set(legal.map(m => player.tokens[m.tokenIdx]));
-  if (player.type === 'ai') {
-    const chosenMove = chooseAIMove(player, rolled, legal, gameState.difficulty);
-    setTimeout(() => executeTokenMove(chosenMove), profile.prefs.fastAnim ? 260 : 480);
-  } else if (legal.length === 1 || uniquePositions.size === 1) {
-    document.getElementById('dice-hint').textContent = `Rolled ${rolled} — Auto-moving...`;
-    setTimeout(() => executeTokenMove(legal[0]), profile.prefs.fastAnim ? 240 : 420);
-  } else {
-    document.getElementById('dice-hint').textContent = `Rolled ${rolled} — Select a glowing token (or keys 1-4)`;
-  }
-}
+      function checkAITurn() {
+        if (!gameState.active || gameState.boardLocked) return;
+        const p = getCurrentPlayer();
+        if (p.type === "ai") {
+          document.getElementById("dice-hint").textContent = `${p.name} is thinking...`;
+          setTimeout(() => {
+            if (gameState.active && !gameState.hasRolled) executeDiceRoll();
+          }, 650);
+        }
+      }
 
-async function executeTokenMove(move) {
-  if (!gameState || gameState.phase !== 'MOVE') return;
-  gameState.phase = 'ANIMATING';
-  gameState.legalMoves = [];
+      function endMatchWithVictory(winner) {
+        gameState.active = false;
+        userData.stats.matches++;
+        if (winner.type === "human") {
+          userData.stats.wins++;
+          userData.coins += 250;
+          document.getElementById("winner-subtitle").textContent = "+250 Royal Coins Awarded!";
+        } else {
+          document.getElementById("winner-subtitle").textContent = "Better luck next royal battle!";
+        }
+        saveUserData();
+        document.getElementById("winner-title").textContent = `${winner.name.toUpperCase()} WINS!`;
+        playTone(523, "triangle", 0.3, 1046);
+        spawnParticles(300, 300, "#fbbf24", 50);
+        openModal("victory-modal");
+      }
 
-  const player = getCurrentPlayer();
-  const tokenIdx = move.tokenIdx;
-  const startProg = move.from;
-  const endProg = move.to;
+      function updateTurnUI() {
+        const p = getCurrentPlayer();
+        document.getElementById("turn-color-dot").style.background = COLOR_HEX[p.color];
+        document.getElementById("turn-text").textContent = `${p.name}'s Turn`;
+        document.getElementById("roll-btn").disabled = p.type !== "human" || gameState.hasRolled;
 
-  if (startProg === -1 && endProg === 0) {
-    player.tokens[tokenIdx] = 0;
-    audio.playStep();
-    renderTokensOnBoard();
-    await sleep(profile.prefs.fastAnim ? 110 : 200);
-  } else {
-    const stepDelay = profile.prefs.fastAnim ? 65 : 125;
-    for (let p = startProg + 1; p <= endProg; p++) {
-      player.tokens[tokenIdx] = p;
-      audio.playStep();
-      renderTokensOnBoard();
-      await sleep(stepDelay);
-    }
-  }
-
-  let bonusTurn = (gameState.diceValue === 6);
-
-  if (endProg === 56) {
-    player.finishedCount += 1;
-    bonusTurn = true;
-    audio.playHome();
-    addLog(`👑 ${player.name} brought Token #${tokenIdx + 1} HOME!`);
-    showToast(`👑 ${player.name} scored a token home! Bonus Roll!`);
-  } else if (endProg >= 0 && endProg <= 50) {
-    const landedGlobal = localToGlobalIndex(player.color, endProg);
-    if (SAFE_GLOBAL_INDICES.has(landedGlobal)) {
-      audio.playSafeStar();
-      addLog(`★ ${player.name} landed on a Safe Zone.`);
-    } else {
-      // Check Capturing Opponent Tokens (Stacked same-color tokens >= 2 form a safe shield)
-      let capturedAny = false;
-      for (const oppColor of gameState.turnOrder) {
-        if (oppColor === player.color) continue;
-        const opp = gameState.players[oppColor];
-        const matchingIndices = [];
-        opp.tokens.forEach((oppProg, oppIdx) => {
-          if (oppProg >= 0 && oppProg <= 50 && localToGlobalIndex(oppColor, oppProg) === landedGlobal) {
-            matchingIndices.push(oppIdx);
+        ["red", "green", "yellow", "blue"].forEach(c => {
+          const pod = document.getElementById(`pod-${c}`);
+          const pl = gameState.players.find(x => x.color === c);
+          if (!pl) {
+            pod.innerHTML = `<div class="text-xs text-slate-500 font-bold uppercase">${c} (Inactive)</div>`;
+            pod.style.opacity = "0.45";
+          } else {
+            const isTurn = pl.color === p.color;
+            const homeCnt = pl.tokens.filter(s => s === 56).length;
+            pod.style.opacity = "1";
+            pod.style.boxShadow = isTurn ? `0 0 18px ${COLOR_HEX[c]}66` : "none";
+            pod.innerHTML = `
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold text-white">${pl.name}</span>
+                <span class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-amber-300 font-bold">${homeCnt}/4 Home</span>
+              </div>
+              <div class="text-[11px] text-slate-400 mt-1">${isTurn ? '🎲 Active Turn' : 'Waiting...'}</div>
+            `;
           }
         });
-
-        if (matchingIndices.length === 1) {
-          opp.tokens[matchingIndices[0]] = -1;
-          capturedAny = true;
-          player.captures += 1;
-          if (player.type === 'human') {
-            profile.totalCaptures += 1;
-            profile.quests.capturesToday += 1;
-          }
-          addLog(`⚔️ ${player.name} captured ${opp.name}'s token!`);
-        } else if (matchingIndices.length > 1) {
-          addLog(`🛡️ ${opp.name}'s stacked pair blocked capture!`);
-        }
-      }
-      if (capturedAny) {
-        bonusTurn = true;
-        audio.playCapture();
-        showToast(`⚔️ Capture! ${player.name} earns a Bonus Roll!`);
-        saveProfile();
-      } else {
-        addLog(`${player.name} moved Token #${tokenIdx + 1} (+${gameState.diceValue}).`);
-      }
-    }
-  }
-
-  renderAllPlayerPods();
-  renderTokensOnBoard();
-
-  const requiredHome = gameState.variant === 'quick' ? 1 : 4;
-  if (player.finishedCount >= requiredHome && !gameState.rankings.includes(player.color)) {
-    gameState.rankings.push(player.color);
-    addLog(`🏆 ${player.name} finished in Rank #${gameState.rankings.length}!`);
-
-    if (gameState.rankings.length >= gameState.turnOrder.length - 1) {
-      const remaining = gameState.turnOrder.find(c => !gameState.rankings.includes(c));
-      if (remaining) gameState.rankings.push(remaining);
-      concludeMatch();
-      return;
-    }
-  }
-
-  advanceToNextTurn(bonusTurn);
-}
-
-function advanceToNextTurn(keepSamePlayer) {
-  if (!gameState || gameState.phase === 'GAMEOVER') return;
-  if (!keepSamePlayer) {
-    gameState.consecutiveSixes = 0;
-    gameState.currentTurnIdx = (gameState.currentTurnIdx + 1) % gameState.turnOrder.length;
-  }
-  prepareTurn();
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-/* -------------------- 6. MULTI-TIER AI DECISION ENGINE -------------------- */
-function chooseAIMove(player, dice, legalMoves, difficulty) {
-  if (difficulty === 'easy') {
-    return legalMoves[Math.floor(Math.random() * legalMoves.length)];
-  }
-
-  let bestMove = legalMoves[0];
-  let bestScore = -Infinity;
-
-  for (const move of legalMoves) {
-    let score = 0;
-    const fromProg = move.from;
-    const toProg = move.to;
-
-    if (toProg === 56) score += 120;
-    if (fromProg === -1 && toProg === 0) score += (difficulty === 'hard') ? 75 : 65;
-    if (fromProg <= 50 && toProg >= 51) score += 70;
-
-    if (toProg >= 0 && toProg <= 50) {
-      const destGlobal = localToGlobalIndex(player.color, toProg);
-
-      let captureCount = 0;
-      for (const oppColor of gameState.turnOrder) {
-        if (oppColor === player.color) continue;
-        const onTile = gameState.players[oppColor].tokens.filter(
-          oppProg => oppProg >= 0 && oppProg <= 50 && !SAFE_GLOBAL_INDICES.has(destGlobal) && localToGlobalIndex(oppColor, oppProg) === destGlobal
-        ).length;
-        if (onTile === 1) captureCount++;
-      }
-      if (captureCount > 0) {
-        score += captureCount * (difficulty === 'hard' ? 110 : 85);
       }
 
-      if (SAFE_GLOBAL_INDICES.has(destGlobal)) {
-        score += (difficulty === 'hard') ? 55 : 35;
-      }
+      /* ================= 7. SVG BOARD RENDERER ================= */
+      function renderBoard() {
+        const svg = document.getElementById("ludo-board-svg");
+        const theme = THEMES.find(t => t.id === userData.activeTheme) || THEMES[0];
+        const cell = 40;
+        let out = `<rect width="600" height="600" fill="${theme.bg}" />`;
 
-      if (difficulty === 'hard') {
-        const threatAtDest = countOpponentsBehind(player.color, destGlobal);
-        if (!SAFE_GLOBAL_INDICES.has(destGlobal)) {
-          score -= threatAtDest * 38;
-        }
-        if (fromProg >= 0 && fromProg <= 50) {
-          const origGlobal = localToGlobalIndex(player.color, fromProg);
-          if (!SAFE_GLOBAL_INDICES.has(origGlobal)) {
-            const threatAtOrig = countOpponentsBehind(player.color, origGlobal);
-            score += threatAtOrig * 32;
-          } else {
-            score -= 18;
+        // Draw 15x15 Grid Cells
+        for (let r = 0; r < 15; r++) {
+          for (let c = 0; c < 15; c++) {
+            let fill = theme.cell;
+            if (r < 6 && c < 6) fill = "#ef4444";
+            else if (r < 6 && c > 8) fill = "#10b981";
+            else if (r > 8 && c > 8) fill = "#eab308";
+            else if (r > 8 && c < 6) fill = "#3b82f6";
+            else if (r === 7 && c >= 1 && c <= 5) fill = "#fca5a5";
+            else if (c === 7 && r >= 1 && r <= 5) fill = "#6ee7b7";
+            else if (r === 7 && c >= 9 && c <= 13) fill = "#fde047";
+            else if (c === 7 && r >= 9 && r <= 13) fill = "#93c5fd";
+
+            out += `<rect x="${c*cell}" y="${r*cell}" width="${cell}" height="${cell}" fill="${fill}" stroke="#334155" stroke-width="0.8" />`;
           }
         }
+
+        // Inner Yard White Boxes
+        out += `<rect x="40" y="40" width="160" height="160" rx="18" fill="#ffffff" />`;
+        out += `<rect x="400" y="40" width="160" height="160" rx="18" fill="#ffffff" />`;
+        out += `<rect x="400" y="400" width="160" height="160" rx="18" fill="#ffffff" />`;
+        out += `<rect x="40" y="400" width="160" height="160" rx="18" fill="#ffffff" />`;
+
+        // Center Victory Crown Triangles
+        out += `<polygon points="240,240 360,240 300,300" fill="#10b981" />`;
+        out += `<polygon points="360,240 360,360 300,300" fill="#eab308" />`;
+        out += `<polygon points="360,360 240,360 300,300" fill="#3b82f6" />`;
+        out += `<polygon points="240,360 240,240 300,300" fill="#ef4444" />`;
+
+        // Safe Star Squares
+        SAFE_INDICES.forEach(idx => {
+          const [gx, gy] = TRACK_COORDS[idx];
+          out += `<text x="${gx*cell + 20}" y="${gy*cell + 26}" font-size="18" text-anchor="middle" fill="#64748b">★</text>`;
+        });
+
+        // Render Player Tokens
+        const curPlayer = getCurrentPlayer();
+        const playable = (curPlayer && gameState.hasRolled && curPlayer.type === "human") ? getPlayableTokens(curPlayer, gameState.diceValue) : [];
+
+        gameState.players.forEach(pl => {
+          pl.tokens.forEach((step, tIdx) => {
+            const [gx, gy] = getTokenCoords(pl.color, step, tIdx);
+            const cx = gx * cell + 20;
+            const cy = gy * cell + 20;
+            const isPlayable = curPlayer && pl.color === curPlayer.color && playable.includes(tIdx);
+            out += `
+              <g onclick="moveToken(${tIdx})" class="${isPlayable ? 'token-playable' : ''}">
+                <circle cx="${cx}" cy="${cy}" r="14" fill="${COLOR_HEX[pl.color]}" stroke="#ffffff" stroke-width="2.5" />
+                <circle cx="${cx}" cy="${cy}" r="6" fill="#ffffff" fill-opacity="0.45" />
+              </g>
+            `;
+          });
+        });
+
+        svg.innerHTML = out;
       }
-    }
 
-    score += toProg * 0.65;
-
-    if (score > bestScore) {
-      bestScore = score;
-      bestMove = move;
-    }
-  }
-
-  return bestMove;
-}
-
-function countOpponentsBehind(myColor, globalIdx) {
-  let threats = 0;
-  for (const oppColor of gameState.turnOrder) {
-    if (oppColor === myColor) continue;
-    for (const oppProg of gameState.players[oppColor].tokens) {
-      if (oppProg >= 0 && oppProg <= 50) {
-        const oppGlobal = localToGlobalIndex(oppColor, oppProg);
-        const dist = (globalIdx - oppGlobal + 52) % 52;
-        if (dist >= 1 && dist <= 6 && oppProg + dist <= 50) {
-          threats++;
+      /* ================= 8. EXIT MATCH RATING GUARD & CONTROLS ================= */
+      window.confirmLeaveGame = () => {
+        if (gameState.active && !gameState.boardLocked) {
+          openModal("exit-guard-modal");
+        } else {
+          forceLeaveToLobby();
         }
-      }
-    }
-  }
-  return threats;
-}
-
-/* -------------------- 7. SVG BOARD & TOKEN RENDERING -------------------- */
-function renderBoardSVG() {
-  const svg = document.getElementById('ludo-board-svg');
-  const theme = BOARD_THEMES[profile.prefs.theme] || BOARD_THEMES.royal;
-  const CELL = 40;
-
-  let html = `<rect x="0" y="0" width="600" height="600" fill="${theme.boardBg}"/>`;
-
-  const yards = [
-    { color: 'red',    x: 0,   y: 0 },
-    { color: 'green',  x: 360, y: 0 },
-    { color: 'yellow', x: 360, y: 360 },
-    { color: 'blue',   x: 0,   y: 360 }
-  ];
-
-  yards.forEach(y => {
-    const meta = COLOR_META[y.color];
-    html += `
-      <rect x="${y.x}" y="${y.y}" width="240" height="240" fill="${meta.hex}" stroke="${theme.tileStroke}" stroke-width="1.5"/>
-      <rect x="${y.x + 28}" y="${y.y + 28}" width="184" height="184" rx="26" fill="${theme.tileBg}" stroke="${meta.dark}" stroke-width="3"/>
-    `;
-    YARD_TOKEN_COORDS[y.color].forEach(([cx, cy]) => {
-      html += `<circle cx="${cx * CELL}" cy="${cy * CELL}" r="18" fill="${meta.light}" stroke="${meta.hex}" stroke-width="3"/>`;
-    });
-  });
-
-  MAIN_PATH_COORDS.forEach(([col, row], idx) => {
-    let fill = theme.tileBg;
-    if (idx === 0) fill = COLOR_META.red.hex;
-    else if (idx === 13) fill = COLOR_META.green.hex;
-    else if (idx === 26) fill = COLOR_META.yellow.hex;
-    else if (idx === 39) fill = COLOR_META.blue.hex;
-
-    html += `<rect x="${col * CELL}" y="${row * CELL}" width="${CELL}" height="${CELL}" fill="${fill}" stroke="${theme.tileStroke}" stroke-width="1.2"/>`;
-
-    if (SAFE_GLOBAL_INDICES.has(idx)) {
-      const isColoredStart = (idx === 0 || idx === 13 || idx === 26 || idx === 39);
-      const starFill = isColoredStart ? '#ffffff' : theme.starColor;
-      html += `<text x="${col * CELL + 20}" y="${row * CELL + 26}" text-anchor="middle" font-size="20" fill="${starFill}" opacity="0.9">★</text>`;
-    }
-  });
-
-  Object.entries(HOME_STRETCH_COORDS).forEach(([color, coords]) => {
-    const hex = COLOR_META[color].hex;
-    coords.forEach(([col, row]) => {
-      html += `<rect x="${col * CELL}" y="${row * CELL}" width="${CELL}" height="${CELL}" fill="${hex}" stroke="${theme.tileStroke}" stroke-width="1.2"/>`;
-    });
-  });
-
-  html += `
-    <polygon points="240,240 300,300 240,360" fill="${COLOR_META.red.hex}" stroke="#fff" stroke-width="1"/>
-    <polygon points="240,240 360,240 300,300" fill="${COLOR_META.green.hex}" stroke="#fff" stroke-width="1"/>
-    <polygon points="360,240 360,360 300,300" fill="${COLOR_META.yellow.hex}" stroke="#fff" stroke-width="1"/>
-    <polygon points="240,360 360,360 300,300" fill="${COLOR_META.blue.hex}" stroke="#fff" stroke-width="1"/>
-    <circle cx="300" cy="300" r="18" fill="#0f172a" stroke="#f5b942" stroke-width="2.5"/>
-    <text x="300" y="306" text-anchor="middle" font-size="16" fill="#f5b942">👑</text>
-  `;
-
-  html += `<g id="tokens-layer"></g>`;
-  svg.innerHTML = html;
-  renderTokensOnBoard();
-}
-
-function renderTokensOnBoard() {
-  const layer = document.getElementById('tokens-layer');
-  if (!layer || !gameState) return;
-
-  const CELL = 40;
-  const activePlayer = getCurrentPlayer();
-  const playableSet = new Set(
-    (gameState.phase === 'MOVE' && activePlayer.type === 'human')
-      ? gameState.legalMoves.map(m => `${activePlayer.color}-${m.tokenIdx}`)
-      : []
-  );
-
-  const cellGroups = {};
-  const tokenItems = [];
-
-  gameState.turnOrder.forEach(color => {
-    const p = gameState.players[color];
-    p.tokens.forEach((prog, idx) => {
-      const [gx, gy] = getTokenGridCoords(color, prog, idx);
-      const key = `${gx.toFixed(1)},${gy.toFixed(1)}`;
-      if (!cellGroups[key]) cellGroups[key] = [];
-      const item = { color, idx, prog, gx, gy, key };
-      cellGroups[key].push(item);
-      tokenItems.push(item);
-    });
-  });
-
-  tokenItems.sort((a, b) => {
-    const aPlay = playableSet.has(`${a.color}-${a.idx}`) ? 1 : 0;
-    const bPlay = playableSet.has(`${b.color}-${b.idx}`) ? 1 : 0;
-    return aPlay - bPlay;
-  });
-
-  const symbol = (TOKEN_STYLES[profile.prefs.tokenStyle] || TOKEN_STYLES.crown).symbol;
-  let svgOut = '';
-
-  tokenItems.forEach(item => {
-    const group = cellGroups[item.key];
-    const groupIndex = group.indexOf(item);
-    const count = group.length;
-
-    let offsetX = 0;
-    let offsetY = 0;
-    let radius = 14.5;
-
-    if (count > 1 && item.prog >= 0 && item.prog < 56) {
-      radius = 11.5;
-      const angle = (groupIndex / count) * Math.PI * 2;
-      offsetX = Math.cos(angle) * 6.5;
-      offsetY = Math.sin(angle) * 6.5;
-    }
-
-    const cx = item.gx * CELL + 20 + offsetX;
-    const cy = item.gy * CELL + 20 + offsetY;
-    const meta = COLOR_META[item.color];
-    const isPlayable = playableSet.has(`${item.color}-${item.idx}`);
-
-    svgOut += `
-      <g class="${isPlayable ? 'token-playable' : ''}"
-         onclick="onTokenClicked('${item.color}', ${item.idx})"
-         style="transform-origin: ${cx}px ${cy}px; transition: transform 0.15s ease;">
-        ${isPlayable ? `<circle cx="${cx}" cy="${cy}" r="${radius + 5}" fill="none" stroke="#fde047" stroke-width="2.5" stroke-dasharray="4 3"/>` : ''}
-        <circle cx="${cx}" cy="${cy + 2}" r="${radius}" fill="rgba(0,0,0,0.45)"/>
-        <circle cx="${cx}" cy="${cy}" r="${radius}" fill="${meta.hex}" stroke="#ffffff" stroke-width="2.5"/>
-        <circle cx="${cx}" cy="${cy}" r="${radius - 4}" fill="none" stroke="${meta.dark}" stroke-width="1.2"/>
-        <text x="${cx}" y="${cy + 4.5}" text-anchor="middle" font-size="${radius > 12 ? 13 : 10}" font-weight="bold" fill="#ffffff">${symbol}</text>
-      </g>
-    `;
-  });
-
-  layer.innerHTML = svgOut;
-}
-
-function onTokenClicked(color, tokenIdx) {
-  if (!gameState || gameState.paused || gameState.phase !== 'MOVE') return;
-  const activePlayer = getCurrentPlayer();
-  if (activePlayer.type !== 'human' || activePlayer.color !== color) return;
-
-  const move = gameState.legalMoves.find(m => m.tokenIdx === tokenIdx);
-  if (move) {
-    executeTokenMove(move);
-  } else {
-    showToast('⚠️ Select one of the glowing legal tokens!');
-  }
-}
-
-/* -------------------- 8. 3D DICE RENDERING -------------------- */
-function buildDiceCubeDOM() {
-  const cube = document.getElementById('dice-cube');
-  const skin = DICE_SKINS[profile.prefs.diceSkin] || DICE_SKINS.ivory;
-
-  const pipMaps = {
-    1: [4],
-    2: [0, 8],
-    3: [0, 4, 8],
-    4: [0, 2, 6, 8],
-    5: [0, 2, 4, 6, 8],
-    6: [0, 2, 3, 5, 6, 8]
-  };
-
-  let facesHTML = '';
-  for (let face = 1; face <= 6; face++) {
-    let cells = '';
-    for (let i = 0; i < 9; i++) {
-      if (pipMaps[face].includes(i)) {
-        cells += `<span class="pip" style="background:${skin.pip}"></span>`;
-      } else {
-        cells += `<span></span>`;
-      }
-    }
-    facesHTML += `<div class="dice-face face-${face}" style="background:${skin.bg}; border: 1.5px solid ${skin.border}">${cells}</div>`;
-  }
-  cube.innerHTML = facesHTML;
-  setDiceCubeFace(6);
-}
-
-function setDiceCubeFace(val) {
-  const cube = document.getElementById('dice-cube');
-  const rotations = {
-    1: 'rotateX(0deg) rotateY(0deg)',
-    2: 'rotateX(0deg) rotateY(-90deg)',
-    3: 'rotateX(-90deg) rotateY(0deg)',
-    4: 'rotateX(90deg) rotateY(0deg)',
-    5: 'rotateX(0deg) rotateY(90deg)',
-    6: 'rotateX(0deg) rotateY(180deg)'
-  };
-  cube.style.transform = rotations[val] || rotations[6];
-}
-
-/* -------------------- 9. IN-GAME PODS, LOGS & TIMERS -------------------- */
-function renderAllPlayerPods() {
-  const activeColor = gameState ? getCurrentPlayer().color : null;
-  const requiredHome = gameState && gameState.variant === 'quick' ? 1 : 4;
-
-  PLAYER_COLORS.forEach(color => {
-    const pod = document.getElementById(`pod-${color}`);
-    const p = gameState ? gameState.players[color] : null;
-    if (!p) {
-      pod.innerHTML = `
-        <div class="flex items-center justify-between opacity-40">
-          <span class="text-xs font-bold text-slate-400">${COLOR_META[color].name}</span>
-          <span class="text-[10px] text-slate-500">Empty</span>
-        </div>
-      `;
-      pod.classList.remove('ring-2', 'ring-amber-400', 'scale-[1.02]');
-      return;
-    }
-
-    const isTurn = color === activeColor;
-    if (isTurn) {
-      pod.classList.add('ring-2', 'ring-amber-400', 'scale-[1.02]');
-    } else {
-      pod.classList.remove('ring-2', 'ring-amber-400', 'scale-[1.02]');
-    }
-
-    let pips = '';
-    for (let i = 0; i < requiredHome; i++) {
-      const done = i < p.finishedCount;
-      pips += `<span class="w-2.5 h-2.5 rounded-full ${done ? 'bg-amber-400 shadow' : 'bg-slate-700'}"></span>`;
-    }
-
-    pod.innerHTML = `
-      <div class="flex items-center justify-between gap-2">
-        <div class="flex items-center gap-2 min-w-0">
-          <span class="text-lg shrink-0">${p.avatar}</span>
-          <div class="min-w-0">
-            <div class="text-xs font-extrabold text-white truncate">${escapeHTML(p.name)}</div>
-            <div class="text-[10px] text-slate-400">${p.type === 'ai' ? '🤖 AI' : '👤 Human'} • ⚔️ ${p.captures}</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-1 shrink-0">${pips}</div>
-      </div>
-    `;
-  });
-}
-
-function updateTurnUI() {
-  const p = getCurrentPlayer();
-  const meta = COLOR_META[p.color];
-  document.getElementById('turn-color-dot').style.background = meta.hex;
-  document.getElementById('turn-text').textContent = `${p.name}'s Turn`;
-  renderAllPlayerPods();
-}
-
-function addLog(msg) {
-  if (!gameState) return;
-  gameState.logs.unshift(msg);
-  if (gameState.logs.length > 40) gameState.logs.pop();
-  renderMoveLogs();
-}
-
-function renderMoveLogs() {
-  const list = document.getElementById('move-log-list');
-  if (!list || !gameState) return;
-  list.innerHTML = gameState.logs.map(line => `<div class="border-b border-slate-800/70 pb-1">${escapeHTML(line)}</div>`).join('');
-}
-
-function startGameClock() {
-  if (gameTimerInterval) clearInterval(gameTimerInterval);
-  gameTimerInterval = setInterval(() => {
-    if (!gameState || gameState.paused || gameState.phase === 'GAMEOVER') return;
-    gameState.elapsedSeconds += 1;
-    const mins = String(Math.floor(gameState.elapsedSeconds / 60)).padStart(2, '0');
-    const secs = String(gameState.elapsedSeconds % 60)).padStart(2, '0');
-    document.getElementById('game-timer-display').textContent = `${mins}:${secs}`;
-  }, 1000);
-}
-
-function resetTurnCountdown() {
-  if (turnCountdownInterval) clearInterval(turnCountdownInterval);
-  const badge = document.getElementById('turn-countdown-badge');
-  if (!gameState || !gameState.turnTimerEnabled) {
-    badge.classList.add('hidden');
-    return;
-  }
-  turnTimeLeft = 20;
-  badge.textContent = `${turnTimeLeft}s`;
-  badge.classList.remove('hidden');
-
-  turnCountdownInterval = setInterval(() => {
-    if (!gameState || gameState.paused || gameState.phase === 'GAMEOVER') return;
-    turnTimeLeft -= 1;
-    badge.textContent = `${Math.max(0, turnTimeLeft)}s`;
-    if (turnTimeLeft <= 0) {
-      clearInterval(turnCountdownInterval);
-      if (gameState.phase === 'ROLL') executeDiceRoll();
-      else if (gameState.phase === 'MOVE' && gameState.legalMoves.length > 0) {
-        executeTokenMove(gameState.legalMoves[0]);
-      }
-    }
-  }, 1000);
-}
-
-/* -------------------- 10. MATCH CONCLUSION & VICTORY PODIUM -------------------- */
-function concludeMatch() {
-  gameState.phase = 'GAMEOVER';
-  clearInterval(gameTimerInterval);
-  clearInterval(turnCountdownInterval);
-  localStorage.removeItem(STORAGE_SAVEGAME_KEY);
-  audio.playVictory();
-
-  const firstColor = gameState.rankings[0];
-  const winner = gameState.players[firstColor];
-  document.getElementById('winner-headline').textContent = `${winner.name} Wins the Crown!`;
-
-  const humanWon = winner.type === 'human';
-  profile.matches += 1;
-  profile.quests.playedToday += 1;
-
-  let earnedCoins = 75;
-  let earnedXP = 50;
-
-  if (humanWon) {
-    profile.wins += 1;
-    profile.streak += 1;
-    profile.quests.winsToday += 1;
-    if (profile.streak > profile.bestStreak) profile.bestStreak = profile.streak;
-    earnedCoins = gameState.difficulty === 'hard' ? 350 : 250;
-    earnedXP = gameState.difficulty === 'hard' ? 180 : 120;
-
-    if (gameState.difficulty === 'hard' && Object.values(gameState.players).some(p => p.type === 'ai')) {
-      unlockAchievement('hard_victor');
-    }
-    if (gameState.variant === 'quick') {
-      unlockAchievement('quick_champ');
-    }
-  } else {
-    profile.losses += 1;
-    profile.streak = 0;
-  }
-
-  profile.history.unshift({
-    date: new Date().toLocaleDateString(),
-    mode: gameState.variant === 'quick' ? 'Quick Ludo' : 'Classic Ludo',
-    winner: winner.name,
-    won: humanWon
-  });
-  if (profile.history.length > 15) profile.history.pop();
-
-  grantRewards(earnedCoins, earnedXP);
-  checkAchievements();
-
-  document.getElementById('reward-coins').textContent = `+${earnedCoins} 🪙`;
-  document.getElementById('reward-xp').textContent = `+${earnedXP} XP`;
-
-  // Fixed Podium Alignment (Left = 2nd, Center = 1st, Right = 3rd)
-  const podium = document.getElementById('podium-container');
-  const displayOrder = [1, 0, 2];
-  const rankStyles = {
-    0: { height: 'h-28 bg-amber-500/25 border-amber-400', medal: '🥇 1st' },
-    1: { height: 'h-20 bg-slate-700/50 border-slate-400', medal: '🥈 2nd' },
-    2: { height: 'h-16 bg-amber-900/30 border-amber-700', medal: '🥉 3rd' }
-  };
-
-  podium.innerHTML = displayOrder.map(rankIdx => {
-    const col = gameState.rankings[rankIdx];
-    if (!col) return `<div></div>`;
-    const p = gameState.players[col];
-    const st = rankStyles[rankIdx];
-    return `
-      <div class="flex flex-col items-center">
-        <span class="text-2xl mb-1">${p.avatar}</span>
-        <span class="text-xs font-extrabold text-white truncate max-w-[90px] mb-1">${escapeHTML(p.name)}</span>
-        <div class="w-full ${st.height} border-t-2 rounded-t-xl flex items-center justify-center font-black text-xs text-amber-200">
-          ${st.medal}
-        </div>
-      </div>
-    `;
-  }).join('');
-
-  openModal('victory-modal');
-  launchConfetti();
-}
-
-function launchConfetti() {
-  const canvas = document.getElementById('confetti-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const colors = ['#ef4444', '#10b981', '#eab308', '#3b82f6', '#f5b942'];
-  const pieces = Array.from({ length: 95 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height - canvas.height,
-    w: 7 + Math.random() * 6,
-    h: 4 + Math.random() * 5,
-    color: colors[Math.floor(Math.random() * colors.length)],
-    vy: 2 + Math.random() * 3.5,
-    vx: -1.5 + Math.random() * 3,
-    rot: Math.random() * 360
-  }));
-
-  let frames = 0;
-  function step() {
-    if (document.getElementById('victory-modal').classList.contains('hidden') || frames > 260) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      return;
-    }
-    frames++;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    pieces.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-      p.rot += 4;
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate((p.rot * Math.PI) / 180);
-      ctx.fillStyle = p.color;
-      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
-      ctx.restore();
-    });
-    requestAnimationFrame(step);
-  }
-  step();
-}
-
-function rematchCurrentSetup() {
-  closeModal('victory-modal');
-  if (gameState) {
-    setupState.variant = gameState.variant;
-    setupState.difficulty = gameState.difficulty;
-    setupState.threeSixesFoul = gameState.threeSixesFoul;
-    setupState.turnTimer = gameState.turnTimerEnabled;
-    PLAYER_COLORS.forEach(c => {
-      const p = gameState.players[c];
-      if (p) {
-        setupState.seats[c] = { active: true, type: p.type, name: p.name, avatar: p.avatar };
-      } else {
-        setupState.seats[c].active = false;
-      }
-    });
-  }
-  startNewMatchFromSetup();
-}
-
-function exitToLobbyFromVictory() {
-  closeModal('victory-modal');
-  document.getElementById('game-screen').classList.add('hidden');
-  document.getElementById('main-menu').classList.remove('hidden');
-  refreshProfileUI();
-}
-
-function shareMatchResults() {
-  const winner = gameState.players[gameState.rankings[0]];
-  const text = `👑 Ludo King – Ultimate Edition (GameZone203)\n🏆 Winner: ${winner.name}\n🎮 Mode: ${gameState.variant.toUpperCase()}\nPlay at: https://shakeeljee254-oss.github.io/gamezone-203/`;
-  copyTextFallback(text);
-  showToast('📋 Match summary copied to clipboard!');
-}
-
-/* -------------------- 11. SAVE / RESUME & PAUSE -------------------- */
-function saveActiveMatch() {
-  if (!gameState || gameState.phase === 'GAMEOVER') return;
-  try {
-    localStorage.setItem(STORAGE_SAVEGAME_KEY, JSON.stringify(gameState));
-  } catch (e) {}
-}
-
-function checkSavedMatchBanner() {
-  try {
-    const raw = localStorage.getItem(STORAGE_SAVEGAME_KEY);
-    const banner = document.getElementById('resume-banner');
-    if (raw) {
-      const saved = JSON.parse(raw);
-      document.getElementById('resume-desc').textContent =
-        `${saved.variant === 'quick' ? 'Quick Ludo' : 'Classic Ludo'} • ${saved.turnOrder.length} Players • Turn: ${saved.players[saved.turnOrder[saved.currentTurnIdx]].name}`;
-      banner.classList.remove('hidden');
-    } else {
-      banner.classList.add('hidden');
-    }
-  } catch (e) {}
-}
-
-function resumeSavedMatch() {
-  try {
-    const raw = localStorage.getItem(STORAGE_SAVEGAME_KEY);
-    if (!raw) return;
-    gameState = JSON.parse(raw);
-    gameState.paused = false;
-    enterGameArena();
-  } catch (e) {
-    showToast('⚠️ Saved match could not be restored.');
-  }
-}
-
-function discardSavedMatch() {
-  localStorage.removeItem(STORAGE_SAVEGAME_KEY);
-  checkSavedMatchBanner();
-  showToast('🗑️ Saved match discarded.');
-}
-
-function togglePauseGame() {
-  if (!gameState) return;
-  gameState.paused = !gameState.paused;
-  const overlay = document.getElementById('pause-overlay');
-  if (gameState.paused) {
-    overlay.classList.remove('hidden');
-    saveActiveMatch();
-  } else {
-    overlay.classList.add('hidden');
-    if (gameState.phase === 'ROLL' && getCurrentPlayer().type === 'ai') {
-      prepareTurn();
-    }
-  }
-}
-
-function saveAndExitToMenu() {
-  saveActiveMatch();
-  clearInterval(gameTimerInterval);
-  clearInterval(turnCountdownInterval);
-  document.getElementById('game-screen').classList.add('hidden');
-  document.getElementById('main-menu').classList.remove('hidden');
-  checkSavedMatchBanner();
-  refreshProfileUI();
-}
-
-function confirmLeaveGame() {
-  openConfirmDialog('Leave Match?', 'Your game progress will be saved so you can resume anytime.', () => {
-    saveAndExitToMenu();
-  });
-}
-
-function confirmRestartMatch() {
-  openConfirmDialog('Restart Match?', 'Reset all tokens to their starting yards?', () => {
-    rematchCurrentSetup();
-  });
-}
-
-/* -------------------- 12. MODALS, CUSTOMIZATION & PROFILE UI -------------------- */
-function openModal(id) {
-  audio.playClick();
-  if (id === 'themes-modal') renderCustomizationModal();
-  if (id === 'profile-modal') renderProfileModal();
-  if (id === 'achievements-modal') renderAchievementsModal();
-  if (id === 'daily-modal') renderDailyModal();
-  document.getElementById(id).classList.remove('hidden');
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.add('hidden');
-}
-
-function openConfirmDialog(title, msg, onYes) {
-  document.getElementById('confirm-title').textContent = title;
-  document.getElementById('confirm-message').textContent = msg;
-  const btn = document.getElementById('confirm-yes-btn');
-  btn.onclick = () => {
-    closeModal('confirm-modal');
-    onYes();
-  };
-  openModal('confirm-modal');
-}
-
-function refreshProfileUI() {
-  ensureDailyQuestsReset();
-  document.getElementById('hud-avatar').textContent = profile.avatar;
-  document.getElementById('hud-username').textContent = profile.username;
-  document.getElementById('hud-level').textContent = `LVL ${profile.level}`;
-  const xpPct = Math.min(100, Math.round((profile.xp / (profile.level * 250)) * 100));
-  document.getElementById('hud-xp-bar').style.width = `${xpPct}%`;
-  document.getElementById('hud-coins').textContent = profile.coins.toLocaleString();
-
-  document.getElementById('stat-menu-matches').textContent = profile.matches;
-  document.getElementById('stat-menu-wins').textContent = profile.wins;
-  const wr = profile.matches > 0 ? Math.round((profile.wins / profile.matches) * 100) : 0;
-  document.getElementById('stat-menu-winrate').textContent = `${wr}%`;
-
-  const today = new Date().toDateString();
-  document.getElementById('daily-dot').style.display = (profile.lastDailyClaim === today) ? 'none' : 'inline-block';
-
-  const missions = [
-    { label: 'Play 1 Royal Match', cur: Math.min(1, profile.quests.playedToday), max: 1, reward: '+100 🪙' },
-    { label: 'Capture 2 Opponent Tokens', cur: Math.min(2, profile.quests.capturesToday), max: 2, reward: '+150 🪙' },
-    { label: 'Win a Match', cur: Math.min(1, profile.quests.winsToday), max: 1, reward: '+200 🪙' }
-  ];
-  document.getElementById('daily-missions-list').innerHTML = missions.map(m => `
-    <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between">
-      <div>
-        <div class="text-xs font-bold text-slate-200">${m.label}</div>
-        <div class="text-[10px] text-slate-400">Progress: ${m.cur}/${m.max}</div>
-      </div>
-      <span class="text-[11px] font-extrabold ${m.cur >= m.max ? 'text-emerald-400' : 'text-amber-400'}">
-        ${m.cur >= m.max ? '✓ Done' : m.reward}
-      </span>
-    </div>
-  `).join('');
-}
-
-function renderCustomizationModal() {
-  const tGrid = document.getElementById('theme-selector-grid');
-  tGrid.innerHTML = Object.entries(BOARD_THEMES).map(([key, t]) => `
-    <div onclick="selectTheme('${key}')" class="cursor-pointer rounded-2xl p-2.5 border-2 text-center transition ${profile.prefs.theme === key ? 'border-amber-400 bg-amber-500/15' : 'border-slate-700 bg-slate-900'}">
-      <div class="w-full h-10 rounded-lg mb-1.5 border" style="background:${t.tileBg}; border-color:${t.tileStroke}"></div>
-      <div class="text-[11px] font-bold text-white">${t.name}</div>
-    </div>
-  `).join('');
-
-  const tokGrid = document.getElementById('token-style-grid');
-  tokGrid.innerHTML = Object.entries(TOKEN_STYLES).map(([key, s]) => `
-    <button onclick="selectTokenStyle('${key}')" class="p-2.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-2 ${profile.prefs.tokenStyle === key ? 'border-amber-400 bg-amber-500/15 text-amber-200' : 'border-slate-700 bg-slate-900 text-slate-300'}">
-      <span class="text-base">${s.symbol}</span>
-      <span>${s.name}</span>
-    </button>
-  `).join('');
-
-  const dGrid = document.getElementById('dice-skin-grid');
-  dGrid.innerHTML = Object.entries(DICE_SKINS).map(([key, d]) => `
-    <button onclick="selectDiceSkin('${key}')" class="p-2.5 rounded-xl border text-xs font-bold flex items-center justify-center gap-2 ${profile.prefs.diceSkin === key ? 'border-amber-400 bg-amber-500/15 text-amber-200' : 'border-slate-700 bg-slate-900 text-slate-300'}">
-      <span class="w-4 h-4 rounded inline-block" style="background:${d.bg}; border:1px solid ${d.border}"></span>
-      <span>${d.name}</span>
-    </button>
-  `).join('');
-}
-
-function selectTheme(key) {
-  profile.prefs.theme = key;
-  saveProfile();
-  renderCustomizationModal();
-  if (gameState) renderBoardSVG();
-}
-
-function selectTokenStyle(key) {
-  profile.prefs.tokenStyle = key;
-  saveProfile();
-  renderCustomizationModal();
-  if (gameState) renderTokensOnBoard();
-}
-
-function selectDiceSkin(key) {
-  profile.prefs.diceSkin = key;
-  saveProfile();
-  renderCustomizationModal();
-  if (gameState) buildDiceCubeDOM();
-}
-
-function renderProfileModal() {
-  document.getElementById('profile-current-avatar').textContent = profile.avatar;
-  document.getElementById('profile-username-input').value = profile.username;
-  document.getElementById('avatar-picker-row').innerHTML = AVATARS.map(av => `
-    <button onclick="selectAvatar('${av}')" class="w-8 h-8 rounded-lg flex items-center justify-center text-lg ${profile.avatar === av ? 'bg-amber-500 text-slate-950' : 'bg-slate-800 hover:bg-slate-700'}">${av}</button>
-  `).join('');
-
-  document.getElementById('pstat-matches').textContent = profile.matches;
-  document.getElementById('pstat-wins').textContent = profile.wins;
-  document.getElementById('pstat-losses').textContent = profile.losses;
-  const wr = profile.matches > 0 ? Math.round((profile.wins / profile.matches) * 100) : 0;
-  document.getElementById('pstat-winrate').textContent = `${wr}%`;
-  document.getElementById('pstat-streak').textContent = profile.bestStreak;
-
-  const hList = document.getElementById('match-history-list');
-  if (profile.history.length === 0) {
-    hList.innerHTML = `<div class="text-slate-500 text-center py-4">No matches played yet. Start a match to record your history!</div>`;
-  } else {
-    hList.innerHTML = profile.history.map(h => `
-      <div class="flex items-center justify-between bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-800">
-        <div>
-          <span class="font-bold text-white">${escapeHTML(h.mode)}</span>
-          <span class="text-slate-400 ml-2">Winner: ${escapeHTML(h.winner)}</span>
-        </div>
-        <span class="font-extrabold ${h.won ? 'text-emerald-400' : 'text-slate-400'}">${h.won ? 'VICTORY' : escapeHTML(h.date)}</span>
-      </div>
-    `).join('');
-  }
-}
-
-function selectAvatar(av) {
-  profile.avatar = av;
-  saveProfile();
-  renderProfileModal();
-}
-
-function saveUsername() {
-  const val = document.getElementById('profile-username-input').value.trim();
-  if (val) {
-    profile.username = val;
-    saveProfile();
-    showToast('✅ Username updated!');
-  }
-}
-
-function renderAchievementsModal() {
-  document.getElementById('achievements-grid').innerHTML = ACHIEVEMENTS_DEF.map(a => {
-    const unlocked = profile.unlockedAchievements.includes(a.id);
-    return `
-      <div class="rounded-2xl p-3.5 border flex items-center gap-3 ${unlocked ? 'bg-amber-500/10 border-amber-400/50' : 'bg-slate-900/70 border-slate-800 opacity-65'}">
-        <div class="w-11 h-11 rounded-xl bg-slate-800 flex items-center justify-center text-2xl shrink-0">${a.icon}</div>
-        <div class="flex-1">
-          <div class="flex items-center justify-between">
-            <h4 class="text-xs font-extrabold text-white">${a.title}</h4>
-            <span class="text-[10px] font-bold ${unlocked ? 'text-emerald-400' : 'text-amber-400'}">${unlocked ? '✓ Unlocked' : `+${a.reward} 🪙`}</span>
-          </div>
-          <p class="text-[11px] text-slate-400 mt-0.5">${a.desc}</p>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-function renderDailyModal() {
-  const today = new Date().toDateString();
-  const claimedToday = profile.lastDailyClaim === today;
-  const grid = document.getElementById('daily-streak-grid');
-  grid.innerHTML = [1, 2, 3, 4].map(day => {
-    const reward = day * 150;
-    const isCurrent = (profile.dailyStreak % 4) + 1 === day;
-    return `
-      <div class="rounded-xl p-2.5 border ${isCurrent ? 'border-amber-400 bg-amber-500/15' : 'border-slate-800 bg-slate-900'}">
-        <div class="text-[10px] font-bold text-slate-400">DAY ${day}</div>
-        <div class="text-base my-1">🪙</div>
-        <div class="text-xs font-black text-amber-300">+${reward}</div>
-      </div>
-    `;
-  }).join('');
-
-  const btn = document.getElementById('claim-daily-btn');
-  btn.disabled = claimedToday;
-  btn.textContent = claimedToday ? 'Claimed Today ✓' : "Claim Today's Reward 🪙";
-}
-
-function claimDailyReward() {
-  const today = new Date().toDateString();
-  if (profile.lastDailyClaim === today) return;
-  profile.lastDailyClaim = today;
-  profile.dailyStreak += 1;
-  const reward = (((profile.dailyStreak - 1) % 4) + 1) * 150;
-  grantRewards(reward, 75);
-  audio.playHome();
-  renderDailyModal();
-  showToast(`🎁 Claimed +${reward} Coins & +75 XP!`);
-}
-
-/* -------------------- 13. ONLINE ROOM HELPERS & AUDIO CONTROLS -------------------- */
-function generateNewRoomCode() {
-  const code = 'GZ-' + Math.floor(1000 + Math.random() * 9000);
-  document.getElementById('generated-room-code').textContent = code;
-}
-
-function copyRoomCode() {
-  const code = document.getElementById('generated-room-code').textContent;
-  copyTextFallback(code);
-  showToast(`📋 Room code ${code} copied!`);
-}
-
-function testSocketEndpoint() {
-  const url = document.getElementById('socket-url-input').value.trim();
-  const status = document.getElementById('socket-status-msg');
-  if (!url) {
-    status.textContent = 'Status: Please enter a valid wss:// Socket.IO server URL.';
-    status.className = 'text-[11px] text-rose-400 mt-1';
-    return;
-  }
-  status.textContent = `Status: Attempting handshake with ${url}... (Ensure Node.js Socket.IO backend is running)`;
-  status.className = 'text-[11px] text-amber-300 mt-1';
-}
-
-function updateAudioSettings() {
-  profile.prefs.sfx = document.getElementById('set-sfx').checked;
-  profile.prefs.music = document.getElementById('set-music').checked;
-  profile.prefs.volume = parseInt(document.getElementById('set-volume').value, 10);
-  profile.prefs.fastAnim = document.getElementById('set-fast-anim').checked;
-
-  document.getElementById('vol-label').textContent = `${profile.prefs.volume}%`;
-  audio.sfxEnabled = profile.prefs.sfx;
-  audio.musicEnabled = profile.prefs.music;
-  audio.volume = profile.prefs.volume / 100;
-  audio.updateMusicState();
-  syncMuteButtons();
-  saveProfile();
-}
-
-function toggleMuteAll() {
-  const isMuted = !audio.sfxEnabled && !audio.musicEnabled;
-  audio.sfxEnabled = isMuted;
-  profile.prefs.sfx = isMuted;
-  document.getElementById('set-sfx').checked = isMuted;
-  if (!isMuted) {
-    audio.musicEnabled = false;
-    profile.prefs.music = false;
-    document.getElementById('set-music').checked = false;
-    audio.updateMusicState();
-  }
-  syncMuteButtons();
-  saveProfile();
-}
-
-function syncMuteButtons() {
-  const icon = (audio.sfxEnabled || audio.musicEnabled) ? '🔊' : '🔇';
-  document.getElementById('menu-mute-btn').textContent = icon;
-  document.getElementById('game-mute-btn').textContent = icon;
-}
-
-function copyTextFallback(text) {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).catch(() => {});
-    return;
-  }
-  const ta = document.createElement('textarea');
-  ta.value = text;
-  document.body.appendChild(ta);
-  ta.select();
-  try { document.execCommand('copy'); } catch (e) {}
-  document.body.removeChild(ta);
-}
-
-let toastTimeout = null;
-function showToast(msg) {
-  const el = document.getElementById('toast-banner');
-  el.textContent = msg;
-  el.classList.remove('opacity-0');
-  if (toastTimeout) clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => el.classList.add('opacity-0'), 2800);
-}
-
-/* -------------------- 14. KEYBOARD SHORTCUTS & BOOTSTRAP -------------------- */
-document.addEventListener('keydown', e => {
-  if (!gameState || gameState.paused || document.getElementById('game-screen').classList.contains('hidden')) return;
-  if (e.code === 'Space') {
-    e.preventDefault();
-    handleRollClick();
-  } else if (['Digit1', 'Digit2', 'Digit3', 'Digit4'].includes(e.code)) {
-    const idx = parseInt(e.code.replace('Digit', ''), 10) - 1;
-    const p = getCurrentPlayer();
-    if (p.type === 'human' && gameState.phase === 'MOVE') {
-      const move = gameState.legalMoves.find(m => m.tokenIdx === idx);
-      if (move) executeTokenMove(move);
-    }
-  }
-});
-
-window.onload = function () {
-  loadProfile();
-  document.getElementById('set-sfx').checked = profile.prefs.sfx;
-  document.getElementById('set-music').checked = profile.prefs.music;
-  document.getElementById('set-volume').value = profile.prefs.volume;
-  document.getElementById('vol-label').textContent = `${profile.prefs.volume}%`;
-  document.getElementById('set-fast-anim').checked = profile.prefs.fastAnim;
-  syncMuteButtons();
-
-  let pct = 0;
-  const bar = document.getElementById('loading-bar');
-  const pctTxt = document.getElementById('loading-percent');
-  const statusTxt = document.getElementById('loading-status');
-  const steps = ['Preparing Your Game...', 'Polishing Royal Dice...', 'Calibrating AI Engine...', 'Welcome to GameZone203!'];
-
-  const loader = setInterval(() => {
-    pct += 25;
-    if (pct > 100) pct = 100;
-    bar.style.width = `${pct}%`;
-    pctTxt.textContent = `${pct}%`;
-    statusTxt.textContent = steps[Math.min(3, Math.floor(pct / 30))];
-
-    if (pct >= 100) {
-      clearInterval(loader);
-      setTimeout(() => {
-        const ls = document.getElementById('loading-screen');
-        ls.classList.add('opacity-0');
-        setTimeout(() => {
-          ls.classList.add('hidden');
-          document.getElementById('main-menu').classList.remove('hidden');
-          refreshProfileUI();
-          checkSavedMatchBanner();
-        }, 420);
-      }, 180);
-    }
-  }, 140);
-};
-</script>
+      };
+
+      window.rateGame = (stars) => {
+        document.querySelectorAll("#exit-stars .star-btn").forEach((b, i) => {
+          b.classList.toggle("active", i < stars);
+        });
+        playTone(780, "sine", 0.12, 1040);
+        showToast(`❤️ Thank you for your ${stars}-star rating!`);
+      };
+
+      window.forceLeaveToLobby = () => {
+        closeModal("exit-guard-modal");
+        gameState.active = false;
+        document.getElementById("game-screen").classList.add("hidden");
+        document.getElementById("main-menu").classList.remove("hidden");
+        refreshLobbyUI();
+      };
+
+      window.addEventListener("keydown", (e) => {
+        if (e.code === "Space" && !document.getElementById("game-screen").classList.contains("hidden")) {
+          e.preventDefault();
+          handleRollClick();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
