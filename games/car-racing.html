@@ -69,93 +69,61 @@ body.game.touch #touch{display:flex}
 #touch .nitro{border-color:#2fd3ff}#touch .nitro.a{background:rgba(31,181,255,.8)}
 @media(max-height:480px){.btns{grid-template-columns:1fr 1fr}h1{font-size:36px}.scr{gap:8px}}
 
-/* ✅ UPDATED FAQ Section (Center Popup) */
+/* ✅ NAYA FAQ CSS (Center Popup) */
+.faq-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 12, 30, 0.85);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+body:not(.game) .faq-overlay {
+  display: flex;
+}
+
 .faq-section {
-  display: none; /* Default me chhupa rahe */
   width: 90%;
-  max-width: 800px;
-  margin: 40px auto 0;
-  padding: 20px;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 24px;
   background: #0c122a;
-  border-radius: 10px;
-  border: 1px solid #2b4078;
+  border-radius: 12px;
+  border: 2px solid #2b4078;
   color: #9fb4e0;
   text-align: left;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   font-family: "Trebuchet MS", Verdana, sans-serif;
 }
 
 .faq-section h2 { color: #ff8a1f; margin-top: 0; }
-.faq-section h3 { color: #fff; margin-bottom: 5px; }
-
-/* Jab game na chal raha ho (menu par ho) toh FAQ show ho */
-body:not(.game) .faq-section {
-  display: block;
-}
+.faq-section h3 { color: #fff; margin-bottom: 5px; margin-top: 15px; }
+.faq-section p { margin-bottom: 10px; }
 </style>
-<!-- Loading Screen -->
-<div id="loading-screen" style="position:fixed;inset:0;background:#060918;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
-  <h1 style="color:#ff8a1f;font-family:Impact,sans-serif;font-size:2.5rem;text-shadow:0 0 20px #ff8a1f;margin-bottom:20px;">HIGHWAY RACER 203</h1>
-  <div style="width:200px;height:6px;background:#1a233a;border-radius:10px;overflow:hidden;">
-    <div id="loading-bar" style="width:0%;height:100%;background:linear-gradient(90deg,#ff8a1f,#ffcf24);transition:width 0.1s linear;"></div>
-  </div>
-  <p style="color:#9fb4e0;margin-top:15px;font-family:sans-serif;letter-spacing:2px;">LOADING...</p>
-</div>
-
-<div id="wrap">
-<canvas id="c"></canvas>
-<div id="rot">Rotate your phone to landscape for the best view</div>
-<div id="hud"><div class="chip">SCORE<b id="sc">0</b></div><div class="chip">DISTANCE<b id="di">0 m</b></div><div class="chip">COINS<b id="co">0</b></div><div class="chip">BEST<b id="be">0</b></div></div>
-<div id="bot"><div id="spd"><b id="sp">0</b>km/h</div><div id="nb"><i id="nf"></i></div></div>
-<div id="tools"><button id="bp" data-a="pause">Pause</button><button id="bf" data-a="fs">Fullscreen</button><a class="t" id="bk" href="../../index.html">Back to Games</a></div>
-<div id="touch"><div class="grp"><button data-k="l">&#9664; LEFT</button><button data-k="r">RIGHT &#9654;</button></div><div class="grp"><button data-k="d">BRAKE</button><button data-k="n" class="nitro">NITRO</button></div></div>
-
-<div class="scr on" id="menu"><h1>HIGHWAY<br>RACER <em>203</em></h1><p id="mb">Best score: 0</p>
-<div class="btns"><button class="btn" data-a="play">PLAY GAME</button><button class="btn s" data-a="garage">CAR GARAGE</button><button class="btn s" data-a="how">HOW TO PLAY</button><button class="btn s" data-a="snd" id="bs">SOUND: ON</button></div></div>
-
-<div class="scr" id="garage"><h2>CAR GARAGE</h2><div id="gl"></div><button class="btn" data-a="menu">DONE</button></div>
-
-<div class="scr" id="how"><h2>HOW TO PLAY</h2><div class="panel">
-<b>Keyboard:</b> Left/Right arrows steer, Up accelerates, Down brakes, Space fires nitro, P pauses.<br>
-<b>Touch:</b> hold LEFT, RIGHT, BRAKE or NITRO on screen.<br>
-Your car speeds up on its own. Dodge traffic, grab gold coins, and use nitro (it refills slowly and with coins) to go faster. Traffic gets denser the further you drive.</div><button class="btn" data-a="menu">BACK</button></div>
-
-<div class="scr" id="pause"><h2>PAUSED</h2><div class="btns"><button class="btn" data-a="resume">RESUME</button><button class="btn s" data-a="restart">RESTART</button><button class="btn s" data-a="menu">MAIN MENU</button></div></div>
 
 <div class="scr" id="over"><h2>GAME OVER</h2><div class="panel stats"><div>Score <b id="os">0</b></div><div>Best <b id="ob">0</b></div><div>Distance <b id="od">0</b></div><div>Coins <b id="oc">0</b></div></div><p id="nbst" style="color:#ffcf24;font-weight:800"></p>
 <div class="btns"><button class="btn" data-a="restart">RESTART</button><button class="btn s" data-a="menu">MAIN MENU</button></div></div>
 
-<!-- ✅ FAQ SECTION YAHAN ADD KIYA GAYA HAI -->
-<div id="game-faq" class="faq-section">
-  <h2>How to Play Highway Racer 203</h2>
-  <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
-  <h3 style="color: #fff; margin-bottom: 5px; margin-top: 15px;">Frequently Asked Questions</h3>
-  
-  <p style="margin-bottom: 10px;"><b>Can I play Highway Racer 203 on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro, making it fully playable on mobile browsers.</p>
-  
-  <p style="margin-bottom: 10px;"><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race. Try out different models like the Crimson GT or Azure Viper!</p>
+</div> <!-- ✅ YEH WRAP KO BAND KARTA HAI -->
 
-  <p style="margin-bottom: 10px;"><b>Is this an unblocked car racing game?</b><br>Yes, Highway Racer 203 runs directly in your browser and can be played without any downloads. It's a great option for playing car racing games unblocked at school or work.</p>
-</div>
+<!-- ✅ FAQ SECTION (Center Popup) -->
+<div class="faq-overlay">
+  <div id="game-faq" class="faq-section">
+    <h2>How to Play Highway Racer 203</h2>
+    <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
+    
+    <h3 style="color: #fff; margin-bottom: 5px; margin-top: 15px;">Frequently Asked Questions</h3>
+    
+    <p style="margin-bottom: 10px;"><b>Can I play Highway Racer 203 on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro, making it fully playable on mobile browsers.</p>
+    
+    <p style="margin-bottom: 10px;"><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race. Try out different models like the Crimson GT or Azure Viper!</p>
 
-</div> <!-- YEH WRAP KO BAND KARTA HAI -->
-</div>
-
-<!-- FAQ SECTION FOR SEO -->
-<div id="game-faq" class="faq-section">
-  <h2>How to Play Highway Racer 203</h2>
-  <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
-  <h3 style="color: #fff; margin-bottom: 5px; margin-top: 15px;">Frequently Asked Questions</h3>
-  
-  <p style="margin-bottom: 10px;"><b>Can I play Highway Racer 203 on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro, making it fully playable on mobile browsers.</p>
-  
-  <p style="margin-bottom: 10px;"><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race. Try out different models like the Crimson GT or Azure Viper!</p>
-
-  <p style="margin-bottom: 10px;"><b>Is this an unblocked car racing game?</b><br>Yes, Highway Racer 203 runs directly in your browser and can be played without any downloads. It's a great option for playing car racing games unblocked at school or work.</p>
+    <p style="margin-bottom: 10px;"><b>Is this an unblocked car racing game?</b><br>Yes, Highway Racer 203 runs directly in your browser and can be played without any downloads. It's a great option for playing car racing games unblocked at school or work.</p>
+  </div>
 </div>
 
 <script>
