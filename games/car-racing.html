@@ -116,10 +116,9 @@ Your car speeds up on its own. Dodge traffic, grab gold coins, and use nitro (it
 </div>
 
 <!-- FAQ SECTION FOR SEO -->
-<div id="game-faq" class="faq-section" style="display: block; max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #2b4078; color: #9fb4e0; text-align: left; position: relative; z-index: 100; font-family: 'Trebuchet MS', Verdana, sans-serif;">
-  <h2 style="color: #ff8a1f; margin-top: 0;">How to Play Highway Racer 203</h2>
+<div id="game-faq" class="faq-section">
+  <h2>How to Play Highway Racer 203</h2>
   <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
-  
   <h3 style="color: #fff; margin-bottom: 5px; margin-top: 15px;">Frequently Asked Questions</h3>
   
   <p style="margin-bottom: 10px;"><b>Can I play Highway Racer 203 on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro, making it fully playable on mobile browsers.</p>
@@ -268,8 +267,8 @@ if(crash){crashT+=dt;if(crashT>1.2)gameOver()}}
 function show(id){['menu','garage','how','pause','over'].forEach(s=>$(s).classList.toggle('on',s===id))}
 function reset(){px=0;pv=0;speed=50;dist=0;score=0;coinsN=0;nitro=100;traffic=[];coinA=[];spin=0;tilt=0;crashT=0;shake=0;nOn=false;laneSp=sh([52,68,84,100]);
 for(let i=0;i<24&&traffic.length<7;i++)spawn(40+Math.random()*150)}
-function startGame(){initAudio();reset();mode='play';show(null);B.classList.add('game');document.getElementById('game-faq').style.display='none';}
-function toMenu(){if(mode!=='menu'){mode='menu';reset();speed=120}B.classList.remove('game');show('menu');$('mb').textContent='Best score: '+best;document.getElementById('game-faq').style.display='block';}
+function startGame(){initAudio();reset();mode='play';show(null);B.classList.add('game');}
+function toMenu(){if(mode!=='menu'){mode='menu';reset();speed=120}B.classList.remove('game');show('menu');$('mb').textContent='Best score: '+best;}
 function pauseG(){if(mode==='play'){mode='pause';show('pause')}}
 function resumeG(){if(mode==='pause'){mode='play';show(null)}}
 function gameOver(){mode='over';spin=0;tilt=0;const sc=Math.floor(score);let nb=false;if(sc>best){best=sc;S('hr203_best',best);nb=true}
@@ -281,7 +280,6 @@ b.innerHTML='<canvas width="160" height="100"></canvas><span>'+c.n+(i===sel?' (s
 b.onclick=()=>{sel=i;S('hr203_car',i);initAudio();sfx.click();buildGarage()}})}
 const act={play:startGame,garage:()=>{buildGarage();show('garage')},how:()=>show('how'),snd:toggleSnd,menu:toMenu,restart:startGame,resume:resumeG,fs:fsToggle,pause:()=>mode==='play'?pauseG():resumeG()};
 document.querySelectorAll('[data-a]').forEach(b=>b.addEventListener('click',()=>{initAudio();sfx.click();act[b.dataset.a]()}));
-
 /* ---------- input ---------- */
 const KM={ArrowLeft:'l',KeyA:'l',ArrowRight:'r',KeyD:'r',ArrowUp:'u',KeyW:'u',ArrowDown:'d',KeyS:'d',Space:'n'};
 addEventListener('keydown',e=>{const k=KM[e.code];
