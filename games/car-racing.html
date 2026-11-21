@@ -29,7 +29,6 @@
   }
 }
 </script>
-
 <style>
 *{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none}
 html,body{height:100%;background:#0b1220;overflow:hidden;touch-action:none;font-family:"Trebuchet MS",Verdana,sans-serif;color:#fff}
@@ -70,17 +69,34 @@ body.game.touch #touch{display:flex}
 #touch .nitro{border-color:#2fd3ff}#touch .nitro.a{background:rgba(31,181,255,.8)}
 @media(max-height:480px){.btns{grid-template-columns:1fr 1fr}h1{font-size:36px}.scr{gap:8px}}
 
-/* FAQ Section */
-.faq-section { max-width: 800px; margin: 40px auto 0; padding: 20px; background: #0c122a; border-radius: 10px; border: 1px solid #2b4078; color: #9fb4e0; text-align: left; position: relative; z-index: 100; font-family: "Trebuchet MS", Verdana, sans-serif; }
+/* ✅ UPDATED FAQ Section (Center Popup) */
+.faq-section {
+  display: none; /* Default me chhupa rahe */
+  width: 90%;
+  max-width: 800px;
+  margin: 40px auto 0;
+  padding: 20px;
+  background: #0c122a;
+  border-radius: 10px;
+  border: 1px solid #2b4078;
+  color: #9fb4e0;
+  text-align: left;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+
 .faq-section h2 { color: #ff8a1f; margin-top: 0; }
 .faq-section h3 { color: #fff; margin-bottom: 5px; }
 
-/* Jab game chal raha ho toh FAQ ko chhupa dein */
-body.game #game-faq {
-  display: none !important;
+/* Jab game na chal raha ho (menu par ho) toh FAQ show ho */
+body:not(.game) .faq-section {
+  display: block;
 }
-</style></head><body>
-
+</style>
 <!-- Loading Screen -->
 <div id="loading-screen" style="position:fixed;inset:0;background:#060918;z-index:9999;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:opacity 0.5s;">
   <h1 style="color:#ff8a1f;font-family:Impact,sans-serif;font-size:2.5rem;text-shadow:0 0 20px #ff8a1f;margin-bottom:20px;">HIGHWAY RACER 203</h1>
@@ -113,6 +129,20 @@ Your car speeds up on its own. Dodge traffic, grab gold coins, and use nitro (it
 <div class="scr" id="over"><h2>GAME OVER</h2><div class="panel stats"><div>Score <b id="os">0</b></div><div>Best <b id="ob">0</b></div><div>Distance <b id="od">0</b></div><div>Coins <b id="oc">0</b></div></div><p id="nbst" style="color:#ffcf24;font-weight:800"></p>
 <div class="btns"><button class="btn" data-a="restart">RESTART</button><button class="btn s" data-a="menu">MAIN MENU</button></div></div>
 
+<!-- ✅ FAQ SECTION YAHAN ADD KIYA GAYA HAI -->
+<div id="game-faq" class="faq-section">
+  <h2>How to Play Highway Racer 203</h2>
+  <p>Use your left and right arrow keys (or touch buttons) to change lanes. Dodge traffic, collect gold coins to fill your nitro, and use nitro to speed up. The further you go, the faster and denser the traffic becomes. Try to beat your high score!</p>
+  <h3 style="color: #fff; margin-bottom: 5px; margin-top: 15px;">Frequently Asked Questions</h3>
+  
+  <p style="margin-bottom: 10px;"><b>Can I play Highway Racer 203 on mobile?</b><br>Yes, the game has on-screen touch controls for both steering and nitro, making it fully playable on mobile browsers.</p>
+  
+  <p style="margin-bottom: 10px;"><b>How do I unlock new cars?</b><br>You can select different cars from the Car Garage before starting a race. Try out different models like the Crimson GT or Azure Viper!</p>
+
+  <p style="margin-bottom: 10px;"><b>Is this an unblocked car racing game?</b><br>Yes, Highway Racer 203 runs directly in your browser and can be played without any downloads. It's a great option for playing car racing games unblocked at school or work.</p>
+</div>
+
+</div> <!-- YEH WRAP KO BAND KARTA HAI -->
 </div>
 
 <!-- FAQ SECTION FOR SEO -->
