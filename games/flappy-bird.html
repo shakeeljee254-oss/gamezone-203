@@ -1,323 +1,2342 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Flappy Bird - Play Free Online | GameZone 203</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flappy Bird 203 — Arcade Flight Game | GameZone 203</title>
+  <meta
+    name="description"
+    content="Play Flappy Bird 203 free online on GameZone 203. Switch between Day Light and Dark themes, choose Easy, Medium, or Hard difficulty, earn level stars, enjoy rich synth sound effects, and play smoothly on mobile or desktop."
+  />
+  <meta
+    name="keywords"
+    content="Flappy Bird 203, GameZone 203, arcade flight game, browser game, HTML5 canvas game, day night theme, level stars"
+  />
+  <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird/" />
 
-<!-- SEO TAGS -->
-<meta name="description" content="Play Flappy Bird free online at GameZone 203. Tap the screen or press space to fly through the pipes!">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird.html">
-<meta property="og:title" content="Flappy Bird - Play Free Online | GameZone 203">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Flappy Bird",
-  "description": "Play Flappy Bird free online.",
-  "genre": ["Arcade", "Casual"]
-}
-</script>
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="Flappy Bird 203 — GameZone 203" />
+  <meta
+    property="og:description"
+    content="Navigate neon and daylight skies in Flappy Bird 203 with 3 difficulty modes, level progression, Day/Dark themes, enhanced Web Audio synth sound, and local score tracking."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird/" />
 
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background-color: #70c5ce;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Courier New', Courier, monospace;
-    touch-action: none;
+  <!-- JSON-LD Structured Data (VideoGame + FAQPage) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "name": "Flappy Bird 203",
+        "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird/",
+        "applicationCategory": "Game",
+        "operatingSystem": "Any (Web Browser)",
+        "genre": ["Arcade", "Action"],
+        "playMode": "SinglePlayer",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GameZone 203",
+          "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Flappy Bird 203 start automatically when scrolling?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The game always opens on the Start Screen and never starts or jumps when you scroll the page or use the mouse wheel."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my Day/Dark theme, audio settings, level stars, and high scores saved?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Theme preference, difficulty, sound/music toggles, level stars, best score, and flight statistics are saved locally in your browser using localStorage."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do levels and stars work in Flappy Bird 203?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "There are 4 levels with target scores. Reaching a level target unlocks the next level and awards 1 to 3 stars based on your score."
+            }
+          }
+        ]
+      }
+    ]
   }
-  canvas {
-    background-color: #70c5ce;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    max-width: 100%;
-    max-height: 100vh;
-  }
-  #startOverlay {
-    position: absolute;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    z-index: 10;
-  }
-  h1 { color: #fbbf24; margin-top: 0; }
-  p { color: #ddd; font-size: 14px; margin-bottom: 20px; }
-  button {
-    background: #fbbf24;
-    color: #000;
-    border: none;
-    padding: 12px 25px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  button:hover { background: #f59e0b; }
-</style>
+  </script>
+
+  <!-- Tailwind CSS & Typography -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --bg-page: #060916;
+      --bg-surface: #0d142b;
+      --bg-card: #121c3b;
+      --border-card: rgba(59, 130, 246, 0.3);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #00f5d4;
+      --accent-secondary: #8b5cf6;
+      --canvas-border: rgba(0, 245, 212, 0.45);
+      --canvas-shadow: 0 0 36px rgba(0, 245, 212, 0.16), 0 18px 45px rgba(2, 6, 23, 0.75);
+    }
+
+    html.theme-day {
+      --bg-page: #e0f2fe;
+      --bg-surface: #f8fafc;
+      --bg-card: #ffffff;
+      --border-card: rgba(14, 165, 233, 0.35);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --accent-primary: #0284c7;
+      --accent-secondary: #16a34a;
+      --canvas-border: rgba(2, 132, 199, 0.45);
+      --canvas-shadow: 0 14px 34px rgba(2, 132, 199, 0.18), 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    html.theme-dark body {
+      background-image:
+        radial-gradient(circle at 15% 12%, rgba(0, 245, 212, 0.08), transparent 36%),
+        radial-gradient(circle at 85% 20%, rgba(139, 92, 246, 0.1), transparent 40%);
+    }
+
+    html.theme-day body {
+      background-image:
+        radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.24), transparent 40%),
+        radial-gradient(circle at 82% 16%, rgba(74, 222, 128, 0.18), transparent 42%);
+    }
+
+    .gz-surface {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-card);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gz-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+      transition: background-color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .gz-muted {
+      color: var(--text-secondary);
+    }
+
+    .gz-canvas-shell {
+      border: 2px solid var(--canvas-border);
+      box-shadow: var(--canvas-shadow);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-exit-distinct {
+      background-color: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.48);
+      color: #fda4af;
+      transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+    }
+    .btn-exit-distinct:hover {
+      background-color: rgba(244, 63, 94, 0.28);
+      border-color: #fb7185;
+      color: #ffe4e6;
+      transform: translateY(-1px);
+    }
+    html.theme-day .btn-exit-distinct {
+      background-color: #ffe4e6;
+      border-color: #fb7185;
+      color: #be123c;
+    }
+    html.theme-day .btn-exit-distinct:hover {
+      background-color: #fecdd3;
+      color: #9f1239;
+    }
+
+    .diff-option-btn {
+      border-color: rgba(100, 116, 139, 0.45);
+    }
+    .diff-option-btn.is-active-diff {
+      border-color: #22d3ee;
+      background-color: rgba(6, 182, 212, 0.22);
+      color: #67e8f9;
+      font-weight: 700;
+    }
+    html.theme-day .diff-option-btn.is-active-diff {
+      border-color: #0284c7;
+      background-color: rgba(2, 132, 199, 0.16);
+      color: #0369a1;
+    }
+
+    .game-arena-viewport {
+      min-height: calc(100vh - 4.75rem);
+      min-height: calc(100dvh - 4.75rem);
+    }
+
+    .canvas-stage-frame {
+      width: 100%;
+      max-width: min(560px, 68vw);
+      height: calc(100vh - 7.5rem);
+      height: calc(100dvh - 7.5rem);
+      min-height: 400px;
+      max-height: 820px;
+    }
+
+    @media (max-width: 1023px) {
+      .canvas-stage-frame {
+        max-width: min(460px, 94vw);
+        height: calc(100vh - 10.5rem);
+        height: calc(100dvh - 10.5rem);
+        min-height: 360px;
+        max-height: 680px;
+      }
+
+      body.gameplay-active-lock .canvas-stage-frame {
+        height: calc(100vh - 7.25rem);
+        height: calc(100dvh - 7.25rem);
+        max-height: none;
+      }
+
+      body.gameplay-active-lock .mobile-hide-during-play {
+        display: none !important;
+      }
+    }
+
+    #flappy-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
+
+    body.gameplay-active-lock {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    .btn-primary-action {
+      background: linear-gradient(135deg, #00f5d4 0%, #3b82f6 55%, #8b5cf6 100%);
+      color: #050814;
+      font-weight: 700;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    html.theme-day .btn-primary-action {
+      background: linear-gradient(135deg, #0284c7 0%, #2563eb 55%, #16a34a 100%);
+      color: #ffffff;
+    }
+    .btn-primary-action:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(59, 130, 246, 0.35);
+    }
+
+    .star-btn {
+      transition: transform 0.15s ease;
+    }
+    .star-btn:hover,
+    .star-btn:focus-visible {
+      transform: scale(1.14);
+    }
+    .star-on svg {
+      fill: #fbbf24;
+      stroke: #f59e0b;
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.45));
+    }
+    .star-off svg {
+      fill: transparent;
+      stroke: #94a3b8;
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070b18;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen font-sans antialiased flex flex-col">
 
-  <div id="startOverlay">
-    <h1>FLAPPY BIRD</h1>
-    <p>Click or Press Space to fly</p>
-    <button id="startBtn">START GAME</button>
+  <!-- Compact Top Navigation Bar -->
+  <header class="sticky top-0 z-30 gz-surface backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 h-12 sm:h-13 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2 min-w-0">
+        <a
+          id="link-back-to-games"
+          href="https://shakeeljee254-oss.github.io/gamezone-203/"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg gz-card hover:opacity-90 text-xs font-semibold transition shrink-0"
+        >
+          <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span class="hidden sm:inline">Back to Games</span>
+          <span class="sm:hidden">Games</span>
+        </a>
+
+        <a
+          href="https://shakeeljee254-oss.github.io/gamezone-203/"
+          class="hidden md:inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-display font-bold tracking-wider uppercase bg-purple-500/15 text-purple-400 border border-purple-500/30 hover:border-purple-400 transition shrink-0"
+        >
+          GameZone 203
+        </a>
+
+        <h1 class="font-display text-sm sm:text-base font-extrabold tracking-wide truncate">
+          Flappy Bird <span class="text-cyan-400">203</span>
+        </h1>
+      </div>
+
+      <!-- Compact Top Action Controls: Theme, Pause, Restart, Settings, Distinct Exit -->
+      <div class="flex items-center gap-1.5 shrink-0">
+        <button
+          id="btn-quick-theme"
+          type="button"
+          class="px-2.5 py-1.5 rounded-lg gz-card text-xs font-semibold transition"
+          title="Switch between Day Light and Dark theme"
+        >
+          <span id="quick-theme-label">Dark</span>
+        </button>
+
+        <button
+          id="btn-hud-pause"
+          type="button"
+          disabled
+          class="px-2.5 py-1.5 rounded-lg gz-card disabled:opacity-40 text-xs font-semibold transition"
+        >
+          Pause
+        </button>
+
+        <button
+          id="btn-top-restart"
+          type="button"
+          class="hidden sm:inline-flex px-2.5 py-1.5 rounded-lg gz-card text-xs font-semibold transition"
+          title="Restart current run"
+        >
+          Restart
+        </button>
+
+        <button
+          id="btn-open-settings"
+          type="button"
+          class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg gz-card text-xs font-semibold transition"
+          aria-haspopup="dialog"
+          aria-controls="settings-modal"
+        >
+          <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span class="hidden md:inline">Settings</span>
+        </button>
+
+        <button
+          id="btn-header-exit"
+          type="button"
+          class="btn-exit-distinct inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-bold"
+          aria-label="Exit Flappy Bird 203"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Exit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-5 py-2.5 sm:py-3 space-y-8">
+
+    <!-- Above-the-Fold Enlarged Gameplay Stage + Compact Side Panel -->
+    <section aria-label="Flappy Bird 203 Game Stage" class="game-arena-viewport grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+
+      <!-- Primary Enlarged Game Canvas Column (8 cols on lg) -->
+      <div class="lg:col-span-8 flex flex-col items-center justify-center w-full">
+        <!-- Mobile Compact Score & Level Strip -->
+        <div class="flex lg:hidden w-full max-w-[460px] items-center justify-between gap-2 mb-2 px-3 py-1.5 rounded-xl gz-card text-xs">
+          <div class="flex items-center gap-2.5">
+            <span>Score: <strong id="mobile-hud-score" class="font-display text-sm text-cyan-400">0</strong></span>
+            <span>Best: <strong id="mobile-hud-best" class="font-display text-sm text-purple-400">0</strong></span>
+            <span>Lv.<strong id="mobile-hud-level" class="font-display text-sm text-emerald-400">1</strong></span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span id="mobile-milestone-text" class="text-[11px] font-semibold text-emerald-400"></span>
+            <span id="hud-difficulty-badge" class="px-2 py-0.5 rounded-md font-semibold bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+              Medium
+            </span>
+          </div>
+        </div>
+
+        <!-- Enlarged Full-Height Canvas Container -->
+        <div class="relative canvas-stage-frame rounded-3xl overflow-hidden gz-canvas-shell">
+          <canvas id="flappy-canvas"></canvas>
+
+          <!-- START SCREEN OVERLAY -->
+          <div
+            id="start-screen-overlay"
+            class="absolute inset-0 z-10 flex flex-col items-center justify-center p-4 sm:p-6 text-center bg-slate-950/60 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-xs sm:max-w-sm gz-card rounded-2xl p-4 sm:p-5 space-y-3 shadow-2xl">
+              <div>
+                <span class="text-[11px] font-display font-bold uppercase tracking-wider text-cyan-400">
+                  GameZone 203
+                </span>
+                <h2 class="font-display text-xl sm:text-2xl font-extrabold mt-0.5">
+                  Flappy Bird 203
+                </h2>
+              </div>
+
+              <!-- Level Selection (Levels 1-4 with 1-3 Earned Stars) -->
+              <div class="text-left">
+                <div class="flex items-center justify-between mb-1">
+                  <label class="text-[11px] font-semibold uppercase tracking-wider gz-muted">Select Level</label>
+                  <span id="level-goal-label" class="text-[11px] text-emerald-400 font-medium">Target: 6 pts</span>
+                </div>
+                <div id="level-selector-grid" class="grid grid-cols-4 gap-1.5" role="group" aria-label="Select Flight Level"></div>
+              </div>
+
+              <!-- Difficulty Selector -->
+              <div class="text-left">
+                <label class="block text-[11px] font-semibold uppercase tracking-wider gz-muted mb-1">Difficulty</label>
+                <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Difficulty Mode">
+                  <button type="button" data-diff="easy" class="diff-option-btn start-diff-btn py-1.5 px-2 rounded-xl text-xs font-semibold border transition">
+                    Easy
+                  </button>
+                  <button type="button" data-diff="medium" class="diff-option-btn start-diff-btn py-1.5 px-2 rounded-xl text-xs font-semibold border transition">
+                    Medium
+                  </button>
+                  <button type="button" data-diff="hard" class="diff-option-btn start-diff-btn py-1.5 px-2 rounded-xl text-xs font-semibold border transition">
+                    Hard
+                  </button>
+                </div>
+                <p id="start-diff-summary" class="text-[11px] gz-muted mt-1 text-center">
+                  Balanced flight speed &amp; fair gap width.
+                </p>
+              </div>
+
+              <button
+                id="btn-play-start"
+                type="button"
+                class="w-full btn-primary-action py-2.5 px-4 rounded-xl text-sm font-display tracking-wide"
+              >
+                Play Now
+              </button>
+
+              <div class="flex items-center justify-center gap-3 text-xs">
+                <button id="btn-start-settings" type="button" class="font-semibold text-cyan-400 hover:underline">
+                  Settings
+                </button>
+                <span class="gz-muted">•</span>
+                <a href="#how-to-play" class="font-semibold gz-muted hover:underline">
+                  How to Play
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAUSE / TAB-HIDDEN OVERLAY -->
+          <div
+            id="pause-screen-overlay"
+            class="hidden absolute inset-0 z-10 flex-col items-center justify-center p-4 sm:p-6 text-center bg-slate-950/70 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-xs sm:max-w-sm gz-card rounded-2xl p-5 space-y-3.5 shadow-2xl">
+              <div class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/40">
+                Flight Paused
+              </div>
+              <h2 id="pause-heading" class="font-display text-xl font-extrabold">Game Paused</h2>
+              <p id="pause-reason-text" class="text-xs gz-muted leading-relaxed">
+                Resume when ready or open Settings to change theme, audio, or difficulty.
+              </p>
+              <div class="space-y-2 pt-1">
+                <button
+                  id="btn-resume-flight"
+                  type="button"
+                  class="w-full btn-primary-action py-2.5 px-4 rounded-xl text-sm"
+                >
+                  Resume Flight
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button
+                    id="btn-pause-restart"
+                    type="button"
+                    class="py-2 px-3 rounded-xl gz-surface text-xs font-semibold hover:opacity-90"
+                  >
+                    Restart
+                  </button>
+                  <button
+                    id="btn-pause-settings"
+                    type="button"
+                    class="py-2 px-3 rounded-xl gz-surface text-xs font-semibold hover:opacity-90"
+                  >
+                    Settings
+                  </button>
+                </div>
+                <button
+                  id="btn-pause-exit"
+                  type="button"
+                  class="w-full btn-exit-distinct py-2 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5"
+                >
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  <span>Exit Game</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME OVER / LEVEL COMPLETION OVERLAY -->
+          <div
+            id="gameover-screen-overlay"
+            class="hidden absolute inset-0 z-10 flex-col items-center justify-center p-4 sm:p-6 text-center bg-slate-950/72 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-xs sm:max-w-sm gz-card rounded-2xl p-5 space-y-3 shadow-2xl">
+              <div>
+                <span id="gameover-kicker" class="text-[11px] font-display font-bold uppercase tracking-wider text-rose-400">
+                  Run Ended
+                </span>
+                <h2 id="gameover-heading" class="font-display text-2xl font-extrabold mt-0.5">Game Over</h2>
+                <div id="gameover-level-stars" class="hidden mt-1.5 flex items-center justify-center gap-1 text-lg text-amber-400" aria-label="Level stars earned"></div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5 text-center">
+                <div class="p-2.5 rounded-xl gz-surface">
+                  <div class="text-[11px] gz-muted">Score</div>
+                  <div id="gameover-score" class="font-display text-xl font-extrabold text-cyan-400 mt-0.5">0</div>
+                </div>
+                <div class="p-2.5 rounded-xl gz-surface">
+                  <div class="text-[11px] gz-muted">Best Score</div>
+                  <div id="gameover-best" class="font-display text-xl font-extrabold text-purple-400 mt-0.5">0</div>
+                </div>
+              </div>
+
+              <p id="gameover-new-best" class="hidden text-xs font-semibold text-emerald-400">
+                New Personal Best Unlocked!
+              </p>
+
+              <div class="space-y-2 pt-0.5">
+                <button
+                  id="btn-play-again"
+                  type="button"
+                  class="w-full btn-primary-action py-2.5 px-4 rounded-xl text-sm font-display tracking-wide"
+                >
+                  Play Again
+                </button>
+                <button
+                  id="btn-next-level"
+                  type="button"
+                  class="hidden w-full py-2 px-3 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/50 text-emerald-300 text-xs font-bold transition"
+                >
+                  Next Level →
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button
+                    id="btn-gameover-settings"
+                    type="button"
+                    class="py-2 px-2.5 rounded-xl gz-surface text-xs font-semibold hover:opacity-90"
+                  >
+                    Settings
+                  </button>
+                  <button
+                    id="btn-gameover-exit"
+                    type="button"
+                    class="btn-exit-distinct py-2 px-2.5 rounded-xl text-xs font-bold flex items-center justify-center gap-1"
+                  >
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Exit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Compact Mobile Prompt Strip -->
+        <div class="mobile-hide-during-play flex lg:hidden w-full max-w-[460px] items-center justify-between gap-2 mt-2 text-xs gz-muted">
+          <span>Tap canvas to flap • Space / ↑ on keyboard</span>
+          <button id="btn-bottom-restart" type="button" class="font-semibold text-cyan-400 hover:underline">
+            Restart
+          </button>
+        </div>
+      </div>
+
+      <!-- Compact Desktop/Tablet Side Panel (4 cols on lg) -->
+      <aside class="mobile-hide-during-play lg:col-span-4 w-full space-y-3">
+        <div class="gz-card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="font-display text-xs font-bold uppercase tracking-wider text-cyan-400">
+              Live Telemetry • <span id="hud-level-label">Lv.1</span>
+            </span>
+            <span id="hud-milestone-text" class="text-xs font-semibold text-emerald-400 h-4"></span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2.5 text-center">
+            <div class="p-3 rounded-xl gz-surface">
+              <div class="text-[11px] gz-muted">Score</div>
+              <div id="hud-score" class="font-display text-2xl font-extrabold text-cyan-400 mt-0.5">0</div>
+            </div>
+            <div class="p-3 rounded-xl gz-surface">
+              <div class="text-[11px] gz-muted">Best</div>
+              <div id="hud-best" class="font-display text-2xl font-extrabold text-purple-400 mt-0.5">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gz-card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-xs font-bold uppercase tracking-wider text-purple-400">
+              Difficulty &amp; Actions
+            </h2>
+            <button id="btn-panel-settings" type="button" class="text-xs font-semibold text-cyan-400 hover:underline">
+              All Settings
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Side Panel Difficulty">
+            <button type="button" data-diff="easy" class="diff-option-btn start-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Easy</button>
+            <button type="button" data-diff="medium" class="diff-option-btn start-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Medium</button>
+            <button type="button" data-diff="hard" class="diff-option-btn start-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Hard</button>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 pt-0.5">
+            <button id="btn-panel-restart" type="button" class="py-2 px-3 rounded-xl gz-surface text-xs font-semibold hover:opacity-90">
+              Restart Run
+            </button>
+            <button id="btn-panel-sfx-quick" type="button" class="py-2 px-3 rounded-xl gz-surface text-xs font-semibold hover:opacity-90">
+              SFX: <span id="panel-sfx-label" class="text-cyan-400">ON</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="gz-card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-xs font-bold uppercase tracking-wider gz-muted">
+              Flight Statistics
+            </h2>
+            <button
+              id="btn-open-reset-stats"
+              type="button"
+              class="text-[11px] gz-muted hover:text-rose-400 underline underline-offset-2 transition"
+            >
+              Reset
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2.5 rounded-xl gz-surface">
+              <div class="text-[10px] gz-muted">Best</div>
+              <div id="stat-best-score" class="font-display text-base font-extrabold text-purple-400 mt-0.5">0</div>
+            </div>
+            <div class="p-2.5 rounded-xl gz-surface">
+              <div class="text-[10px] gz-muted">Runs</div>
+              <div id="stat-games-played" class="font-display text-base font-extrabold text-cyan-400 mt-0.5">0</div>
+            </div>
+            <div class="p-2.5 rounded-xl gz-surface">
+              <div class="text-[10px] gz-muted">Level Stars</div>
+              <div id="stat-total-stars" class="font-display text-base font-bold text-amber-400 mt-0.5">0 / 12</div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-[11px] gz-muted pt-0.5">
+            <span>Top Milestone: <strong id="stat-top-milestone" class="text-emerald-400">0 pts</strong></span>
+            <span>Space / ↑ / Click / Tap</span>
+          </div>
+
+          <div id="milestone-badges" class="flex flex-wrap gap-1.5">
+            <span data-milestone="10" class="milestone-chip px-2 py-0.5 rounded-md text-[11px] font-semibold border border-slate-700/50 opacity-45">10+</span>
+            <span data-milestone="20" class="milestone-chip px-2 py-0.5 rounded-md text-[11px] font-semibold border border-slate-700/50 opacity-45">20+</span>
+            <span data-milestone="30" class="milestone-chip px-2 py-0.5 rounded-md text-[11px] font-semibold border border-slate-700/50 opacity-45">30+</span>
+            <span data-milestone="50" class="milestone-chip px-2 py-0.5 rounded-md text-[11px] font-semibold border border-slate-700/50 opacity-45">50+</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Below-the-Fold SEO: How to Play, Controls & FAQ -->
+    <section id="how-to-play" class="mobile-hide-during-play grid grid-cols-1 md:grid-cols-2 gap-5">
+      <article class="gz-card rounded-2xl p-6 space-y-3">
+        <h2 class="font-display text-lg font-bold text-cyan-400">
+          How to Play Flappy Bird 203
+        </h2>
+        <p class="text-sm gz-muted leading-relaxed">
+          Guide your bird through vertical pipe gaps in <strong>Flappy Bird 203</strong> on <strong>GameZone 203</strong>. Each level sets a target score and awards up to <strong>3 stars</strong> upon completion while unlocking the next stage.
+        </p>
+        <ul class="text-sm gz-muted space-y-1.5 list-disc list-inside leading-relaxed">
+          <li><strong>Level Stars:</strong> Reach a level's target score to complete it and earn 1 to 3 stars based on your performance.</li>
+          <li><strong>Difficulty Modes:</strong> Choose <em>Easy</em>, <em>Medium</em>, or <em>Hard</em> before starting or in Settings when not actively flying.</li>
+          <li><strong>Themes &amp; Sound:</strong> Toggle between <em>Dark Theme</em> and <em>Day Light Theme</em>, and customize Sound Effects or Ambient Synth Music anytime.</li>
+        </ul>
+      </article>
+
+      <article class="gz-card rounded-2xl p-6 space-y-3">
+        <h2 class="font-display text-lg font-bold text-purple-400">
+          Controls &amp; Accessibility
+        </h2>
+        <ul class="text-sm gz-muted space-y-2 leading-relaxed">
+          <li><strong>Desktop / Laptop:</strong> Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">Space</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">ArrowUp</kbd>, or left-click the canvas to flap during active flight. Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">P</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">Escape</kbd> to pause/resume.</li>
+          <li><strong>Mobile / Tablet:</strong> Tap directly on the game canvas to flap. Page scrolling stays unlocked on menus and pauses.</li>
+          <li><strong>Auto-Pause:</strong> Switching browser tabs automatically pauses active flight so you never lose progress unexpectedly.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section aria-labelledby="flappy-faq-title" class="mobile-hide-during-play gz-card rounded-2xl p-6 space-y-3">
+      <h2 id="flappy-faq-title" class="font-display text-lg font-bold">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-2.5 text-sm">
+        <details class="rounded-xl gz-surface p-4 group">
+          <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+            <span>Does Flappy Bird 203 start automatically when scrolling?</span>
+            <span class="gz-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="gz-muted mt-2 leading-relaxed">
+            No. The game always opens on the Start Screen and never starts or jumps when you scroll the page or use the mouse wheel.
+          </p>
+        </details>
+
+        <details class="rounded-xl gz-surface p-4 group">
+          <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+            <span>Are my Day/Dark theme, audio settings, level stars, and high scores saved?</span>
+            <span class="gz-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="gz-muted mt-2 leading-relaxed">
+            Yes. Theme preference, difficulty, sound/music toggles, level stars, best score, and flight statistics are saved locally in your browser using <code class="text-cyan-400">localStorage</code>.
+          </p>
+        </details>
+
+        <details class="rounded-xl gz-surface p-4 group">
+          <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+            <span>How do levels and stars work in Flappy Bird 203?</span>
+            <span class="gz-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="gz-muted mt-2 leading-relaxed">
+            There are 4 progressive levels (Neon Dawn, Cyber Skyline, Pulse Spire, and Apex 203). Reaching each level's target score unlocks the next level and awards 1 to 3 stars based on how high you score.
+          </p>
+        </details>
+
+        <details class="rounded-xl gz-surface p-4 group">
+          <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+            <span>Can I play without sound or turn off ambient synth music?</span>
+            <span class="gz-muted group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="gz-muted mt-2 leading-relaxed">
+            Yes. You can toggle Sound Effects quickly from the side panel or toggle both Sound Effects and Ambient Synth Music independently inside Settings.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <footer class="mobile-hide-during-play border-t border-slate-700/40 pt-5 pb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs gz-muted">
+      <div class="flex items-center gap-4">
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/" class="text-cyan-400 hover:underline font-medium">
+          GameZone 203
+        </a>
+        <a href="#how-to-play" class="hover:underline">How to Play</a>
+        <a href="#flappy-faq-title" class="hover:underline">FAQ</a>
+      </div>
+      <div>&copy; <span id="year-span">2026</span> GameZone 203</div>
+    </footer>
+  </main>
+
+  <!-- SETTINGS MODAL -->
+  <div
+    id="settings-modal"
+    class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="settings-modal-title"
+  >
+    <div class="w-full max-w-md rounded-2xl gz-card p-6 space-y-5 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700/40 pb-3">
+        <h2 id="settings-modal-title" class="font-display text-lg font-bold">
+          Game Settings
+        </h2>
+        <button
+          id="btn-close-settings"
+          type="button"
+          aria-label="Close settings"
+          class="w-8 h-8 rounded-lg gz-surface flex items-center justify-center text-sm font-bold"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-1.5">
+        <label class="block text-xs font-semibold uppercase tracking-wider gz-muted">Visual Theme</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button id="btn-theme-dark" type="button" class="py-2.5 px-3 rounded-xl text-xs font-bold border transition">
+            🌙 Dark Theme
+          </button>
+          <button id="btn-theme-day" type="button" class="py-2.5 px-3 rounded-xl text-xs font-bold border transition">
+            ☀️ Day Light Theme
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="text-xs font-semibold uppercase tracking-wider gz-muted">Difficulty Mode</label>
+          <span id="settings-diff-note" class="text-[11px] text-cyan-400"></span>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-diff="easy" class="diff-option-btn modal-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Easy</button>
+          <button type="button" data-diff="medium" class="diff-option-btn modal-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Medium</button>
+          <button type="button" data-diff="hard" class="diff-option-btn modal-diff-btn py-2 px-2 rounded-xl text-xs font-semibold border transition">Hard</button>
+        </div>
+      </div>
+
+      <div class="space-y-2.5">
+        <label class="block text-xs font-semibold uppercase tracking-wider gz-muted">Audio</label>
+        <div class="flex items-center justify-between p-3 rounded-xl gz-surface">
+          <span class="text-xs sm:text-sm font-medium">Sound Effects</span>
+          <button id="btn-toggle-sfx" type="button" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+            ON
+          </button>
+        </div>
+        <div class="flex items-center justify-between p-3 rounded-xl gz-surface">
+          <span class="text-xs sm:text-sm font-medium">Ambient Synth Music</span>
+          <button id="btn-toggle-music" type="button" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-400/40">
+            OFF
+          </button>
+        </div>
+      </div>
+
+      <div class="p-3.5 rounded-xl gz-surface text-xs space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="font-semibold text-cyan-400">Local Exit Rating Cooldown</span>
+          <button id="btn-clear-rating-cooldown" type="button" class="text-[11px] text-amber-300 hover:underline font-semibold">
+            Clear Cooldown
+          </button>
+        </div>
+        <p id="settings-cooldown-status" class="gz-muted text-[11px]">
+          Ready when at least 1 game is completed.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 pt-1">
+        <button id="btn-settings-pause-resume" type="button" class="py-2.5 px-3 rounded-xl gz-surface text-xs font-bold">
+          Pause / Resume
+        </button>
+        <button id="btn-settings-restart" type="button" class="py-2.5 px-3 rounded-xl gz-surface text-xs font-bold">
+          Restart Game
+        </button>
+        <button id="btn-settings-exit" type="button" class="col-span-2 py-2.5 px-3 rounded-xl btn-exit-distinct text-xs font-bold">
+          Exit to GameZone 203
+        </button>
+      </div>
+    </div>
   </div>
 
-  <canvas id="gameCanvas" width="400" height="600"></canvas>
+  <!-- RESET STATISTICS CONFIRMATION MODAL -->
+  <div
+    id="reset-stats-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="reset-stats-title"
+  >
+    <div class="w-full max-w-sm rounded-2xl gz-card p-6 space-y-4 shadow-2xl">
+      <h3 id="reset-stats-title" class="font-display text-lg font-bold text-rose-400">
+        Reset Flight Statistics?
+      </h3>
+      <p class="text-xs sm:text-sm gz-muted leading-relaxed">
+        This clears your saved Best Score, Games Played, Total Pipes, Level Stars, and Milestones for Flappy Bird 203. Your theme and audio preferences remain saved.
+      </p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button id="btn-cancel-reset-stats" type="button" class="px-4 py-2 rounded-xl gz-surface text-xs font-semibold">
+          Cancel
+        </button>
+        <button id="btn-confirm-reset-stats" type="button" class="px-4 py-2 rounded-xl bg-rose-500/25 text-rose-200 border border-rose-500/45 text-xs font-semibold">
+          Confirm Reset
+        </button>
+      </div>
+    </div>
+  </div>
 
-<script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const startOverlay = document.getElementById("startOverlay");
-  const startBtn = document.getElementById("startBtn");
+  <!-- EXIT RATING POPUP -->
+  <div
+    id="exit-rating-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="exit-rating-title"
+  >
+    <div class="w-full max-w-md rounded-2xl gz-card p-6 space-y-4 relative shadow-2xl">
+      <button
+        id="btn-rating-close"
+        type="button"
+        aria-label="Close rating popup and exit"
+        class="absolute top-4 right-4 w-8 h-8 rounded-lg gz-surface text-xs font-bold flex items-center justify-center hover:opacity-90"
+      >
+        ✕
+      </button>
 
-  let gameRunning = false;
-  let score = 0;
-  let bestScore = localStorage.getItem("flappyBest") || 0;
-  let frames = 0;
+      <div id="rating-step-form" class="space-y-4">
+        <div class="text-center pr-6 pl-6">
+          <h2 id="exit-rating-title" class="font-display text-lg sm:text-xl font-extrabold">
+            Enjoying Flappy Bird 203?
+          </h2>
+          <p class="text-xs sm:text-sm gz-muted mt-1">
+            Rate your gaming experience!
+          </p>
+        </div>
 
-  // Bird Object
-  const bird = {
-    x: 50,
-    y: 250,
-    width: 34,
-    height: 24,
-    velocity: 0,
-    gravity: 0.25,
-    jump: -4.6,
-    rotation: 0
-  };
+        <div class="space-y-1.5">
+          <div id="rating-stars-row" class="flex items-center justify-center gap-1.5 sm:gap-2" role="radiogroup" aria-label="Rate Flappy Bird 203 from 1 to 5 stars">
+            <button type="button" data-star="1" data-label="1 Star — Needs Work" role="radio" aria-checked="false" aria-label="1 Star" class="star-btn star-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="2" data-label="2 Stars — Fair" role="radio" aria-checked="false" aria-label="2 Stars" class="star-btn star-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="3" data-label="3 Stars — Good" role="radio" aria-checked="false" aria-label="3 Stars" class="star-btn star-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="4" data-label="4 Stars — Great" role="radio" aria-checked="false" aria-label="4 Stars" class="star-btn star-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="5" data-label="5 Stars — Awesome!" role="radio" aria-checked="false" aria-label="5 Stars" class="star-btn star-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+          </div>
+          <div id="rating-star-caption" class="text-center text-xs font-semibold text-cyan-400 h-4">
+            Select 1–5 stars
+          </div>
+          <p id="rating-star-error" class="hidden text-center text-xs text-rose-400 font-medium">
+            Please select a star rating (1–5) before submitting.
+          </p>
+        </div>
 
-  // Pipes Array
-  let pipes = [];
-  const pipeWidth = 50;
-  const pipeGap = 130;
-  const pipeSpeed = 2;
+        <textarea
+          id="rating-feedback-input"
+          rows="2"
+          maxlength="240"
+          placeholder="Optional feedback..."
+          class="w-full rounded-xl gz-surface px-3 py-2 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-cyan-400/40 resize-none"
+        ></textarea>
 
-  function resetGame() {
-    bird.y = 250;
-    bird.velocity = 0;
-    bird.rotation = 0;
-    pipes = [];
-    score = 0;
-    frames = 0;
-    gameRunning = true;
-    startOverlay.style.display = "none";
-    gameLoop();
-  }
+        <p class="text-[11px] gz-muted">
+          Saved locally in this browser only (private local feedback, not a global rating or review).
+        </p>
 
-  function createPipe() {
-    const minHeight = 50;
-    const maxHeight = canvas.height - pipeGap - minHeight;
-    const topHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
-    
-    pipes.push({
-      x: canvas.width,
-      topHeight: topHeight,
-      bottomY: topHeight + pipeGap,
-      passed: false
-    });
-  }
+        <div class="flex gap-2">
+          <button id="btn-rating-submit" type="button" class="flex-1 btn-primary-action py-2.5 px-3 rounded-xl text-xs sm:text-sm">
+            Submit Rating
+          </button>
+          <button id="btn-rating-later" type="button" class="py-2.5 px-3.5 rounded-xl gz-surface text-xs sm:text-sm font-semibold hover:opacity-90">
+            Maybe Later
+          </button>
+        </div>
+      </div>
 
-  function update() {
-    if (!gameRunning) return;
+      <div id="rating-step-thanks" class="hidden py-4 text-center space-y-3">
+        <div class="font-display text-lg font-extrabold text-emerald-400">Thanks for your feedback!</div>
+        <p class="text-xs gz-muted">Saved locally on this device. Returning to GameZone 203...</p>
+        <button id="btn-rating-continue-now" type="button" class="px-4 py-2 rounded-xl gz-surface text-xs font-semibold">
+          Continue Now
+        </button>
+      </div>
+    </div>
+  </div>
 
-    // Bird Physics
-    bird.velocity += bird.gravity;
-    bird.y += bird.velocity;
+  <script>
+    (function () {
+      'use strict';
 
-    // Rotation logic
-    if (bird.velocity < 0) {
-      bird.rotation = -0.3; // Tilt up
-    } else {
-      bird.rotation += 0.05; // Tilt down
-      if (bird.rotation > 1.5) bird.rotation = 1.5;
-    }
+      const GAMEZONE_HOME_URL = 'https://shakeeljee254-oss.github.io/gamezone-203/';
+      const STORAGE_KEY = 'gz203_flappy_203_data_v1';
+      const DAY_MS = 24 * 60 * 60 * 1000;
+      const DISMISS_COOLDOWN_DAYS = 7;
+      const SUBMIT_COOLDOWN_DAYS = 30;
 
-    // Generate Pipes
-    if (frames % 90 === 0) {
-      createPipe();
-    }
+      const LOGICAL_W = 390;
+      const LOGICAL_H = 520;
+      const GROUND_H = 74;
+      const PLAY_H = LOGICAL_H - GROUND_H;
+      const PIPE_W = 54;
+      const PIPE_POOL_SIZE = 4;
 
-    // Move Pipes & Check Score
-    for (let i = pipes.length - 1; i >= 0; i--) {
-      let p = pipes[i];
-      p.x -= pipeSpeed;
+      const LEVELS = [
+        { level: 1, name: 'Neon Dawn', targetScore: 6, speedBoost: 0, gapDelta: 0 },
+        { level: 2, name: 'Cyber Skyline', targetScore: 12, speedBoost: 14, gapDelta: -6 },
+        { level: 3, name: 'Pulse Spire', targetScore: 18, speedBoost: 28, gapDelta: -12 },
+        { level: 4, name: 'Apex 203', targetScore: 25, speedBoost: 42, gapDelta: -16 },
+      ];
 
-      // Score Update
-      if (!p.passed && p.x + pipeWidth < bird.x) {
-        p.passed = true;
-        score++;
-      }
-
-      // Collision Detection
-      let hitPipe = 
-        (bird.x + bird.width > p.x && bird.x < p.x + pipeWidth) && 
-        (bird.y < p.topHeight || bird.y + bird.height > p.bottomY);
-      
-      let hitFloor = bird.y + bird.height > canvas.height;
-      let hitCeiling = bird.y < 0;
-
-      if (hitPipe || hitFloor || hitCeiling) {
-        gameOver();
-      }
-
-      // Remove off-screen pipes
-      if (p.x + pipeWidth < 0) {
-        pipes.splice(i, 1);
-      }
-    }
-
-    frames++;
-  }
-
-  function draw() {
-    // Clear Canvas
-    ctx.fillStyle = "#70c5ce";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw Pipes
-    pipes.forEach(p => {
-      // Top Pipe
-      ctx.fillStyle = "#73bf2e";
-      ctx.fillRect(p.x, 0, pipeWidth, p.topHeight);
-      ctx.strokeStyle = "#558022";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(p.x, -2, pipeWidth, p.topHeight);
-      // Top Pipe Cap
-      ctx.fillRect(p.x - 5, p.topHeight - 20, pipeWidth + 10, 20);
-      ctx.strokeRect(p.x - 5, p.topHeight - 20, pipeWidth + 10, 20);
-
-      // Bottom Pipe
-      ctx.fillStyle = "#73bf2e";
-      ctx.fillRect(p.x, p.bottomY, pipeWidth, canvas.height - p.bottomY);
-      ctx.strokeRect(p.x, p.bottomY, pipeWidth, canvas.height - p.bottomY);
-      // Bottom Pipe Cap
-      ctx.fillRect(p.x - 5, p.bottomY, pipeWidth + 10, 20);
-      ctx.strokeRect(p.x - 5, p.bottomY, pipeWidth + 10, 20);
-    });
-
-    // Draw Bird
-    ctx.save();
-    ctx.translate(bird.x + bird.width/2, bird.y + bird.height/2);
-    ctx.rotate(bird.rotation);
-    
-    // Bird Body (Yellow)
-    ctx.fillStyle = "#fbbf24";
-    ctx.beginPath();
-    ctx.ellipse(0, 0, bird.width/2, bird.height/2, 0, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
-    
-    // Bird Eye
-    ctx.fillStyle = "white";
-    ctx.beginPath();
-    ctx.arc(8, -5, 5, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.arc(10, -5, 2, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Bird Beak (Orange)
-    ctx.fillStyle = "#f97316";
-    ctx.beginPath();
-    ctx.moveTo(15, 0);
-    ctx.lineTo(25, 2);
-    ctx.lineTo(15, 6);
-    ctx.fill();
-    
-    // Bird Wing
-    ctx.fillStyle = "#f59e0b";
-    ctx.beginPath();
-    ctx.ellipse(-5, 2, 8, 5, -0.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    ctx.restore();
-
-    // Draw UI Text
-    ctx.fillStyle = "white";
-    ctx.font = "bold 40px Arial";
-    ctx.textAlign = "center";
-    ctx.strokeStyle = "black";
-    ctx.lineWidth = 4;
-    ctx.strokeText(score, canvas.width/2, 70);
-    ctx.fillText(score, canvas.width/2, 70);
-  }
-
-  function gameOver() {
-    gameRunning = false;
-    if (score > bestScore) {
-      bestScore = score;
-      localStorage.setItem("flappyBest", bestScore);
-    }
-    
-    // Draw Game Over Screen
-    setTimeout(() => {
-      ctx.fillStyle = "rgba(0,0,0,0.7)";
-      ctx.fillRect(0, canvas.height/2 - 100, canvas.width, 200);
-      
-      ctx.fillStyle = "#fbbf24";
-      ctx.font = "bold 30px Arial";
-      ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 40);
-      
-      ctx.fillStyle = "white";
-      ctx.font = "20px Arial";
-      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 10);
-      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 40);
-      
-      ctx.fillStyle = "#aab1ce";
-      ctx.font = "14px Arial";
-      ctx.fillText("Tap to Restart", canvas.width/2, canvas.height/2 + 80);
-      
-      // Restart Event
-      const restart = () => {
-        canvas.removeEventListener("mousedown", restart);
-        canvas.removeEventListener("touchstart", restart);
-        resetGame();
+      const DIFFICULTIES = {
+        easy: {
+          label: 'Easy',
+          summary: 'Slower scroll, wider gaps & gentle gravity.',
+          gravity: 1180,
+          flapImpulse: -355,
+          scrollSpeed: 128,
+          gapHeight: 156,
+          pipeSpacing: 235,
+        },
+        medium: {
+          label: 'Medium',
+          summary: 'Balanced flight speed & fair gap width.',
+          gravity: 1420,
+          flapImpulse: -395,
+          scrollSpeed: 162,
+          gapHeight: 134,
+          pipeSpacing: 210,
+        },
+        hard: {
+          label: 'Hard',
+          summary: 'Faster pace, brisk gravity & tighter fair gaps.',
+          gravity: 1680,
+          flapImpulse: -430,
+          scrollSpeed: 204,
+          gapHeight: 116,
+          pipeSpacing: 192,
+        },
       };
-      canvas.addEventListener("mousedown", restart);
-      canvas.addEventListener("touchstart", restart, {passive: true});
-      
-    }, 500);
-  }
 
-  function jump() {
-    if (gameRunning) {
-      bird.velocity = bird.jump;
-    }
-  }
+      const store = {
+        theme: 'dark',
+        difficulty: 'medium',
+        selectedLevel: 1,
+        unlockedLevel: 1,
+        levelStars: { 1: 0, 2: 0, 3: 0, 4: 0 },
+        sfxEnabled: true,
+        musicEnabled: false,
+        bestScore: 0,
+        gamesPlayed: 0,
+        totalPipes: 0,
+        topMilestone: 0,
+        ratingCooldownUntil: 0,
+        localRatings: [],
+      };
 
-  // Controls
-  window.addEventListener("keydown", (e) => {
-    if (e.code === "Space" || e.code === "ArrowUp") {
-      e.preventDefault();
-      jump();
-    }
-  });
+      const game = {
+        phase: 'start',
+        pausedByVisibility: false,
+        score: 0,
+        lastMilestoneAnnounced: 0,
+        isNewBestThisRun: false,
+        activeLoopId: null,
+        lastFrameTime: 0,
+        groundScrollX: 0,
+        cloudScrollX: 0,
+        bird: {
+          x: 96,
+          y: PLAY_H * 0.46,
+          vy: 0,
+          radius: 14,
+          wingPhase: 0,
+          tilt: 0,
+        },
+        pipes: [],
+        selectedRatingStars: 0,
+        hoveredRatingStars: 0,
+        exitTimer: null,
+        milestoneTimer: null,
+      };
 
-  canvas.addEventListener("mousedown", jump);
-  canvas.addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    jump();
-  }, {passive: false});
+      const AMBIENT_STARS = [
+        { x: 34, y: 52, r: 1.3 }, { x: 88, y: 28, r: 1.0 }, { x: 145, y: 74, r: 1.5 },
+        { x: 212, y: 40, r: 1.1 }, { x: 276, y: 86, r: 1.4 }, { x: 338, y: 34, r: 1.2 },
+        { x: 64, y: 122, r: 1.1 }, { x: 184, y: 118, r: 1.2 }, { x: 310, y: 128, r: 1.0 },
+      ];
 
-  function gameLoop() {
-    if (!gameRunning) return;
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-  }
+      const AMBIENT_CLOUDS = [
+        { x: 40, y: 76, scale: 0.9 },
+        { x: 190, y: 54, scale: 1.1 },
+        { x: 325, y: 92, scale: 0.8 },
+      ];
 
-  startBtn.addEventListener("click", resetGame);
+      function getCurrentLevelConfig() {
+        return LEVELS.find((l) => l.level === store.selectedLevel) || LEVELS[0];
+      }
 
-</script>
+      function getActiveTuning() {
+        const base = DIFFICULTIES[store.difficulty] || DIFFICULTIES.medium;
+        const lvl = getCurrentLevelConfig();
+        return {
+          gravity: base.gravity,
+          flapImpulse: base.flapImpulse,
+          scrollSpeed: base.scrollSpeed + lvl.speedBoost,
+          gapHeight: Math.max(98, base.gapHeight + lvl.gapDelta),
+          pipeSpacing: base.pipeSpacing,
+        };
+      }
+
+      function computeEarnedLevelStars(score, target) {
+        if (score < target) return 0;
+        if (score >= Math.ceil(target * 1.5)) return 3;
+        if (score >= Math.ceil(target * 1.2)) return 2;
+        return 1;
+      }
+
+      function loadStore() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed.theme === 'day' || parsed.theme === 'dark') store.theme = parsed.theme;
+          if (DIFFICULTIES[parsed.difficulty]) store.difficulty = parsed.difficulty;
+          if (typeof parsed.unlockedLevel === 'number') {
+            store.unlockedLevel = Math.min(4, Math.max(1, parsed.unlockedLevel));
+          }
+          if (typeof parsed.selectedLevel === 'number') {
+            store.selectedLevel = Math.min(store.unlockedLevel, Math.max(1, parsed.selectedLevel));
+          }
+          if (parsed.levelStars && typeof parsed.levelStars === 'object') {
+            [1, 2, 3, 4].forEach((lv) => {
+              const s = Number(parsed.levelStars[lv]) || 0;
+              store.levelStars[lv] = Math.min(3, Math.max(0, s));
+            });
+          }
+          if (typeof parsed.sfxEnabled === 'boolean') store.sfxEnabled = parsed.sfxEnabled;
+          if (typeof parsed.musicEnabled === 'boolean') store.musicEnabled = parsed.musicEnabled;
+          store.bestScore = Math.max(0, Number(parsed.bestScore) || 0);
+          store.gamesPlayed = Math.max(0, Number(parsed.gamesPlayed) || 0);
+          store.totalPipes = Math.max(0, Number(parsed.totalPipes) || 0);
+          store.topMilestone = Math.max(0, Number(parsed.topMilestone) || 0);
+          store.ratingCooldownUntil = Math.max(0, Number(parsed.ratingCooldownUntil) || 0);
+          if (Array.isArray(parsed.localRatings)) store.localRatings = parsed.localRatings.slice(0, 15);
+        } catch (err) {
+          console.warn('[Flappy Bird 203] localStorage read error:', err);
+        }
+      }
+
+      function saveStore() {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(store));
+        } catch (err) {
+          console.warn('[Flappy Bird 203] localStorage write error:', err);
+        }
+        updateCooldownStatusUI();
+      }
+
+      /* Enhanced Smooth Web Audio Synth Sound Engine */
+      const AudioEngine = {
+        ctx: null,
+        musicInterval: null,
+        stepIndex: 0,
+
+        ensureCtx() {
+          if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new Ctx();
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume().catch(() => {});
+          }
+        },
+
+        playTone({ freq, endFreq = null, duration = 0.14, type = 'sine', gainPeak = 0.12, delay = 0, filterFreq = 2600 }) {
+          if (!store.sfxEnabled) return;
+          try {
+            this.ensureCtx();
+            if (!this.ctx) return;
+            const now = this.ctx.currentTime + delay;
+
+            const osc = this.ctx.createOscillator();
+            const filter = this.ctx.createBiquadFilter();
+            const gain = this.ctx.createGain();
+
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, now);
+            if (endFreq && endFreq > 0) {
+              osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration);
+            }
+
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(filterFreq, now);
+            filter.Q.setValueAtTime(1.2, now);
+
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.linearRampToValueAtTime(gainPeak, now + 0.012);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+
+            osc.start(now);
+            osc.stop(now + duration + 0.025);
+          } catch (_) {}
+        },
+
+        flap() {
+          this.playTone({
+            freq: 270,
+            endFreq: 540,
+            duration: 0.11,
+            type: 'sine',
+            gainPeak: 0.13,
+            filterFreq: 1800,
+          });
+          this.playTone({
+            freq: 420,
+            endFreq: 680,
+            duration: 0.06,
+            type: 'triangle',
+            gainPeak: 0.045,
+            filterFreq: 2200,
+          });
+        },
+
+        score() {
+          this.playTone({
+            freq: 587.33,
+            endFreq: null,
+            duration: 0.09,
+            type: 'triangle',
+            gainPeak: 0.11,
+            delay: 0,
+            filterFreq: 3200,
+          });
+          this.playTone({
+            freq: 880,
+            endFreq: null,
+            duration: 0.15,
+            type: 'sine',
+            gainPeak: 0.12,
+            delay: 0.065,
+            filterFreq: 3600,
+          });
+        },
+
+        milestone() {
+          const notes = [523.25, 659.25, 783.99, 1046.5];
+          notes.forEach((n, idx) => {
+            this.playTone({
+              freq: n,
+              endFreq: null,
+              duration: 0.16,
+              type: 'triangle',
+              gainPeak: 0.11,
+              delay: idx * 0.075,
+              filterFreq: 3800,
+            });
+          });
+        },
+
+        crash() {
+          this.playTone({
+            freq: 175,
+            endFreq: 52,
+            duration: 0.24,
+            type: 'triangle',
+            gainPeak: 0.18,
+            delay: 0,
+            filterFreq: 750,
+          });
+          this.playTone({
+            freq: 125,
+            endFreq: 42,
+            duration: 0.28,
+            type: 'sine',
+            gainPeak: 0.16,
+            delay: 0.02,
+            filterFreq: 500,
+          });
+        },
+
+        startMusic() {
+          this.stopMusic();
+          if (!store.musicEnabled) return;
+          const melody = [261.63, 329.63, 392.0, 329.63, 293.66, 349.23, 440.0, 392.0];
+          const bass = [130.81, 130.81, 164.81, 164.81, 146.83, 146.83, 196.0, 196.0];
+          this.musicInterval = setInterval(() => {
+            if (!store.musicEnabled || game.phase !== 'playing') return;
+            try {
+              this.ensureCtx();
+              if (!this.ctx) return;
+              const now = this.ctx.currentTime;
+              const idx = this.stepIndex % melody.length;
+              this.stepIndex++;
+
+              const leadOsc = this.ctx.createOscillator();
+              const leadFilter = this.ctx.createBiquadFilter();
+              const leadGain = this.ctx.createGain();
+              leadOsc.type = 'sine';
+              leadOsc.frequency.setValueAtTime(melody[idx], now);
+              leadFilter.type = 'lowpass';
+              leadFilter.frequency.setValueAtTime(1400, now);
+              leadGain.gain.setValueAtTime(0.0001, now);
+              leadGain.gain.linearRampToValueAtTime(0.032, now + 0.05);
+              leadGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.34);
+              leadOsc.connect(leadFilter);
+              leadFilter.connect(leadGain);
+              leadGain.connect(this.ctx.destination);
+              leadOsc.start(now);
+              leadOsc.stop(now + 0.36);
+
+              if (idx % 2 === 0) {
+                const bassOsc = this.ctx.createOscillator();
+                const bassGain = this.ctx.createGain();
+                bassOsc.type = 'sine';
+                bassOsc.frequency.setValueAtTime(bass[idx], now);
+                bassGain.gain.setValueAtTime(0.0001, now);
+                bassGain.gain.linearRampToValueAtTime(0.035, now + 0.05);
+                bassGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
+                bassOsc.connect(bassGain);
+                bassGain.connect(this.ctx.destination);
+                bassOsc.start(now);
+                bassOsc.stop(now + 0.68);
+              }
+            } catch (_) {}
+          }, 360);
+        },
+
+        stopMusic() {
+          if (this.musicInterval) {
+            clearInterval(this.musicInterval);
+            this.musicInterval = null;
+          }
+        },
+      };
+
+      function initPipePool() {
+        const cfg = getActiveTuning();
+        game.pipes = [];
+        for (let i = 0; i < PIPE_POOL_SIZE; i++) {
+          game.pipes.push({
+            x: LOGICAL_W + 200 + i * cfg.pipeSpacing,
+            gapTop: 140,
+            gapHeight: cfg.gapHeight,
+            passed: false,
+          });
+        }
+      }
+
+      function configurePipeAt(pipe, xPos) {
+        const cfg = getActiveTuning();
+        const minTopMargin = 48;
+        const minBottomMargin = 48;
+        const maxGapTop = Math.max(minTopMargin + 20, PLAY_H - minBottomMargin - cfg.gapHeight);
+        pipe.x = xPos;
+        pipe.gapHeight = cfg.gapHeight;
+        pipe.gapTop = minTopMargin + Math.random() * (maxGapTop - minTopMargin);
+        pipe.passed = false;
+      }
+
+      function resetEntitiesForStart() {
+        const cfg = getActiveTuning();
+        game.score = 0;
+        game.lastMilestoneAnnounced = 0;
+        game.isNewBestThisRun = false;
+        game.bird.x = 96;
+        game.bird.y = PLAY_H * 0.45;
+        game.bird.vy = 0;
+        game.bird.tilt = 0;
+        game.bird.wingPhase = 0;
+
+        for (let i = 0; i < game.pipes.length; i++) {
+          configurePipeAt(game.pipes[i], LOGICAL_W + 170 + i * cfg.pipeSpacing);
+        }
+      }
+
+      function syncScrollLock() {
+        if (game.phase === 'playing') {
+          document.body.classList.add('gameplay-active-lock');
+        } else {
+          document.body.classList.remove('gameplay-active-lock');
+        }
+      }
+
+      function setGamePhase(nextPhase, reason = '') {
+        game.phase = nextPhase;
+        syncScrollLock();
+
+        const startOverlay = document.getElementById('start-screen-overlay');
+        const pauseOverlay = document.getElementById('pause-screen-overlay');
+        const overOverlay = document.getElementById('gameover-screen-overlay');
+        const hudPauseBtn = document.getElementById('btn-hud-pause');
+
+        startOverlay.classList.add('hidden');
+        pauseOverlay.classList.add('hidden');
+        pauseOverlay.classList.remove('flex');
+        overOverlay.classList.add('hidden');
+        overOverlay.classList.remove('flex');
+
+        if (nextPhase === 'start') {
+          startOverlay.classList.remove('hidden');
+          hudPauseBtn.disabled = true;
+          hudPauseBtn.textContent = 'Pause';
+          AudioEngine.stopMusic();
+        } else if (nextPhase === 'playing') {
+          hudPauseBtn.disabled = false;
+          hudPauseBtn.textContent = 'Pause';
+          if (store.musicEnabled) AudioEngine.startMusic();
+        } else if (nextPhase === 'paused') {
+          pauseOverlay.classList.remove('hidden');
+          pauseOverlay.classList.add('flex');
+          hudPauseBtn.disabled = false;
+          hudPauseBtn.textContent = 'Resume';
+          document.getElementById('pause-heading').textContent =
+            reason === 'visibility' ? 'Auto-Paused (Tab Hidden)' : 'Game Paused';
+          document.getElementById('pause-reason-text').textContent =
+            reason === 'visibility'
+              ? 'Flight paused automatically when you switched tabs. Click Resume when ready.'
+              : 'Resume when ready, open Settings, or Exit to GameZone 203.';
+          AudioEngine.stopMusic();
+        } else if (nextPhase === 'gameover') {
+          overOverlay.classList.remove('hidden');
+          overOverlay.classList.add('flex');
+          hudPauseBtn.disabled = true;
+          hudPauseBtn.textContent = 'Pause';
+          AudioEngine.stopMusic();
+        }
+
+        updateHUD();
+      }
+
+      function startNewRun() {
+        if (game.exitTimer) {
+          clearTimeout(game.exitTimer);
+          game.exitTimer = null;
+        }
+        resetEntitiesForStart();
+        setGamePhase('playing');
+        game.bird.vy = getActiveTuning().flapImpulse * 0.85;
+        AudioEngine.flap();
+        ensureAnimationLoop();
+      }
+
+      function triggerFlap() {
+        if (game.phase !== 'playing') return;
+        game.bird.vy = getActiveTuning().flapImpulse;
+        game.bird.tilt = -0.45;
+        AudioEngine.flap();
+      }
+
+      function togglePauseGame(fromVisibility = false) {
+        if (game.phase === 'playing') {
+          game.pausedByVisibility = fromVisibility;
+          setGamePhase('paused', fromVisibility ? 'visibility' : 'manual');
+        } else if (game.phase === 'paused' && !fromVisibility) {
+          game.pausedByVisibility = false;
+          setGamePhase('playing');
+          game.lastFrameTime = performance.now();
+          ensureAnimationLoop();
+        }
+      }
+
+      function handleCollisionAndGameOver() {
+        if (game.phase === 'gameover') return;
+        AudioEngine.crash();
+
+        const lvl = getCurrentLevelConfig();
+        const earnedStars = computeEarnedLevelStars(game.score, lvl.targetScore);
+        const levelCompleted = earnedStars > 0;
+
+        store.gamesPlayed += 1;
+        store.totalPipes += game.score;
+        if (game.score > store.bestScore) {
+          store.bestScore = game.score;
+          game.isNewBestThisRun = true;
+        }
+
+        if (levelCompleted) {
+          if (earnedStars > (store.levelStars[lvl.level] || 0)) {
+            store.levelStars[lvl.level] = earnedStars;
+          }
+          if (lvl.level < LEVELS.length && store.unlockedLevel < lvl.level + 1) {
+            store.unlockedLevel = lvl.level + 1;
+          }
+        }
+
+        saveStore();
+
+        const kickerEl = document.getElementById('gameover-kicker');
+        const headingEl = document.getElementById('gameover-heading');
+        const starsEl = document.getElementById('gameover-level-stars');
+        const nextBtn = document.getElementById('btn-next-level');
+
+        if (levelCompleted) {
+          AudioEngine.milestone();
+          kickerEl.textContent = `Level ${lvl.level} • ${lvl.name}`;
+          kickerEl.className = 'text-[11px] font-display font-bold uppercase tracking-wider text-emerald-400';
+          headingEl.textContent = 'Level Complete!';
+          starsEl.classList.remove('hidden');
+          starsEl.textContent = '★'.repeat(earnedStars) + '☆'.repeat(3 - earnedStars);
+          if (lvl.level < LEVELS.length) {
+            nextBtn.classList.remove('hidden');
+            nextBtn.textContent = `Next Level (Lv.${lvl.level + 1}) →`;
+          } else {
+            nextBtn.classList.add('hidden');
+          }
+        } else {
+          kickerEl.textContent = `Level ${lvl.level} • Target ${lvl.targetScore} pts`;
+          kickerEl.className = 'text-[11px] font-display font-bold uppercase tracking-wider text-rose-400';
+          headingEl.textContent = 'Game Over';
+          starsEl.classList.add('hidden');
+          nextBtn.classList.add('hidden');
+        }
+
+        document.getElementById('gameover-score').textContent = String(game.score);
+        document.getElementById('gameover-best').textContent = String(store.bestScore);
+        const newBestEl = document.getElementById('gameover-new-best');
+        if (game.isNewBestThisRun) newBestEl.classList.remove('hidden');
+        else newBestEl.classList.add('hidden');
+
+        renderLevelSelector();
+        updateStatsUI();
+        setGamePhase('gameover');
+      }
+
+      function ensureAnimationLoop() {
+        if (game.activeLoopId !== null) return;
+        game.lastFrameTime = performance.now();
+        game.activeLoopId = window.requestAnimationFrame(stepFrame);
+      }
+
+      function stopAnimationLoop() {
+        if (game.activeLoopId !== null) {
+          window.cancelAnimationFrame(game.activeLoopId);
+          game.activeLoopId = null;
+        }
+      }
+
+      function updatePhysics(dt) {
+        const cfg = getActiveTuning();
+
+        const scrollFactor = game.phase === 'playing' ? 1 : 0.35;
+        game.groundScrollX = (game.groundScrollX + cfg.scrollSpeed * scrollFactor * dt) % 36;
+        game.cloudScrollX = (game.cloudScrollX + 18 * scrollFactor * dt) % LOGICAL_W;
+        game.bird.wingPhase += dt * (game.phase === 'playing' ? 18 : 7);
+
+        if (game.phase !== 'playing') {
+          if (game.phase === 'start') {
+            game.bird.y = PLAY_H * 0.45 + Math.sin(performance.now() * 0.004) * 7;
+            game.bird.tilt = 0;
+          }
+          return;
+        }
+
+        game.bird.vy += cfg.gravity * dt;
+        game.bird.y += game.bird.vy * dt;
+
+        const targetTilt = game.bird.vy < 0 ? -0.42 : Math.min(1.15, (game.bird.vy / 520) * 0.95);
+        game.bird.tilt += (targetTilt - game.bird.tilt) * Math.min(1, dt * 12);
+
+        if (game.bird.y - game.bird.radius < 0) {
+          game.bird.y = game.bird.radius;
+          game.bird.vy = 0;
+        }
+
+        if (game.bird.y + game.bird.radius >= PLAY_H) {
+          game.bird.y = PLAY_H - game.bird.radius;
+          handleCollisionAndGameOver();
+          return;
+        }
+
+        let rightmostX = 0;
+        for (let i = 0; i < game.pipes.length; i++) {
+          if (game.pipes[i].x > rightmostX) rightmostX = game.pipes[i].x;
+        }
+
+        for (let i = 0; i < game.pipes.length; i++) {
+          const p = game.pipes[i];
+          p.x -= cfg.scrollSpeed * dt;
+
+          if (!p.passed && p.x + PIPE_W * 0.5 < game.bird.x) {
+            p.passed = true;
+            game.score += 1;
+            AudioEngine.score();
+            checkScoreMilestone(game.score);
+            updateHUD();
+          }
+
+          if (circleIntersectsPipe(game.bird.x, game.bird.y, game.bird.radius * 0.86, p)) {
+            handleCollisionAndGameOver();
+            return;
+          }
+
+          if (p.x + PIPE_W < -20) {
+            const nextX = Math.max(rightmostX + cfg.pipeSpacing, LOGICAL_W + 60);
+            configurePipeAt(p, nextX);
+            rightmostX = nextX;
+          }
+        }
+      }
+
+      function circleIntersectsPipe(cx, cy, cr, pipe) {
+        if (cx + cr < pipe.x || cx - cr > pipe.x + PIPE_W) return false;
+        const hitTopPipe = cy - cr < pipe.gapTop;
+        const hitBottomPipe = cy + cr > pipe.gapTop + pipe.gapHeight;
+        return hitTopPipe || hitBottomPipe;
+      }
+
+      function checkScoreMilestone(currentScore) {
+        if (currentScore > 0 && currentScore % 10 === 0 && currentScore > game.lastMilestoneAnnounced) {
+          game.lastMilestoneAnnounced = currentScore;
+          AudioEngine.milestone();
+          if (currentScore > store.topMilestone) {
+            store.topMilestone = currentScore;
+            saveStore();
+            updateStatsUI();
+          }
+
+          const msg = `★ ${currentScore} Pts!`;
+          const banner = document.getElementById('hud-milestone-text');
+          const mobileBanner = document.getElementById('mobile-milestone-text');
+          if (banner) banner.textContent = msg;
+          if (mobileBanner) mobileBanner.textContent = msg;
+
+          if (game.milestoneTimer) clearTimeout(game.milestoneTimer);
+          game.milestoneTimer = setTimeout(() => {
+            if (banner) banner.textContent = '';
+            if (mobileBanner) mobileBanner.textContent = '';
+          }, 2200);
+        }
+      }
+
+      function renderCanvas(ctx) {
+        const isDay = store.theme === 'day';
+
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, PLAY_H);
+        if (isDay) {
+          skyGrad.addColorStop(0, '#38bdf8');
+          skyGrad.addColorStop(0.65, '#bae6fd');
+          skyGrad.addColorStop(1, '#e0f2fe');
+        } else {
+          skyGrad.addColorStop(0, '#050816');
+          skyGrad.addColorStop(0.6, '#0d1530');
+          skyGrad.addColorStop(1, '#191438');
+        }
+        ctx.fillStyle = skyGrad;
+        ctx.fillRect(0, 0, LOGICAL_W, PLAY_H);
+
+        if (isDay) {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+          for (let i = 0; i < AMBIENT_CLOUDS.length; i++) {
+            const cl = AMBIENT_CLOUDS[i];
+            const drawX = ((cl.x - game.cloudScrollX * 0.5) % (LOGICAL_W + 90) + (LOGICAL_W + 90)) % (LOGICAL_W + 90) - 45;
+            drawCloud(ctx, drawX, cl.y, cl.scale);
+          }
+        } else {
+          ctx.fillStyle = '#e2e8f0';
+          for (let i = 0; i < AMBIENT_STARS.length; i++) {
+            const st = AMBIENT_STARS[i];
+            ctx.globalAlpha = 0.45 + 0.35 * Math.sin(performance.now() * 0.002 + i);
+            ctx.beginPath();
+            ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+            ctx.fill();
+          }
+          ctx.globalAlpha = 1;
+        }
+
+        for (let i = 0; i < game.pipes.length; i++) {
+          drawPipePair(ctx, game.pipes[i], isDay);
+        }
+
+        const groundGrad = ctx.createLinearGradient(0, PLAY_H, 0, LOGICAL_H);
+        if (isDay) {
+          groundGrad.addColorStop(0, '#22c55e');
+          groundGrad.addColorStop(0.22, '#16a34a');
+          groundGrad.addColorStop(0.23, '#ca8a04');
+          groundGrad.addColorStop(1, '#854d0e');
+        } else {
+          groundGrad.addColorStop(0, '#00f5d4');
+          groundGrad.addColorStop(0.08, '#131d3b');
+          groundGrad.addColorStop(1, '#070b18');
+        }
+        ctx.fillStyle = groundGrad;
+        ctx.fillRect(0, PLAY_H, LOGICAL_W, GROUND_H);
+
+        ctx.fillStyle = isDay ? 'rgba(255, 255, 255, 0.25)' : 'rgba(139, 92, 246, 0.28)';
+        for (let gx = -game.groundScrollX; gx < LOGICAL_W + 36; gx += 36) {
+          ctx.fillRect(gx, PLAY_H + 16, 16, 6);
+        }
+
+        drawBird(ctx, game.bird, isDay);
+      }
+
+      function drawCloud(ctx, x, y, scale) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+        ctx.beginPath();
+        ctx.arc(0, 0, 18, 0, Math.PI * 2);
+        ctx.arc(16, -5, 21, 0, Math.PI * 2);
+        ctx.arc(34, 0, 16, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function drawPipePair(ctx, pipe, isDay) {
+        const topBottom = pipe.gapTop;
+        const bottomTop = pipe.gapTop + pipe.gapHeight;
+        const bottomHeight = Math.max(0, PLAY_H - bottomTop);
+
+        const bodyFill = isDay ? '#16a34a' : '#162447';
+        const highlightFill = isDay ? '#4ade80' : '#00f5d4';
+        const strokeColor = isDay ? '#14532d' : '#8b5cf6';
+
+        ctx.fillStyle = bodyFill;
+        ctx.strokeStyle = strokeColor;
+        ctx.lineWidth = 2;
+
+        if (topBottom > 0) {
+          ctx.fillRect(pipe.x, 0, PIPE_W, topBottom);
+          ctx.strokeRect(pipe.x, -2, PIPE_W, topBottom + 2);
+          ctx.fillStyle = highlightFill;
+          ctx.fillRect(pipe.x + 6, 0, 5, topBottom);
+
+          ctx.fillStyle = bodyFill;
+          ctx.fillRect(pipe.x - 4, topBottom - 20, PIPE_W + 8, 20);
+          ctx.strokeRect(pipe.x - 4, topBottom - 20, PIPE_W + 8, 20);
+        }
+
+        if (bottomHeight > 0) {
+          ctx.fillStyle = bodyFill;
+          ctx.fillRect(pipe.x, bottomTop, PIPE_W, bottomHeight);
+          ctx.strokeRect(pipe.x, bottomTop, PIPE_W, bottomHeight + 2);
+          ctx.fillStyle = highlightFill;
+          ctx.fillRect(pipe.x + 6, bottomTop, 5, bottomHeight);
+
+          ctx.fillStyle = bodyFill;
+          ctx.fillRect(pipe.x - 4, bottomTop, PIPE_W + 8, 20);
+          ctx.strokeRect(pipe.x - 4, bottomTop, PIPE_W + 8, 20);
+        }
+      }
+
+      function drawBird(ctx, bird, isDay) {
+        ctx.save();
+        ctx.translate(bird.x, bird.y);
+        ctx.rotate(bird.tilt);
+
+        ctx.fillStyle = isDay ? '#facc15' : '#00f5d4';
+        ctx.strokeStyle = isDay ? '#854d0e' : '#0f172a';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, bird.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        const wingOffset = Math.sin(bird.wingPhase) * 4;
+        ctx.fillStyle = isDay ? '#fef08a' : '#8b5cf6';
+        ctx.beginPath();
+        ctx.ellipse(-3, wingOffset * 0.6, 7, 4.5, -0.2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(5, -3.5, 4.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.arc(6.5, -3.5, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f97316';
+        ctx.beginPath();
+        ctx.moveTo(11, -1);
+        ctx.lineTo(19, 2.5);
+        ctx.lineTo(11, 6);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      function stepFrame(now) {
+        const rawDt = (now - game.lastFrameTime) / 1000;
+        game.lastFrameTime = now;
+        const dt = Math.min(rawDt, 0.05);
+
+        updatePhysics(dt);
+
+        const canvas = document.getElementById('flappy-canvas');
+        const ctx = canvas.getContext('2d');
+        renderCanvas(ctx);
+
+        if (game.phase === 'playing' || game.phase === 'start') {
+          game.activeLoopId = window.requestAnimationFrame(stepFrame);
+        } else {
+          game.activeLoopId = null;
+        }
+      }
+
+      function resizeCanvasHighDPI() {
+        const canvas = document.getElementById('flappy-canvas');
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = Math.max(1, Math.round(rect.width * dpr));
+        const h = Math.max(1, Math.round(rect.height * dpr));
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(canvas.width / LOGICAL_W, 0, 0, canvas.height / LOGICAL_H, 0, 0);
+        renderCanvas(ctx);
+      }
+
+      function renderLevelSelector() {
+        const grid = document.getElementById('level-selector-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        const activeLvl = getCurrentLevelConfig();
+        document.getElementById('level-goal-label').textContent = `Target: ${activeLvl.targetScore} pts`;
+
+        LEVELS.forEach((lvl) => {
+          const unlocked = lvl.level <= store.unlockedLevel;
+          const selected = lvl.level === store.selectedLevel;
+          const earned = store.levelStars[lvl.level] || 0;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.disabled = !unlocked;
+          btn.className = [
+            'py-1.5 px-1 rounded-xl border text-center transition flex flex-col items-center justify-center',
+            selected
+              ? 'border-cyan-400 bg-cyan-500/20 text-cyan-200'
+              : unlocked
+              ? 'border-slate-700/70 gz-surface hover:border-cyan-400/50'
+              : 'border-slate-800/60 opacity-40 cursor-not-allowed',
+          ].join(' ');
+
+          const starsStr = unlocked ? ('★'.repeat(earned) + '☆'.repeat(3 - earned)) : '🔒';
+          btn.innerHTML = `<span class="text-[11px] font-bold">L${lvl.level}</span><span class="text-[10px] text-amber-400 leading-none mt-0.5">${starsStr}</span>`;
+
+          btn.addEventListener('click', () => {
+            if (!unlocked) return;
+            store.selectedLevel = lvl.level;
+            saveStore();
+            renderLevelSelector();
+            updateHUD();
+            if (game.phase === 'start') {
+              resetEntitiesForStart();
+            }
+          });
+
+          grid.appendChild(btn);
+        });
+      }
+
+      function applyTheme() {
+        const root = document.documentElement;
+        const isDay = store.theme === 'day';
+        root.classList.toggle('theme-day', isDay);
+        root.classList.toggle('theme-dark', !isDay);
+
+        document.getElementById('quick-theme-label').textContent = isDay ? 'Dark' : 'Day';
+
+        const darkBtn = document.getElementById('btn-theme-dark');
+        const dayBtn = document.getElementById('btn-theme-day');
+        darkBtn.className = !isDay
+          ? 'py-2.5 px-3 rounded-xl text-xs font-bold border border-cyan-400 bg-cyan-500/20 text-cyan-300 transition'
+          : 'py-2.5 px-3 rounded-xl text-xs font-bold border border-slate-300 bg-slate-100 text-slate-700 transition';
+        dayBtn.className = isDay
+          ? 'py-2.5 px-3 rounded-xl text-xs font-bold border border-sky-600 bg-sky-100 text-sky-900 transition'
+          : 'py-2.5 px-3 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-300 transition';
+
+        const canvas = document.getElementById('flappy-canvas');
+        renderCanvas(canvas.getContext('2d'));
+      }
+
+      function applyDifficulty(nextDiff) {
+        if (!DIFFICULTIES[nextDiff]) return;
+        store.difficulty = nextDiff;
+        saveStore();
+
+        const cfg = DIFFICULTIES[nextDiff];
+        document.getElementById('hud-difficulty-badge').textContent = cfg.label;
+        document.getElementById('start-diff-summary').textContent = cfg.summary;
+        document.getElementById('settings-diff-note').textContent = cfg.label;
+
+        document.querySelectorAll('.diff-option-btn').forEach((btn) => {
+          btn.classList.toggle('is-active-diff', btn.dataset.diff === nextDiff);
+        });
+
+        if (game.phase === 'start') {
+          resetEntitiesForStart();
+        }
+      }
+
+      function updateAudioButtons() {
+        const sfxBtn = document.getElementById('btn-toggle-sfx');
+        const musicBtn = document.getElementById('btn-toggle-music');
+        const panelSfxLabel = document.getElementById('panel-sfx-label');
+
+        sfxBtn.textContent = store.sfxEnabled ? 'ON' : 'OFF';
+        musicBtn.textContent = store.musicEnabled ? 'ON' : 'OFF';
+        if (panelSfxLabel) {
+          panelSfxLabel.textContent = store.sfxEnabled ? 'ON' : 'OFF';
+        }
+
+        if (store.musicEnabled && game.phase === 'playing') {
+          AudioEngine.startMusic();
+        } else if (!store.musicEnabled) {
+          AudioEngine.stopMusic();
+        }
+      }
+
+      function updateHUD() {
+        const bestDisplay = String(Math.max(store.bestScore, game.score));
+        const scoreDisplay = String(game.score);
+        document.getElementById('hud-score').textContent = scoreDisplay;
+        document.getElementById('hud-best').textContent = bestDisplay;
+        document.getElementById('hud-level-label').textContent = `Lv.${store.selectedLevel}`;
+
+        const mScore = document.getElementById('mobile-hud-score');
+        const mBest = document.getElementById('mobile-hud-best');
+        const mLvl = document.getElementById('mobile-hud-level');
+        if (mScore) mScore.textContent = scoreDisplay;
+        if (mBest) mBest.textContent = bestDisplay;
+        if (mLvl) mLvl.textContent = String(store.selectedLevel);
+      }
+
+      function updateStatsUI() {
+        const totalStars = [1, 2, 3, 4].reduce((sum, lv) => sum + (store.levelStars[lv] || 0), 0);
+        document.getElementById('stat-best-score').textContent = String(store.bestScore);
+        document.getElementById('stat-games-played').textContent = String(store.gamesPlayed);
+        document.getElementById('stat-total-stars').textContent = `${totalStars} / 12`;
+        document.getElementById('stat-top-milestone').textContent = `${store.topMilestone} pts`;
+
+        document.querySelectorAll('#milestone-badges .milestone-chip').forEach((chip) => {
+          const target = Number(chip.dataset.milestone);
+          if (store.topMilestone >= target) {
+            chip.classList.remove('opacity-45');
+            chip.classList.add('border-emerald-400/50', 'text-emerald-300', 'bg-emerald-500/10');
+          } else {
+            chip.classList.add('opacity-45');
+            chip.classList.remove('border-emerald-400/50', 'text-emerald-300', 'bg-emerald-500/10');
+          }
+        });
+      }
+
+      function updateCooldownStatusUI() {
+        const el = document.getElementById('settings-cooldown-status');
+        if (!el) return;
+        const remainingMs = (store.ratingCooldownUntil || 0) - Date.now();
+        if (remainingMs > 0) {
+          const daysLeft = Math.ceil(remainingMs / DAY_MS);
+          el.textContent = `Cooldown active: ~${daysLeft} day(s) remaining.`;
+        } else if (store.gamesPlayed < 1) {
+          el.textContent = 'Will appear after completing at least 1 flight.';
+        } else {
+          el.textContent = 'Eligible on next Exit or Back to Games.';
+        }
+      }
+
+      function openSettingsModal() {
+        if (game.phase === 'playing') {
+          togglePauseGame(false);
+        }
+        updateCooldownStatusUI();
+        const modal = document.getElementById('settings-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function closeSettingsModal() {
+        const modal = document.getElementById('settings-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+
+      function navigateToGameZoneHome() {
+        if (game.exitTimer) {
+          clearTimeout(game.exitTimer);
+          game.exitTimer = null;
+        }
+        stopAnimationLoop();
+        AudioEngine.stopMusic();
+        document.body.classList.remove('gameplay-active-lock');
+        try {
+          window.location.assign(GAMEZONE_HOME_URL);
+        } catch (_) {
+          window.location.href = GAMEZONE_HOME_URL;
+        }
+      }
+
+      function isRatingPopupEligible() {
+        try {
+          if (store.gamesPlayed < 1) return false;
+          const now = Date.now();
+          const cooldownUntil = Number(store.ratingCooldownUntil) || 0;
+          return now >= cooldownUntil;
+        } catch (_) {
+          return false;
+        }
+      }
+
+      function handleExitOrBackRequest(event) {
+        if (game.phase === 'playing') {
+          togglePauseGame(false);
+        }
+        closeSettingsModal();
+
+        if (!isRatingPopupEligible()) {
+          if (!event || event.currentTarget.tagName !== 'A') {
+            navigateToGameZoneHome();
+          }
+          return;
+        }
+
+        if (event && typeof event.preventDefault === 'function') {
+          event.preventDefault();
+        }
+
+        game.selectedRatingStars = 0;
+        game.hoveredRatingStars = 0;
+        document.getElementById('rating-feedback-input').value = '';
+        document.getElementById('rating-star-error').classList.add('hidden');
+        document.getElementById('rating-step-form').classList.remove('hidden');
+        document.getElementById('rating-step-thanks').classList.add('hidden');
+        renderRatingStars();
+
+        const modal = document.getElementById('exit-rating-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function renderRatingStars() {
+        const displayVal = game.hoveredRatingStars || game.selectedRatingStars;
+        const caption = document.getElementById('rating-star-caption');
+
+        document.querySelectorAll('#rating-stars-row .star-btn').forEach((btn) => {
+          const val = Number(btn.dataset.star);
+          btn.setAttribute('aria-checked', val === game.selectedRatingStars ? 'true' : 'false');
+          if (val <= displayVal) {
+            btn.classList.remove('star-off');
+            btn.classList.add('star-on');
+          } else {
+            btn.classList.remove('star-on');
+            btn.classList.add('star-off');
+          }
+        });
+
+        if (displayVal >= 1 && displayVal <= 5) {
+          const activeBtn = document.querySelector(`#rating-stars-row .star-btn[data-star="${displayVal}"]`);
+          caption.textContent = activeBtn ? activeBtn.dataset.label : `${displayVal} Stars`;
+        } else {
+          caption.textContent = 'Select 1–5 stars';
+        }
+      }
+
+      function dismissRatingWithCooldown(days) {
+        store.ratingCooldownUntil = Date.now() + days * DAY_MS;
+        saveStore();
+        const modal = document.getElementById('exit-rating-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        navigateToGameZoneHome();
+      }
+
+      function submitRatingAndExit() {
+        if (!Number.isInteger(game.selectedRatingStars) || game.selectedRatingStars < 1 || game.selectedRatingStars > 5) {
+          document.getElementById('rating-star-error').classList.remove('hidden');
+          return;
+        }
+
+        const rawText = document.getElementById('rating-feedback-input').value || '';
+        const cleanComment = rawText.replace(/[<>]/g, '').trim().slice(0, 240);
+
+        store.localRatings.unshift({
+          stars: game.selectedRatingStars,
+          comment: cleanComment,
+          submittedAt: new Date().toISOString(),
+          storageType: 'local-only',
+        });
+        store.localRatings = store.localRatings.slice(0, 15);
+        store.ratingCooldownUntil = Date.now() + SUBMIT_COOLDOWN_DAYS * DAY_MS;
+        saveStore();
+
+        document.getElementById('rating-step-form').classList.add('hidden');
+        document.getElementById('rating-step-thanks').classList.remove('hidden');
+
+        game.exitTimer = setTimeout(() => {
+          navigateToGameZoneHome();
+        }, 1200);
+      }
+
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('year-span').textContent = String(new Date().getFullYear());
+
+        loadStore();
+        initPipePool();
+        resetEntitiesForStart();
+        applyTheme();
+        applyDifficulty(store.difficulty);
+        renderLevelSelector();
+        updateAudioButtons();
+        updateHUD();
+        updateStatsUI();
+        updateCooldownStatusUI();
+        resizeCanvasHighDPI();
+        setGamePhase('start');
+        ensureAnimationLoop();
+
+        document.getElementById('btn-play-start').addEventListener('click', startNewRun);
+        document.getElementById('btn-play-again').addEventListener('click', startNewRun);
+        document.getElementById('btn-next-level').addEventListener('click', () => {
+          if (store.selectedLevel < LEVELS.length && store.selectedLevel < store.unlockedLevel) {
+            store.selectedLevel += 1;
+            saveStore();
+            renderLevelSelector();
+          }
+          startNewRun();
+        });
+        document.getElementById('btn-bottom-restart').addEventListener('click', startNewRun);
+        document.getElementById('btn-top-restart').addEventListener('click', startNewRun);
+        document.getElementById('btn-panel-restart').addEventListener('click', startNewRun);
+        document.getElementById('btn-pause-restart').addEventListener('click', startNewRun);
+        document.getElementById('btn-settings-restart').addEventListener('click', () => {
+          closeSettingsModal();
+          startNewRun();
+        });
+
+        document.getElementById('btn-hud-pause').addEventListener('click', () => togglePauseGame(false));
+        document.getElementById('btn-resume-flight').addEventListener('click', () => togglePauseGame(false));
+        document.getElementById('btn-settings-pause-resume').addEventListener('click', () => {
+          closeSettingsModal();
+          if (game.phase === 'paused' || game.phase === 'playing') {
+            togglePauseGame(false);
+          }
+        });
+
+        document.getElementById('btn-open-settings').addEventListener('click', openSettingsModal);
+        document.getElementById('btn-panel-settings').addEventListener('click', openSettingsModal);
+        document.getElementById('btn-start-settings').addEventListener('click', openSettingsModal);
+        document.getElementById('btn-gameover-settings').addEventListener('click', openSettingsModal);
+        document.getElementById('btn-pause-settings').addEventListener('click', () => {
+          document.getElementById('pause-screen-overlay').classList.add('hidden');
+          document.getElementById('pause-screen-overlay').classList.remove('flex');
+          openSettingsModal();
+        });
+        document.getElementById('btn-close-settings').addEventListener('click', closeSettingsModal);
+
+        document.getElementById('btn-quick-theme').addEventListener('click', () => {
+          store.theme = store.theme === 'dark' ? 'day' : 'dark';
+          saveStore();
+          applyTheme();
+        });
+        document.getElementById('btn-theme-dark').addEventListener('click', () => {
+          store.theme = 'dark';
+          saveStore();
+          applyTheme();
+        });
+        document.getElementById('btn-theme-day').addEventListener('click', () => {
+          store.theme = 'day';
+          saveStore();
+          applyTheme();
+        });
+
+        document.querySelectorAll('.diff-option-btn').forEach((btn) => {
+          btn.addEventListener('click', () => applyDifficulty(btn.dataset.diff));
+        });
+
+        const toggleSfxHandler = () => {
+          store.sfxEnabled = !store.sfxEnabled;
+          saveStore();
+          updateAudioButtons();
+          if (store.sfxEnabled) {
+            AudioEngine.playTone({ freq: 523.25, endFreq: 783.99, duration: 0.09, type: 'sine', gainPeak: 0.1 });
+          }
+        };
+        document.getElementById('btn-toggle-sfx').addEventListener('click', toggleSfxHandler);
+        document.getElementById('btn-panel-sfx-quick').addEventListener('click', toggleSfxHandler);
+        document.getElementById('btn-toggle-music').addEventListener('click', () => {
+          store.musicEnabled = !store.musicEnabled;
+          saveStore();
+          updateAudioButtons();
+        });
+
+        const resetModal = document.getElementById('reset-stats-modal');
+        document.getElementById('btn-open-reset-stats').addEventListener('click', () => {
+          resetModal.classList.remove('hidden');
+          resetModal.classList.add('flex');
+        });
+        document.getElementById('btn-cancel-reset-stats').addEventListener('click', () => {
+          resetModal.classList.add('hidden');
+          resetModal.classList.remove('flex');
+        });
+        document.getElementById('btn-confirm-reset-stats').addEventListener('click', () => {
+          store.bestScore = 0;
+          store.gamesPlayed = 0;
+          store.totalPipes = 0;
+          store.topMilestone = 0;
+          store.unlockedLevel = 1;
+          store.selectedLevel = 1;
+          store.levelStars = { 1: 0, 2: 0, 3: 0, 4: 0 };
+          saveStore();
+          renderLevelSelector();
+          updateStatsUI();
+          updateHUD();
+          resetModal.classList.add('hidden');
+          resetModal.classList.remove('flex');
+        });
+
+        document.getElementById('btn-clear-rating-cooldown').addEventListener('click', () => {
+          store.ratingCooldownUntil = 0;
+          saveStore();
+        });
+
+        document.getElementById('link-back-to-games').addEventListener('click', handleExitOrBackRequest);
+        document.getElementById('btn-header-exit').addEventListener('click', handleExitOrBackRequest);
+        document.getElementById('btn-pause-exit').addEventListener('click', handleExitOrBackRequest);
+        document.getElementById('btn-gameover-exit').addEventListener('click', handleExitOrBackRequest);
+        document.getElementById('btn-settings-exit').addEventListener('click', handleExitOrBackRequest);
+
+        document.getElementById('btn-rating-later').addEventListener('click', () => {
+          dismissRatingWithCooldown(DISMISS_COOLDOWN_DAYS);
+        });
+        document.getElementById('btn-rating-close').addEventListener('click', () => {
+          dismissRatingWithCooldown(DISMISS_COOLDOWN_DAYS);
+        });
+        document.getElementById('btn-rating-submit').addEventListener('click', submitRatingAndExit);
+        document.getElementById('btn-rating-continue-now').addEventListener('click', navigateToGameZoneHome);
+
+        document.querySelectorAll('#rating-stars-row .star-btn').forEach((btn) => {
+          const starVal = Number(btn.dataset.star);
+          btn.addEventListener('mouseenter', () => {
+            game.hoveredRatingStars = starVal;
+            renderRatingStars();
+          });
+          btn.addEventListener('mouseleave', () => {
+            game.hoveredRatingStars = 0;
+            renderRatingStars();
+          });
+          btn.addEventListener('click', () => {
+            game.selectedRatingStars = starVal;
+            document.getElementById('rating-star-error').classList.add('hidden');
+            renderRatingStars();
+          });
+        });
+
+        const canvas = document.getElementById('flappy-canvas');
+        canvas.addEventListener('pointerdown', (e) => {
+          if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+          if (game.phase === 'playing') {
+            triggerFlap();
+          }
+        });
+
+        window.addEventListener('keydown', (e) => {
+          const tag = e.target && e.target.tagName ? e.target.tagName.toUpperCase() : '';
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+          const settingsOpen = !document.getElementById('settings-modal').classList.contains('hidden');
+          const ratingOpen = !document.getElementById('exit-rating-modal').classList.contains('hidden');
+          const resetOpen = !document.getElementById('reset-stats-modal').classList.contains('hidden');
+
+          if (e.key === 'Escape') {
+            if (settingsOpen) {
+              closeSettingsModal();
+              return;
+            }
+            if (ratingOpen) {
+              dismissRatingWithCooldown(DISMISS_COOLDOWN_DAYS);
+              return;
+            }
+            if (resetOpen) {
+              resetModal.classList.add('hidden');
+              resetModal.classList.remove('flex');
+              return;
+            }
+            if (game.phase === 'playing' || game.phase === 'paused') {
+              e.preventDefault();
+              togglePauseGame(false);
+            }
+            return;
+          }
+
+          if (settingsOpen || ratingOpen || resetOpen) return;
+
+          if (e.key === 'p' || e.key === 'P') {
+            if (game.phase === 'playing' || game.phase === 'paused') {
+              e.preventDefault();
+              togglePauseGame(false);
+            }
+            return;
+          }
+
+          const isFlapKey = e.code === 'Space' || e.key === ' ' || e.key === 'ArrowUp';
+          if (isFlapKey) {
+            if (game.phase === 'playing') {
+              e.preventDefault();
+              triggerFlap();
+            } else if ((game.phase === 'start' || game.phase === 'gameover') && tag !== 'BUTTON') {
+              e.preventDefault();
+              startNewRun();
+            }
+            return;
+          }
+
+          if (e.key === 'Enter' && tag !== 'BUTTON' && tag !== 'A') {
+            if (game.phase === 'start' || game.phase === 'gameover') {
+              e.preventDefault();
+              startNewRun();
+            }
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden && game.phase === 'playing') {
+            togglePauseGame(true);
+          }
+        });
+
+        window.addEventListener('resize', resizeCanvasHighDPI);
+
+        window.addEventListener('beforeunload', () => {
+          stopAnimationLoop();
+          AudioEngine.stopMusic();
+          if (game.exitTimer) clearTimeout(game.exitTimer);
+          if (game.milestoneTimer) clearTimeout(game.milestoneTimer);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
