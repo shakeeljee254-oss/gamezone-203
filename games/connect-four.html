@@ -8,11 +8,11 @@
   <title>Connect Four 203 — Play Free Online Strategy Board Game | GameZone203</title>
   <meta
     name="description"
-    content="Play Connect Four 203 free online at GameZone203. Instant zero-scroll arena on mobile, laptop, and PC with Easy, Medium, and Hard AI, Day/Light/Dark themes, and Settings."
+    content="Play Connect Four 203 free online at GameZone203 with no download. Instant arena on mobile, laptop, and PC with Easy, Medium, and Hard AI, Day/Light/Dark themes, daily quests, and 2-player mode."
   />
   <meta
     name="keywords"
-    content="Connect Four 203, Connect 4 online, free Connect Four game, GameZone203, strategy board game, Minimax AI, 2 player Connect 4, HTML5 browser game"
+    content="Connect Four 203, Connect 4 online, free Connect Four game, GameZone203, strategy board game, Minimax AI, 2 player Connect 4, HTML5 browser game, connect four board size, connect four life size, life size connect four game, large size connect four, large size connect four game, connect four travel size game, giant size connect four, travel size connect four, connect four online no download, connect 4 strategy tips, connect four easy medium hard ai, connect four pass and play, connect four daily quests, connect four keyboard shortcuts, connect four dark and light theme, connect four free browser game"
   />
   <meta name="author" content="GameZone203" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -185,7 +185,6 @@
       box-shadow: 0 3px 10px rgba(234, 179, 8, 0.45), inset 0 2px 4px rgba(255, 255, 255, 0.55);
     }
 
-    /* GPU-composited drop animation without layout thrashing */
     @keyframes discDropSmooth {
       0% {
         transform: translate3d(0, var(--drop-offset, -220px), 0);
@@ -249,7 +248,6 @@
       cursor: not-allowed;
     }
 
-    /* Responsive arena sizing so board + controls fit comfortably on desktop, laptop & mobile */
     #board-stage-box {
       width: min(100%, 440px, calc(100dvh - 195px));
     }
@@ -263,7 +261,7 @@
 </head>
 <body class="min-h-dvh font-sans antialiased flex flex-col">
 
-  <!-- Fast Non-Blocking Boot Splash (300ms max so it never hangs or delays gameplay) -->
+  <!-- Fast Non-Blocking Boot Splash -->
   <div id="loading-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#070b18] text-white transition-opacity duration-200">
     <div class="flex flex-col items-center gap-3 px-6 text-center">
       <div class="grid grid-cols-2 gap-1.5 p-3 rounded-2xl bg-slate-900 border border-cyan-400/40">
@@ -281,13 +279,13 @@
     </div>
   </div>
 
-  <!-- Confetti Overlay Canvas (Lightweight, auto-stops after burst) -->
+  <!-- Confetti Overlay Canvas -->
   <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-40 w-full h-full"></canvas>
 
   <!-- Toast Banner -->
   <div id="toast-banner" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-200 bg-slate-900 text-cyan-200 border border-cyan-400/60 px-4 py-1.5 rounded-full text-xs font-semibold shadow-xl"></div>
 
-  <!-- ==================== TOP BAR: INSTANT ACCESS TO GAME, DIFFICULTY, THEME & SETTINGS ==================== -->
+  <!-- TOP BAR -->
   <header class="sticky top-0 z-30 theme-card border-x-0 border-t-0 px-3 sm:px-6 h-14 flex items-center justify-between gap-2">
     <div class="flex items-center gap-2 min-w-0">
       <a
@@ -302,9 +300,7 @@
       </h1>
     </div>
 
-    <!-- Quick Theme Switcher + Settings + Achievements + Sound -->
     <div class="flex items-center gap-1.5 shrink-0">
-      <!-- Compact 3-Theme Segmented Selector (Day / Light / Dark) -->
       <div class="inline-flex items-center rounded-lg theme-muted-box p-0.5 text-[11px] font-semibold" role="group" aria-label="Color Theme">
         <button type="button" data-theme-choice="day" class="theme-pill px-2 py-1 rounded-md transition" title="Day Theme">☀️ Day</button>
         <button type="button" data-theme-choice="light" class="theme-pill px-2 py-1 rounded-md transition" title="Light Theme">🌤️ Light</button>
@@ -343,16 +339,15 @@
     </div>
   </header>
 
-  <!-- ==================== MAIN ABOVE-THE-FOLD ARENA (NO SCROLL NEEDED TO PLAY) ==================== -->
+  <!-- MAIN ARENA -->
   <main class="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-3 sm:py-5 flex flex-col justify-between gap-6">
 
     <section aria-label="Connect Four Interactive Arena" class="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6 items-center">
 
-      <!-- BOARD FIRST ON ALL SCREENS (No scrolling required to see & drop discs!) -->
+      <!-- BOARD -->
       <div class="lg:col-span-7 flex flex-col items-center justify-center">
         <div id="board-stage-box" class="w-full space-y-2">
 
-          <!-- Compact Turn & Move Status Bar -->
           <div class="theme-card rounded-xl px-3.5 py-2 flex items-center justify-between gap-2">
             <div class="flex items-center gap-2.5 min-w-0">
               <span id="turn-disc-indicator" class="w-6 h-6 rounded-full disc-red shrink-0"></span>
@@ -370,12 +365,9 @@
             </span>
           </div>
 
-          <!-- Board Frame -->
           <div class="relative rounded-2xl board-frame p-2 sm:p-3">
-            <!-- Hover / Column Preview Row -->
             <div id="hover-preview-row" class="grid grid-cols-7 gap-1 sm:gap-2 mb-1.5" aria-hidden="true"></div>
 
-            <!-- 7x6 Board Grid -->
             <div
               id="connect-four-board"
               class="grid grid-cols-7 gap-1 sm:gap-2 select-none"
@@ -383,12 +375,10 @@
               aria-label="Connect Four 7 by 6 Board"
             ></div>
 
-            <!-- Column Numbers 1-7 -->
             <div class="grid grid-cols-7 gap-1 sm:gap-2 mt-1.5 text-center text-[10px] sm:text-xs font-mono theme-text-muted">
               <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
             </div>
 
-            <!-- PAUSE OVERLAY -->
             <div
               id="pause-overlay"
               class="hidden absolute inset-0 z-20 rounded-2xl bg-slate-950/85 backdrop-blur-sm flex-col items-center justify-center p-5 text-center text-white"
@@ -401,7 +391,6 @@
             </div>
           </div>
 
-          <!-- Game Over / Win / Draw Compact Card -->
           <div id="gameover-banner" class="hidden theme-card rounded-xl p-3 border-2">
             <div class="flex items-center justify-between gap-2.5">
               <div class="flex items-center gap-2.5 min-w-0">
@@ -420,10 +409,9 @@
         </div>
       </div>
 
-      <!-- RIGHT / SIDE PANEL: INSTANT MODE, EASY / MEDIUM / HARD DIFFICULTY, ACTION BUTTONS & STATS -->
+      <!-- RIGHT PANEL -->
       <div class="lg:col-span-5 space-y-3">
 
-        <!-- Mode & Difficulty Card -->
         <div class="theme-card rounded-2xl p-3.5 sm:p-4 space-y-3">
           <div class="flex items-center justify-between">
             <span class="font-display text-xs font-bold uppercase tracking-wider">Match Controls</span>
@@ -432,7 +420,6 @@
             </span>
           </div>
 
-          <!-- Mode Buttons -->
           <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Game Mode">
             <button type="button" data-mode="pvc" class="mode-btn py-2 px-2 rounded-xl text-xs font-bold border transition">
               1P vs AI
@@ -445,7 +432,6 @@
             </button>
           </div>
 
-          <!-- Easy / Medium / Hard Difficulty Buttons -->
           <div id="difficulty-wrapper" class="space-y-1.5">
             <div class="flex items-center justify-between text-[11px]">
               <span class="font-medium theme-text-muted">AI Difficulty</span>
@@ -464,7 +450,6 @@
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div class="grid grid-cols-4 gap-1.5 pt-0.5">
             <button id="btn-new-game" type="button" class="btn-primary-action py-2 px-2 rounded-xl text-xs">
               New
@@ -481,7 +466,6 @@
           </div>
         </div>
 
-        <!-- Scoreboard & Daily Quests Compact Card -->
         <div class="theme-card rounded-2xl p-3.5 sm:p-4 space-y-2.5">
           <div class="flex items-center justify-between">
             <span class="font-display text-xs font-bold uppercase tracking-wider">Score &amp; Quests</span>
@@ -517,7 +501,6 @@
       </div>
     </section>
 
-    <!-- Below-the-Fold Rules & Guide (Optional scroll for reference only) -->
     <section id="how-to-play" class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
       <article class="theme-card rounded-2xl p-4 sm:p-5 space-y-2">
         <h2 class="font-display text-sm sm:text-base font-bold">How to Play Connect Four 203</h2>
@@ -541,7 +524,7 @@
     </footer>
   </main>
 
-  <!-- ==================== SETTINGS MODAL (THEME, DIFFICULTY, SOUND, AI SPEED, ROOM) ==================== -->
+  <!-- SETTINGS MODAL -->
   <div
     id="settings-modal"
     class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
@@ -555,7 +538,6 @@
         <button type="button" id="btn-close-settings" class="w-8 h-8 rounded-lg theme-muted-box font-bold">✕</button>
       </div>
 
-      <!-- Theme Selection -->
       <div class="space-y-1.5">
         <label class="block text-xs font-bold">Color Theme</label>
         <div class="grid grid-cols-3 gap-2">
@@ -571,7 +553,6 @@
         </div>
       </div>
 
-      <!-- Difficulty Selection -->
       <div class="space-y-1.5">
         <label class="block text-xs font-bold">AI Difficulty</label>
         <div class="grid grid-cols-3 gap-2">
@@ -587,7 +568,6 @@
         </div>
       </div>
 
-      <!-- Sound & Preview Toggles -->
       <div class="flex items-center justify-between theme-muted-box p-3 rounded-xl">
         <div>
           <div class="text-xs font-bold">Sound Effects</div>
@@ -616,7 +596,7 @@
     </div>
   </div>
 
-  <!-- ==================== ACHIEVEMENTS MODAL ==================== -->
+  <!-- ACHIEVEMENTS MODAL -->
   <div
     id="achievements-modal"
     class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
@@ -633,7 +613,7 @@
     </div>
   </div>
 
-  <!-- ==================== RESET CONFIRMATION MODAL ==================== -->
+  <!-- RESET CONFIRMATION MODAL -->
   <div
     id="reset-confirm-modal"
     class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
@@ -658,19 +638,14 @@
   </div>
 
   <script>
-    /**
-     * ============================================================================
-     * CONNECT FOUR 203 — SMOOTH ZERO-LAG ENGINE
-     * ============================================================================
-     */
     (function () {
       'use strict';
 
       const ROWS = 6;
       const COLS = 7;
       const EMPTY = 0;
-      const PLAYER_1 = 1; // Red
-      const PLAYER_2 = 2; // Yellow (Player 2 or AI)
+      const PLAYER_1 = 1;
+      const PLAYER_2 = 2;
 
       const STATS_KEY = 'gz203_c4_stats_v3';
       const PREFS_KEY = 'gz203_c4_prefs_v3';
@@ -690,9 +665,9 @@
       const state = {
         board: [],
         currentPlayer: PLAYER_1,
-        mode: 'pvc', // 'pvc' | 'pvp' | 'cvc'
-        difficulty: 'medium', // 'easy' | 'medium' | 'hard'
-        theme: 'dark', // 'day' | 'light' | 'dark'
+        mode: 'pvc',
+        difficulty: 'medium',
+        theme: 'dark',
         soundEnabled: true,
         showPreview: true,
         gameOver: false,
@@ -719,9 +694,6 @@
         },
       };
 
-      // ========================================================================
-      // TOAST HELPER
-      // ========================================================================
       let toastTimer = null;
       function showToast(msg) {
         const el = document.getElementById('toast-banner');
@@ -732,9 +704,6 @@
         toastTimer = setTimeout(() => el.classList.add('opacity-0'), 2200);
       }
 
-      // ========================================================================
-      // LIGHTWEIGHT WEB AUDIO SFX
-      // ========================================================================
       const SoundFX = {
         ctx: null,
         ensure() {
@@ -788,9 +757,6 @@
         },
       };
 
-      // ========================================================================
-      // PERSISTENCE, DAILY QUESTS & ACHIEVEMENTS
-      // ========================================================================
       function ensureQuestsToday() {
         const d = todayStr();
         if (!state.stats.quests || state.stats.quests.date !== d) {
@@ -857,9 +823,6 @@
         showToast(`🏆 Unlocked: ${def.title}`);
       }
 
-      // ========================================================================
-      // THEME APPLICATION (DAY / LIGHT / DARK)
-      // ========================================================================
       function applyTheme(themeName) {
         if (!['day', 'light', 'dark'].includes(themeName)) return;
         state.theme = themeName;
@@ -889,9 +852,6 @@
         });
       }
 
-      // ========================================================================
-      // BOARD RULES & FAST AI ENGINE (NON-BLOCKING DEPTH ADAPTATION)
-      // ========================================================================
       function emptyBoard() {
         return Array.from({ length: ROWS }, () => Array(COLS).fill(EMPTY));
       }
@@ -920,7 +880,6 @@
       }
 
       function winCells(board, p) {
-        // Horizontal
         for (let r = 0; r < ROWS; r++) {
           for (let c = 0; c <= COLS - 4; c++) {
             if (board[r][c] === p && board[r][c + 1] === p && board[r][c + 2] === p && board[r][c + 3] === p) {
@@ -928,7 +887,6 @@
             }
           }
         }
-        // Vertical
         for (let r = 0; r <= ROWS - 4; r++) {
           for (let c = 0; c < COLS; c++) {
             if (board[r][c] === p && board[r + 1][c] === p && board[r + 2][c] === p && board[r + 3][c] === p) {
@@ -936,7 +894,6 @@
             }
           }
         }
-        // Diag down-right
         for (let r = 0; r <= ROWS - 4; r++) {
           for (let c = 0; c <= COLS - 4; c++) {
             if (board[r][c] === p && board[r + 1][c + 1] === p && board[r + 2][c + 2] === p && board[r + 3][c + 3] === p) {
@@ -944,7 +901,6 @@
             }
           }
         }
-        // Diag up-right
         for (let r = 3; r < ROWS; r++) {
           for (let c = 0; c <= COLS - 4; c++) {
             if (board[r][c] === p && board[r - 1][c + 1] === p && board[r - 2][c + 2] === p && board[r - 3][c + 3] === p) {
@@ -974,7 +930,6 @@
             return cols[Math.floor(Math.random() * cols.length)];
           }
 
-          // Check immediate win
           for (const c of cols) {
             const r = lowestRow(board, c);
             board[r][c] = aiP;
@@ -983,7 +938,6 @@
             if (w) return c;
           }
 
-          // Check immediate block
           for (const c of cols) {
             const r = lowestRow(board, c);
             board[r][c] = opp;
@@ -992,7 +946,6 @@
             if (w) return c;
           }
 
-          // Adapt search depth smoothly based on remaining empty cells so low-end devices never hang
           const emptyCount = board.flat().filter((v) => v === EMPTY).length;
           const maxDepth = diff === 'hard' ? (emptyCount > 32 ? 4 : 5) : 2;
 
@@ -1091,9 +1044,6 @@
         },
       };
 
-      // ========================================================================
-      // CONFETTI
-      // ========================================================================
       const Confetti = {
         raf: null,
         burst() {
@@ -1135,9 +1085,6 @@
         },
       };
 
-      // ========================================================================
-      // GAMEPLAY STATE & RENDERING
-      // ========================================================================
       function stopAi() {
         if (state.aiTimer) {
           clearTimeout(state.aiTimer);
@@ -1626,9 +1573,6 @@
         }`;
       }
 
-      // ========================================================================
-      // BOOTSTRAP — READY IMMEDIATELY ON ANY DEVICE (MOBILE, LAPTOP, PC)
-      // ========================================================================
       function hideSplash() {
         const ls = document.getElementById('loading-screen');
         const bar = document.getElementById('loading-bar');
@@ -1651,11 +1595,9 @@
         renderBoard();
         renderStats();
 
-        // Hide splash immediately after initial paint so game never hangs
         requestAnimationFrame(() => setTimeout(hideSplash, 140));
         setTimeout(hideSplash, 600);
 
-        // Core Controls
         document.getElementById('btn-new-game').addEventListener('click', () => resetGame(true));
         document.getElementById('btn-restart-round').addEventListener('click', () => resetGame(true));
         document.getElementById('btn-play-again').addEventListener('click', () => resetGame(true));
@@ -1683,7 +1625,6 @@
           if (state.soundEnabled) SoundFX.click();
         });
 
-        // Settings Modal
         const sModal = document.getElementById('settings-modal');
         const openSettings = () => {
           SoundFX.click();
@@ -1715,7 +1656,6 @@
           renderPreview();
         });
 
-        // Achievements Modal
         const aModal = document.getElementById('achievements-modal');
         document.getElementById('btn-open-achievements').addEventListener('click', () => {
           SoundFX.click();
@@ -1728,7 +1668,6 @@
           aModal.classList.remove('flex');
         });
 
-        // Reset Stats Modal
         const rModal = document.getElementById('reset-confirm-modal');
         document.getElementById('btn-reset-stats').addEventListener('click', () => {
           SoundFX.click();
@@ -1757,7 +1696,6 @@
           SoundFX.click();
         });
 
-        // Keyboard support (1-7, ArrowLeft, ArrowRight, Enter/Space)
         document.addEventListener('keydown', (e) => {
           if (e.target && ['INPUT', 'TEXTAREA'].includes(e.target.tagName)) return;
           if (e.key >= '1' && e.key <= '7') {
