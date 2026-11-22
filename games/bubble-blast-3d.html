@@ -26,13 +26,76 @@
   <meta name="twitter:description" content="Play Bubble Blast 3D Pro online for free with 60 levels and power-ups.">
   <meta name="twitter:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
 
+  <!-- Detailed VideoGame & FAQPage Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "VideoGame",
-    "name": "Bubble Blast 3D Pro",
-    "description": "Match 3D bubbles and use power-ups to clear levels.",
-    "genre": ["Puzzle", "3D", "Arcade"]
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "name": "Bubble Blast 3D Pro",
+        "description": "Play Bubble Blast 3D Pro online for free with no download! Match 3D bubbles and use Bomb, Rainbow Prism, Fire, and Lightning power-ups across 60 progressive stages.",
+        "genre": ["Puzzle", "3D", "Arcade"],
+        "gamePlatform": ["Web Browser", "Mobile Web", "Desktop Browser"],
+        "operatingSystem": "Any (HTML5 / WebGL)",
+        "applicationCategory": "Game",
+        "playMode": "SinglePlayer",
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 1
+        },
+        "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/bubble-blast-3d.html",
+        "image": "https://shakeeljee254-oss.github.io/gamezone-203/cover.png",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GameZone 203"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How many levels does Bubble Blast 3D Pro have?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bubble Blast 3D Pro features 60 progressive 3D stages with increasing bubble layouts, star ratings, and move limits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I play Bubble Blast 3D Pro on mobile and adjust graphics quality?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, it supports touch and drag aiming on mobile devices and includes Low, Medium, and High graphics quality presets in Settings."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What power-ups and controls are available in the game?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can aim with mouse, touch, or arrow keys, swap bubbles with S, and activate Bomb, Rainbow Prism, Fire, and Lightning power-ups to clear tough clusters."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Bubble Blast 3D Pro free to play in the browser?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can play Bubble Blast 3D Pro free directly in your browser on GameZone 203 without downloading extra software."
+            }
+          }
+        ]
+      }
+    ]
   }
   </script>
   
@@ -131,6 +194,11 @@
     .result-stars { display: flex; justify-content: center; gap: 14px; font-size: 2.6rem; margin: 6px 0; }
     .result-star { color: rgba(255, 255, 255, 0.16); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); transform: scale(0.6); }
     .result-star.earned { color: var(--neon-gold); text-shadow: 0 0 24px rgba(255, 215, 0, 0.9); transform: scale(1.1); }
+    #game-faq { position: fixed; left: 16px; bottom: 16px; z-index: 5; max-width: 340px; max-height: 220px; overflow-y: auto; padding: 12px 14px; background: rgba(12, 18, 42, 0.78); border-radius: 12px; color: var(--text-main); border: 1px solid rgba(0, 240, 255, 0.3); font-family: 'Rajdhani', sans-serif; text-align: left; }
+    #game-faq h2 { color: var(--neon-cyan); font-family: 'Orbitron', sans-serif; font-size: 0.85rem; margin: 0 0 6px; }
+    #game-faq h3 { color: #fff; font-size: 0.88rem; margin-top: 8px; }
+    #game-faq p { color: var(--text-muted); font-size: 0.82rem; line-height: 1.35; }
+    @media (max-width: 768px) { #game-faq { display: none; } }
     @media (max-width: 480px) { .dashboard-card { padding: 20px 16px; gap: 14px; } .game-logo { font-size: 1.75rem !important; } .powerup-btn { width: 52px; height: 52px; } .hud-pill { padding: 6px 10px; font-size: 0.85rem; } }
   </style>
 </head>
@@ -562,7 +630,7 @@
       document.getElementById('btn-reset-progress').addEventListener('click', (e) => { sound.playClick(); if (!resetConfirmArmed) { resetConfirmArmed = true; e.target.textContent = '⚠ TAP AGAIN TO CONFIRM'; setTimeout(() => { resetConfirmArmed = false; e.target.textContent = '🗑 RESET DATA'; }, 3000); return; } resetConfirmArmed = false; e.target.textContent = '🗑 RESET DATA'; saveData = JSON.parse(JSON.stringify(defaultSaveData)); persistSaveData(); syncSettingsUI(); refreshMenuStats(); showToast('All progress reset!'); });
 
       let lastTime = performance.now();
-      function animate(now) { requestAnimationFrame(animate); const dt = Math.min(0.05, (now - lastTime) / 1000); lastTime = now; if (starField) { starField.rotation.z += dt * 0.025; } baseRing.rotation.z -= dt * 0.55; nextRing.rotation.z += dt * 0.8; if (gameState.cameraShake > 0) { gameState.cameraShake = Math.max(0, gameState.cameraShake - dt * 1.6); const shakeAmt = gameState.cameraShake * 0.35; camera.position.x = (Math.random() - 0.5) * shakeAmt; camera.position.y = -0.15 + (Math.random() - 0.5) * shakeAmt; } else { camera.position.x = 0; camera.position.y = -0.15; } if (gameState.mode === 'playing' && gameState.projectile) { const proj = gameState.projectile; const subSteps = 4; const subDt = dt / subSteps; const minX = LEFT_WALL + BUBBLE_RADIUS; const maxX = RIGHT_WALL - BUBBLE_RADIUS; const topLimit = TOP_Y - gameState.ceilingOffsetRows * ROW_HEIGHT; let impacted = false; for (let s = 0; s < subSteps && !impacted; s++) { proj.x += proj.vx * subDt; proj.y += proj.vy * subDt; if (proj.x <= minX) { proj.x = minX + (minX - proj.x); proj.vx = -proj.vx; sound.playBounce(); } else if (proj.x >= maxX) { proj.x = maxX - (proj.x - maxX); proj.vx = -proj.vx; sound.playBounce(); } if (proj.y >= topLimit) { proj.y = topLimit; impacted = true; break; } for (let r = 0; r < MAX_ROWS && !impacted; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (!cell) continue; const pos = getCellWorldPos(r, c); const dx = proj.x - pos.x; const dy = proj.y - pos.y; if (dx * dx + dy * dy <= (BUBBLE_DIAM * 0.91) * (BUBBLE_DIAM * 0.91)) { if (proj.special === 'fire') { const key = `${r},${c}`; if (!proj.piercedSet.has(key)) { proj.piercedSet.add(key); popCell(r, c, proj.piercedSet.size); gameState.score += 90; updateHUD(); } } else { impacted = true; break; } } } } } proj.mesh.position.set(proj.x, proj.y, 0.05); if (proj.mesh.userData.ring) { proj.mesh.userData.ring.rotation.z += dt * 6; } if (impacted) { resolveProjectileImpact(proj.x, proj.y); } } for (let r = 0; r < gameState.grid.length; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (cell && cell.wobble > 0) { cell.wobble = Math.max(0, cell.wobble - dt * 1.4); const s = 1 + Math.sin(cell.wobble * 32) * cell.wobble * 0.35; cell.mesh.scale.set(s, 2 - s, 1); if (cell.wobble === 0) cell.mesh.scale.setScalar(1); } } } for (let i = gameState.fallingBubbles.length - 1; i >= 0; i--) { const fb = gameState.fallingBubbles[i]; fb.vy -= 22 * dt; fb.mesh.position.x += fb.vx * dt; fb.mesh.position.y += fb.vy * dt; fb.mesh.rotation.z += fb.rotSpeed * dt; if (fb.mesh.position.y < LAUNCHER_Y - 1.2) { spawnBurst(fb.mesh.position.x, fb.mesh.position.y, fb.colorHex, 8); sound.playPop(i); scene.remove(fb.mesh); gameState.fallingBubbles.splice(i, 1); } } for (let i = gameState.particles.length - 1; i >= 0; i--) { const p = gameState.particles[i]; p.life += dt; if (p.life >= p.maxLife) { scene.remove(p.mesh); gameState.particles.splice(i, 1); continue; } p.vy -= 14 * dt; p.mesh.position.x += p.vx * dt; p.mesh.position.y += p.vy * dt; p.mesh.position.z += p.vz * dt; const ratio = 1 - p.life / p.maxLife; p.mesh.scale.setScalar(Math.max(0.01, ratio)); } for (let i = gameState.shockwaves.length - 1; i >= 0; i--) { const sw = gameState.shockwaves[i]; sw.life += dt; if (sw.life >= sw.maxLife) { scene.remove(sw.mesh); sw.mesh.geometry.dispose(); sw.mesh.material.dispose(); gameState.shockwaves.splice(i, 1); continue; } const t = sw.life / sw.maxLife; const sc = 0.5 + (sw.maxScale - 0.5) * (1 - Math.pow(1 - t, 3)); sw.mesh.scale.setScalar(sc); sw.mesh.material.opacity = (1 - t) * 0.85; } updateTrajectoryVisuals(); renderer.render(scene, camera); }
+      function animate(now) { requestAnimationFrame(animate); const dt = Math.min(0.05, (now - lastTime) / 1000); lastTime = now; if (starField) { starField.rotation.z += dt * 0.025; } baseRing.rotation.z -= dt * 0.55; nextRing.rotation.z += dt * 0.8; if (gameState.cameraShake > 0) { gameState.cameraShake = Math.max(0, gameState.cameraShake - dt * 1.6); const shakeAmt = gameState.cameraShake * 0.35; camera.position.x = (Math.random() - 0.5) * shakeAmt; camera.position.y = -0.15 + (Math.random() - 0.5) * shakeAmt; } else { camera.position.x = 0; camera.position.y = -0.15; } if (gameState.mode === 'playing' && gameState.projectile) { const proj = gameState.projectile; const subSteps = 4; const subDt = dt / subSteps; const minX = LEFT_WALL + BUBBLE_RADIUS; const maxX = RIGHT_WALL - BUBBLE_RADIUS; const topLimit = TOP_Y - gameState.ceilingOffsetRows * ROW_HEIGHT; let impacted = false; for (let s = 0; s < subSteps && !impacted; s++) { proj.x += proj.vx * subDt; proj.y += proj.vy * subDt; if (proj.x <= minX) { proj.x = minX + (minX - proj.x); proj.vx = -proj.vx; sound.playBounce(); } else if (proj.x >= maxX) { proj.x = maxX - (x - maxX); proj.vx = -proj.vx; sound.playBounce(); } if (proj.y >= topLimit) { proj.y = topLimit; impacted = true; break; } for (let r = 0; r < MAX_ROWS && !impacted; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (!cell) continue; const pos = getCellWorldPos(r, c); const dx = proj.x - pos.x; const dy = proj.y - pos.y; if (dx * dx + dy * dy <= (BUBBLE_DIAM * 0.91) * (BUBBLE_DIAM * 0.91)) { if (proj.special === 'fire') { const key = `${r},${c}`; if (!proj.piercedSet.has(key)) { proj.piercedSet.add(key); popCell(r, c, proj.piercedSet.size); gameState.score += 90; updateHUD(); } } else { impacted = true; break; } } } } } proj.mesh.position.set(proj.x, proj.y, 0.05); if (proj.mesh.userData.ring) { proj.mesh.userData.ring.rotation.z += dt * 6; } if (impacted) { resolveProjectileImpact(proj.x, proj.y); } } for (let r = 0; r < gameState.grid.length; r++) { for (let c = 0; c < gameState.grid[r].length; c++) { const cell = gameState.grid[r][c]; if (cell && cell.wobble > 0) { cell.wobble = Math.max(0, cell.wobble - dt * 1.4); const s = 1 + Math.sin(cell.wobble * 32) * cell.wobble * 0.35; cell.mesh.scale.set(s, 2 - s, 1); if (cell.wobble === 0) cell.mesh.scale.setScalar(1); } } } for (let i = gameState.fallingBubbles.length - 1; i >= 0; i--) { const fb = gameState.fallingBubbles[i]; fb.vy -= 22 * dt; fb.mesh.position.x += fb.vx * dt; fb.mesh.position.y += fb.vy * dt; fb.mesh.rotation.z += fb.rotSpeed * dt; if (fb.mesh.position.y < LAUNCHER_Y - 1.2) { spawnBurst(fb.mesh.position.x, fb.mesh.position.y, fb.colorHex, 8); sound.playPop(i); scene.remove(fb.mesh); gameState.fallingBubbles.splice(i, 1); } } for (let i = gameState.particles.length - 1; i >= 0; i--) { const p = gameState.particles[i]; p.life += dt; if (p.life >= p.maxLife) { scene.remove(p.mesh); gameState.particles.splice(i, 1); continue; } p.vy -= 14 * dt; p.mesh.position.x += p.vx * dt; p.mesh.position.y += p.vy * dt; p.mesh.position.z += p.vz * dt; const ratio = 1 - p.life / p.maxLife; p.mesh.scale.setScalar(Math.max(0.01, ratio)); } for (let i = gameState.shockwaves.length - 1; i >= 0; i--) { const sw = gameState.shockwaves[i]; sw.life += dt; if (sw.life >= sw.maxLife) { scene.remove(sw.mesh); sw.mesh.geometry.dispose(); sw.mesh.material.dispose(); gameState.shockwaves.splice(i, 1); continue; } const t = sw.life / sw.maxLife; const sc = 0.5 + (sw.maxScale - 0.5) * (1 - Math.pow(1 - t, 3)); sw.mesh.scale.setScalar(sc); sw.mesh.material.opacity = (1 - t) * 0.85; } updateTrajectoryVisuals(); renderer.render(scene, camera); }
 
       window.addEventListener('resize', updateCameraResponsive);
       window.onload = function () { updateCameraResponsive(); syncSettingsUI(); refreshMenuStats(); setScreen('menu'); lastTime = performance.now(); requestAnimationFrame(animate); };
@@ -590,15 +658,19 @@
     }, 400);
   </script>
 
-  <!-- FAQ SECTION FOR SEO (Now hidden by default) -->
-  <div id="game-faq" style="display: none; max-width: 800px; margin: 40px auto; padding: 20px; background: #0c122a; border-radius: 10px; color: #f0f6ff; border: 1px solid #00f0ff; font-family: 'Rajdhani', sans-serif; text-align: left; position: relative; z-index: 100;">
-    <h2 style="color: #00f0ff; font-family: 'Orbitron', sans-serif; margin-top: 0;">How to Play Bubble Blast 3D Pro</h2>
-    <p>Use your mouse or touch to aim and shoot. Match 3 or more bubbles of the same color to pop them. Use special power-ups like Bomb, Rainbow, Fire, and Lightning to clear levels faster!</p>
-    <h2 style="color: #00f0ff; margin-top: 20px; font-family: 'Orbitron', sans-serif;">Frequently Asked Questions</h2>
-    <h3 style="color: #fff;">Does it have levels?</h3>
-    <p>Yes, the game features 60 progressive 3D stages!</p>
-    <h3 style="color: #fff;">Can I play on mobile?</h3>
-    <p>Yes, it is fully optimized for mobile touch controls.</p>
+  <!-- FAQ SECTION FOR SEO -->
+  <div id="game-faq">
+    <h2>How to Play Bubble Blast 3D Pro</h2>
+    <p>Aim and shoot with mouse, touch, or arrow keys to match 3 or more bubbles of the same color, swap bubbles with S, and trigger floating cluster drops.</p>
+    <h2>Frequently Asked Questions</h2>
+    <h3>Does it have levels?</h3>
+    <p>Yes, the game features 60 progressive 3D stages with 3-star ratings and move limits.</p>
+    <h3>Can I play on mobile?</h3>
+    <p>Yes, it supports mobile touch controls and includes Low, Medium, and High graphics quality options.</p>
+    <h3>What power-ups can I use?</h3>
+    <p>You can activate Bomb, Rainbow Prism, Fire, and Lightning power-ups to clear dense bubble clusters and drop floating bubbles.</p>
+    <h3>Is it free to play in the browser?</h3>
+    <p>Yes, you can play Bubble Blast 3D Pro free online on GameZone 203 without any download.</p>
   </div>
 </body>
 </html>
