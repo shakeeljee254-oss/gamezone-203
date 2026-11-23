@@ -3,16 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title>NEON SNAKE 203 – Battle Arena | GameZone 203</title>
-<meta name="description" content="Play NEON SNAKE 203 Battle Arena on GameZone 203. Master 4-snake arcade battles, futuristic upgrades, custom skins, achievements, and rewards." />
+<title>NEON SNAKE 203 – Battle Arena & Boss Fight | GameZone 203</title>
+<meta name="description" content="Play NEON SNAKE 203 Battle Arena free online on GameZone 203. Battle rival snakes, defeat the Neon Hydra Boss, unlock neon python, viper, purple, green, and rainbow skins, and earn daily rewards." />
+<meta name="keywords" content="neon snake game, neon python snake, neon purple snake, neon green snake, rainbow neon snake, neon viper snake, neon nebula snake, neon rainbow sea snake, neon snake boss fight, GameZone 203" />
+<meta name="author" content="GameZone 203" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/neon_snake_203_battle_arena.html" />
-<meta name="robots" content="index, follow" />
 
 <!-- Open Graph / Social Meta -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="NEON SNAKE 203 – Battle Arena | GameZone 203" />
-<meta property="og:description" content="Experience multiplayer futuristic arcade snake battles with power-ups, reward economy, and epic boss fights!" />
+<meta property="og:site_name" content="GameZone 203" />
+<meta property="og:title" content="NEON SNAKE 203 – Battle Arena & Boss Fight | GameZone 203" />
+<meta property="og:description" content="Experience futuristic arcade snake battles, Neon Hydra Boss encounters, custom neon skins, power-ups, and daily streak rewards on GameZone 203." />
 <meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/games/neon_snake_203_battle_arena.html" />
+<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-254/gamezone-203/cover.png" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="NEON SNAKE 203 – Battle Arena & Boss Fight | GameZone 203" />
+<meta name="twitter:description" content="Play Neon Snake 203 online with multiplayer AI rivals, boss encounters, and neon skins." />
+<meta name="twitter:image" content="https://shakeeljee254-oss.github.io/gamezone-254/gamezone-203/cover.png" />
 
 <style>
   :root {
@@ -688,7 +698,6 @@
     touch-action: none;
   }
 
-  /* Play Now Overlay Gate inside Arena Stage */
   .play-now-overlay {
     position: absolute;
     inset: 0;
@@ -745,9 +754,9 @@
     top: 12px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(38, 6, 26, 0.9);
-    border: 1.5px solid #ff2a9d;
-    box-shadow: 0 0 20px rgba(255, 42, 157, 0.65);
+    background: rgba(14, 24, 58, 0.92);
+    border: 1.5px solid var(--cyan);
+    box-shadow: 0 0 18px rgba(0, 240, 255, 0.45);
     border-radius: 14px;
     padding: 6px 14px;
     min-width: 240px;
@@ -757,16 +766,16 @@
     pointer-events: none;
   }
   .boss-hud-overlay.visible { display: block; }
-  .boss-name { font-size: 0.76rem; font-weight: 900; color: #ff8cd0; letter-spacing: 0.8px; margin-bottom: 4px; }
+  .boss-name { font-size: 0.76rem; font-weight: 900; color: var(--cyan); letter-spacing: 0.7px; margin-bottom: 4px; }
   .boss-hp-track {
     width: 100%;
     height: 9px;
     background: rgba(0,0,0,0.65);
     border-radius: 99px;
     overflow: hidden;
-    border: 1px solid rgba(255, 140, 208, 0.5);
+    border: 1px solid rgba(0, 240, 255, 0.4);
   }
-  .boss-hp-fill { height: 100%; width: 100%; background: linear-gradient(90deg, #ff2a9d, #ffbe1a); transition: width 0.2s ease; }
+  .boss-hp-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--cyan), var(--gold)); transition: width 0.2s ease; }
 
   .active-powerups-overlay {
     position: absolute;
@@ -875,30 +884,6 @@
   .progress-bar-bg { width: 100%; height: 7px; border-radius: 99px; background: rgba(255,255,255,0.1); overflow: hidden; }
   .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--green)); }
 
-  .arena-center-modal {
-    position: absolute;
-    inset: 0;
-    background: rgba(3, 6, 20, 0.82);
-    backdrop-filter: blur(6px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    z-index: 10;
-  }
-  .arena-center-modal.open { display: flex; }
-  .result-panel {
-    width: 100%;
-    max-width: 440px;
-    background: linear-gradient(180deg, #15235e, #090f2e);
-    border: 2px solid var(--gold);
-    border-radius: 22px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 0 36px rgba(255, 190, 26, 0.4);
-  }
-
-  /* Exit Rating Widget inside Active Match Guard Modal */
   .exit-rating-box {
     margin-top: 12px;
     background: rgba(7, 12, 34, 0.75);
@@ -937,19 +922,21 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* SEO / FAQ Section */
-  .seo-faq-section {
-    margin-top: 30px;
-    background: linear-gradient(180deg, rgba(14, 23, 58, 0.85), rgba(7, 11, 32, 0.92));
-    border: 1.5px solid rgba(0, 240, 255, 0.3);
-    border-radius: 20px;
-    padding: 22px;
-    line-height: 1.6;
+  /* Clear AdSense-Friendly Spacing Above Content Section */
+  .ad-safe-spacer {
+    margin-top: 160px;
   }
-  .seo-faq-title { font-size: 1.2rem; font-weight: 900; color: #fff; margin-bottom: 12px; }
-  .seo-faq-item { margin-bottom: 12px; }
-  .seo-faq-q { font-weight: 800; color: var(--cyan); font-size: 0.95rem; }
-  .seo-faq-a { font-size: 0.86rem; color: #b8c9f5; }
+  .seo-faq-section {
+    background: linear-gradient(180deg, rgba(14, 23, 58, 0.88), rgba(7, 11, 32, 0.94));
+    border: 1.5px solid rgba(0, 240, 255, 0.32);
+    border-radius: 20px;
+    padding: 24px;
+    line-height: 1.65;
+  }
+  .seo-faq-title { font-size: 1.25rem; font-weight: 900; color: #fff; margin-bottom: 14px; }
+  .seo-faq-item { margin-bottom: 14px; }
+  .seo-faq-q { font-weight: 800; color: var(--cyan); font-size: 0.98rem; }
+  .seo-faq-a { font-size: 0.88rem; color: #c4d3f8; }
 
   @media (max-width: 1140px) {
     .dashboard-view { grid-template-columns: 1fr 1fr; }
@@ -1090,8 +1077,8 @@
 
       <div class="neon-card cyan-glow" style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
         <div class="card-header">
-          <div class="card-title">🛒 Reward Shop — Skins, Auras & Arena Themes</div>
-          <button class="chip-btn active" id="viewAllShopBtn" style="padding:5px 10px;">View All (8)</button>
+          <div class="card-title">🛒 Reward Shop — Neon Snakes, Auras & Themes</div>
+          <button class="chip-btn active" id="viewAllShopBtn" style="padding:5px 10px;">View All</button>
         </div>
         <div class="shop-grid" id="dashboardShopGrid"></div>
       </div>
@@ -1118,7 +1105,7 @@
           <div class="stat-row"><span>🍎 Fruits Eaten</span><strong id="profFruitsEaten">0</strong></div>
           <div class="stat-row"><span>⚡ Highest Level</span><strong id="profHighestLevel">1</strong></div>
           <div class="stat-row"><span>🪙 Total Coins</span><strong style="color:var(--gold);" id="profTotalCoins">250</strong></div>
-          <div class="stat-row"><span>🐉 Unlocked Items</span><strong id="profUnlockedCount">1 / 8</strong></div>
+          <div class="stat-row"><span>🐉 Unlocked Items</span><strong id="profUnlockedCount">1 / 12</strong></div>
         </div>
         <div class="streak-banner" id="profileStreakBanner">🔥 Current Streak: 1 Day</div>
       </div>
@@ -1190,7 +1177,7 @@
       <div class="play-now-overlay" id="playNowOverlayGate">
         <div style="font-size:2.8rem;">⚔️</div>
         <h2 style="font-size:1.6rem;font-weight:900;color:#fff;">READY FOR BATTLE?</h2>
-        <p style="font-size:0.9rem;color:#b8c9f5;max-width:380px;text-align:center;">Outmaneuver 3 AI rival dragons, collect power-ups, defeat bosses, and claim arena glory.</p>
+        <p style="font-size:0.9rem;color:#b8c9f5;max-width:400px;text-align:center;">Outmaneuver rival snakes, collect neon power-ups, clear Neon Hydra Boss waves, and climb the leaderboard.</p>
         <button class="arcade-btn btn-play-hero" id="boardPlayNowBtn" style="padding:14px 28px;font-size:1.1rem;">▶ PLAY NOW</button>
       </div>
 
@@ -1199,8 +1186,9 @@
         <div id="liveLeaderboardRows"></div>
       </div>
 
+      <!-- AdSense-Friendly Neon Boss Bar -->
       <div class="boss-hud-overlay" id="bossHudOverlay">
-        <div class="boss-name" id="bossHudName">⚠️ OMEGA HYDRA BOSS (LV.5)</div>
+        <div class="boss-name" id="bossHudName">⚡ NEON HYDRA CORE (LV.4)</div>
         <div class="boss-hp-track">
           <div class="boss-hp-fill" id="bossHpFill"></div>
         </div>
@@ -1209,21 +1197,6 @@
       <div class="active-powerups-overlay" id="activePowerupsOverlay"></div>
 
       <canvas id="gameCanvas" width="1280" height="720"></canvas>
-
-      <div class="arena-center-modal" id="arenaOverlayModal">
-        <div class="result-panel">
-          <div style="font-size:2.4rem;margin-bottom:6px;" id="resultEmoji">🏆</div>
-          <h2 style="font-size:1.5rem;font-weight:900;color:#fff;margin-bottom:4px;" id="resultTitle">VICTORY!</h2>
-          <p style="font-size:0.86rem;color:#b8c9f5;margin-bottom:14px;" id="resultSubtitle">You dominated the Cyber Arena!</p>
-
-          <div class="stat-list" style="margin-bottom:15px;" id="resultStatsList"></div>
-
-          <div style="display:flex;flex-direction:column;gap:9px;">
-            <button class="arcade-btn btn-play-hero" id="resultPrimaryBtn" style="padding:12px;font-size:1.05rem;">🔄 Play Again</button>
-            <button class="arcade-btn btn-blue" id="resultDashboardBtn">🏠 Return to Dashboard</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <div class="mobile-controls" id="mobileControls">
@@ -1238,21 +1211,28 @@
     </div>
   </section>
 
-  <!-- Visible SEO & AdSense-friendly FAQ Section -->
-  <section class="seo-faq-section">
-    <h2 class="seo-faq-title">How to Play Neon Snake 203 & FAQ</h2>
+  <!-- Clear Spacing Before Content/FAQ Section (AdSense Safe) -->
+  <div class="ad-safe-spacer"></div>
+
+  <!-- Visible SEO & FAQ Section -->
+  <section class="seo-faq-section" id="faq-guide">
+    <h2 class="seo-faq-title">How to Play Neon Snake 203 & Frequently Asked Questions</h2>
     <div class="seo-faq-item">
-      <div class="seo-faq-q">Q: How do I control my dragon in Battle Arena?</div>
-      <div class="seo-faq-a">A: Use your keyboard arrow keys or W/A/S/D keys, swipe gestures on touchscreen devices, or the on-screen D-Pad to steer your futuristic snake.</div>
+      <div class="seo-faq-q">Q: How do I steer my snake and defeat the Neon Hydra Boss?</div>
+      <div class="seo-faq-a">A: Use Arrow Keys, W/A/S/D, touch swipe, or the on-screen D-Pad to move. When a Neon Hydra Boss appears at Level 4 and every 4 levels after, collect charged Energy Orbs near the boss to drain its core shield and earn bonus coins and points.</div>
     </div>
     <div class="seo-faq-item">
-      <div class="seo-faq-q">Q: How do rewards and coins work?</div>
-      <div class="seo-faq-a">A: Eat fruits, win matches, defeat bosses, and maintain your 7-day daily login streak to earn coins, unlocking custom dragon skins, glowing auras, and cyber arenas.</div>
+      <div class="seo-faq-q">Q: What neon snake styles and game modes can I play?</div>
+      <div class="seo-faq-a">A: Unlock styles including Neon Python, Neon Viper, Purple Phantom, Green Venom, Rainbow Prism, and Cosmic Nebula, and choose between Battle Arena, Time (60s), Speed Battle, and Survival across Easy, Normal, and Hard AI.</div>
+    </div>
+    <div class="seo-faq-item">
+      <div class="seo-faq-q">Q: Are coins, streaks, and achievements saved in my browser?</div>
+      <div class="seo-faq-a">A: Yes, your coins, 7-day daily streak, unlocked skins, achievements, and leaderboard scores are saved locally in your browser storage.</div>
     </div>
   </section>
 </div>
 
-<!-- UNIVERSAL MODAL & EXIT RATING DIALOG -->
+<!-- UNIVERSAL MODAL -->
 <div class="modal-backdrop" id="universalModal">
   <div class="modal-box">
     <div class="modal-header">
@@ -1269,35 +1249,44 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Neon Snake 203 Battle Arena",
-  "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/neon_snake_203_battle_arena.html",
-  "description": "Multiplayer futuristic arcade snake battle game with reward economy, custom skins, achievements, and boss battles.",
-  "genre": "Arcade",
-  "playMode": "SinglePlayer",
-  "applicationCategory": "BrowserGame"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
+  "@graph": [
     {
-      "@type": "Question",
-      "name": "How do I control my dragon in Battle Arena?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Use your keyboard arrow keys or W/A/S/D keys, swipe gestures on touchscreen devices, or the on-screen D-Pad to steer your futuristic snake."
+      "@type": "VideoGame",
+      "name": "Neon Snake 203 Battle Arena",
+      "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/neon_snake_203_battle_arena.html",
+      "image": "https://shakeeljee254-oss.github.io/gamezone-254/gamezone-203/cover.png",
+      "description": "Free browser arcade snake battle game with AI rivals, Neon Hydra Boss encounters, neon python and viper skins, power-ups, and daily streak rewards.",
+      "genre": ["Arcade", "Action"],
+      "gamePlatform": ["Web Browser", "Mobile Web", "Desktop Browser"],
+      "playMode": "SinglePlayer",
+      "applicationCategory": "Game",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
       }
     },
     {
-      "@type": "Question",
-      "name": "How do rewards and coins work?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Eat fruits, win matches, defeat bosses, and maintain your 7-day daily login streak to earn coins and unlock custom dragon skins."
-      }
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I steer my snake and defeat the Neon Hydra Boss?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use Arrow Keys, W/A/S/D, touch swipe, or the on-screen D-Pad to move. Collect charged Energy Orbs during Neon Hydra Boss waves to drain the boss core for bonus points and coins."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What neon snake styles and game modes can I play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Players can unlock Neon Python, Neon Viper, Purple Phantom, Green Venom, Rainbow Prism, and Cosmic Nebula skins, and play Battle Arena, Time (60s), Speed Battle, or Survival across Easy, Normal, and Hard AI."
+          }
+        }
+      ]
     }
   ]
 }
@@ -1316,7 +1305,7 @@
   const loadScreen = document.getElementById("loadingScreen");
 
   const loadInterval = setInterval(() => {
-    loadProgress += Math.floor(Math.random() * 25) + 15;
+    loadProgress += Math.floor(Math.random() * 25) + 18;
     if (loadProgress >= 100) {
       loadProgress = 100;
       clearInterval(loadInterval);
@@ -1324,13 +1313,13 @@
       loadText.textContent = "Arena Ready!";
       setTimeout(() => {
         loadScreen.classList.add("fade-out");
-      }, 300);
+      }, 260);
     } else {
       loadFill.style.width = loadProgress + "%";
-      if (loadProgress > 70) loadText.textContent = "Loading Assets & AI Engine...";
+      if (loadProgress > 70) loadText.textContent = "Loading Neon Skins & Boss AI...";
       else if (loadProgress > 40) loadText.textContent = "Calibrating Cyber Grid...";
     }
-  }, 120);
+  }, 110);
 
   /* ============================================================================
      2. CATALOG DATA & CONSTANTS
@@ -1340,61 +1329,78 @@
       id: "skin_emerald",
       name: "Emerald Dragon",
       category: "skin",
-      catLabel: "Snake Skin",
+      catLabel: "Neon Skin",
       price: 0,
       defaultOwned: true,
-      palette: { head: "#2dff88", bodyA: "#13d965", bodyB: "#087a38", belly: "#b8ffcf", crest: "#6effb0", eye: "#ffe600", glow: "#14f16c" }
+      palette: { head: "#2dff88", bodyA: "#13d965", bodyB: "#087a38", glow: "#14f16c" }
+    },
+    {
+      id: "skin_python",
+      name: "Neon Python",
+      category: "skin",
+      catLabel: "Neon Skin",
+      price: 350,
+      palette: { head: "#5cffb0", bodyA: "#00e676", bodyB: "#00796b", glow: "#00ff9d" }
+    },
+    {
+      id: "skin_viper",
+      name: "Neon Viper",
+      category: "skin",
+      catLabel: "Neon Skin",
+      price: 450,
+      palette: { head: "#ff5252", bodyA: "#ff1744", bodyB: "#880e4f", glow: "#ff2a6d" }
+    },
+    {
+      id: "skin_purple",
+      name: "Purple Phantom",
+      category: "skin",
+      catLabel: "Neon Skin",
+      price: 500,
+      palette: { head: "#e040fb", bodyA: "#aa00ff", bodyB: "#4a148c", glow: "#c837ff" }
+    },
+    {
+      id: "skin_green",
+      name: "Green Venom",
+      category: "skin",
+      catLabel: "Neon Skin",
+      price: 400,
+      palette: { head: "#b2ff59", bodyA: "#76ff03", bodyB: "#33691e", glow: "#8aff19" }
     },
     {
       id: "skin_golden",
       name: "Golden Sovereign",
       category: "skin",
-      catLabel: "Snake Skin",
-      price: 500,
-      palette: { head: "#ffe359", bodyA: "#ffae00", bodyB: "#b35900", belly: "#fff5b8", crest: "#fff078", eye: "#00f0ff", glow: "#ffbe1a" }
-    },
-    {
-      id: "skin_fire",
-      name: "Inferno Wyrm",
-      category: "skin",
-      catLabel: "Snake Skin",
-      price: 500,
-      palette: { head: "#ff7722", bodyA: "#ff2a1a", bodyB: "#8f0914", belly: "#ffd166", crest: "#ffae2b", eye: "#fff700", glow: "#ff4d1a" }
+      catLabel: "Neon Skin",
+      price: 550,
+      palette: { head: "#ffe359", bodyA: "#ffae00", bodyB: "#b35900", glow: "#ffbe1a" }
     },
     {
       id: "skin_rainbow",
-      name: "Prismatic Rainbow",
+      name: "Rainbow Prism",
       category: "skin",
-      catLabel: "Snake Skin",
+      catLabel: "Neon Skin",
       price: 750,
       rainbow: true,
-      palette: { head: "#ff33cc", bodyA: "#00f0ff", bodyB: "#8c1aff", belly: "#ffffff", crest: "#ffe600", eye: "#ffffff", glow: "#ff33cc" }
+      palette: { head: "#ff33cc", bodyA: "#00f0ff", bodyB: "#8c1aff", glow: "#00f0ff" }
     },
     {
-      id: "skin_ice",
-      name: "Glacial Frost",
-      category: "skin",
-      catLabel: "Snake Skin",
-      price: 450,
-      palette: { head: "#8cf6ff", bodyA: "#19b5ff", bodyB: "#0a49b5", belly: "#e6fcff", crest: "#b8f9ff", eye: "#ff2a9d", glow: "#00f0ff" }
-    },
-    {
-      id: "skin_cosmic",
+      id: "skin_nebula",
       name: "Cosmic Nebula",
       category: "skin",
-      catLabel: "Snake Skin",
+      catLabel: "Neon Skin",
       price: 650,
-      palette: { head: "#e17aff", bodyA: "#9d1aff", bodyB: "#3d087b", belly: "#f5c7ff", crest: "#00f0ff", eye: "#ffe600", glow: "#b829ff" }
+      palette: { head: "#80d8ff", bodyA: "#651fff", bodyB: "#311b92", glow: "#7c4dff" }
     },
     { id: "aura_neon", name: "Hyper Neon Aura", category: "aura", catLabel: "Glow Effect", price: 400, color: "#00f0ff" },
-    { id: "trail_plasma", name: "Starfire Tail Trail", category: "trail", catLabel: "Tail Effect", price: 450, color: "#ff2a9d" },
-    { id: "theme_prism", name: "Cyber Prism Arena", category: "theme", catLabel: "Arena Theme", price: 600, gridColor: "rgba(184, 41, 255, 0.22)", bgTop: "#0a0624", bgBottom: "#17093b" }
+    { id: "trail_plasma", name: "Rainbow Sea Trail", category: "trail", catLabel: "Tail Effect", price: 450, color: "#ff2a9d" },
+    { id: "theme_prism", name: "Cyber Prism Arena", category: "theme", catLabel: "Arena Theme", price: 600, gridColor: "rgba(184, 41, 255, 0.24)", bgTop: "#0a0624", bgBottom: "#17093b" },
+    { id: "theme_abyss", name: "Neon Reef Grid", category: "theme", catLabel: "Arena Theme", price: 650, gridColor: "rgba(0, 240, 255, 0.22)", bgTop: "#031624", bgBottom: "#062b3d" }
   ];
 
   const AI_ARCHETYPES = [
-    { name: "Bolt", title: "Ice Dragon", palette: { head: "#7ef5ff", bodyA: "#149eff", bodyB: "#073d9e", belly: "#d9fbff", crest: "#9ef8ff", eye: "#ffea00", glow: "#00d9ff" } },
-    { name: "Venom", title: "Cosmic Viper", palette: { head: "#df6eff", bodyA: "#9b1cff", bodyB: "#430885", belly: "#f3c4ff", crest: "#ff57d8", eye: "#00ffaa", glow: "#b829ff" } },
-    { name: "Razor", title: "Solar Fire", palette: { head: "#ffd43b", bodyA: "#ff7b14", bodyB: "#a82900", belly: "#fff0b3", crest: "#ffae19", eye: "#00f0ff", glow: "#ff8800" } }
+    { name: "Bolt", palette: { head: "#7ef5ff", bodyA: "#149eff", bodyB: "#073d9e", glow: "#00d9ff" } },
+    { name: "Venom", palette: { head: "#df6eff", bodyA: "#9b1cff", bodyB: "#430885", glow: "#b829ff" } },
+    { name: "Razor", palette: { head: "#ffd43b", bodyA: "#ff7b14", bodyB: "#a82900", glow: "#ff8800" } }
   ];
 
   const DAILY_REWARDS_PLAN = [
@@ -1408,37 +1414,35 @@
   ];
 
   const FRUITS_META = [
-    { type: "apple", name: "Apple", points: 10, coins: 2, color: "#ff2e4c", glow: "#ff2e4c", weight: 38 },
-    { type: "banana", name: "Banana", points: 20, coins: 3, color: "#ffe11d", glow: "#ffbe1a", weight: 27 },
-    { type: "orange", name: "Orange", points: 30, coins: 5, color: "#ff7b1a", glow: "#ff6b1a", weight: 18 },
-    { type: "grapes", name: "Grapes", points: 40, coins: 7, color: "#b829ff", glow: "#c94dff", weight: 12 },
-    { type: "golden", name: "Golden Fruit", points: 100, coins: 18, color: "#ffd700", glow: "#ffe64d", weight: 5 }
+    { type: "apple", points: 10, coins: 2, color: "#ff2e4c", weight: 38 },
+    { type: "banana", points: 20, coins: 3, color: "#ffe11d", weight: 27 },
+    { type: "orange", points: 30, coins: 5, color: "#ff7b1a", weight: 18 },
+    { type: "grapes", points: 40, coins: 7, color: "#b829ff", weight: 12 },
+    { type: "golden", points: 100, coins: 18, color: "#ffd700", weight: 5 }
   ];
 
   const POWERUPS_META = [
     { type: "speed", name: "Speed Boost", icon: "⚡", color: "#00f0ff", duration: 8 },
-    { type: "slow", name: "Time Slow", icon: "⏳", color: "#66a3ff", duration: 8 },
-    { type: "shield", name: "Aegis Shield", icon: "🛡️", color: "#14f16c", duration: 14 },
-    { type: "magnet", name: "Fruit Magnet", icon: "🧲", color: "#ff2a9d", duration: 10 },
-    { type: "double", name: "2X Score", icon: "✨", color: "#ffbe1a", duration: 10 },
-    { type: "freeze", name: "Freeze Blast", icon: "❄️", color: "#80f5ff", duration: 7 }
+    { type: "shield", name: "Aegis Shield", icon: "🛡️", color: "#14f16c", duration: 12 },
+    { type: "magnet", name: "Fruit Magnet", icon: "🧲", color: "#ff2a9d", duration: 9 },
+    { type: "double", name: "2X Score", icon: "✨", color: "#ffbe1a", duration: 10 }
   ];
 
   const ACHIEVEMENTS_LIST = [
     { id: "first_fruit", title: "First Bite", desc: "Eat your very first fruit", target: 1, stat: "fruitsEaten", reward: 40, icon: "🍎" },
     { id: "fruits_50", title: "Neon Orchard", desc: "Eat 50 total fruits", target: 50, stat: "fruitsEaten", reward: 120, icon: "🍇" },
     { id: "score_500", title: "Cyber Striker", desc: "Reach 500 score in a match", target: 500, stat: "bestScore", reward: 150, icon: "⚡" },
-    { id: "first_win", title: "Arena Victor", desc: "Win your first 4-snake battle", target: 1, stat: "totalWins", reward: 125, icon: "🏆" },
+    { id: "first_win", title: "Arena Victor", desc: "Win a battle match", target: 1, stat: "totalWins", reward: 125, icon: "🏆" },
     { id: "wins_10", title: "Dragon Champion", desc: "Win 10 battle matches", target: 10, stat: "totalWins", reward: 350, icon: "👑" },
-    { id: "boss_slayer", title: "Omega Slayer", desc: "Defeat or outlast a Level 5+ Boss", target: 1, stat: "bossesDefeated", reward: 250, icon: "🐉" },
+    { id: "boss_slayer", title: "Hydra Core Breaker", desc: "Defeat a Neon Hydra Boss", target: 1, stat: "bossesDefeated", reward: 220, icon: "🐉" },
     { id: "long_survival", title: "Endurance Wyrm", desc: "Survive 90 seconds in one match", target: 90, stat: "bestSurvivalSec", reward: 180, icon: "🛡️" },
-    { id: "high_level", title: "Apex Overlord", desc: "Reach Arena Level 6", target: 6, stat: "highestLevel", reward: 220, icon: "⭐" }
+    { id: "collector_3", title: "Neon Collector", desc: "Unlock 3 skins or items", target: 3, stat: "unlockedCount", reward: 140, icon: "🐍" }
   ];
 
   /* ============================================================================
-     3. PERSISTENT STORAGE & RATING COOLDOWNS
+     3. PERSISTENT STORAGE
      ============================================================================ */
-  const STORAGE_KEY = "neonSnake203_save_v3";
+  const STORAGE_KEY = "neonSnake203_save_v5";
 
   function getLocalDateKey(dateObj = new Date()) {
     const y = dateObj.getFullYear();
@@ -1462,14 +1466,14 @@
     ownedItems: ["skin_emerald"],
     equipped: { skin: "skin_emerald", aura: null, trail: null, theme: null },
     daily: { streakDay: 1, lastClaimDate: null, claimedDays: [] },
-    stats: { bestScore: 0, totalGames: 0, totalWins: 0, fruitsEaten: 0, highestLevel: 1, bossesDefeated: 0, bestSurvivalSec: 0 },
+    stats: { bestScore: 0, totalGames: 0, totalWins: 0, fruitsEaten: 0, highestLevel: 1, bossesDefeated: 0, bestSurvivalSec: 0, unlockedCount: 1 },
     unlockedAchievements: [],
     leaderboard: [
       { name: "NeonKing", score: 1450, level: 15, mode: "Battle" },
       { name: "CyberViper", score: 1120, level: 12, mode: "Survival" },
       { name: "BoltAI", score: 840, level: 9, mode: "Battle" }
     ],
-    ratingState: { dismissedUntil: 0, submitted: false }
+    ratingState: { submitted: false }
   };
 
   let saveData = loadSaveData();
@@ -1500,6 +1504,7 @@
   function persistSave() {
     try {
       saveData.coins = Math.max(0, Math.floor(Number(saveData.coins) || 0));
+      saveData.stats.unlockedCount = saveData.ownedItems.length;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
     } catch (e) {}
   }
@@ -1554,11 +1559,8 @@
       setTimeout(() => this.playTone(540, "triangle", 0.14, 0.12, 920), 80);
     }
     shieldBlock() { this.playTone(220, "square", 0.15, 0.14, 480); }
-    explode() { this.playTone(160, "sawtooth", 0.28, 0.18, 38); }
-    bossSpawn() {
-      this.playTone(110, "sawtooth", 0.35, 0.18, 65);
-      setTimeout(() => this.playTone(95, "square", 0.4, 0.16, 52), 180);
-    }
+    levelUp() { [523.25, 659.25, 783.99].forEach((f, idx) => setTimeout(() => this.playTone(f, "triangle", 0.14, 0.12), idx * 80)); }
+    bossAlert() { this.playTone(260, "triangle", 0.2, 0.12, 390); }
     win() { [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => setTimeout(() => this.playTone(f, "triangle", 0.18, 0.14), idx * 95)); }
     lose() { [330, 277, 220, 165].forEach((f, idx) => setTimeout(() => this.playTone(f, "sawtooth", 0.18, 0.12), idx * 110)); }
   }
@@ -1575,7 +1577,7 @@
       el.style.transform = "translateY(8px)";
       el.style.transition = "all 0.25s ease";
       setTimeout(() => el.remove(), 260);
-    }, 2800);
+    }, 2600);
   }
 
   function addCoins(amount, reason = "") {
@@ -1587,6 +1589,7 @@
   }
 
   function checkAchievements() {
+    saveData.stats.unlockedCount = saveData.ownedItems.length;
     let newlyUnlocked = 0;
     for (const ach of ACHIEVEMENTS_LIST) {
       if (saveData.unlockedAchievements.includes(ach.id)) continue;
@@ -1698,57 +1701,78 @@
     return SHOP_CATALOG.find(i => i.id === saveData.equipped.skin) || SHOP_CATALOG[0];
   }
 
+  function getActiveArenaTheme() {
+    return SHOP_CATALOG.find(i => i.id === saveData.equipped.theme) || {
+      gridColor: "rgba(0, 240, 255, 0.08)",
+      bgTop: "#070b22",
+      bgBottom: "#040817"
+    };
+  }
+
   function drawDragonPreviewOnCanvas(ctx, w, h, item, timeSec = 0) {
     ctx.clearRect(0, 0, w, h);
     if (item.category === "theme") {
       const grad = ctx.createLinearGradient(0, 0, w, h);
-      grad.addColorStop(0, "#12093b"); grad.addColorStop(1, "#2c0d6e");
+      grad.addColorStop(0, item.bgTop || "#12093b");
+      grad.addColorStop(1, item.bgBottom || "#2c0d6e");
       ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+      ctx.strokeStyle = item.gridColor || "rgba(0, 240, 255, 0.25)";
+      for (let x = 0; x < w; x += 18) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+      for (let y = 0; y < h; y += 18) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
       return;
     }
     if (item.category === "aura" || item.category === "trail") {
       const c = item.color || "#00f0ff";
       ctx.save();
-      ctx.shadowBlur = 16; ctx.shadowColor = c; ctx.strokeStyle = c; ctx.lineWidth = 5;
-      ctx.beginPath(); ctx.ellipse(w * 0.5, h * 0.5, w * 0.32, h * 0.28, 0, 0, Math.PI * 2); ctx.stroke();
+      ctx.shadowBlur = 16; ctx.shadowColor = c; ctx.strokeStyle = c; ctx.lineWidth = 4;
+      ctx.beginPath(); ctx.ellipse(w * 0.5, h * 0.5, w * 0.34, h * 0.28, 0, 0, Math.PI * 2); ctx.stroke();
       ctx.restore();
       return;
     }
     const pal = item.palette || SHOP_CATALOG[0].palette;
     const segs = 14;
-    const pts = [];
-    for (let i = 0; i < segs; i++) {
-      const t = i / (segs - 1);
-      pts.push({ x: w * 0.16 + t * (w * 0.68), y: h * 0.54 + Math.sin(t * 4.5 + timeSec * 3) * (h * 0.18), t });
-    }
     ctx.save();
     ctx.shadowBlur = 14; ctx.shadowColor = pal.glow;
-    for (let i = 0; i < pts.length; i++) {
-      const p = pts[i];
-      ctx.fillStyle = i % 2 === 0 ? pal.bodyA : pal.bodyB;
-      ctx.beginPath(); ctx.arc(p.x, p.y, 4 + p.t * 8, 0, Math.PI * 2); ctx.fill();
+    for (let i = 0; i < segs; i++) {
+      const t = i / (segs - 1);
+      const px = w * 0.16 + t * (w * 0.68);
+      const py = h * 0.54 + Math.sin(t * 4.5 + timeSec * 3) * (h * 0.18);
+      if (item.rainbow) {
+        ctx.fillStyle = `hsl(${(t * 280 - timeSec * 120) % 360}, 100%, 58%)`;
+      } else {
+        ctx.fillStyle = i % 2 === 0 ? pal.bodyA : pal.bodyB;
+      }
+      ctx.beginPath(); ctx.arc(px, py, 4 + t * 7.5, 0, Math.PI * 2); ctx.fill();
     }
-    const head = pts[pts.length - 1];
-    ctx.fillStyle = pal.head;
-    ctx.beginPath(); ctx.ellipse(head.x + 4, head.y, 13, 10, 0, 0, Math.PI * 2); ctx.fill();
+    const headX = w * 0.84;
+    const headY = h * 0.54 + Math.sin(4.5 + timeSec * 3) * (h * 0.18);
+    ctx.fillStyle = item.rainbow ? `hsl(${(-timeSec * 120) % 360}, 100%, 62%)` : pal.head;
+    ctx.beginPath(); ctx.ellipse(headX + 3, headY, 12, 9.5, 0, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }
 
   function renderMascotAndAvatar(timeSec) {
+    const skin = getActivePlayerSkin();
     const mascotCanvas = document.getElementById("mascotCanvas");
     if (mascotCanvas) {
-      drawDragonPreviewOnCanvas(mascotCanvas.getContext("2d"), mascotCanvas.width, mascotCanvas.height, getActivePlayerSkin(), timeSec);
+      drawDragonPreviewOnCanvas(mascotCanvas.getContext("2d"), mascotCanvas.width, mascotCanvas.height, skin, timeSec);
     }
+    const auraName = saveData.equipped.aura ? "Neon Aura" : "Classic";
+    const capEl = document.getElementById("equippedLoadoutLabel");
+    if (capEl) capEl.textContent = `Skin: ${skin.name} • Aura: ${auraName}`;
+
     const avatarCanvas = document.getElementById("avatarCanvas");
     if (avatarCanvas) {
       const actx = avatarCanvas.getContext("2d");
       const w = avatarCanvas.width; const h = avatarCanvas.height;
       actx.clearRect(0, 0, w, h);
-      const pal = getActivePlayerSkin().palette;
-      actx.fillStyle = pal.head;
+      const pal = skin.palette;
+      actx.fillStyle = skin.rainbow ? `hsl(${(-timeSec * 90) % 360}, 100%, 58%)` : pal.head;
       actx.beginPath(); actx.arc(w * 0.5, h * 0.52, 26, 0, Math.PI * 2); actx.fill();
-      actx.fillStyle = pal.eye;
+      actx.fillStyle = "#ffffff";
       actx.beginPath(); actx.arc(w * 0.4, h * 0.46, 5, 0, Math.PI * 2); actx.arc(w * 0.6, h * 0.46, 5, 0, Math.PI * 2); actx.fill();
+      actx.fillStyle = "#060918";
+      actx.beginPath(); actx.arc(w * 0.4, h * 0.46, 2.2, 0, Math.PI * 2); actx.arc(w * 0.6, h * 0.46, 2.2, 0, Math.PI * 2); actx.fill();
     }
   }
 
@@ -1761,7 +1785,7 @@
       saveData.coins -= item.price;
       saveData.ownedItems.push(item.id);
       saveData.equipped[item.category] = item.id;
-      sfx.coin(); persistSave(); showToast(`🎉 Purchased & Equipped: ${item.name}!`);
+      sfx.coin(); persistSave(); checkAchievements(); showToast(`🎉 Unlocked & Equipped: ${item.name}!`);
     } else {
       if (saveData.equipped[item.category] === item.id && item.category !== "skin") {
         saveData.equipped[item.category] = null;
@@ -1802,13 +1826,14 @@
   function renderDashboardShop() {
     const grid = document.getElementById("dashboardShopGrid");
     grid.innerHTML = "";
-    ["skin_golden", "skin_fire", "skin_rainbow", "theme_prism"].forEach(id => {
+    ["skin_python", "skin_viper", "skin_purple", "skin_rainbow"].forEach(id => {
       const item = SHOP_CATALOG.find(i => i.id === id);
       if (item) grid.appendChild(buildShopCardElement(item));
     });
   }
 
   function refreshAllUI() {
+    saveData.stats.unlockedCount = saveData.ownedItems.length;
     document.getElementById("topBestScore").textContent = saveData.stats.bestScore.toLocaleString();
     document.getElementById("topHighestLevel").textContent = saveData.stats.highestLevel;
     document.getElementById("topStreak").textContent = `${Math.max(1, saveData.daily.claimedDays.length)}d`;
@@ -1859,7 +1884,7 @@
   function closeModal() { document.getElementById("universalModal").classList.remove("open"); }
 
   function openFullShopModal() {
-    openModal("🛒 Reward Shop — All Items", body => {
+    openModal("🛒 Reward Shop — Neon Skins, Auras & Themes", body => {
       const grid = document.createElement("div");
       grid.className = "shop-grid";
       grid.style.gridTemplateColumns = "repeat(auto-fill, minmax(155px, 1fr))";
@@ -1900,7 +1925,7 @@
         const row = document.createElement("div");
         row.className = "mini-lb-row" + (entry.name === saveData.playerName ? " you" : "");
         row.style.padding = "10px";
-        row.innerHTML = `<span><strong>#${idx+1}</strong> ${entry.name} <small style="color:#8da2d6;">(Lv.${entry.level||1})</small></span><strong style="color:var(--gold);">${entry.score.toLocaleString()} pts</strong>`;
+        row.innerHTML = `<span><strong>#${idx+1}</strong> ${entry.name} <small style="color:#8da2d6;">(Lv.${entry.level||1} • ${entry.mode||"Battle"})</small></span><strong style="color:var(--gold);">${entry.score.toLocaleString()} pts</strong>`;
         list.appendChild(row);
       });
       body.appendChild(list);
@@ -1908,8 +1933,14 @@
   }
 
   function openHowToPlayModal() {
-    openModal("📘 How to Play", body => {
-      body.innerHTML = `<div style="color:#dbe6ff;line-height:1.6;">Use <b>Arrow Keys</b> or <b>WASD</b>, touch swipe, or the on-screen D-Pad to steer your dragon. Eliminate rival AI snakes, collect power-ups, and survive!</div>`;
+    openModal("📘 How to Play Neon Snake 203", body => {
+      body.innerHTML = `
+        <div style="color:#dbe6ff;line-height:1.65;display:flex;flex-direction:column;gap:8px;">
+          <p>• <b>Controls:</b> Arrow Keys, WASD, mobile swipe, or on-screen D-Pad. Press <b>P</b> or <b>Esc</b> to pause.</p>
+          <p>• <b>Neon Hydra Boss:</b> Appears every 4 levels. Grab glowing 💠 Energy Orbs to weaken the boss core for +150 bonus score and +25 coins.</p>
+          <p>• <b>Power-Ups:</b> ⚡ Speed Boost, 🛡️ Shield, 🧲 Fruit Magnet, and ✨ 2X Score.</p>
+        </div>
+      `;
     });
   }
 
@@ -1927,7 +1958,7 @@
   }
 
   /* ============================================================================
-     7. BATTLE ARENA ENGINE (WITH PLAY NOW GATE & MATCH GUARD RATING)
+     7. BATTLE ARENA ENGINE (WITH ADSENSE-FRIENDLY NEON HYDRA BOSS)
      ============================================================================ */
   const GRID_COLS = 36;
   const GRID_ROWS = 20;
@@ -1945,39 +1976,40 @@
       this.running = false;
       this.paused = false;
       this.matchOver = false;
-      this.boardLocked = true; // Board Locked until "Play Now" clicked
+      this.boardLocked = true;
 
       this.snakes = [];
       this.fruits = [];
       this.powerups = [];
-      this.barriers = [];
-      this.movingBlocks = [];
-      this.dangerZones = [];
+      this.energyOrbs = [];
       this.particles = [];
-      this.floatingTexts = [];
       this.boss = null;
 
       this.level = 1;
       this.elapsedSec = 0;
       this.stepAccumulator = 0;
       this.matchCoinsEarned = 0;
-      this.screenShake = 0;
+      this.countedMatch = false;
     }
 
     startNewMatch() {
       this.running = true;
       this.paused = false;
       this.matchOver = false;
-      this.boardLocked = true; // Show Play Now Gate
+      this.boardLocked = true;
+      this.countedMatch = false;
       document.getElementById("playNowOverlayGate").classList.remove("hidden");
+      document.getElementById("bossHudOverlay").classList.remove("visible");
 
       this.level = 1;
       this.elapsedSec = 0;
       this.stepAccumulator = 0;
       this.matchCoinsEarned = 0;
-      this.screenShake = 0;
-
-      this.fruits = []; this.powerups = []; this.barriers = []; this.movingBlocks = []; this.dangerZones = []; this.particles = []; this.floatingTexts = []; this.boss = null;
+      this.fruits = [];
+      this.powerups = [];
+      this.energyOrbs = [];
+      this.particles = [];
+      this.boss = null;
 
       const playerSkin = getActivePlayerSkin();
       this.snakes = [
@@ -1989,146 +2021,83 @@
 
       for (let i = 0; i < 6; i++) this.spawnFruit();
       this.spawnPowerup();
-
-      document.getElementById("arenaOverlayModal").classList.remove("open");
-      document.getElementById("bossHudOverlay").classList.remove("visible");
       this.updateHud();
     }
 
-createSnake({ id, name, isPlayer, x, y, dir, palette, rainbow = false }) {
-  const d = DIRS[dir];
-  const segments = [], prevSegments = [];
-
-  for (let i = 0; i < 5; i++) {
-    const sx = (x - d.x * i + GRID_COLS) % GRID_COLS;
-    const sy = (y - d.y * i + GRID_ROWS) % GRID_ROWS;
-
-    segments.push({ x: sx, y: sy });
-    prevSegments.push({ x: sx, y: sy });
-  }
-
-  return {
-    id,
-    name,
-    isPlayer,
-    alive: true,
-    dir,
-    nextDir: dir,
-    segments,
-    prevSegments,
-    growPending: 0,
-    score: 0,
-    fruits: 0,
-    palette,
-    rainbow,
-    eatAnim: 0,
-    effects: {
-      speed: 0,
-      slow: 0,
-      shield: 0,
-      magnet: 0,
-      double: 0,
-      freeze: 0
-    }
-  };
-}
-
-respawnEliminatedAIs() {
-  for (let i = 0; i < this.snakes.length; i++) {
-    const deadSnake = this.snakes[i];
-
-    if (
-      deadSnake.isPlayer ||
-      deadSnake.alive ||
-      deadSnake.respawnAt === undefined ||
-      this.elapsedSec < deadSnake.respawnAt
-    ) {
-      continue;
-    }
-
-    const directions = Object.keys(DIRS);
-    let newSnake = null;
-
-    for (let attempt = 0; attempt < 100; attempt++) {
-      const x = Math.floor(Math.random() * GRID_COLS);
-      const y = Math.floor(Math.random() * GRID_ROWS);
-
-      const dir = directions[
-        Math.floor(Math.random() * directions.length)
-      ];
-
-      const candidate = this.createSnake({
-        id: deadSnake.id,
-        name: deadSnake.name,
-        isPlayer: false,
-        x,
-        y,
-        dir,
-        palette: deadSnake.palette,
-        rainbow: deadSnake.rainbow
-      });
-
-      const isSafe = candidate.segments.every(seg =>
-        !this.isCellBlocked(seg.x, seg.y)
-      );
-
-      if (isSafe) {
-        newSnake = candidate;
-        break;
+    createSnake({ id, name, isPlayer, x, y, dir, palette, rainbow = false }) {
+      const d = DIRS[dir];
+      const segments = [];
+      for (let i = 0; i < 5; i++) {
+        segments.push({
+          x: (x - d.x * i + GRID_COLS) % GRID_COLS,
+          y: (y - d.y * i + GRID_ROWS) % GRID_ROWS
+        });
       }
+      return {
+        id, name, isPlayer, alive: true,
+        dir, nextDir: dir, segments,
+        growPending: 0, score: 0, fruits: 0,
+        palette, rainbow,
+        effects: { speed: 0, shield: 0, magnet: 0, double: 0 }
+      };
     }
 
-    if (!newSnake) {
-      deadSnake.respawnAt = this.elapsedSec + 1;
-      continue;
-    }
-
-    newSnake.score = deadSnake.score;
-    newSnake.fruits = deadSnake.fruits;
-
-    this.snakes[i] = newSnake;
-  }
-}
-
-getPlayer() {
-  return this.snakes[0];
-}
+    getPlayer() { return this.snakes[0]; }
 
     setPlayerDirection(newDir) {
-      if (this.boardLocked) return;
+      if (this.boardLocked || this.paused || this.matchOver) return;
       const p = this.getPlayer();
       if (!p || !p.alive || !DIRS[newDir]) return;
       if (DIRS[p.dir].opp !== newDir) p.nextDir = newDir;
     }
 
+    spawnBossWave() {
+      const cx = Math.floor(GRID_COLS / 2);
+      const cy = Math.floor(GRID_ROWS / 2);
+      this.boss = {
+        x: cx,
+        y: cy,
+        hp: 4,
+        maxHp: 4,
+        moveTimer: 0
+      };
+      this.energyOrbs = [];
+      for (let i = 0; i < 4; i++) {
+        const cell = this.findSafeRandomCell();
+        this.energyOrbs.push({ x: cell.x, y: cell.y });
+      }
+      sfx.bossAlert();
+      showToast(`⚡ Neon Hydra Core Detected at Level ${this.level}!`);
+    }
+
     isCellBlocked(x, y) {
-      for (const b of this.barriers) if (b.x === x && b.y === y) return true;
-      for (const mb of this.movingBlocks) if (Math.round(mb.x) === x && Math.round(mb.y) === y) return true;
-      for (const dz of this.dangerZones) if (dz.active && dz.x === x && dz.y === y) return true;
-      if (this.boss) { for (const bs of this.boss.segments) if (bs.x === x && bs.y === y) return true; }
+      if (this.boss && Math.abs(x - this.boss.x) <= 1 && Math.abs(y - this.boss.y) <= 1) return true;
       for (const s of this.snakes) {
         if (!s.alive) continue;
-        for (let i = 0; i < s.segments.length; i++) if (s.segments[i].x === x && s.segments[i].y === y) return true;
+        for (let i = 0; i < s.segments.length; i++) {
+          if (s.segments[i].x === x && s.segments[i].y === y) return true;
+        }
       }
       return false;
     }
 
-    findSafeRandomCell(margin = 3) {
+    findSafeRandomCell() {
       for (let t = 0; t < 100; t++) {
-        const x = Math.floor(Math.random() * GRID_COLS), y = Math.floor(Math.random() * GRID_ROWS);
+        const x = Math.floor(Math.random() * GRID_COLS);
+        const y = Math.floor(Math.random() * GRID_ROWS);
         if (!this.isCellBlocked(x, y)) return { x, y };
       }
       return { x: 5, y: 5 };
     }
 
-    spawnFruit(forceGolden = false) {
+    spawnFruit() {
       const cell = this.findSafeRandomCell();
+      const r = Math.random() * 100;
+      let acc = 0;
       let chosen = FRUITS_META[0];
-      if (forceGolden) chosen = FRUITS_META[4];
-      else {
-        const r = Math.random() * 100;
-        let acc = 0;
-        for (const f of FRUITS_META) { acc += f.weight; if (r <= acc) { chosen = f; break; } }
+      for (const f of FRUITS_META) {
+        acc += f.weight;
+        if (r <= acc) { chosen = f; break; }
       }
       this.fruits.push({ x: cell.x, y: cell.y, meta: chosen });
     }
@@ -2137,7 +2106,25 @@ getPlayer() {
       if (this.powerups.length >= 2) return;
       const cell = this.findSafeRandomCell();
       const meta = POWERUPS_META[Math.floor(Math.random() * POWERUPS_META.length)];
-      this.powerups.push({ x: cell.x, y: cell.y, meta, ttl: 18 });
+      this.powerups.push({ x: cell.x, y: cell.y, meta, ttl: 16 });
+    }
+
+    spawnBurst(gridX, gridY, color) {
+      const cw = this.canvas.width / GRID_COLS;
+      const ch = this.canvas.height / GRID_ROWS;
+      const cx = (gridX + 0.5) * cw;
+      const cy = (gridY + 0.5) * ch;
+      for (let i = 0; i < 10; i++) {
+        const ang = (Math.PI * 2 * i) / 10 + Math.random() * 0.4;
+        const spd = 45 + Math.random() * 90;
+        this.particles.push({
+          x: cx, y: cy,
+          vx: Math.cos(ang) * spd,
+          vy: Math.sin(ang) * spd,
+          life: 0.45,
+          color
+        });
+      }
     }
 
     chooseAIDirection(snake) {
@@ -2149,208 +2136,327 @@ getPlayer() {
         return !this.isCellBlocked(nx, ny);
       });
       if (safe.length === 0) return dirs[0];
-      return safe[Math.floor(Math.random() * safe.length)];
+
+      const diff = saveData.selectedDiff || "normal";
+      if (diff === "easy" && Math.random() < 0.45) {
+        return safe[Math.floor(Math.random() * safe.length)];
+      }
+
+      if (this.fruits.length > 0) {
+        let target = this.fruits[0];
+        let bestDist = Infinity;
+        for (const f of this.fruits) {
+          const dist = Math.hypot(f.x - head.x, f.y - head.y);
+          if (dist < bestDist) { bestDist = dist; target = f; }
+        }
+        safe.sort((a, b) => {
+          const ax = (head.x + DIRS[a].x + GRID_COLS) % GRID_COLS;
+          const ay = (head.y + DIRS[a].y + GRID_ROWS) % GRID_ROWS;
+          const bx = (head.x + DIRS[b].x + GRID_COLS) % GRID_COLS;
+          const by = (head.y + DIRS[b].y + GRID_ROWS) % GRID_ROWS;
+          return Math.hypot(ax - target.x, ay - target.y) - Math.hypot(bx - target.x, by - target.y);
+        });
+      }
+      return safe[0];
     }
 
-  
-
-stepSimulation() {
-  if (this.boardLocked) return;
-
-  const plannedHeads = new Map();
-  const eliminated = new Set();
-
-  // 1. Plan movement for all living snakes
-  for (const s of this.snakes) {
-    if (!s.alive) continue;
-
-    s.prevSegments = s.segments.map(seg => ({ ...seg }));
-
-    if (s.eatAnim > 0) {
-      s.eatAnim = Math.max(0, s.eatAnim - 0.35);
-    }
-
-    if (!s.isPlayer) {
-      s.nextDir = this.chooseAIDirection(s);
-    }
-
-    s.dir = s.nextDir;
-
-    const vec = DIRS[s.dir];
-    const head = s.segments[0];
-
-    plannedHeads.set(s.id, {
-      x: (head.x + vec.x + GRID_COLS) % GRID_COLS,
-      y: (head.y + vec.y + GRID_ROWS) % GRID_ROWS
-    });
-  }
-
-  const livingSnakes = this.snakes.filter(s => s.alive);
-
-  // 2. Detect head-to-head collisions
-  for (let i = 0; i < livingSnakes.length; i++) {
-    const a = livingSnakes[i];
-    const ah = plannedHeads.get(a.id);
-
-    for (let j = i + 1; j < livingSnakes.length; j++) {
-      const b = livingSnakes[j];
-      const bh = plannedHeads.get(b.id);
-
-      const sameCell =
-        ah.x === bh.x && ah.y === bh.y;
-
-      const headSwap =
-        ah.x === b.segments[0].x &&
-        ah.y === b.segments[0].y &&
-        bh.x === a.segments[0].x &&
-        bh.y === a.segments[0].y;
-
-      if (sameCell || headSwap) {
-        eliminated.add(a.id);
-        eliminated.add(b.id);
+    respawnEliminatedAIs() {
+      for (let i = 0; i < this.snakes.length; i++) {
+        const deadSnake = this.snakes[i];
+        if (deadSnake.isPlayer || deadSnake.alive || deadSnake.respawnAt === undefined || this.elapsedSec < deadSnake.respawnAt) continue;
+        const directions = Object.keys(DIRS);
+        for (let attempt = 0; attempt < 60; attempt++) {
+          const x = Math.floor(Math.random() * GRID_COLS);
+          const y = Math.floor(Math.random() * GRID_ROWS);
+          const dir = directions[Math.floor(Math.random() * directions.length)];
+          const candidate = this.createSnake({
+            id: deadSnake.id, name: deadSnake.name, isPlayer: false,
+            x, y, dir, palette: deadSnake.palette
+          });
+          if (candidate.segments.every(seg => !this.isCellBlocked(seg.x, seg.y))) {
+            candidate.score = deadSnake.score;
+            candidate.fruits = deadSnake.fruits;
+            this.snakes[i] = candidate;
+            break;
+          }
+        }
       }
     }
-  }
 
-  // 3. Detect body and self collisions
-  for (const s of livingSnakes) {
-    const nh = plannedHeads.get(s.id);
+    stepSimulation() {
+      if (this.boardLocked || this.matchOver) return;
 
-    for (const other of livingSnakes) {
-      for (let i = 1; i < other.segments.length; i++) {
-        const segment = other.segments[i];
-
-        const isVacatingTail =
-          i === other.segments.length - 1 &&
-          other.growPending <= 0;
-
-        if (isVacatingTail) continue;
-
-        if (nh.x === segment.x && nh.y === segment.y) {
-          eliminated.add(s.id);
-          break;
+      if (this.boss) {
+        this.boss.moveTimer++;
+        if (this.boss.moveTimer % 3 === 0) {
+          const dirs = [DIRS.UP, DIRS.DOWN, DIRS.LEFT, DIRS.RIGHT];
+          const step = dirs[Math.floor(Math.random() * dirs.length)];
+          this.boss.x = Math.max(2, Math.min(GRID_COLS - 3, this.boss.x + step.x));
+          this.boss.y = Math.max(2, Math.min(GRID_ROWS - 3, this.boss.y + step.y));
         }
       }
 
-      if (eliminated.has(s.id)) break;
-    }
-  }
+      const plannedHeads = new Map();
+      const eliminated = new Set();
 
-
-  // 4. Eliminate collided snakes
-  for (const s of livingSnakes) {
-    if (eliminated.has(s.id)) {
-      s.alive = false;
-
-      // Respawn AI after 10 seconds
-      if (!s.isPlayer) {
-        s.respawnAt = this.elapsedSec + 10;
+      for (const s of this.snakes) {
+        if (!s.alive) continue;
+        if (!s.isPlayer) s.nextDir = this.chooseAIDirection(s);
+        s.dir = s.nextDir;
+        const vec = DIRS[s.dir];
+        const head = s.segments[0];
+        plannedHeads.set(s.id, {
+          x: (head.x + vec.x + GRID_COLS) % GRID_COLS,
+          y: (head.y + vec.y + GRID_ROWS) % GRID_ROWS
+        });
       }
-    }
-  }
 
+      const livingSnakes = this.snakes.filter(s => s.alive);
 
-  // 5. Move surviving snakes and collect fruits
-  for (const s of livingSnakes) {
-    if (!s.alive) continue;
+      // Head-to-head collisions
+      for (let i = 0; i < livingSnakes.length; i++) {
+        const a = livingSnakes[i];
+        const ah = plannedHeads.get(a.id);
+        for (let j = i + 1; j < livingSnakes.length; j++) {
+          const b = livingSnakes[j];
+          const bh = plannedHeads.get(b.id);
+          const sameCell = ah.x === bh.x && ah.y === bh.y;
+          const headSwap = ah.x === b.segments[0].x && ah.y === b.segments[0].y && bh.x === a.segments[0].x && bh.y === a.segments[0].y;
+          if (sameCell || headSwap) {
+            if (a.effects.shield > 0) { a.effects.shield = 0; sfx.shieldBlock(); } else eliminated.add(a.id);
+            if (b.effects.shield > 0) { b.effects.shield = 0; } else eliminated.add(b.id);
+          }
+        }
+      }
 
-    const nh = plannedHeads.get(s.id);
+      // Body, self & boss core collisions
+      for (const s of livingSnakes) {
+        if (eliminated.has(s.id)) continue;
+        const nh = plannedHeads.get(s.id);
+        let hit = false;
 
-    s.segments.unshift(nh);
-
-    if (s.growPending > 0) {
-      s.growPending--;
-    } else {
-      s.segments.pop();
-    }
-
-    for (let i = this.fruits.length - 1; i >= 0; i--) {
-      const f = this.fruits[i];
-
-      if (f.x === nh.x && f.y === nh.y) {
-        s.score += f.meta.points;
-        s.fruits++;
-
-        s.growPending +=
-          f.meta.type === "golden" ? 2 : 1;
-
-        if (s.isPlayer) {
-          sfx.eatFruit(f.meta.type === "golden");
-          addCoins(f.meta.coins);
+        if (this.boss && Math.abs(nh.x - this.boss.x) <= 1 && Math.abs(nh.y - this.boss.y) <= 1) {
+          hit = true;
         }
 
-        this.fruits.splice(i, 1);
-        this.spawnFruit();
+        if (!hit) {
+          for (const other of livingSnakes) {
+            for (let i = 1; i < other.segments.length; i++) {
+              const seg = other.segments[i];
+              if (i === other.segments.length - 1 && other.growPending <= 0) continue;
+              if (nh.x === seg.x && nh.y === seg.y) { hit = true; break; }
+            }
+            if (hit) break;
+          }
+        }
+
+        if (hit) {
+          if (s.effects.shield > 0) {
+            s.effects.shield = 0;
+            sfx.shieldBlock();
+            if (s.isPlayer) showToast("🛡️ Shield absorbed collision!");
+          } else {
+            eliminated.add(s.id);
+          }
+        }
+      }
+
+      for (const s of livingSnakes) {
+        if (eliminated.has(s.id)) {
+          s.alive = false;
+          this.spawnBurst(s.segments[0].x, s.segments[0].y, s.palette.head);
+          if (!s.isPlayer) s.respawnAt = this.elapsedSec + 8;
+        }
+      }
+
+      // Move & collect fruits, energy orbs, powerups
+      for (const s of livingSnakes) {
+        if (!s.alive) continue;
+        const nh = plannedHeads.get(s.id);
+        s.segments.unshift(nh);
+        if (s.growPending > 0) s.growPending--;
+        else s.segments.pop();
+
+        if (s.effects.magnet > 0) {
+          for (const f of this.fruits) {
+            if (Math.hypot(f.x - nh.x, f.y - nh.y) <= 3.5) {
+              f.x = nh.x; f.y = nh.y;
+            }
+          }
+        }
+
+        for (let i = this.fruits.length - 1; i >= 0; i--) {
+          const f = this.fruits[i];
+          if (f.x === nh.x && f.y === nh.y) {
+            const mult = s.effects.double > 0 ? 2 : 1;
+            s.score += f.meta.points * mult;
+            s.fruits++;
+            s.growPending += f.meta.type === "golden" ? 2 : 1;
+            this.spawnBurst(f.x, f.y, f.meta.color);
+            if (s.isPlayer) {
+              sfx.eatFruit(f.meta.type === "golden");
+              addCoins(f.meta.coins);
+              this.matchCoinsEarned += f.meta.coins;
+              saveData.stats.fruitsEaten++;
+              const nextLvl = Math.floor(s.score / 120) + 1;
+              if (nextLvl > this.level) {
+                this.level = nextLvl;
+                if (this.level > saveData.stats.highestLevel) saveData.stats.highestLevel = this.level;
+                sfx.levelUp();
+                showToast(`⭐ Level Up! Arena Level ${this.level}`);
+                if (this.level % 4 === 0 && !this.boss) {
+                  this.spawnBossWave();
+                }
+              }
+            }
+            this.fruits.splice(i, 1);
+            this.spawnFruit();
+          }
+        }
+
+        if (this.boss && s.isPlayer) {
+          for (let i = this.energyOrbs.length - 1; i >= 0; i--) {
+            const orb = this.energyOrbs[i];
+            if (orb.x === nh.x && orb.y === nh.y) {
+              this.energyOrbs.splice(i, 1);
+              this.boss.hp = Math.max(0, this.boss.hp - 1);
+              s.score += 50;
+              this.spawnBurst(orb.x, orb.y, "#00f0ff");
+              sfx.powerup();
+              if (this.boss.hp === 0) {
+                s.score += 150;
+                addCoins(25, "Neon Hydra Cleared");
+                this.matchCoinsEarned += 25;
+                saveData.stats.bossesDefeated++;
+                this.spawnBurst(this.boss.x, this.boss.y, "#ffbe1a");
+                this.boss = null;
+                this.energyOrbs = [];
+                showToast("🎉 Neon Hydra Core Cleared! +150 Score & +25 Coins!");
+              }
+            }
+          }
+        }
+
+        for (let i = this.powerups.length - 1; i >= 0; i--) {
+          const pu = this.powerups[i];
+          if (pu.x === nh.x && pu.y === nh.y) {
+            s.effects[pu.meta.type] = pu.meta.duration;
+            this.spawnBurst(pu.x, pu.y, pu.meta.color);
+            if (s.isPlayer) {
+              sfx.powerup();
+              showToast(`${pu.meta.icon} ${pu.meta.name} Active!`);
+            }
+            this.powerups.splice(i, 1);
+            setTimeout(() => this.spawnPowerup(), 5000);
+          }
+        }
+      }
+
+      const player = this.getPlayer();
+      const timeLimitReached = saveData.selectedMode === "time" && this.elapsedSec >= 60;
+      if ((player && !player.alive) || timeLimitReached) {
+        this.finishMatch(timeLimitReached);
       }
     }
-  }
 
- 
-  // 6. Show Game Over when player is eliminated
-  const player = this.snakes.find(s => s.isPlayer);
+    finishMatch(wonByTimer = false) {
+      if (this.matchOver) return;
+      this.matchOver = true;
+      this.paused = true;
 
-  if (player && !player.alive && !this.matchOver) {
-    this.matchOver = true;
-    this.paused = true;
+      const player = this.getPlayer();
+      const finalScore = player ? player.score : 0;
+      const topAI = Math.max(0, ...this.snakes.filter(s => !s.isPlayer).map(s => s.score));
+      const isWin = wonByTimer ? (finalScore >= topAI) : (finalScore >= topAI && finalScore > 0);
 
-    openModal("GAME OVER!", body => {
-      body.innerHTML = `
-        <div style="text-align:center;color:#dbe6ff;padding:12px;">
-          <div style="font-size:3rem;">🐍</div>
-          <h2 style="color:#ff4d6d;">You Were Eliminated!</h2>
-          <p>Your Score: <strong>${player.score}</strong></p>
+      if (!this.countedMatch) {
+        this.countedMatch = true;
+        saveData.stats.totalGames++;
+        if (isWin) { saveData.stats.totalWins++; sfx.win(); } else { sfx.lose(); }
+        if (finalScore > saveData.stats.bestScore) saveData.stats.bestScore = finalScore;
+        if (this.level > saveData.stats.highestLevel) saveData.stats.highestLevel = this.level;
+        const sec = Math.floor(this.elapsedSec);
+        if (sec > saveData.stats.bestSurvivalSec) saveData.stats.bestSurvivalSec = sec;
 
-          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;">
-            <button class="arcade-btn btn-blue" id="playAgainBtn">
-              🔄 PLAY AGAIN
-            </button>
+        const winBonus = isWin ? 50 : 15;
+        addCoins(winBonus, isWin ? "Match Victory" : "Match Completion");
+        this.matchCoinsEarned += winBonus;
 
-            <button class="arcade-btn btn-orange" id="gameOverMenuBtn">
-              🏠 MAIN MENU
-            </button>
+        saveData.leaderboard.push({
+          name: saveData.playerName || "You",
+          score: finalScore,
+          level: this.level,
+          mode: saveData.selectedMode
+        });
+        saveData.leaderboard.sort((a,b) => b.score - a.score);
+        saveData.leaderboard = saveData.leaderboard.slice(0, 12);
+        persistSave();
+        checkAchievements();
+        refreshAllUI();
+      }
+
+      openModal(isWin ? "🏆 MATCH COMPLETE — VICTORY!" : "🐍 MATCH OVER", body => {
+        body.innerHTML = `
+          <div style="text-align:center;color:#dbe6ff;padding:10px;line-height:1.6;">
+            <div style="font-size:2.6rem;margin-bottom:6px;">${isWin ? "🏆" : "🐍"}</div>
+            <h2 style="color:${isWin ? "#43ff88" : "#ff4d6d"};margin-bottom:8px;">${isWin ? "Arena Champion!" : "Eliminated in Arena"}</h2>
+            <p>Final Score: <strong>${finalScore.toLocaleString()}</strong> • Level Reached: <strong>${this.level}</strong></p>
+            <p>Coins Earned This Match: <strong style="color:var(--gold);">+${this.matchCoinsEarned}</strong></p>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-top:18px;">
+              <button class="arcade-btn btn-play-hero" id="playAgainBtn">🔄 PLAY AGAIN</button>
+              <button class="arcade-btn btn-blue" id="gameOverMenuBtn">🏠 RETURN TO DASHBOARD</button>
+            </div>
           </div>
-        </div>
-      `;
-
-      body.querySelector("#playAgainBtn").addEventListener("click", () => {
-        closeModal();
-        this.startNewMatch();
-
-        this.boardLocked = false;
-        document.getElementById("playNowOverlayGate").classList.add("hidden");
+        `;
+        body.querySelector("#playAgainBtn").addEventListener("click", () => {
+          closeModal();
+          this.startNewMatch();
+          this.boardLocked = false;
+          document.getElementById("playNowOverlayGate").classList.add("hidden");
+        });
+        body.querySelector("#gameOverMenuBtn").addEventListener("click", () => {
+          closeModal();
+          switchToDashboard();
+        });
       });
+    }
 
-      body.querySelector("#gameOverMenuBtn").addEventListener("click", () => {
-        closeModal();
-        switchToDashboard();
-      });
-    });
-  }
-}
+    update(dt) {
+      if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
 
+      this.elapsedSec += dt;
+      this.respawnEliminatedAIs();
 
-update(dt) {
-  if (!this.running || this.paused || this.matchOver || this.boardLocked) return;
+      for (const s of this.snakes) {
+        for (const k of Object.keys(s.effects)) {
+          if (s.effects[k] > 0) s.effects[k] = Math.max(0, s.effects[k] - dt);
+        }
+      }
+      for (let i = this.powerups.length - 1; i >= 0; i--) {
+        this.powerups[i].ttl -= dt;
+        if (this.powerups[i].ttl <= 0) this.powerups.splice(i, 1);
+      }
+      for (let i = this.particles.length - 1; i >= 0; i--) {
+        const pt = this.particles[i];
+        pt.x += pt.vx * dt;
+        pt.y += pt.vy * dt;
+        pt.life -= dt;
+        if (pt.life <= 0) this.particles.splice(i, 1);
+      }
 
-  this.elapsedSec += dt;
+      const p = this.getPlayer();
+      const baseSpeed = saveData.selectedMode === "speed" ? 0.085 : 0.125;
+      const diffBoost = saveData.selectedDiff === "hard" ? 0.92 : (saveData.selectedDiff === "easy" ? 1.12 : 1.0);
+      const speedMult = (p && p.effects.speed > 0) ? 0.68 : 1.0;
+      const interval = Math.max(0.055, baseSpeed * diffBoost * speedMult);
 
-  // Respawn eliminated AI snakes
-  this.respawnEliminatedAIs();
-
-  if (this.screenShake > 0) {
-    this.screenShake = Math.max(0, this.screenShake - dt * 32);
-  }
-
-  this.stepAccumulator += dt;
-  const interval = 0.125;
-
-  while (this.stepAccumulator >= interval) {
-    this.stepAccumulator -= interval;
-    this.stepSimulation();
-  }
-
-  this.updateHud();
-}
+      this.stepAccumulator += dt;
+      while (this.stepAccumulator >= interval) {
+        this.stepAccumulator -= interval;
+        this.stepSimulation();
+      }
+      this.updateHud();
+    }
 
     updateHud() {
       const p = this.getPlayer();
@@ -2358,7 +2464,30 @@ update(dt) {
       document.getElementById("hudScore").textContent = p.score.toLocaleString();
       document.getElementById("hudLevel").textContent = this.level;
       document.getElementById("hudLength").textContent = p.segments.length;
-      document.getElementById("hudTimer").textContent = `${Math.floor(this.elapsedSec)}s`;
+
+      if (saveData.selectedMode === "time") {
+        document.getElementById("hudTimerLabel").textContent = "Left";
+        document.getElementById("hudTimer").textContent = `${Math.max(0, Math.ceil(60 - this.elapsedSec))}s`;
+      } else {
+        document.getElementById("hudTimerLabel").textContent = "Time";
+        document.getElementById("hudTimer").textContent = `${Math.floor(this.elapsedSec)}s`;
+      }
+
+      const bossHud = document.getElementById("bossHudOverlay");
+      if (this.boss) {
+        bossHud.classList.add("visible");
+        document.getElementById("bossHudName").textContent = `⚡ NEON HYDRA CORE (LV.${this.level})`;
+        document.getElementById("bossHpFill").style.width = `${Math.round((this.boss.hp / this.boss.maxHp) * 100)}%`;
+      } else {
+        bossHud.classList.remove("visible");
+      }
+
+      const badges = [];
+      if (p.effects.speed > 0) badges.push(`⚡ Speed ${p.effects.speed.toFixed(1)}s`);
+      if (p.effects.shield > 0) badges.push(`🛡️ Shield ${p.effects.shield.toFixed(1)}s`);
+      if (p.effects.magnet > 0) badges.push(`🧲 Magnet ${p.effects.magnet.toFixed(1)}s`);
+      if (p.effects.double > 0) badges.push(`✨ 2X Score ${p.effects.double.toFixed(1)}s`);
+      document.getElementById("activePowerupsOverlay").innerHTML = badges.map(b => `<div class="pu-badge">${b}</div>`).join("");
 
       const sorted = [...this.snakes].sort((a,b) => b.score - a.score);
       document.getElementById("liveLeaderboardRows").innerHTML = sorted.map((s, idx) => `
@@ -2369,21 +2498,62 @@ update(dt) {
       `).join("");
     }
 
-    render(timeSec) {
+    render(timeSec = 0) {
       const ctx = this.ctx;
       const W = this.canvas.width; const H = this.canvas.height;
       const cw = W / GRID_COLS; const ch = H / GRID_ROWS;
+      const theme = getActiveArenaTheme();
 
       ctx.clearRect(0, 0, W, H);
-      ctx.fillStyle = "#070b22"; ctx.fillRect(0, 0, W, H);
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+      bgGrad.addColorStop(0, theme.bgTop || "#070b22");
+      bgGrad.addColorStop(1, theme.bgBottom || "#040817");
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
 
-      ctx.strokeStyle = "rgba(0, 240, 255, 0.08)";
+      ctx.strokeStyle = theme.gridColor || "rgba(0, 240, 255, 0.08)";
       for (let c = 0; c <= GRID_COLS; c++) { ctx.beginPath(); ctx.moveTo(c*cw, 0); ctx.lineTo(c*cw, H); ctx.stroke(); }
       for (let r = 0; r <= GRID_ROWS; r++) { ctx.beginPath(); ctx.moveTo(0, r*ch); ctx.lineTo(W, r*ch); ctx.stroke(); }
 
       for (const f of this.fruits) {
+        ctx.save();
+        ctx.shadowBlur = 10; ctx.shadowColor = f.meta.color;
         ctx.fillStyle = f.meta.color;
         ctx.beginPath(); ctx.arc((f.x+0.5)*cw, (f.y+0.5)*ch, Math.min(cw,ch)*0.38, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+
+      for (const orb of this.energyOrbs) {
+        ctx.save();
+        ctx.shadowBlur = 14; ctx.shadowColor = "#00f0ff";
+        ctx.fillStyle = "#00f0ff";
+        ctx.beginPath(); ctx.arc((orb.x+0.5)*cw, (orb.y+0.5)*ch, Math.min(cw,ch)*0.4, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+      }
+
+      for (const pu of this.powerups) {
+        ctx.save();
+        ctx.shadowBlur = 14; ctx.shadowColor = pu.meta.color;
+        ctx.strokeStyle = pu.meta.color; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.arc((pu.x+0.5)*cw, (pu.y+0.5)*ch, Math.min(cw,ch)*0.42, 0, Math.PI*2); ctx.stroke();
+        ctx.font = `${Math.floor(Math.min(cw,ch)*0.5)}px sans-serif`;
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(pu.meta.icon, (pu.x+0.5)*cw, (pu.y+0.5)*ch + 1);
+        ctx.restore();
+      }
+
+      if (this.boss) {
+        ctx.save();
+        ctx.shadowBlur = 22; ctx.shadowColor = "#00f0ff";
+        ctx.strokeStyle = "#00f0ff"; ctx.lineWidth = 3;
+        ctx.strokeRect((this.boss.x - 1) * cw + 2, (this.boss.y - 1) * ch + 2, cw * 3 - 4, ch * 3 - 4);
+        ctx.fillStyle = "rgba(0, 240, 255, 0.22)";
+        ctx.beginPath(); ctx.arc((this.boss.x + 0.5) * cw, (this.boss.y + 0.5) * ch, Math.min(cw,ch) * 1.15, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = "#ffbe1a";
+        ctx.font = `900 ${Math.floor(Math.min(cw,ch)*0.55)}px sans-serif`;
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText(`⚡${this.boss.hp}`, (this.boss.x + 0.5) * cw, (this.boss.y + 0.5) * ch);
+        ctx.restore();
       }
 
       for (const s of this.snakes) {
@@ -2391,27 +2561,45 @@ update(dt) {
         const pal = s.palette;
         for (let i = s.segments.length - 1; i >= 0; i--) {
           const pt = s.segments[i];
-          ctx.fillStyle = i === 0 ? pal.head : pal.bodyA;
-          ctx.beginPath(); ctx.arc((pt.x+0.5)*cw, (pt.y+0.5)*ch, Math.min(cw,ch)*0.42, 0, Math.PI*2); ctx.fill();
+          if (s.rainbow) {
+            ctx.fillStyle = `hsl(${(i * 22 - timeSec * 140) % 360}, 100%, 58%)`;
+          } else {
+            ctx.fillStyle = i === 0 ? pal.head : (i % 2 === 0 ? pal.bodyA : pal.bodyB);
+          }
+          const rad = i === 0 ? Math.min(cw,ch)*0.44 : Math.min(cw,ch)*0.38;
+          ctx.beginPath(); ctx.arc((pt.x+0.5)*cw, (pt.y+0.5)*ch, rad, 0, Math.PI*2); ctx.fill();
+        }
+        if (s.effects && s.effects.shield > 0) {
+          const hPt = s.segments[0];
+          ctx.strokeStyle = "#14f16c"; ctx.lineWidth = 2.5;
+          ctx.beginPath(); ctx.arc((hPt.x+0.5)*cw, (hPt.y+0.5)*ch, Math.min(cw,ch)*0.58, 0, Math.PI*2); ctx.stroke();
         }
       }
+
+      for (const pt of this.particles) {
+        ctx.globalAlpha = Math.max(0, pt.life / 0.45);
+        ctx.fillStyle = pt.color;
+        ctx.beginPath(); ctx.arc(pt.x, pt.y, 4, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
     }
   }
 
   /* ============================================================================
-     8. APP INITIALIZATION & ACTIVE MATCH EXIT RATING GUARD
+     8. APP INITIALIZATION & CONTROLS
      ============================================================================ */
   const gameCanvas = document.getElementById("gameCanvas");
   const arena = new BattleArenaEngine(gameCanvas);
 
   function switchToArena() {
     sfx.click();
+    const modeLabels = { battle: "BATTLE ARENA", time: "TIME (60s)", speed: "SPEED BATTLE", survival: "SURVIVAL" };
+    document.getElementById("hudModeBadge").textContent = modeLabels[saveData.selectedMode] || "BATTLE ARENA";
     document.getElementById("dashboardView").classList.add("hidden");
     document.getElementById("arenaView").classList.add("active");
     arena.startNewMatch();
   }
 
-  // Play Now Overlay Gate
   document.getElementById("boardPlayNowBtn").addEventListener("click", () => {
     sfx.click();
     arena.boardLocked = false;
@@ -2420,7 +2608,14 @@ update(dt) {
 
   document.getElementById("playBattleBtn").addEventListener("click", switchToArena);
 
-  // Active Match Guard + Exit Rating System
+  document.getElementById("pauseGameBtn").addEventListener("click", () => {
+    if (!arena.running || arena.matchOver || arena.boardLocked) return;
+    sfx.click();
+    arena.paused = !arena.paused;
+    document.getElementById("pauseGameBtn").textContent = arena.paused ? "▶️" : "⏸️";
+    showToast(arena.paused ? "⏸️ Game Paused" : "▶️ Game Resumed");
+  });
+
   document.getElementById("exitToMenuBtn").addEventListener("click", () => {
     if (arena.running && !arena.matchOver && !arena.boardLocked) {
       openMatchExitRatingModal();
@@ -2434,10 +2629,9 @@ update(dt) {
     openModal("⚠️ Leave Active Match?", body => {
       body.innerHTML = `
         <div style="text-align:center;color:#dbe6ff;line-height:1.5;">
-          <p style="margin-bottom:12px;">You are currently in an active match! Leaving now will forfeit your progress.</p>
+          <p style="margin-bottom:12px;">You are currently in an active match! Leaving now will forfeit this match.</p>
           <div class="exit-rating-box">
             <div style="font-weight:900;color:var(--gold);font-size:0.92rem;">Enjoying Neon Snake 203?</div>
-            <div style="font-size:0.78rem;color:#9cb2e8;margin-top:2px;">Rate your experience:</div>
             <div class="star-row" id="exitStarRow">
               <button class="star-btn" data-star="1">⭐</button>
               <button class="star-btn" data-star="2">⭐</button>
@@ -2453,17 +2647,14 @@ update(dt) {
         </div>
       `;
 
-      let selectedRating = 0;
       body.querySelectorAll(".star-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-          selectedRating = Number(btn.dataset.star);
-          body.querySelectorAll(".star-btn").forEach((b, idx) => {
-            b.classList.toggle("active", idx < selectedRating);
-          });
+          const r = Number(btn.dataset.star);
+          body.querySelectorAll(".star-btn").forEach((b, idx) => b.classList.toggle("active", idx < r));
           sfx.coin();
-          showToast(`❤️ Thank you for your ${selectedRating}-star rating!`);
           saveData.ratingState.submitted = true;
           persistSave();
+          showToast(`❤️ Thanks for your ${r}-star rating!`);
         });
       });
 
@@ -2488,11 +2679,34 @@ update(dt) {
   }
 
   document.querySelectorAll("#modeChipGroup .chip-btn").forEach(btn => {
-    btn.addEventListener("click", () => { saveData.selectedMode = btn.dataset.mode; persistSave(); refreshAllUI(); });
+    btn.addEventListener("click", () => { sfx.click(); saveData.selectedMode = btn.dataset.mode; persistSave(); refreshAllUI(); });
   });
   document.querySelectorAll("#diffChipGroup .chip-btn").forEach(btn => {
-    btn.addEventListener("click", () => { saveData.selectedDiff = btn.dataset.diff; persistSave(); refreshAllUI(); });
+    btn.addEventListener("click", () => { sfx.click(); saveData.selectedDiff = btn.dataset.diff; persistSave(); refreshAllUI(); });
   });
+
+  document.querySelectorAll(".dpad-btn[data-dir]").forEach(btn => {
+    btn.addEventListener("click", () => arena.setPlayerDirection(btn.dataset.dir));
+  });
+
+  let touchStartX = 0, touchStartY = 0;
+  gameCanvas.addEventListener("touchstart", e => {
+    if (e.touches.length > 0) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+  gameCanvas.addEventListener("touchmove", e => {
+    if (e.touches.length === 0) return;
+    const dx = e.touches[0].clientX - touchStartX;
+    const dy = e.touches[0].clientY - touchStartY;
+    if (Math.abs(dx) > 22 || Math.abs(dy) > 22) {
+      if (Math.abs(dx) > Math.abs(dy)) arena.setPlayerDirection(dx > 0 ? "RIGHT" : "LEFT");
+      else arena.setPlayerDirection(dy > 0 ? "DOWN" : "UP");
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }
+  }, { passive: true });
 
   document.getElementById("openShopModalBtn").addEventListener("click", openFullShopModal);
   document.getElementById("viewAllShopBtn").addEventListener("click", openFullShopModal);
@@ -2522,6 +2736,10 @@ update(dt) {
     else if (key === "arrowdown" || key === "s") arena.setPlayerDirection("DOWN");
     else if (key === "arrowleft" || key === "a") arena.setPlayerDirection("LEFT");
     else if (key === "arrowright" || key === "d") arena.setPlayerDirection("RIGHT");
+    else if ((key === "p" || key === "escape") && arena.running && !arena.matchOver && !arena.boardLocked) {
+      arena.paused = !arena.paused;
+      showToast(arena.paused ? "⏸️ Game Paused" : "▶️ Game Resumed");
+    }
   });
 
   let lastTs = performance.now();
