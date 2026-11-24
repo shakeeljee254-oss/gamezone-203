@@ -102,20 +102,120 @@
       width: 100%;
       min-height: 100%;
       overflow-x: hidden;
-      background: #09130c;
+      background: #050a14;
       color: #f8fafc;
       font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .font-display {
+
+    /* Chess-203 Inspired Top Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 25;
+      height: 58px;
+      background: rgba(7, 13, 25, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      padding: 0 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+    .btn-back:hover {
+      background: rgba(30, 41, 59, 0.95);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+    .brand-trail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .brand-tag {
+      padding: 4px 8px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.14);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+    }
+    .brand-game {
+      color: #f8fafc;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .matches-pill {
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      font-size: 12px;
+      font-weight: 700;
+      color: #cbd5e1;
+      white-space: nowrap;
+    }
+    .matches-pill span {
+      color: #38bdf8;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+    }
+    .btn-exit-game {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 10px;
+      background: rgba(127, 29, 29, 0.35);
+      border: 1px solid rgba(248, 113, 113, 0.45);
+      color: #fecaca;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .btn-exit-game:hover {
+      background: rgba(153, 27, 27, 0.65);
+    }
+    .btn-exit-game:active {
+      transform: scale(0.97);
     }
 
-    /* Fullscreen Game Stage */
+    /* Fullscreen-ish Game Arena */
     .game-container {
       position: relative;
       width: 100vw;
-      height: 100vh;
-      min-height: 560px;
+      height: calc(100vh - 58px);
+      min-height: 520px;
       overflow: hidden;
       background: #1b3b1e;
     }
@@ -139,28 +239,27 @@
       gap: 8px;
     }
     .hud-chip {
-      background: rgba(11, 23, 14, 0.78);
+      background: rgba(8, 17, 28, 0.82);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       border-radius: 14px;
-      padding: 8px 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      padding: 9px 14px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
     }
     .score-board {
       font-family: 'Orbitron', sans-serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 900;
       color: #fde047;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.65);
     }
     .sub-stat {
       font-size: 12px;
-      color: #bbf7d0;
+      color: #cbd5e1;
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
-    /* Top Right HUD: Timer + Minimap + Leaderboard */
+    /* Top Right HUD: Minimap + Timer + Leaderboard */
     .top-right-stack {
       position: absolute;
       top: 14px;
@@ -173,9 +272,9 @@
       pointer-events: none;
     }
     .radar-box {
-      background: rgba(11, 23, 14, 0.8);
+      background: rgba(8, 17, 28, 0.84);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(148, 163, 184, 0.22);
       border-radius: 14px;
       padding: 8px;
       display: flex;
@@ -185,29 +284,27 @@
       box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
     }
     #minimap {
-      width: 112px;
-      height: 112px;
+      width: 108px;
+      height: 108px;
       border-radius: 10px;
-      background: rgba(6, 15, 8, 0.9);
-      border: 1px solid rgba(134, 239, 172, 0.25);
+      background: rgba(4, 10, 18, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.25);
     }
     .run-timer {
       font-family: 'Orbitron', sans-serif;
       font-size: 12px;
       font-weight: 800;
       color: #f8fafc;
-      letter-spacing: 0.06em;
     }
-
     .leaderboard {
-      background: rgba(11, 23, 14, 0.78);
+      background: rgba(8, 17, 28, 0.82);
       backdrop-filter: blur(10px);
       padding: 10px 14px;
       border-radius: 14px;
       font-size: 13px;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      min-width: 175px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      min-width: 170px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
     }
     .leaderboard h3 {
       margin: 0 0 8px 0;
@@ -215,7 +312,6 @@
       text-align: center;
       font-family: 'Orbitron', sans-serif;
       font-size: 12px;
-      letter-spacing: 0.06em;
     }
     #leader-list div {
       margin-bottom: 5px;
@@ -239,13 +335,13 @@
     }
     .pwr-btn {
       position: relative;
-      width: 58px;
-      height: 58px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       border: 2px solid #fde047;
       background: radial-gradient(circle at 30% 30%, #facc15, #ca8a04);
       color: #1e1b04;
-      font-size: 22px;
+      font-size: 21px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -255,10 +351,6 @@
     }
     .pwr-btn:hover:not(:disabled) {
       transform: translateY(-2px) scale(1.04);
-      filter: brightness(1.06);
-    }
-    .pwr-btn:active:not(:disabled) {
-      transform: translateY(2px) scale(0.96);
     }
     .pwr-btn:disabled {
       opacity: 0.45;
@@ -287,116 +379,212 @@
       justify-content: center;
     }
 
-    /* Overlay Screens */
+    /* Cyber Arena Start / Game Over Overlay */
     .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(6, 15, 9, 0.86);
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.78), rgba(4, 9, 18, 0.94));
       backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 10;
+      z-index: 12;
       padding: 20px;
     }
-    .overlay h1 {
-      color: #50f5d0;
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(28px, 6vw, 48px);
-      margin: 0 0 10px 0;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .arena-card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(11, 19, 36, 0.94);
+      border: 1px solid rgba(56, 189, 248, 0.28);
+      border-radius: 22px;
+      padding: 28px 24px;
       text-align: center;
-      text-shadow: 0 0 24px rgba(80, 245, 208, 0.35);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
     }
-    .overlay p {
-      color: #cbd5e1;
-      margin: 0 0 22px 0;
-      font-size: 15px;
-      text-align: center;
-      max-width: 540px;
-      line-height: 1.55;
-    }
-    .overlay-actions {
+    .arena-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 14px;
+      border-radius: 16px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      width: 100%;
-      max-width: 460px;
+      font-size: 24px;
+      color: #38bdf8;
+    }
+    .overlay h1 {
+      color: #f8fafc;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(24px, 4.5vw, 34px);
+      margin: 0 0 8px 0;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .overlay p {
+      color: #94a3b8;
+      margin: 0 0 22px 0;
+      font-size: 14px;
+      line-height: 1.55;
     }
 
-    /* Nav Play Button Styling */
     @keyframes pulseScale {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.04); }
+      50% { transform: scale(1.03); }
     }
     .nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex: 1.6;
-      min-width: 165px;
+      width: 100%;
     }
     .b {
       cursor: pointer;
       border: none;
-      border-radius: 1rem;
+      border-radius: 12px;
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.12s ease, filter 0.12s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
     }
     .b:hover {
       transform: translateY(-2px);
-      filter: brightness(1.08);
+      filter: brightness(1.06);
     }
     .b:active {
-      transform: translateY(2px) scale(0.97);
+      transform: translateY(2px) scale(0.98);
     }
     .b.pri {
-      background: linear-gradient(to right, #fbbf24, #f97316, #f43f5e);
-      color: #020617;
-      box-shadow: 0 8px 0 #b45309, 0 15px 35px rgba(245, 158, 11, 0.45);
-    }
-    .b.pri:active {
-      box-shadow: 0 2px 0 #b45309, 0 6px 15px rgba(245, 158, 11, 0.35);
+      background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6);
+      color: #ffffff;
+      box-shadow: 0 10px 28px rgba(59, 130, 246, 0.4);
     }
     .b.big {
       width: 100%;
-      padding: 1rem 1.75rem;
-      font-size: 1.2rem;
-      animation: pulseScale 2.2s infinite ease-in-out;
+      padding: 14px 20px;
+      font-size: 15px;
+      animation: pulseScale 2.4s infinite ease-in-out;
+    }
+    .secondary-row {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .btn-ghost {
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 11px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .btn-ghost:hover {
+      background: rgba(30, 41, 59, 0.95);
     }
 
-    /* HOW TO & FAQ Button */
-    .btn-faq-jump {
-      cursor: pointer;
-      background: rgba(15, 23, 42, 0.88);
-      color: #fde047;
-      border: 1px solid rgba(250, 204, 21, 0.45);
-      padding: 0.95rem 1.35rem;
-      border-radius: 1rem;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: transform 0.12s ease, background 0.15s ease;
+    /* Rating Popup Modal */
+    .rating-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(2, 6, 15, 0.84);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
     }
-    .btn-faq-jump:hover {
-      transform: translateY(-2px);
-      background: rgba(30, 41, 59, 0.95);
+    .rating-modal {
+      width: 100%;
+      max-width: 430px;
+      background: #0b1324;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+      text-align: center;
+    }
+    .rating-modal h2 {
+      margin: 0 0 6px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 19px;
+      color: #f8fafc;
+    }
+    .rating-modal p {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .stars-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .star-btn {
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      border-radius: 12px;
+      width: 46px;
+      height: 46px;
+      font-size: 22px;
+      color: #64748b;
+      transition: transform 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+    }
+    .star-btn.active, .star-btn:hover {
+      color: #facc15;
+      border-color: rgba(250, 204, 21, 0.65);
+      transform: scale(1.08);
+    }
+    .rating-note {
+      width: 100%;
+      min-height: 72px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(15, 23, 42, 0.85);
+      color: #f8fafc;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 13px;
+      resize: vertical;
+      margin-bottom: 14px;
+    }
+    .rating-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+    }
+    .btn-submit-rating {
+      flex: 1;
+      cursor: pointer;
+      padding: 11px 14px;
+      border-radius: 11px;
+      border: none;
+      background: linear-gradient(90deg, #06b6d4, #3b82f6);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .rating-saved-banner {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #4ade80;
+      font-weight: 600;
     }
 
     .hidden {
       display: none !important;
     }
 
-    /* Guide & FAQ Section Below Game Stage */
+    /* Guide & FAQ Section Below Arena */
     #guide-and-faq {
       max-width: 980px;
       margin: 0 auto;
@@ -405,17 +593,16 @@
       gap: 20px;
     }
     .info-card {
-      background: #102014;
-      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #0b1324;
+      border: 1px solid rgba(148, 163, 184, 0.16);
       border-radius: 20px;
       padding: 22px;
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
     }
     .info-card h2 {
       margin: 0 0 10px 0;
       font-family: 'Orbitron', sans-serif;
-      font-size: 20px;
-      color: #50f5d0;
+      font-size: 19px;
+      color: #38bdf8;
     }
     .info-card p {
       margin: 0 0 14px 0;
@@ -429,8 +616,8 @@
       gap: 12px;
     }
     .tip-box {
-      background: rgba(6, 15, 9, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.14);
       border-radius: 14px;
       padding: 14px;
       font-size: 13px;
@@ -439,12 +626,12 @@
     }
     .tip-box strong {
       display: block;
-      color: #fde047;
+      color: #facc15;
       margin-bottom: 4px;
     }
     details.faq-item {
-      background: rgba(6, 15, 9, 0.72);
-      border: 1px solid rgba(255, 255, 255, 0.09);
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.14);
       border-radius: 14px;
       padding: 14px 16px;
       margin-bottom: 10px;
@@ -452,7 +639,7 @@
     details.faq-item summary {
       cursor: pointer;
       font-weight: 700;
-      color: #fde047;
+      color: #facc15;
       font-size: 14px;
     }
     details.faq-item p {
@@ -461,8 +648,8 @@
       color: #cbd5e1;
     }
     footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      background: #071009;
+      border-top: 1px solid rgba(148, 163, 184, 0.14);
+      background: #060b16;
       padding: 16px 18px;
       font-size: 12px;
       color: #94a3b8;
@@ -481,13 +668,29 @@
       gap: 16px;
     }
     .footer-links a {
-      color: #50f5d0;
+      color: #38bdf8;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Bar (Chess-203 Style) -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <a class="btn-back" href="https://shakeeljee254-oss.github.io/gamezone-203/">← Back to Games</a>
+      <div class="brand-trail">
+        <span class="brand-tag">GAMEZONE 203</span>
+        <span class="brand-game">SLITHER ARENA</span>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <div class="matches-pill">Completed Matches: <span id="completedMatchesCount">0</span></div>
+      <button type="button" class="btn-exit-game" onclick="exitGameAndRate()">↪ Exit Game</button>
+    </div>
+  </header>
+
+  <!-- Arena Stage -->
   <div class="game-container">
     <canvas id="game"></canvas>
 
@@ -495,14 +698,14 @@
     <div class="ui-panel">
       <div class="hud-chip">
         <div class="score-board">Length: <span id="score">10</span></div>
-        <div class="sub-stat">Best: <span id="bestScore">10</span> • Eliminations: <span id="kills">0</span></div>
+        <div class="sub-stat">Best: <span id="bestScore">10</span> • Eliminations: <span id="kills">0</span> • Rating: <span id="savedRatingBadge">Not Rated</span></div>
       </div>
     </div>
 
     <!-- Top-Right Minimap, Timer & Leaderboard -->
     <div class="top-right-stack">
       <div class="radar-box">
-        <canvas id="minimap" width="112" height="112"></canvas>
+        <canvas id="minimap" width="108" height="108"></canvas>
         <div class="run-timer" id="runTimer">0m 00s</div>
       </div>
 
@@ -530,22 +733,54 @@
 
     <!-- Start Overlay -->
     <div class="overlay" id="startScreen">
-      <h1>Slither Arena VIP</h1>
-      <p>Play this slither io style snake game online free—eat orbs, trigger Magnet, Boost, and Zoom power-ups, and outsmart rival snakes in the arena.</p>
-      <div class="overlay-actions">
-        <div class="nav"><button class="b pri big" data-act="play">PLAY</button></div>
-        <button id="btn-how-faq" class="btn-faq-jump" onclick="scrollToHowFaq()">HOW TO &amp; FAQ</button>
+      <div class="arena-card">
+        <div class="arena-icon">▶</div>
+        <h1>Slither Arena VIP</h1>
+        <p>Play this slither io style snake game online free—eat orbs, trigger Magnet, Boost, and Zoom power-ups, and outsmart rival snakes.</p>
+        <div class="nav"><button class="b pri big" data-act="play">PLAY NOW →</button></div>
+        <div class="secondary-row">
+          <button type="button" class="btn-ghost" onclick="openRatingModal(false)">⭐ Rate Game</button>
+          <button type="button" class="btn-ghost" onclick="scrollToHowFaq()">HOW TO &amp; FAQ</button>
+        </div>
       </div>
     </div>
 
     <!-- Game Over Overlay -->
     <div class="overlay hidden" id="gameOverScreen">
-      <h1 style="color:#ff4d79">Game Over</h1>
-      <p>You crashed! Final Length: <span id="finalScore" style="color:#fde047;font-weight:800;">10</span></p>
-      <div class="overlay-actions">
-        <div class="nav"><button class="b pri big" data-act="play">PLAY AGAIN</button></div>
-        <button class="btn-faq-jump" onclick="scrollToHowFaq()">HOW TO &amp; FAQ</button>
+      <div class="arena-card">
+        <h1 style="color:#fb7185">Match Ended</h1>
+        <p>Final Length: <span id="finalScore" style="color:#fde047;font-weight:800;">10</span></p>
+        <div class="nav"><button class="b pri big" data-act="play">PLAY AGAIN →</button></div>
+        <div class="secondary-row">
+          <button type="button" class="btn-ghost" onclick="openRatingModal(true)">⭐ Rate This Run</button>
+          <button type="button" class="btn-ghost" onclick="scrollToHowFaq()">HOW TO &amp; FAQ</button>
+        </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Rating Popup Modal (Chess-203 Style) -->
+  <div class="rating-backdrop hidden" id="ratingModal" role="dialog" aria-modal="true" aria-labelledby="ratingTitle">
+    <div class="rating-modal">
+      <h2 id="ratingTitle">Rate Slither Arena VIP</h2>
+      <p>How was your match on GameZone 203? Your rating is saved locally in this browser.</p>
+
+      <div class="stars-row" id="starsRow">
+        <button type="button" class="star-btn" data-star="1" onclick="selectStar(1)">★</button>
+        <button type="button" class="star-btn" data-star="2" onclick="selectStar(2)">★</button>
+        <button type="button" class="star-btn" data-star="3" onclick="selectStar(3)">★</button>
+        <button type="button" class="star-btn" data-star="4" onclick="selectStar(4)">★</button>
+        <button type="button" class="star-btn" data-star="5" onclick="selectStar(5)">★</button>
+      </div>
+
+      <textarea id="ratingNote" class="rating-note" placeholder="Optional note (e.g., smooth steering, fun power-ups)..."></textarea>
+
+      <div class="rating-actions">
+        <button type="button" class="btn-ghost" onclick="closeRatingModal()">Close</button>
+        <button type="button" class="btn-submit-rating" onclick="saveRating()">Save Rating</button>
+      </div>
+
+      <div class="rating-saved-banner hidden" id="ratingSavedBanner">Saved locally!</div>
     </div>
   </div>
 
@@ -554,12 +789,12 @@
     <div class="info-card">
       <h2>How to Play Slither Arena VIP Online</h2>
       <p>
-        Guide your patterned snake across the tiled arena on <strong>GameZone 203</strong>. Enjoy a fast browser slither game experience where you collect scattered orbs to grow longer, use power-up charges, and cut off rival snakes.
+        Guide your patterned snake across the arena on <strong>GameZone 203</strong>. Enjoy a fast browser slither game experience where you collect orbs, trigger power-up charges, and cut off rival snakes.
       </p>
       <div class="tips-grid">
         <div class="tip-box">
           <strong>🖱️ / 📱 Smooth Steering</strong>
-          Move your mouse cursor or drag on a touchscreen to steer smoothly toward any direction.
+          Move your mouse cursor or drag on a touchscreen to turn smoothly toward any direction.
         </div>
         <div class="tip-box">
           <strong>⚡ Power-Up Charges (1 / 2 / 3)</strong>
@@ -591,7 +826,7 @@
 
   <footer>
     <div class="footer-inner">
-      <div><strong>GameZone 203</strong> • Slither Arena VIP • Progress saved locally in your browser.</div>
+      <div><strong>GameZone 203</strong> • Slither Arena VIP • Progress &amp; ratings saved locally in your browser.</div>
       <div class="footer-links">
         <a href="https://shakeeljee254-oss.github.io/gamezone-203/">Home</a>
         <a href="#guide-and-faq">How to &amp; FAQ</a>
@@ -608,7 +843,7 @@
     let width, height;
     function resize() {
       width = canvas.width = canvas.clientWidth || window.innerWidth;
-      height = canvas.height = canvas.clientHeight || window.innerHeight;
+      height = canvas.height = canvas.clientHeight || (window.innerHeight - 58);
     }
     window.addEventListener("resize", resize);
     resize();
@@ -621,9 +856,74 @@
     const finalScoreEl = document.getElementById("finalScore");
     const leaderList = document.getElementById("leader-list");
     const runTimerEl = document.getElementById("runTimer");
+    const completedMatchesEl = document.getElementById("completedMatchesCount");
+    const savedRatingBadgeEl = document.getElementById("savedRatingBadge");
 
     const BEST_KEY = "gz203_slither_vip_best_v1";
+    const MATCHES_KEY = "gz203_slither_vip_matches_v1";
+    const RATING_KEY = "gz203_slither_vip_rating_v1";
+
     let bestLength = Number(localStorage.getItem(BEST_KEY) || 10);
+    let completedMatches = Number(localStorage.getItem(MATCHES_KEY) || 0);
+    let savedRating = JSON.parse(localStorage.getItem(RATING_KEY) || "null");
+    let selectedStar = savedRating && savedRating.stars ? savedRating.stars : 5;
+
+    function refreshHeaderStats() {
+      completedMatchesEl.textContent = completedMatches;
+      bestScoreEl.textContent = bestLength;
+      savedRatingBadgeEl.textContent = savedRating && savedRating.stars ? `${savedRating.stars}★` : "Not Rated";
+    }
+    refreshHeaderStats();
+
+    function scrollToHowFaq() {
+      const el = document.getElementById("guide-and-faq");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function selectStar(n) {
+      selectedStar = n;
+      document.querySelectorAll(".star-btn").forEach(btn => {
+        const val = Number(btn.dataset.star);
+        btn.classList.toggle("active", val <= selectedStar);
+      });
+    }
+
+    function openRatingModal(autoFromEnd = false) {
+      document.getElementById("ratingSavedBanner").classList.add("hidden");
+      document.getElementById("ratingNote").value = (savedRating && savedRating.note) || "";
+      selectStar(selectedStar || 5);
+      document.getElementById("ratingModal").classList.remove("hidden");
+      if (autoFromEnd) {
+        document.getElementById("ratingTitle").textContent = "Match Complete — Rate Game";
+      } else {
+        document.getElementById("ratingTitle").textContent = "Rate Slither Arena VIP";
+      }
+    }
+
+    function closeRatingModal() {
+      document.getElementById("ratingModal").classList.add("hidden");
+    }
+
+    function saveRating() {
+      const note = document.getElementById("ratingNote").value.trim();
+      savedRating = { stars: selectedStar, note, updatedAt: Date.now() };
+      localStorage.setItem(RATING_KEY, JSON.stringify(savedRating));
+      refreshHeaderStats();
+      document.getElementById("ratingSavedBanner").classList.remove("hidden");
+      setTimeout(() => closeRatingModal(), 700);
+    }
+
+    function exitGameAndRate() {
+      if (playing) {
+        playing = false;
+        clearInterval(gameLoop);
+        clearInterval(timerInterval);
+        completedMatches++;
+        localStorage.setItem(MATCHES_KEY, String(completedMatches));
+        refreshHeaderStats();
+      }
+      openRatingModal(false);
+    }
 
     const SNAKE_THEMES = [
       { name: "You", main: "#facc15", stripe: "#9333ea", eye: "#ffffff" },
@@ -643,11 +943,6 @@
 
     const BASE_SPEED = 4.4;
     const BASE_RADIUS = 10;
-
-    function scrollToHowFaq() {
-      const el = document.getElementById("guide-and-faq");
-      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
 
     function formatTime(sec) {
       const m = Math.floor(sec / 60);
@@ -1070,11 +1365,13 @@
         playing = false;
         clearInterval(gameLoop);
         clearInterval(timerInterval);
+        completedMatches++;
+        localStorage.setItem(MATCHES_KEY, String(completedMatches));
         if (snake.score > bestLength) {
           bestLength = snake.score;
           localStorage.setItem(BEST_KEY, String(bestLength));
         }
-        bestScoreEl.textContent = bestLength;
+        refreshHeaderStats();
         finalScoreEl.textContent = snake.score;
         gameOverScreen.classList.remove("hidden");
       }
