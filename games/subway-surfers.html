@@ -93,6 +93,7 @@
 
   <style>
     * { box-sizing: border-box; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+    html { scroll-behavior: smooth; }
     html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; overflow-x: hidden; background: #070b14; font-family: 'Inter', sans-serif; }
     .game-stage { position: relative; width: 100%; height: 100vh; min-height: 580px; overflow: hidden; touch-action: none; }
     #game-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1; touch-action: none; }
@@ -111,6 +112,46 @@
     .animate-pulse-slow { animation: pulseScale 2.2s infinite ease-in-out; }
     @keyframes floatToast { 0% { opacity: 0; transform: translate(-50%, 16px) scale(0.95); } 15% { opacity: 1; transform: translate(-50%, 0) scale(1); } 85% { opacity: 1; transform: translate(-50%, 0) scale(1); } 100% { opacity: 0; transform: translate(-50%, -14px) scale(0.95); } }
     .toast-anim { animation: floatToast 2.4s forwards ease-out; }
+
+    /* Custom Nav Play Button Styling */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1.6;
+      min-width: 155px;
+    }
+    .b {
+      cursor: pointer;
+      border: none;
+      border-radius: 1rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.12s ease, filter 0.12s ease;
+    }
+    .b:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+    .b:active {
+      transform: translateY(2px) scale(0.97);
+    }
+    .b.pri {
+      background: linear-gradient(to right, #fbbf24, #f97316, #f43f5e);
+      color: #020617;
+      box-shadow: 0 8px 0 #b45309, 0 15px 35px rgba(245, 158, 11, 0.45);
+    }
+    .b.pri:active {
+      box-shadow: 0 2px 0 #b45309, 0 6px 15px rgba(245, 158, 11, 0.35);
+    }
+    .b.big {
+      width: 100%;
+      padding: 1rem 1.75rem;
+      font-size: 1.2rem;
+      animation: pulseScale 2.2s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="text-white select-none">
@@ -164,7 +205,7 @@
             </div>
           </div>
           <div class="glass-pill px-3.5 py-2 rounded-2xl flex items-center gap-2">
-            <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-200 border border-yellow-100 flex items-center justify-center text-[11px] font-black text-amber-950 shadow">$</span>
+            <span class="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-200 border border-yellow-100 flex items-center justify-center text-[11px] font-black text-amber-950">$</span>
             <div>
               <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold">Coins</div>
               <div id="menu-coins" class="font-display font-bold text-xs sm:text-sm text-amber-300">0</div>
@@ -201,6 +242,13 @@
               <div class="text-[10px] text-slate-400 font-semibold">Top Runners</div>
             </div>
           </button>
+          <button id="btn-how-faq" onclick="scrollToHowFaq()" class="btn-3d glass-pill px-3 py-2.5 rounded-2xl flex items-center gap-2.5 text-left hover:border-amber-400/50">
+            <span class="text-xl">❓</span>
+            <div>
+              <div class="text-xs font-bold text-amber-300 leading-tight">HOW TO &amp; FAQ</div>
+              <div class="text-[10px] text-slate-400 font-semibold">Guide &amp; Help</div>
+            </div>
+          </button>
         </div>
 
         <div class="hidden md:flex flex-col gap-2 glass-pill p-3.5 rounded-2xl pointer-events-auto max-w-[210px]">
@@ -216,7 +264,7 @@
         <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 w-full max-w-2xl">
           <button onclick="openModal('modal-characters')" class="btn-3d glass-pill flex-1 min-w-[92px] py-3 px-3 rounded-2xl flex flex-col items-center justify-center gap-1 hover:border-cyan-400/50"><span class="text-xl">🏃</span><span class="font-display text-[11px] sm:text-xs font-bold tracking-wider uppercase">Runners</span></button>
           <button onclick="openModal('modal-boards')" class="btn-3d glass-pill flex-1 min-w-[92px] py-3 px-3 rounded-2xl flex flex-col items-center justify-center gap-1 hover:border-purple-400/50"><span class="text-xl">🛹</span><span class="font-display text-[11px] sm:text-xs font-bold tracking-wider uppercase">Boards</span></button>
-          <button id="btn-play" onclick="startGame()" class="btn-3d play-glow animate-pulse-slow flex-[1.6] min-w-[155px] py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-orange-500 to-rose-500 text-slate-950 font-display font-black text-lg sm:text-xl tracking-wider uppercase flex items-center justify-center gap-2"><span>▶</span><span>PLAY</span></button>
+          <div class="nav"><button class="b pri big" data-act="play">PLAY</button></div>
           <button onclick="openModal('modal-shop')" class="btn-3d glass-pill flex-1 min-w-[92px] py-3 px-3 rounded-2xl flex flex-col items-center justify-center gap-1 hover:border-emerald-400/50"><span class="text-xl">⚡</span><span class="font-display text-[11px] sm:text-xs font-bold tracking-wider uppercase">Upgrades</span></button>
         </div>
       </div>
@@ -487,7 +535,7 @@ function triggerSlide() { if (gameState !== 'PLAYING' || activePowerups.jetpack 
 function activateHoverboard() { if (gameState !== 'PLAYING') return; if (activePowerups.hoverboard > 0) { showToast('Hoverboard already active!'); return; } if (saveData.boardCharges <= 0) { showToast('No Hoverboard charges left!'); return; } saveData.boardCharges--; const bonus = saveData.selectedChar === 'volt' ? 1 : 0; activePowerups.hoverboard = 12 + bonus; hoverboardMesh.visible = true; spawnBurstParticles(playerX, playerY + 0.3, 0, 0x22d3ee, 16); sound.sfxBoard(); saveGameData(); updateAllUI(); showToast('🛹 HOVERBOARD DEPLOYED!'); }
 function collectPowerup(type) { sound.sfxPowerup(); const lvl = saveData.upgrades[type] || 1; const duration = 8 + (lvl - 1) * 2; const charBonus = saveData.selectedChar === 'volt' && type === 'shield' ? 1 : 0; if (type === 'speedboost') { activePowerups.speedboost = 5; showToast('⚡ HYPER SPEED BOOST!'); } else { activePowerups[type] = duration + charBonus; const labels = { magnet: '🧲 COIN MAGNET!', jetpack: '🚀 TURBO JETPACK!', sneakers: '👟 SUPER SNEAKERS!', multiplier: '✖️ 2X SCORE MULTIPLIER!', shield: '🛡️ ENERGY SHIELD!' }; showToast(labels[type] || 'POWER-UP!'); } if (type === 'jetpack') { isJumping = false; isSliding = false; playerVelY = 0; for (let i = 1; i <= 18; i++) spawnCoin(LANES[currentLane], 7.5, -i * 3.2); } spawnBurstParticles(playerX, playerY + 1.2, 0, PICKUP_COLORS[type] || 0x38bdf8, 18); }
 
-window.addEventListener('keydown', (e) => { sound.init(); const key = e.key.toLowerCase(); if (key === 'arrowleft' || key === 'a') switchLane(-1); else if (key === 'arrowright' || key === 'd') switchLane(1); else if (key === 'arrowup' || key === 'w') triggerJump(); else if (key === 'arrowdown' || key === 's') triggerSlide(); else if (key === ' ' || key === 'e') { if (gameState === 'PLAYING') { e.preventDefault(); activateHoverboard(); } } else if (key === 'escape' || key === 'p') { if (gameState === 'PLAYING') pauseGame(); else if (gameState === 'PAUSED') resumeGame(); } });
+window.addEventListener('keydown', (e) => { sound.init(); const key = e.key.toLowerCase(); if (key === 'arrowleft' || key === 'a') switchLane(-1); else if (key === 'arrowright' || key === 'd') switchLane(1); else if (key === 'arrowup' || key === 'w') triggerJump(); else if (key === 'arrowdown' || key === 's') triggerSlide(); else if (key === ' ' || key === 'e') { if (gameState === 'PLAYING') { e.preventDefault(); activateHoverboard(); } else if (gameState === 'MENU' && key === ' ') { e.preventDefault(); startGame(); } } else if (key === 'escape' || key === 'p') { if (gameState === 'PLAYING') pauseGame(); else if (gameState === 'PAUSED') resumeGame(); } });
 let touchStartX = 0, touchStartY = 0, lastTapTime = 0;
 canvas.addEventListener('touchstart', (e) => { sound.init(); if (e.touches.length > 0) { touchStartX = e.touches[0].clientX; touchStartY = e.touches[0].clientY; } }, { passive: false });
 canvas.addEventListener('touchmove', (e) => { if (gameState === 'PLAYING') e.preventDefault(); }, { passive: false });
@@ -527,6 +575,7 @@ function animate(now) { requestAnimationFrame(animate); const dt = Math.min(0.05
 function showToast(msg) { const container = document.getElementById('toast-container'); const el = document.createElement('div'); el.className = 'toast-anim glass-pill px-4 py-2 rounded-full font-display text-xs sm:text-sm font-bold text-amber-300 border-amber-400/50 shadow-xl whitespace-nowrap'; el.textContent = msg; container.innerHTML = ''; container.appendChild(el); }
 function openModal(id) { sound.init(); sound.sfxClick(); closeAllModals(true); renderModalContent(id); document.getElementById(id).classList.remove('hidden'); }
 function closeAllModals(silent = false) { if (!silent) sound.sfxClick(); ['modal-characters', 'modal-boards', 'modal-shop', 'modal-missions', 'modal-daily', 'modal-leaderboard', 'modal-settings', 'modal-privacy', 'modal-terms', 'modal-contact'].forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('hidden'); }); }
+function scrollToHowFaq() { sound.init(); sound.sfxClick(); closeAllModals(true); const target = document.getElementById('guide-and-faq'); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
 function updateHUD() { document.getElementById('hud-score').textContent = Math.floor(score).toString().padStart(6, '0'); document.getElementById('hud-distance').textContent = Math.floor(distanceRun); document.getElementById('hud-speed').textContent = (runSpeed / 24).toFixed(1); document.getElementById('hud-coins').textContent = runCoins; document.getElementById('hud-board-count').textContent = saveData.boardCharges; const mult = saveData.level * (activePowerups.multiplier > 0 ? 2 : 1); document.getElementById('hud-mult').textContent = `${mult}x`; const activeM = saveData.missions.find(m => !m.claimed) || saveData.missions[0]; if (activeM) { document.getElementById('hud-mission-text').textContent = `${activeM.title} (${Math.min(activeM.target, Math.floor(activeM.progress))}/${activeM.target})`; const pct = Math.min(100, (activeM.progress / activeM.target) * 100); document.getElementById('hud-mission-bar').style.width = `${pct}%`; } const pContainer = document.getElementById('hud-powerups'); const meta = { magnet: { label: '🧲 Magnet', color: 'bg-rose-500' }, jetpack: { label: '🚀 Jetpack', color: 'bg-orange-500' }, sneakers: { label: '👟 Sneakers', color: 'bg-emerald-500' }, multiplier: { label: '✖️ 2X Score', color: 'bg-purple-500' }, shield: { label: '🛡️ Shield', color: 'bg-cyan-400' }, hoverboard: { label: '🛹 Board', color: 'bg-teal-400' }, speedboost: { label: '⚡ Hyper Boost', color: 'bg-amber-400' } }; let html = ''; Object.keys(meta).forEach(k => { if (activePowerups[k] > 0) { const pct = Math.min(100, (activePowerups[k] / 12) * 100); html += `<div class="glass-pill px-3 py-1.5 rounded-xl w-44"><div class="flex justify-between text-[11px] font-bold mb-1"><span>${meta[k].label}</span><span class="font-display text-amber-300">${activePowerups[k].toFixed(1)}s</span></div><div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden"><div class="h-full ${meta[k].color}" style="width:${pct}%"></div></div></div>`; } }); pContainer.innerHTML = html; }
 function updateAllUI() { document.getElementById('menu-coins').textContent = saveData.coins.toLocaleString(); document.getElementById('menu-highscore').textContent = saveData.highScore.toLocaleString(); document.getElementById('menu-level-badge').textContent = `LVL ${saveData.level}`; document.getElementById('menu-mult-badge').textContent = `${saveData.level}x SCORE`; const xpPct = Math.min(100, (saveData.xp / (saveData.level * 500)) * 100); document.getElementById('menu-xp-bar').style.width = `${xpPct}%`; const charObj = CHARACTERS.find(c => c.id === saveData.selectedChar) || CHARACTERS[0]; const boardObj = HOVERBOARDS.find(b => b.id === saveData.selectedBoard) || HOVERBOARDS[0]; document.getElementById('loadout-char-name').textContent = charObj.name; document.getElementById('loadout-board-name').textContent = boardObj.name; document.getElementById('loadout-board-count').textContent = saveData.boardCharges; const today = new Date().toDateString(); const canClaimDaily = saveData.daily.lastClaimDate !== today; document.getElementById('daily-status-sub').textContent = canClaimDaily ? 'Claim Ready!' : 'Claimed Today'; document.getElementById('daily-dot').classList.toggle('hidden', !canClaimDaily); const claimableCount = saveData.missions.filter(m => m.progress >= m.target && !m.claimed).length; document.getElementById('mission-dot').classList.toggle('hidden', claimableCount === 0); document.getElementById('mission-status-sub').textContent = claimableCount > 0 ? `${claimableCount} Ready!` : `${saveData.missions.filter(m => !m.claimed).length} Active`; }
 function renderModalContent(id) { if (id === 'modal-characters') { const list = document.getElementById('characters-list'); list.innerHTML = CHARACTERS.map(c => { const unlocked = saveData.unlockedChars.includes(c.id), selected = saveData.selectedChar === c.id, hexColor = '#' + c.colors.jacket.toString(16).padStart(6, '0'); return `<div class="bg-slate-900/85 border ${selected ? 'border-cyan-400' : 'border-slate-800'} rounded-2xl p-4 flex flex-col justify-between gap-3"><div class="flex items-center gap-3"><div class="w-11 h-11 rounded-xl flex items-center justify-center font-display font-black text-white shadow-inner" style="background:${hexColor}">${c.name.slice(0, 2).toUpperCase()}</div><div><div class="font-display font-bold text-sm text-white">${c.name}</div><div class="text-[11px] text-slate-400">${c.role}</div><div class="text-[11px] text-emerald-400 font-semibold mt-0.5">${c.perk}</div></div></div>${selected ? `<button disabled class="w-full py-2 rounded-xl bg-cyan-500/20 border border-cyan-400/50 text-cyan-300 font-display text-xs font-bold">EQUIPPED</button>` : unlocked ? `<button onclick="selectCharacter('${c.id}')" class="btn-3d w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-display text-xs font-bold">SELECT RUNNER</button>` : `<button onclick="buyCharacter('${c.id}')" class="btn-3d w-full py-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-display text-xs font-black">UNLOCK (${c.price} $)</button>`}</div>`; }).join(''); }
@@ -558,6 +607,11 @@ function syncSettingsUI() { const mBtn = document.getElementById('set-music-btn'
 function toggleFullscreen() { if (!document.fullscreenElement) { document.documentElement.requestFullscreen().catch(err => {}); } else { document.exitFullscreen(); } }
 function handleResize() { const w = stageEl ? stageEl.clientWidth : window.innerWidth; const h = stageEl ? stageEl.clientHeight : window.innerHeight; camera.aspect = w / Math.max(1, h); camera.updateProjectionMatrix(); renderer.setSize(w, h); }
 window.addEventListener('resize', handleResize);
+
+const playNavBtn = document.querySelector('.nav [data-act="play"]');
+if (playNavBtn) {
+  playNavBtn.addEventListener('click', startGame);
+}
 
 function boot() {
   loadGameData();
