@@ -1,339 +1,3195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Fruit Ninja - Play Free Online | GameZone 203</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruit Ninja 203 - Free Online Fruit Slicing Arcade Game | GameZone 203</title>
+  <meta
+    name="description"
+    content="Play Fruit Ninja 203 free online in your browser on GameZone 203. Slice colorful fruits, avoid bombs, trigger combos, unlock 8 levels, and earn stars with no download required."
+  />
+  <meta
+    name="keywords"
+    content="play Fruit Ninja 203 online free no download, Fruit Ninja 203 browser game unblocked, free online arcade fruit slicing game no install, combo fruit game online free, casual action game browser, GAMEZONE 203 free games, unblocked browser games online, instant play web game free"
+  />
+  <meta name="author" content="GameZone 203" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/" />
 
-<!-- SEO TAGS -->
-<meta name="description" content="Play Fruit Ninja free online at GameZone 203. Swipe to slice flying fruits and avoid the bombs!">
-<link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja.html">
-<meta property="og:title" content="Fruit Ninja - Play Free Online | GameZone 203">
-<meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoGame",
-  "name": "Fruit Ninja",
-  "description": "Play Fruit Ninja free online.",
-  "genre": ["Arcade", "Action"]
-}
-</script>
+  <!-- Open Graph & Twitter Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GameZone 203" />
+  <meta property="og:title" content="Fruit Ninja 203 - Free Online Fruit Slicing Arcade Game | GameZone 203" />
+  <meta
+    property="og:description"
+    content="Play Fruit Ninja 203 free online in your browser on GameZone 203 with no download required. Slice fruits, avoid bombs, build combos, and earn stars."
+  />
+  <meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/" />
+  <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/assets/fruit-ninja-203-gameplay.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Fruit Ninja 203 | GameZone 203" />
+  <meta
+    name="twitter:description"
+    content="Slice colorful fruits, avoid bombs, trigger combos, unlock 8 levels, and earn stars on desktop or mobile."
+  />
+  <meta name="twitter:image" content="https://shakeeljee254-oss.github.io/gamezone-203/assets/fruit-ninja-203-gameplay.webp" />
 
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    background: #1a1a2e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    touch-action: none;
-  }
-  canvas {
-    background: radial-gradient(circle, #2a2a40, #111);
-    box-shadow: 0 0 30px rgba(0,0,0,0.8);
-    max-width: 100%;
-    max-height: 100vh;
-    cursor: crosshair;
-  }
-  #startOverlay {
-    position: absolute;
-    background: rgba(0,0,0,0.85);
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    text-align: center;
-    z-index: 10;
-    border: 2px solid #f97316;
-  }
-  h1 { color: #f97316; margin-top: 0; font-size: 32px; text-shadow: 0 0 10px #f97316; }
-  p { color: #ddd; font-size: 16px; margin-bottom: 25px; }
-  button {
-    background: linear-gradient(90deg, #f97316, #fbbf24);
-    color: #000;
-    border: none;
-    padding: 12px 30px;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  button:hover { transform: scale(1.05); }
-</style>
+  <!-- Structured Data: VideoGame, Article, HowTo, BreadcrumbList & FAQPage -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "VideoGame",
+          "@id": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/#game",
+          "name": "Fruit Ninja 203",
+          "description": "Play Fruit Ninja 203 free online! Slice colorful fruits, avoid bombs, create combos, unlock levels and earn stars in this fun browser arcade game.",
+          "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/",
+          "image": "https://shakeeljee254-oss.github.io/gamezone-203/assets/fruit-ninja-203-gameplay.webp",
+          "applicationCategory": "Game",
+          "operatingSystem": "Any (HTML5 Browser)",
+          "genre": ["Arcade", "Action", "Casual"],
+          "playMode": ["SinglePlayer"],
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "GameZone 203",
+            "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "GameZone 203",
+            "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+          },
+          "isPartOf": {
+            "@type": "WebSite",
+            "name": "GameZone 203",
+            "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+          }
+        },
+        {
+          "@type": "Article",
+          "@id": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/#article",
+          "headline": "Fruit Ninja 203 — How to Play, Modes, Controls & Tips on GameZone 203",
+          "description": "Complete guide to playing Fruit Ninja 203 online for free on GameZone 203, including Classic, Arcade, Zen, and 8 Challenge levels, combo slicing, power-ups, and controls.",
+          "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/",
+          "image": "https://shakeeljee254-oss.github.io/gamezone-203/assets/fruit-ninja-203-gameplay.webp",
+          "about": {
+            "@id": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/#game"
+          },
+          "author": {
+            "@type": "Organization",
+            "name": "GameZone 203",
+            "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "GameZone 203",
+            "url": "https://shakeeljee254-oss.github.io/gamezone-203/"
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/"
+          }
+        },
+        {
+          "@type": "HowTo",
+          "name": "How to Play Fruit Ninja 203 Online",
+          "description": "Step-by-step guide to choosing a mode, swiping to slice fruits, avoiding bombs, and earning stars in Fruit Ninja 203 on GameZone 203.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "name": "Select a mode and difficulty",
+              "text": "Choose Classic, Arcade, Zen, or Challenge mode along with Easy, Medium, or Hard difficulty, then click PLAY NOW."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Swipe across fruits",
+              "text": "Drag your mouse or swipe your finger across flying fruits to slice them and chain 3 or more in one swipe for combo bonuses."
+            },
+            {
+              "@type": "HowToStep",
+              "name": "Dodge bombs and use power-ups",
+              "text": "Avoid bombs and slice power-ups like Double Score, Slow Motion, Extra Life, Bonus Time, or Fruit Frenzy to maximize your score and stars."
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://shakeeljee254-oss.github.io/gamezone-203/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Games",
+              "item": "https://shakeeljee254-oss.github.io/gamezone-203/#games"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Fruit Ninja 203",
+              "item": "https://shakeeljee254-oss.github.io/gamezone-203/games/fruit-ninja/"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Can I play Fruit Ninja 203 online for free without downloading?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Fruit Ninja 203 is completely free to play directly in your browser on GameZone 203 with no download or registration required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I earn three stars in a Challenge level?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Meeting a level's objective awards 1 star, exceeding it strongly awards 2 stars, and achieving high score or slice performance awards all 3 stars."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Fruit Ninja 203 save my coins, stars, and best score?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Your best score, coins, unlocked blade trails, level stars, achievements, and settings are saved locally in your browser's local storage."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+
+  <!-- Tailwind CSS & Typography -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg-page: #070b17;
+      --bg-surface: #0d1429;
+      --bg-card: #121c38;
+      --border-card: rgba(0, 240, 255, 0.25);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #a855f7;
+      --accent-orange: #ff7a18;
+      --arena-border: rgba(0, 240, 255, 0.45);
+      --arena-shadow: 0 0 38px rgba(0, 240, 255, 0.14), 0 0 64px rgba(168, 85, 247, 0.12);
+    }
+
+    html.theme-day {
+      --bg-page: #e0f2fe;
+      --bg-surface: #f0f9ff;
+      --bg-card: #ffffff;
+      --border-card: rgba(2, 132, 199, 0.32);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --accent-cyan: #0284c7;
+      --accent-purple: #7c3aed;
+      --accent-orange: #ea580c;
+      --arena-border: rgba(2, 132, 199, 0.45);
+      --arena-shadow: 0 14px 34px rgba(2, 132, 199, 0.18), 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      transition: background-color 0.22s ease, color 0.22s ease;
+    }
+
+    html.theme-dark body {
+      background-image:
+        radial-gradient(circle at 12% 10%, rgba(0, 240, 255, 0.08), transparent 36%),
+        radial-gradient(circle at 86% 18%, rgba(168, 85, 247, 0.1), transparent 38%),
+        radial-gradient(circle at 50% 92%, rgba(255, 122, 24, 0.07), transparent 40%);
+    }
+
+    html.theme-day body {
+      background-image:
+        radial-gradient(circle at 16% 12%, rgba(56, 189, 248, 0.26), transparent 42%),
+        radial-gradient(circle at 84% 16%, rgba(125, 211, 252, 0.28), transparent 42%);
+    }
+
+    .fn-surface {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-card);
+    }
+
+    .fn-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-card);
+    }
+
+    .fn-muted {
+      color: var(--text-secondary);
+    }
+
+    .fn-arena-shell {
+      border: 2px solid var(--arena-border);
+      box-shadow: var(--arena-shadow);
+    }
+
+    .ad-slot-box {
+      border: 1px dashed var(--border-card);
+      background-color: var(--bg-surface);
+      min-height: 92px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 16px;
+      gap: 4px;
+    }
+
+    /* Enlarged primary game viewport (~75-85% of main area) */
+    .play-viewport-row {
+      min-height: calc(100vh - 7.2rem);
+      min-height: calc(100dvh - 7.2rem);
+    }
+
+    .arena-box {
+      width: 100%;
+      height: calc(100vh - 9.8rem);
+      height: calc(100dvh - 9.8rem);
+      min-height: 410px;
+      max-height: 840px;
+    }
+
+    @media (max-width: 1023px) {
+      .arena-box {
+        height: calc(100vh - 12.2rem);
+        height: calc(100dvh - 12.2rem);
+        min-height: 370px;
+        max-height: 680px;
+      }
+
+      body.fn-playing-lock .arena-box {
+        height: calc(100vh - 7.8rem);
+        height: calc(100dvh - 7.8rem);
+        max-height: none;
+      }
+
+      body.fn-playing-lock .hide-on-mobile-play {
+        display: none !important;
+      }
+    }
+
+    #slice-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: crosshair;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body.fn-playing-lock {
+      overflow: hidden;
+      overscroll-behavior: none;
+    }
+
+    .btn-arcade-play {
+      background: linear-gradient(135deg, #00f0ff 0%, #a855f7 55%, #ff7a18 100%);
+      color: #060914;
+      font-weight: 800;
+      box-shadow: 0 0 22px rgba(0, 240, 255, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn-arcade-play:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.55);
+    }
+
+    .btn-exit-pill {
+      background-color: rgba(244, 63, 94, 0.16);
+      border: 1px solid rgba(251, 113, 133, 0.5);
+      color: #fda4af;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .btn-exit-pill:hover {
+      background-color: rgba(244, 63, 94, 0.28);
+      transform: translateY(-1px);
+    }
+    html.theme-day .btn-exit-pill {
+      background-color: #ffe4e6;
+      border-color: #f43f5e;
+      color: #be123c;
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(-4deg); }
+      50% { transform: translateY(-5px) rotate(4deg); }
+    }
+    .animate-fruit-bob {
+      animation: floatSlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes starPop {
+      0% { transform: scale(0.4) rotate(-18deg); opacity: 0; }
+      75% { transform: scale(1.18) rotate(4deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+    .animate-star-pop {
+      animation: starPop 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .star-rate-btn {
+      transition: transform 0.14s ease;
+    }
+    .star-rate-btn:hover,
+    .star-rate-btn:focus-visible {
+      transform: scale(1.15);
+    }
+    .star-rate-on svg {
+      fill: #fbbf24;
+      stroke: #f59e0b;
+      filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5));
+    }
+    .star-rate-off svg {
+      fill: transparent;
+      stroke: #94a3b8;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-fruit-bob,
+      .animate-star-pop {
+        animation: none !important;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070b17;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen font-sans antialiased flex flex-col">
 
-  <div id="startOverlay">
-    <h1>FRUIT NINJA</h1>
-    <p>Swipe to slice the fruits.<br>Don't hit the bombs! 💣</p>
-    <button id="startBtn">START GAME</button>
+  <!-- Compact Start Dashboard Header & Navigation Bar -->
+  <header class="sticky top-0 z-30 fn-surface backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2">
+      <!-- Left: Back to Games, GameZone 203 Brand, H1 & Animated Fruit Artwork -->
+      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+        <a
+          id="nav-back-to-games"
+          href="https://shakeeljee254-oss.github.io/gamezone-203/"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold transition shrink-0"
+        >
+          <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span class="hidden sm:inline">Back to Games</span>
+          <span class="sm:hidden">Games</span>
+        </a>
+
+        <a
+          href="https://shakeeljee254-oss.github.io/gamezone-203/"
+          class="hidden md:inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-display font-bold tracking-wider uppercase bg-purple-500/15 text-purple-400 border border-purple-500/35 shrink-0"
+        >
+          GameZone 203
+        </a>
+
+        <!-- Original SVG Fruit Preview Badge -->
+        <div class="hidden xs:flex sm:flex items-center gap-1 px-2 py-1 rounded-xl fn-card animate-fruit-bob shrink-0" aria-hidden="true">
+          <svg class="w-4 h-4" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" fill="#16a34a" />
+            <circle cx="12" cy="12" r="7.5" fill="#ff3b5c" />
+            <circle cx="10" cy="10" r="1" fill="#0f172a" />
+            <circle cx="14" cy="11" r="1" fill="#0f172a" />
+            <circle cx="11.5" cy="14" r="1" fill="#0f172a" />
+          </svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24">
+            <circle cx="12" cy="13" r="8.5" fill="#ff7a18" />
+            <path d="M12 4.5 C13 2, 16 2, 16 4.5" stroke="#22c55e" stroke-width="2" fill="none" />
+          </svg>
+        </div>
+
+        <h1 class="font-display text-sm sm:text-lg font-extrabold tracking-wide truncate">
+          Fruit Ninja <span class="text-cyan-400">203</span>
+        </h1>
+      </div>
+
+      <!-- Right: Quick Summary Badges & Action Buttons -->
+      <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+        <div class="hidden xl:flex items-center gap-2.5 px-3 py-1 rounded-xl fn-card text-xs">
+          <span>Best: <strong id="top-best-val" class="font-display text-cyan-400">0</strong></span>
+          <span>•</span>
+          <span>Coins: <strong id="top-coins-val" class="font-display text-amber-400">0</strong></span>
+          <span>•</span>
+          <span>Stars: <strong id="top-stars-val" class="font-display text-purple-400">0/24</strong></span>
+        </div>
+
+        <button
+          id="btn-open-level-map"
+          type="button"
+          class="px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold text-cyan-400 transition"
+        >
+          Levels
+        </button>
+
+        <button
+          id="btn-open-shop"
+          type="button"
+          class="px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold text-amber-400 transition"
+        >
+          Shop
+        </button>
+
+        <button
+          id="btn-open-achievements"
+          type="button"
+          class="px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold text-purple-400 transition"
+        >
+          Awards
+        </button>
+
+        <a
+          href="#how-to-play"
+          class="hidden sm:inline-flex px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold transition"
+        >
+          Guide
+        </a>
+
+        <button
+          id="btn-open-settings"
+          type="button"
+          class="px-2.5 py-1.5 rounded-xl fn-card hover:opacity-90 text-xs font-semibold transition"
+        >
+          Settings
+        </button>
+
+        <button
+          id="btn-header-exit"
+          type="button"
+          class="btn-exit-pill inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl text-xs font-bold"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          <span>Exit</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-5 py-2.5 space-y-8">
+
+    <!-- Primary Gameplay Stage (~75-85% of viewport) + Compact Side Controls -->
+    <section aria-label="Fruit Ninja 203 Gameplay Arena" class="play-viewport-row grid grid-cols-1 lg:grid-cols-12 gap-3.5 items-center">
+
+      <!-- Enlarged Canvas Column (8 cols on lg) -->
+      <div class="lg:col-span-8 flex flex-col justify-center w-full">
+
+        <!-- Live Telemetry HUD Strip -->
+        <div class="fn-card rounded-2xl px-3 sm:px-4 py-2 mb-2 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-3 sm:gap-4">
+            <div>
+              <span class="fn-muted text-[10px] uppercase block">Score</span>
+              <span id="hud-score" class="font-display text-base sm:text-lg font-extrabold text-cyan-400">0</span>
+            </div>
+            <div>
+              <span class="fn-muted text-[10px] uppercase block">Best</span>
+              <span id="hud-best" class="font-display text-base sm:text-lg font-extrabold text-purple-400">0</span>
+            </div>
+            <div id="hud-lives-box">
+              <span class="fn-muted text-[10px] uppercase block">Lives</span>
+              <span id="hud-lives" class="font-display text-sm sm:text-base font-bold text-rose-400">♥♥♥</span>
+            </div>
+            <div id="hud-timer-box" class="hidden">
+              <span class="fn-muted text-[10px] uppercase block">Time</span>
+              <span id="hud-timer" class="font-display text-base sm:text-lg font-extrabold text-amber-400">60s</span>
+            </div>
+            <div id="hud-objective-box" class="hidden max-w-[160px] sm:max-w-xs">
+              <span class="fn-muted text-[10px] uppercase block">Lv.<span id="hud-level-num">1</span> Goal</span>
+              <span id="hud-objective-text" class="text-xs font-bold text-emerald-400 truncate block">Slice 15 fruits</span>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <!-- Active Power-up Badges -->
+            <div id="hud-powerups" class="flex items-center gap-1"></div>
+
+            <button
+              id="btn-hud-pause"
+              type="button"
+              disabled
+              class="px-2.5 py-1.5 rounded-xl fn-surface disabled:opacity-40 text-xs font-semibold hover:opacity-90"
+            >
+              Pause
+            </button>
+
+            <button
+              id="btn-hud-restart"
+              type="button"
+              class="px-2.5 py-1.5 rounded-xl fn-surface text-xs font-semibold hover:opacity-90"
+            >
+              Restart
+            </button>
+          </div>
+        </div>
+
+        <!-- Enlarged Canvas Container with Centered Overlays -->
+        <div class="relative arena-box rounded-3xl overflow-hidden fn-arena-shell">
+          <canvas id="slice-canvas"></canvas>
+
+          <!-- START OVERLAY (Centered inside canvas) -->
+          <div
+            id="overlay-start"
+            class="absolute inset-0 z-10 flex items-center justify-center p-3 sm:p-5 bg-slate-950/60 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-md fn-card rounded-2xl p-4 sm:p-5 space-y-3 shadow-2xl">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] font-display font-bold uppercase tracking-widest text-cyan-400">
+                    GameZone 203 Arcade
+                  </span>
+                  <h2 class="font-display text-lg sm:text-xl font-extrabold">
+                    Fruit Ninja <span class="text-orange-400">203</span>
+                  </h2>
+                </div>
+                <div class="text-right text-xs">
+                  <div class="text-amber-400 font-bold">🪙 <span id="start-coins-val">0</span></div>
+                  <div class="text-purple-400 font-bold">★ <span id="start-stars-val">0/24</span></div>
+                </div>
+              </div>
+
+              <!-- Mode Selector -->
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider fn-muted mb-1">Game Mode</label>
+                <div class="grid grid-cols-4 gap-1.5" role="group" aria-label="Game Mode">
+                  <button type="button" data-mode="classic" class="mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border transition">Classic</button>
+                  <button type="button" data-mode="arcade" class="mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border transition">Arcade</button>
+                  <button type="button" data-mode="zen" class="mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border transition">Zen</button>
+                  <button type="button" data-mode="challenge" class="mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border transition">Challenge</button>
+                </div>
+                <p id="mode-summary-text" class="text-[11px] fn-muted mt-1">
+                  3 lives • Slice fruits, avoid bombs &amp; missed-fruit penalties.
+                </p>
+              </div>
+
+              <!-- Difficulty Selector -->
+              <div>
+                <label class="block text-[11px] font-semibold uppercase tracking-wider fn-muted mb-1">Difficulty</label>
+                <div class="grid grid-cols-3 gap-1.5" role="group" aria-label="Difficulty">
+                  <button type="button" data-diff="easy" class="diff-select-btn py-1.5 px-2 rounded-xl text-xs font-bold border transition">Easy</button>
+                  <button type="button" data-diff="medium" class="diff-select-btn py-1.5 px-2 rounded-xl text-xs font-bold border transition">Medium</button>
+                  <button type="button" data-diff="hard" class="diff-select-btn py-1.5 px-2 rounded-xl text-xs font-bold border transition">Hard</button>
+                </div>
+              </div>
+
+              <button
+                id="btn-play-main"
+                type="button"
+                class="w-full btn-arcade-play py-2.5 px-4 rounded-xl text-sm font-display tracking-wide"
+              >
+                PLAY NOW
+              </button>
+
+              <div class="flex items-center justify-between text-xs pt-0.5">
+                <button id="btn-start-map" type="button" class="font-semibold text-cyan-400 hover:underline">
+                  Level Map (Lv.<span id="start-selected-lv">1</span>)
+                </button>
+                <button id="btn-start-shop" type="button" class="font-semibold text-amber-400 hover:underline">
+                  Trail Shop
+                </button>
+                <button id="btn-start-settings" type="button" class="font-semibold text-purple-400 hover:underline">
+                  Settings
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAUSE OVERLAY (Centered inside canvas) -->
+          <div
+            id="overlay-pause"
+            class="hidden absolute inset-0 z-10 items-center justify-center p-4 bg-slate-950/72 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-xs sm:max-w-sm fn-card rounded-2xl p-5 space-y-3 text-center shadow-2xl">
+              <span class="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/40">
+                Paused
+              </span>
+              <h2 id="pause-title-text" class="font-display text-xl font-extrabold">Game Paused</h2>
+              <p id="pause-sub-text" class="text-xs fn-muted">
+                Timers and fruit waves are frozen. Resume or adjust settings.
+              </p>
+              <div class="space-y-2 pt-1">
+                <button id="btn-resume-btn" type="button" class="w-full btn-arcade-play py-2.5 px-4 rounded-xl text-sm">
+                  Resume Game
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button id="btn-pause-restart-btn" type="button" class="py-2 px-3 rounded-xl fn-surface text-xs font-bold">
+                    Restart
+                  </button>
+                  <button id="btn-pause-dashboard-btn" type="button" class="py-2 px-3 rounded-xl fn-surface text-xs font-bold">
+                    Dashboard
+                  </button>
+                </div>
+                <button id="btn-pause-settings-btn" type="button" class="w-full py-2 px-3 rounded-xl fn-surface text-xs font-semibold">
+                  Settings
+                </button>
+                <button id="btn-pause-exit-btn" type="button" class="w-full btn-exit-pill py-2 px-3 rounded-xl text-xs font-bold">
+                  Exit Game
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- LEVEL COMPLETE OVERLAY (Centered inside canvas, never auto-advances) -->
+          <div
+            id="overlay-level-complete"
+            class="hidden absolute inset-0 z-10 items-center justify-center p-4 bg-slate-950/75 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-sm fn-card rounded-2xl p-5 space-y-3 text-center shadow-2xl">
+              <span class="text-[11px] font-display font-bold uppercase tracking-wider text-emerald-400">
+                Stage Cleared
+              </span>
+              <h2 class="font-display text-xl sm:text-2xl font-extrabold text-emerald-400">
+                LEVEL COMPLETE!
+              </h2>
+              <div class="text-xs font-semibold fn-muted">
+                Level <span id="lc-level-num" class="text-white font-bold">1</span> — <span id="lc-level-name">Neon Dawn</span>
+              </div>
+
+              <!-- Animated 3-Star Reward Display -->
+              <div id="lc-stars-display" class="flex items-center justify-center gap-2 text-3xl py-1" aria-label="Earned Stars">
+                <span class="lc-star">☆</span>
+                <span class="lc-star">☆</span>
+                <span class="lc-star">☆</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Final Score</span>
+                  <strong id="lc-score" class="font-display text-base text-cyan-400">0</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Fruits Sliced</span>
+                  <strong id="lc-fruits" class="font-display text-base text-orange-400">0</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Best Combo</span>
+                  <strong id="lc-combo" class="font-display text-base text-purple-400">0x</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Total Stars</span>
+                  <strong id="lc-total-stars" class="font-display text-base text-amber-400">0 / 24</strong>
+                </div>
+              </div>
+
+              <div class="space-y-2 pt-1">
+                <button id="btn-lc-next" type="button" class="w-full btn-arcade-play py-2.5 px-4 rounded-xl text-xs sm:text-sm font-display">
+                  Next Level →
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button id="btn-lc-replay" type="button" class="py-2 px-3 rounded-xl fn-surface text-xs font-bold">
+                    Replay Level
+                  </button>
+                  <button id="btn-lc-map" type="button" class="py-2 px-3 rounded-xl fn-surface text-xs font-bold text-cyan-400">
+                    Level Map
+                  </button>
+                </div>
+                <button id="btn-lc-exit" type="button" class="w-full btn-exit-pill py-2 px-3 rounded-xl text-xs font-bold">
+                  Exit Game
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GAME OVER OVERLAY (Centered inside canvas) -->
+          <div
+            id="overlay-gameover"
+            class="hidden absolute inset-0 z-10 items-center justify-center p-4 bg-slate-950/75 backdrop-blur-[2px]"
+          >
+            <div class="w-full max-w-sm fn-card rounded-2xl p-5 space-y-3 text-center shadow-2xl">
+              <div>
+                <span id="go-reason" class="text-[11px] font-display font-bold uppercase tracking-wider text-rose-400">
+                  Run Ended
+                </span>
+                <h2 class="font-display text-2xl font-extrabold mt-0.5">Game Over</h2>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Final Score</span>
+                  <strong id="go-score" class="font-display text-base text-cyan-400">0</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Best Score</span>
+                  <strong id="go-best" class="font-display text-base text-purple-400">0</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Fruits Sliced</span>
+                  <strong id="go-fruits" class="font-display text-base text-orange-400">0</strong>
+                </div>
+                <div class="p-2 rounded-xl fn-surface">
+                  <span class="fn-muted block text-[10px]">Best Combo &amp; Coins</span>
+                  <strong class="font-display text-sm text-amber-400">
+                    <span id="go-combo">0x</span> • +<span id="go-coins">0</span>🪙
+                  </strong>
+                </div>
+              </div>
+
+              <div class="space-y-2 pt-1">
+                <button id="btn-go-retry" type="button" class="w-full btn-arcade-play py-2.5 px-4 rounded-xl text-sm font-display">
+                  Retry Run
+                </button>
+                <div class="grid grid-cols-2 gap-2">
+                  <button id="btn-go-dashboard" type="button" class="py-2 px-3 rounded-xl fn-surface text-xs font-bold">
+                    Dashboard
+                  </button>
+                  <button id="btn-go-exit" type="button" class="btn-exit-pill py-2 px-3 rounded-xl text-xs font-bold">
+                    Exit Game
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact Desktop/Tablet Side Panel (4 cols on lg) -->
+      <aside class="hide-on-mobile-play lg:col-span-4 w-full space-y-3">
+        <!-- Player Progression & Economy Card -->
+        <div class="fn-card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-xs font-bold uppercase tracking-wider text-cyan-400">
+              Player Progress
+            </h2>
+            <button id="btn-side-reset" type="button" class="text-[11px] fn-muted hover:text-rose-400 underline">
+              Reset Stats
+            </button>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="p-2.5 rounded-xl fn-surface">
+              <span class="fn-muted text-[10px] block">Best Score</span>
+              <strong id="side-best" class="font-display text-base text-cyan-400">0</strong>
+            </div>
+            <div class="p-2.5 rounded-xl fn-surface">
+              <span class="fn-muted text-[10px] block">Coins</span>
+              <strong id="side-coins" class="font-display text-base text-amber-400">0</strong>
+            </div>
+            <div class="p-2.5 rounded-xl fn-surface">
+              <span class="fn-muted text-[10px] block">Stars</span>
+              <strong id="side-stars" class="font-display text-base text-purple-400">0/24</strong>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <div class="p-2 rounded-xl fn-surface flex items-center justify-between">
+              <span class="fn-muted">Fruits Sliced</span>
+              <strong id="side-total-fruits" class="text-orange-400 font-bold">0</strong>
+            </div>
+            <div class="p-2 rounded-xl fn-surface flex items-center justify-between">
+              <span class="fn-muted">Max Combo</span>
+              <strong id="side-max-combo" class="text-purple-400 font-bold">0x</strong>
+            </div>
+            <div class="p-2 rounded-xl fn-surface flex items-center justify-between">
+              <span class="fn-muted">Games Played</span>
+              <strong id="side-games-played" class="text-cyan-400 font-bold">0</strong>
+            </div>
+            <div class="p-2 rounded-xl fn-surface flex items-center justify-between">
+              <span class="fn-muted">Bombs Hit</span>
+              <strong id="side-bombs-hit" class="text-rose-400 font-bold">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Mode & Trail Card -->
+        <div class="fn-card rounded-2xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="font-display text-xs font-bold uppercase tracking-wider text-purple-400">
+              Quick Access
+            </h2>
+            <span id="side-active-trail" class="text-[11px] font-semibold text-cyan-400">Trail: Neon Cyan</span>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <button id="btn-side-map" type="button" class="py-2 px-3 rounded-xl fn-surface font-bold text-cyan-400 hover:opacity-90">
+              Level Map
+            </button>
+            <button id="btn-side-shop" type="button" class="py-2 px-3 rounded-xl fn-surface font-bold text-amber-400 hover:opacity-90">
+              Blade Shop
+            </button>
+            <button id="btn-side-awards" type="button" class="py-2 px-3 rounded-xl fn-surface font-bold text-purple-400 hover:opacity-90">
+              Achievements (<span id="side-award-count">0/7</span>)
+            </button>
+            <button id="btn-side-dashboard" type="button" class="py-2 px-3 rounded-xl fn-surface font-bold hover:opacity-90">
+              Mode Menu
+            </button>
+          </div>
+
+          <p class="text-[11px] fn-muted leading-relaxed">
+            Drag mouse or swipe finger across fruits. Slice 3+ fruits in one swipe for combo bonuses!
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- SEO & Comprehensive Game Guide Sections Below Fold -->
+    <section id="how-to-play" class="hide-on-mobile-play space-y-6 pt-2">
+      <nav class="text-xs fn-muted flex flex-wrap items-center gap-1.5" aria-label="Breadcrumb">
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/" class="text-cyan-400 hover:underline">Home</a>
+        <span>/</span>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/#games" class="text-cyan-400 hover:underline">Games</a>
+        <span>/</span>
+        <span>Fruit Ninja 203</span>
+      </nav>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="fn-card rounded-2xl p-6 space-y-3">
+          <h2 class="font-display text-lg font-bold text-cyan-400">
+            How to Play &amp; Game Rules
+          </h2>
+          <p class="text-sm fn-muted leading-relaxed">
+            <strong>Fruit Ninja 203</strong> is a free online fruit slicing arcade game on <strong>GameZone 203</strong>. Colorful fruits launch upward from the bottom of the playfield and arc down with gravity. Swipe across fruits with your mouse or finger to split them cleanly into two spinning halves and earn points.
+          </p>
+          <ul class="text-sm fn-muted space-y-1.5 list-disc list-inside leading-relaxed">
+            <li><strong>Slicing &amp; Combos:</strong> Chain 3 or more fruits in a single swipe for 3x, 4x, or 5x+ Super Combo bonus points.</li>
+            <li><strong>Bombs &amp; Power-Ups:</strong> Avoid bombs! Look out for special power-up fruits including <em>Double Score</em>, <em>Slow Motion</em>, <em>Extra Life</em>, <em>Bonus Time</em>, and <em>Fruit Frenzy</em>.</li>
+            <li><strong>Level Stars:</strong> Complete Challenge levels to earn 1 to 3 stars based on your performance and unlock subsequent stages.</li>
+          </ul>
+        </article>
+
+        <article class="fn-card rounded-2xl p-6 space-y-3">
+          <h2 class="font-display text-lg font-bold text-purple-400">
+            Controls (Desktop &amp; Mobile)
+          </h2>
+          <p class="text-sm fn-muted leading-relaxed">
+            Play effortlessly on Windows laptops, desktop PCs, iPhones, Android phones, and tablets with no download required:
+          </p>
+          <ul class="text-sm fn-muted space-y-1.5 list-disc list-inside leading-relaxed">
+            <li><strong>Laptop &amp; PC:</strong> Move the mouse or click-and-drag across the canvas to slice fruits. Press <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">Escape</kbd> or <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-slate-200 text-xs">P</kbd> to pause.</li>
+            <li><strong>Mobile &amp; Tablet:</strong> Swipe your finger across fruits in portrait or landscape mode. Browser scrolling locks only during active gameplay and restores when paused or on menus.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- AdSense-Safe Container (No overlap with gameplay or buttons) -->
+      <div class="ad-slot-box rounded-2xl" id="adsense-slot-fruit-ninja">
+        <span class="text-[10px] font-bold uppercase tracking-widest fn-muted">Advertisement</span>
+        <span class="text-xs fn-muted">AdSense responsive unit slot — place your &lt;ins class="adsbygoogle"&gt;&lt;/ins&gt; snippet here when ready.</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <article class="fn-card rounded-2xl p-6 space-y-3">
+          <h2 class="font-display text-lg font-bold text-orange-400">
+            Game Modes &amp; Difficulty Guide
+          </h2>
+          <p class="text-sm fn-muted leading-relaxed">
+            <strong>Modes:</strong> <em>Classic</em> (3 lives &amp; bomb penalties), <em>Arcade</em> (60-second timer, combos &amp; power-ups), <em>Zen</em> (relaxed bomb-free slicing), and <em>Challenge</em> (8 progressive objective levels).
+          </p>
+          <p class="text-sm fn-muted leading-relaxed">
+            <strong>Difficulty:</strong> <em>Easy</em> offers slower fruit arcs and fewer bombs; <em>Medium</em> balances speed and wave variety; <em>Hard</em> increases fruit velocity, wave pace, and bomb frequency.
+          </p>
+        </article>
+
+        <article class="fn-card rounded-2xl p-6 space-y-3">
+          <h2 class="font-display text-lg font-bold">
+            Frequently Asked Questions
+          </h2>
+          <div class="space-y-2 text-sm">
+            <details class="rounded-xl fn-surface p-3.5 group" open>
+              <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+                <span>Can I play Fruit Ninja 203 online for free without downloading?</span>
+                <span class="fn-muted group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <p class="fn-muted mt-2 text-xs leading-relaxed">
+                Yes. Fruit Ninja 203 runs directly in your browser on GameZone 203 with no download or installation required.
+              </p>
+            </details>
+
+            <details class="rounded-xl fn-surface p-3.5 group">
+              <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+                <span>How do I earn three stars in a Challenge level?</span>
+                <span class="fn-muted group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <p class="fn-muted mt-2 text-xs leading-relaxed">
+                Meeting a level's objective awards 1 star, exceeding it strongly awards 2 stars, and achieving high score/slice performance awards all 3 stars.
+              </p>
+            </details>
+
+            <details class="rounded-xl fn-surface p-3.5 group">
+              <summary class="font-semibold text-cyan-400 cursor-pointer list-none flex items-center justify-between">
+                <span>Does Fruit Ninja 203 save my coins, stars, and best score?</span>
+                <span class="fn-muted group-open:rotate-180 transition-transform text-xs">▼</span>
+              </summary>
+              <p class="fn-muted mt-2 text-xs leading-relaxed">
+                Yes. Your best score, coins, unlocked blade trails, level stars, achievements, and settings are saved locally in your browser's <code class="text-cyan-400">localStorage</code>.
+              </p>
+            </details>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Footer with GameZone 203 & Internal Game Links -->
+    <footer class="hide-on-mobile-play border-t border-slate-700/40 pt-5 pb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs fn-muted">
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/" class="text-cyan-400 hover:underline font-semibold">
+          GameZone 203 Home
+        </a>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/games/connect-four/" class="hover:underline">
+          Connect Four 203
+        </a>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/games/flappy-bird/" class="hover:underline">
+          Flappy Bird 203
+        </a>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/about.html" class="hover:underline">
+          About
+        </a>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/privacy.html" class="hover:underline">
+          Privacy
+        </a>
+        <a href="https://shakeeljee254-oss.github.io/gamezone-203/contact.html" class="hover:underline">
+          Contact
+        </a>
+      </div>
+      <div>&copy; <span id="fn-year">2026</span> GameZone 203 • Fruit Ninja 203</div>
+    </footer>
+  </main>
+
+  <!-- ====================================================================== -->
+  <!-- LEVEL SELECTION MODAL                                                   -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-level-map"
+    class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="level-map-title"
+  >
+    <div class="w-full max-w-2xl fn-card rounded-2xl p-5 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700/40 pb-3">
+        <div>
+          <h2 id="level-map-title" class="font-display text-lg font-extrabold text-cyan-400">
+            Challenge Level Map
+          </h2>
+          <p class="text-xs fn-muted">
+            Total Stars Collected: <strong id="map-total-stars" class="text-amber-400">0 / 24</strong>
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="btn-map-exit" type="button" class="btn-exit-pill px-3 py-1.5 rounded-xl text-xs font-bold">
+            Exit
+          </button>
+          <button id="btn-close-map" type="button" aria-label="Close level map" class="w-8 h-8 rounded-xl fn-surface text-xs font-bold">
+            ✕
+          </button>
+        </div>
+      </div>
+
+      <div id="level-map-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Populated by JS -->
+      </div>
+    </div>
   </div>
 
-  <canvas id="gameCanvas" width="600" height="600"></canvas>
+  <!-- ====================================================================== -->
+  <!-- BLADE TRAIL SHOP MODAL                                                -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-shop"
+    class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="shop-title"
+  >
+    <div class="w-full max-w-lg fn-card rounded-2xl p-5 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700/40 pb-3">
+        <div>
+          <h2 id="shop-title" class="font-display text-lg font-extrabold text-amber-400">
+            Blade Trail Shop
+          </h2>
+          <p class="text-xs fn-muted">
+            Balance: <strong id="shop-coins-balance" class="text-amber-400">0</strong> Coins
+          </p>
+        </div>
+        <button id="btn-close-shop" type="button" aria-label="Close shop" class="w-8 h-8 rounded-xl fn-surface text-xs font-bold">
+          ✕
+        </button>
+      </div>
 
-<script>
-  const canvas = document.getElementById("gameCanvas");
-  const ctx = canvas.getContext("2d");
-  const startOverlay = document.getElementById("startOverlay");
-  const startBtn = document.getElementById("startBtn");
+      <div id="shop-items-list" class="space-y-2.5">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
 
-  let gameRunning = false;
-  let score = 0;
-  let bestScore = localStorage.getItem("fruitBest") || 0;
-  let lives = 3;
+  <!-- ====================================================================== -->
+  <!-- ACHIEVEMENTS MODAL                                                     -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-achievements"
+    class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="awards-title"
+  >
+    <div class="w-full max-w-lg fn-card rounded-2xl p-5 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700/40 pb-3">
+        <div>
+          <h2 id="awards-title" class="font-display text-lg font-extrabold text-purple-400">
+            Achievements
+          </h2>
+          <p class="text-xs fn-muted">
+            Unlocked: <strong id="awards-progress-label" class="text-cyan-400">0 / 7</strong>
+          </p>
+        </div>
+        <button id="btn-close-awards" type="button" aria-label="Close achievements" class="w-8 h-8 rounded-xl fn-surface text-xs font-bold">
+          ✕
+        </button>
+      </div>
 
-  let fruits = [];
-  let slices = []; // For juice particles
-  let mouseTrail = [];
-  
-  // Emojis for Fruits and Bomb
-  const fruitTypes = [
-    { emoji: "🍉", color: "#ef4444" }, // Watermelon
-    { emoji: "🍎", color: "#dc2626" }, // Apple
-    { emoji: "🍊", color: "#f97316" }, // Orange
-    { emoji: "🍋", color: "#fbbf24" }, // Lemon
-    { emoji: "🥝", color: "#84cc16" }  // Kiwi
-  ];
+      <div id="achievements-list" class="space-y-2.5">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
 
-  function resetGame() {
-    gameRunning = true;
-    startOverlay.style.display = "none";
-    score = 0;
-    lives = 3;
-    fruits = [];
-    slices = [];
-    mouseTrail = [];
-    gameLoop();
-  }
+  <!-- ====================================================================== -->
+  <!-- SETTINGS MODAL                                                         -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-settings"
+    class="fixed inset-0 z-40 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="settings-title"
+  >
+    <div class="w-full max-w-md fn-card rounded-2xl p-5 sm:p-6 space-y-4 max-h-[90vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700/40 pb-3">
+        <h2 id="settings-title" class="font-display text-lg font-extrabold">Settings</h2>
+        <button id="btn-close-settings" type="button" aria-label="Close settings" class="w-8 h-8 rounded-xl fn-surface text-xs font-bold">
+          ✕
+        </button>
+      </div>
 
-  function spawnFruit() {
-    if (!gameRunning) return;
-    
-    // 15% chance of spawning a bomb
-    const isBomb = Math.random() < 0.15;
-    
-    const startX = Math.random() * (canvas.width - 100) + 50;
-    const velocityY = -(Math.random() * 5 + 12); // Upwards force
-    const velocityX = (canvas.width / 2 - startX) / 60 + (Math.random() - 0.5) * 4; // Towards center
-    
-    let type;
-    if (isBomb) {
-      type = { emoji: "💣", color: "#333" };
-    } else {
-      type = fruitTypes[Math.floor(Math.random() * fruitTypes.length)];
-    }
+      <!-- Theme -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-semibold uppercase tracking-wider fn-muted">Theme</label>
+        <div class="grid grid-cols-2 gap-2">
+          <button id="set-theme-dark" type="button" class="py-2 px-3 rounded-xl text-xs font-bold border transition">🌙 Dark Theme</button>
+          <button id="set-theme-day" type="button" class="py-2 px-3 rounded-xl text-xs font-bold border transition">☀️ Day Light Theme</button>
+        </div>
+      </div>
 
-    fruits.push({
-      x: startX,
-      y: canvas.height + 50,
-      vx: velocityX,
-      vy: velocityY,
-      radius: 30,
-      color: type.color,
-      emoji: type.emoji,
-      isBomb: isBomb,
-      sliced: false,
-      rotation: Math.random() * Math.PI * 2,
-      rotSpeed: (Math.random() - 0.5) * 0.1
-    });
-  }
+      <!-- Difficulty -->
+      <div class="space-y-1.5">
+        <label class="block text-xs font-semibold uppercase tracking-wider fn-muted">Difficulty</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" data-diff="easy" class="diff-select-btn py-2 px-2 rounded-xl text-xs font-bold border transition">Easy</button>
+          <button type="button" data-diff="medium" class="diff-select-btn py-2 px-2 rounded-xl text-xs font-bold border transition">Medium</button>
+          <button type="button" data-diff="hard" class="diff-select-btn py-2 px-2 rounded-xl text-xs font-bold border transition">Hard</button>
+        </div>
+      </div>
 
-  function createJuice(x, y, color) {
-    for (let i = 0; i < 15; i++) {
-      slices.push({
-        x: x, y: y,
-        vx: (Math.random() - 0.5) * 10,
-        vy: (Math.random() - 0.5) * 10,
-        radius: Math.random() * 5 + 2,
-        color: color,
-        life: 1.0
-      });
-    }
-  }
+      <!-- Audio & Visual Toggles -->
+      <div class="space-y-2 text-xs sm:text-sm">
+        <div class="flex items-center justify-between p-2.5 rounded-xl fn-surface">
+          <span>Sound Effects</span>
+          <button id="set-toggle-sfx" type="button" class="px-3 py-1 rounded-lg text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">ON</button>
+        </div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl fn-surface">
+          <span>Synth Music</span>
+          <button id="set-toggle-music" type="button" class="px-3 py-1 rounded-lg text-xs font-bold bg-purple-500/20 text-purple-300 border border-purple-400/40">OFF</button>
+        </div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl fn-surface">
+          <span>Juice &amp; Slice Particles</span>
+          <button id="set-toggle-particles" type="button" class="px-3 py-1 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">ON</button>
+        </div>
+        <div class="flex items-center justify-between p-2.5 rounded-xl fn-surface">
+          <span>Screen Shake</span>
+          <button id="set-toggle-shake" type="button" class="px-3 py-1 rounded-lg text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-400/40">ON</button>
+        </div>
+      </div>
 
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+      <!-- Controls Summary -->
+      <div class="p-3 rounded-xl fn-surface text-xs space-y-1">
+        <div class="font-semibold text-cyan-400">Controls</div>
+        <p class="fn-muted">Drag mouse or swipe touch across fruits to slice. Press Esc/P to pause.</p>
+      </div>
 
-    // Draw Mouse Trail (Blade)
-    if (mouseTrail.length > 0) {
-      ctx.beginPath();
-      ctx.moveTo(mouseTrail[0].x, mouseTrail[0].y);
-      for (let i = 1; i < mouseTrail.length; i++) {
-        ctx.lineTo(mouseTrail[i].x, mouseTrail[i].y);
+      <!-- Reset Statistics -->
+      <div class="pt-1 flex items-center justify-between gap-2">
+        <button id="set-open-reset" type="button" class="py-2 px-3.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/40 text-xs font-bold">
+          Reset Statistics
+        </button>
+        <button id="set-exit-btn" type="button" class="btn-exit-pill py-2 px-4 rounded-xl text-xs font-bold">
+          Exit Game
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- CONFIRM RESET STATS MODAL                                              -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-confirm-reset"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="confirm-reset-title"
+  >
+    <div class="w-full max-w-sm fn-card rounded-2xl p-6 space-y-4 shadow-2xl">
+      <h3 id="confirm-reset-title" class="font-display text-lg font-bold text-rose-400">
+        Reset All Statistics?
+      </h3>
+      <p class="text-xs sm:text-sm fn-muted leading-relaxed">
+        This resets your Best Score, Coins, Level Stars, Achievements, and match history for Fruit Ninja 203.
+      </p>
+      <div class="flex justify-end gap-2 pt-2">
+        <button id="btn-cancel-reset" type="button" class="px-4 py-2 rounded-xl fn-surface text-xs font-semibold">
+          Cancel
+        </button>
+        <button id="btn-confirm-reset" type="button" class="px-4 py-2 rounded-xl bg-rose-500/25 text-rose-200 border border-rose-500/50 text-xs font-bold">
+          Yes, Reset
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- EXIT RATING POPUP (Local Storage Only, 7d/30d Cooldown, Non-Blocking)  -->
+  <!-- ====================================================================== -->
+  <div
+    id="modal-exit-rating"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="exit-rating-heading"
+  >
+    <div class="w-full max-w-md fn-card rounded-2xl p-6 space-y-4 relative shadow-2xl">
+      <button
+        id="btn-exit-rating-x"
+        type="button"
+        aria-label="Close rating popup and exit"
+        class="absolute top-4 right-4 w-8 h-8 rounded-xl fn-surface text-xs font-bold flex items-center justify-center"
+      >
+        ✕
+      </button>
+
+      <div id="rating-form-panel" class="space-y-4">
+        <div class="text-center px-6">
+          <h2 id="exit-rating-heading" class="font-display text-lg sm:text-xl font-extrabold">
+            Enjoying Fruit Ninja 203?
+          </h2>
+          <p class="text-xs sm:text-sm fn-muted mt-1">
+            Rate your gaming experience!
+          </p>
+        </div>
+
+        <div class="space-y-1.5">
+          <div id="rating-star-buttons" class="flex items-center justify-center gap-1.5 sm:gap-2" role="radiogroup" aria-label="Rate from 1 to 5 stars">
+            <button type="button" data-star="1" data-desc="1 Star — Fair" role="radio" aria-checked="false" aria-label="1 Star" class="star-rate-btn star-rate-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="2" data-desc="2 Stars — Okay" role="radio" aria-checked="false" aria-label="2 Stars" class="star-rate-btn star-rate-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="3" data-desc="3 Stars — Good" role="radio" aria-checked="false" aria-label="3 Stars" class="star-rate-btn star-rate-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="4" data-desc="4 Stars — Great" role="radio" aria-checked="false" aria-label="4 Stars" class="star-rate-btn star-rate-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+            <button type="button" data-star="5" data-desc="5 Stars — Awesome!" role="radio" aria-checked="false" aria-label="5 Stars" class="star-rate-btn star-rate-off p-1.5 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+              <svg class="w-8 h-8" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+              </svg>
+            </button>
+          </div>
+          <div id="rating-star-caption" class="text-center text-xs font-semibold text-cyan-400 h-4">
+            Select 1–5 stars
+          </div>
+          <p id="rating-star-required" class="hidden text-center text-xs text-rose-400 font-medium">
+            Please choose a star rating (1–5) before submitting.
+          </p>
+        </div>
+
+        <textarea
+          id="rating-comment-box"
+          rows="2"
+          maxlength="240"
+          placeholder="Optional feedback..."
+          class="w-full rounded-xl fn-surface px-3 py-2 text-xs sm:text-sm outline-none focus:ring-2 focus:ring-cyan-400/40 resize-none"
+        ></textarea>
+
+        <p class="text-[11px] fn-muted">
+          Saved locally in this browser only (local feedback only, not a global rating or review).
+        </p>
+
+        <div class="flex gap-2">
+          <button id="btn-submit-exit-rating" type="button" class="flex-1 btn-arcade-play py-2.5 px-3 rounded-xl text-xs sm:text-sm">
+            Submit Rating
+          </button>
+          <button id="btn-maybe-later-rating" type="button" class="py-2.5 px-3.5 rounded-xl fn-surface text-xs sm:text-sm font-semibold">
+            Maybe Later
+          </button>
+        </div>
+      </div>
+
+      <div id="rating-thanks-panel" class="hidden py-4 text-center space-y-3">
+        <div class="font-display text-lg font-extrabold text-emerald-400">Thank You!</div>
+        <p class="text-xs fn-muted">Your local feedback is saved. Returning to GameZone 203...</p>
+        <button id="btn-exit-now-after-thanks" type="button" class="px-4 py-2 rounded-xl fn-surface text-xs font-semibold">
+          Continue Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * ========================================================================
+     * FRUIT NINJA 203 — COMPLETE GAME ENGINE & GAMEZONE 203 INTEGRATION
+     * ========================================================================
+     */
+    (function () {
+      'use strict';
+
+      const HOME_URL = 'https://shakeeljee254-oss.github.io/gamezone-203/';
+      const STORAGE_KEY = 'gz203_fruit_ninja_203_v1';
+      const DAY_MS = 24 * 60 * 60 * 1000;
+      const DISMISS_DAYS = 7;
+      const SUBMIT_DAYS = 30;
+
+      const LOGICAL_W = 540;
+      const LOGICAL_H = 620;
+      const MAX_FRUITS = 14;
+      const MAX_HALVES = 28;
+      const MAX_PARTICLES = 140;
+      const MAX_POPUPS = 16;
+
+      // Original Colorful Fruit & Power-up Definitions
+      const FRUIT_TYPES = [
+        { id: 'watermelon', name: 'Watermelon', r: 27, points: 15, coins: 2, rind: '#16a34a', flesh: '#ff3b5c' },
+        { id: 'pineapple', name: 'Pineapple', r: 25, points: 20, coins: 3, rind: '#d97706', flesh: '#facc15' },
+        { id: 'orange', name: 'Orange', r: 22, points: 10, coins: 2, rind: '#ea580c', flesh: '#fb923c' },
+        { id: 'apple', name: 'Apple', r: 21, points: 10, coins: 1, rind: '#dc2626', flesh: '#fef08a' },
+        { id: 'banana', name: 'Banana', r: 23, points: 15, coins: 2, rind: '#eab308', flesh: '#fef9c3' },
+        { id: 'strawberry', name: 'Strawberry', r: 18, points: 12, coins: 2, rind: '#e11d48', flesh: '#fda4af' },
+        { id: 'coconut', name: 'Coconut', r: 22, points: 15, coins: 2, rind: '#5c3a21', flesh: '#f8fafc' },
+        { id: 'dragonfruit', name: 'Dragonfruit', r: 23, points: 25, coins: 4, rind: '#d946ef', flesh: '#f5d0fe' },
+      ];
+
+      const POWERUP_TYPES = [
+        { id: 'double_score', label: '2X SCORE', color: '#facc15', duration: 7 },
+        { id: 'slow_motion', label: 'SLOW MO', color: '#00f0ff', duration: 6 },
+        { id: 'extra_life', label: '+1 LIFE', color: '#4ade80', duration: 0 },
+        { id: 'bonus_time', label: '+8s TIME', color: '#a855f7', duration: 0 },
+        { id: 'fruit_frenzy', label: 'FRENZY', color: '#ff7a18', duration: 4.5 },
+      ];
+
+      // 8 Progressive Challenge Levels
+      const CHALLENGE_LEVELS = [
+        { level: 1, name: 'Neon Orchard', type: 'slices', target: 15, rewardCoins: 25, desc: 'Slice 15 fruits' },
+        { level: 2, name: 'Citrus Surge', type: 'score', target: 300, rewardCoins: 35, desc: 'Score 300 points' },
+        { level: 3, name: 'Tropical Blitz', type: 'slices', target: 25, rewardCoins: 45, desc: 'Slice 25 fruits' },
+        { level: 4, name: 'Combo Spark', type: 'combos', target: 3, rewardCoins: 55, desc: 'Trigger 3 combos (3+)' },
+        { level: 5, name: 'Zero Blast', type: 'score_no_bomb', target: 600, rewardCoins: 70, desc: 'Score 600 pts with 0 bombs hit' },
+        { level: 6, name: 'Blade Tempest', type: 'slices', target: 35, rewardCoins: 85, desc: 'Slice 35 fruits' },
+        { level: 7, name: 'Chain Master', type: 'combos', target: 5, rewardCoins: 100, desc: 'Trigger 5 combos (3+)' },
+        { level: 8, name: 'Apex 203 Grand', type: 'grand', targetScore: 950, targetSlices: 40, rewardCoins: 140, desc: 'Score 950 pts & slice 40 fruits' },
+      ];
+
+      const DIFFICULTY_CONFIG = {
+        easy: {
+          label: 'Easy',
+          gravityScale: 0.84,
+          speedScale: 0.85,
+          spawnInterval: 1.45,
+          waveMin: 1,
+          waveMax: 3,
+          bombChance: 0.10,
+        },
+        medium: {
+          label: 'Medium',
+          gravityScale: 1.0,
+          speedScale: 1.0,
+          spawnInterval: 1.18,
+          waveMin: 2,
+          waveMax: 4,
+          bombChance: 0.17,
+        },
+        hard: {
+          label: 'Hard',
+          gravityScale: 1.18,
+          speedScale: 1.18,
+          spawnInterval: 0.92,
+          waveMin: 3,
+          waveMax: 5,
+          bombChance: 0.25,
+        },
+      };
+
+      const TRAIL_SKINS = [
+        { id: 'cyan', name: 'Neon Cyan', price: 0, core: '#ffffff', glow: '#00f0ff' },
+        { id: 'ember', name: 'Solar Ember', price: 60, core: '#fef08a', glow: '#ff7a18' },
+        { id: 'plasma', name: 'Plasma Violet', price: 110, core: '#f3e8ff', glow: '#a855f7' },
+        { id: 'emerald', name: 'Emerald Leaf', price: 150, core: '#dcfce7', glow: '#22c55e' },
+      ];
+
+      const ACHIEVEMENTS_DEF = [
+        { id: 'first_slice', title: 'First Slice', desc: 'Slice your first fruit.', check: (s) => s.totalFruitsSliced >= 1 },
+        { id: 'combo_master', title: 'Combo Master', desc: 'Achieve a 5-fruit or higher combo.', check: (s) => s.highestCombo >= 5 },
+        { id: 'fruit_expert', title: 'Fruit Expert', desc: 'Slice 100 total fruits.', check: (s) => s.totalFruitsSliced >= 100 },
+        { id: 'bomb_dodger', title: 'Bomb Dodger', desc: 'Finish a Classic/Arcade/Challenge run without hitting a bomb.', check: (s) => s.cleanRuns >= 1 },
+        { id: 'star_collector', title: 'Star Collector', desc: 'Earn 10 total level stars.', check: (s) => getTotalStars(s) >= 10 },
+        { id: 'level_champion', title: 'Level Champion', desc: 'Complete 5 challenge levels.', check: (s) => getCompletedLevelCount(s) >= 5 },
+        { id: 'high_scorer', title: 'High Scorer', desc: 'Reach 800+ points in a single run.', check: (s) => s.bestScore >= 800 },
+      ];
+
+      const MODE_DESCRIPTIONS = {
+        classic: '3 lives • Slice fruits, avoid bombs & don’t miss Classic fruits.',
+        arcade: '60s timer • Multi-fruit waves, combo bonuses, power-ups & bombs.',
+        zen: 'Relaxed slicing • No bombs and no life penalties.',
+        challenge: '8 progressive levels • Complete objectives to earn up to 3 stars each.',
+      };
+
+      // Persistent Player State (Versioned localStorage)
+      const saveData = {
+        version: 1,
+        theme: 'dark',
+        mode: 'classic',
+        difficulty: 'medium',
+        selectedLevel: 1,
+        unlockedLevel: 1,
+        levelStars: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 },
+        claimedLevelRewards: {},
+        sfxEnabled: true,
+        musicEnabled: false,
+        particlesEnabled: true,
+        shakeEnabled: true,
+        coins: 0,
+        ownedTrails: ['cyan'],
+        equippedTrail: 'cyan',
+        bestScore: 0,
+        gamesPlayed: 0,
+        totalFruitsSliced: 0,
+        totalBombsHit: 0,
+        highestCombo: 0,
+        cleanRuns: 0,
+        unlockedAchievements: [],
+        ratingCooldownUntil: 0,
+        localFeedbackList: [],
+      };
+
+      // Active Runtime Match State
+      const run = {
+        phase: 'start',
+        pausedFromHidden: false,
+        score: 0,
+        lives: 3,
+        timeLeft: 60,
+        fruitsSliced: 0,
+        bombsHit: 0,
+        bestCombo: 0,
+        combosTriggered: 0,
+        coinsEarnedThisRun: 0,
+        elapsedPlayTime: 0,
+        spawnTimer: 0.4,
+        swipeChainCount: 0,
+        swipeResetTimer: 0,
+        shakeTimer: 0,
+        shakeIntensity: 0,
+        activeEffects: {
+          doubleScore: 0,
+          slowMotion: 0,
+          frenzy: 0,
+        },
+        entities: [],
+        halves: [],
+        particles: [],
+        popups: [],
+        trailPoints: [],
+        pointerDown: false,
+        lastPointer: null,
+        loopId: null,
+        lastTime: 0,
+        selectedRatingStars: 0,
+        hoveredRatingStars: 0,
+        exitTimeout: null,
+      };
+
+      function getTotalStars(s = saveData) {
+        return [1, 2, 3, 4, 5, 6, 7, 8].reduce((acc, lv) => acc + (Number(s.levelStars[lv]) || 0), 0);
       }
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
-      ctx.lineWidth = 4;
-      ctx.lineCap = "round";
-      ctx.stroke();
-    }
 
-    // Draw Fruits
-    fruits.forEach(fruit => {
-      ctx.save();
-      ctx.translate(fruit.x, fruit.y);
-      ctx.rotate(fruit.rotation);
-      ctx.font = fruit.radius * 2 + "px Arial";
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-      ctx.fillText(fruit.emoji, 0, 0);
-      ctx.restore();
-    });
-
-    // Draw Juice Slices
-    slices.forEach((slice, index) => {
-      slice.x += slice.vx;
-      slice.y += slice.vy;
-      slice.life -= 0.02;
-      
-      if (slice.life <= 0) {
-        slices.splice(index, 1);
-        return;
+      function getCompletedLevelCount(s = saveData) {
+        return [1, 2, 3, 4, 5, 6, 7, 8].reduce((acc, lv) => acc + ((Number(s.levelStars[lv]) || 0) > 0 ? 1 : 0), 0);
       }
 
-      ctx.beginPath();
-      ctx.arc(slice.x, slice.y, slice.radius, 0, Math.PI * 2);
-      ctx.fillStyle = slice.color;
-      ctx.globalAlpha = slice.life;
-      ctx.fill();
-      ctx.globalAlpha = 1;
-    });
-
-    // Draw UI
-    ctx.fillStyle = "white";
-    ctx.font = "bold 30px Arial";
-    ctx.textAlign = "left";
-    ctx.fillText("Score: " + score, 20, 40);
-    
-    ctx.textAlign = "right";
-    ctx.fillText("Lives: " + "❤️".repeat(lives), canvas.width - 20, 40);
-  }
-
-  function update() {
-    if (!gameRunning) return;
-
-    // Spawn logic
-    if (Math.random() < 0.03) spawnFruit();
-
-    for (let i = fruits.length - 1; i >= 0; i--) {
-      let fruit = fruits[i];
-      
-      // Physics
-      fruit.x += fruit.vx;
-      fruit.y += fruit.vy;
-      fruit.vy += 0.3; // Gravity
-      fruit.rotation += fruit.rotSpeed;
-
-      // Remove if fell off screen
-      if (fruit.y > canvas.height + 100) {
-        fruits.splice(i, 1);
-        continue;
+      function getLevelObj(lvNum = saveData.selectedLevel) {
+        return CHALLENGE_LEVELS.find((l) => l.level === lvNum) || CHALLENGE_LEVELS[0];
       }
 
-      // Check Collision with Mouse Trail
-      if (!fruit.sliced && mouseTrail.length > 2) {
-        for (let j = 0; j < mouseTrail.length; j++) {
-          let dist = Math.hypot(fruit.x - mouseTrail[j].x, fruit.y - mouseTrail[j].y);
-          if (dist < fruit.radius + 10) {
-            // Sliced!
-            fruit.sliced = true;
-            
-            if (fruit.isBomb) {
-              // Hit a bomb
-              createJuice(fruit.x, fruit.y, "#ef4444");
-              lives = 0;
-              gameOver();
-            } else {
-              // Sliced a fruit
-              createJuice(fruit.x, fruit.y, fruit.color);
-              score += 10;
-            }
-            
-            fruits.splice(i, 1);
-            break;
+      // ======================================================================
+      // SAFE STORAGE LOADER / SAVER
+      // ======================================================================
+      function loadSaveData() {
+        try {
+          const raw = window.localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const p = JSON.parse(raw);
+          if (!p || typeof p !== 'object') return;
+
+          if (p.theme === 'day' || p.theme === 'dark') saveData.theme = p.theme;
+          if (['classic', 'arcade', 'zen', 'challenge'].includes(p.mode)) saveData.mode = p.mode;
+          if (DIFFICULTY_CONFIG[p.difficulty]) saveData.difficulty = p.difficulty;
+          if (typeof p.unlockedLevel === 'number') {
+            saveData.unlockedLevel = Math.min(8, Math.max(1, Math.floor(p.unlockedLevel)));
+          }
+          if (typeof p.selectedLevel === 'number') {
+            saveData.selectedLevel = Math.min(saveData.unlockedLevel, Math.max(1, Math.floor(p.selectedLevel)));
+          }
+          if (p.levelStars && typeof p.levelStars === 'object') {
+            [1, 2, 3, 4, 5, 6, 7, 8].forEach((lv) => {
+              saveData.levelStars[lv] = Math.min(3, Math.max(0, Math.floor(Number(p.levelStars[lv]) || 0)));
+            });
+          }
+          if (p.claimedLevelRewards && typeof p.claimedLevelRewards === 'object') {
+            saveData.claimedLevelRewards = { ...p.claimedLevelRewards };
+          }
+          if (typeof p.sfxEnabled === 'boolean') saveData.sfxEnabled = p.sfxEnabled;
+          if (typeof p.musicEnabled === 'boolean') saveData.musicEnabled = p.musicEnabled;
+          if (typeof p.particlesEnabled === 'boolean') saveData.particlesEnabled = p.particlesEnabled;
+          if (typeof p.shakeEnabled === 'boolean') saveData.shakeEnabled = p.shakeEnabled;
+
+          saveData.coins = Math.max(0, Math.floor(Number(p.coins) || 0));
+          if (Array.isArray(p.ownedTrails) && p.ownedTrails.length > 0) {
+            const validIds = new Set(TRAIL_SKINS.map((t) => t.id));
+            const filtered = p.ownedTrails.filter((id) => validIds.has(id));
+            if (!filtered.includes('cyan')) filtered.unshift('cyan');
+            saveData.ownedTrails = filtered;
+          }
+          if (TRAIL_SKINS.some((t) => t.id === p.equippedTrail) && saveData.ownedTrails.includes(p.equippedTrail)) {
+            saveData.equippedTrail = p.equippedTrail;
+          }
+
+          saveData.bestScore = Math.max(0, Math.floor(Number(p.bestScore) || 0));
+          saveData.gamesPlayed = Math.max(0, Math.floor(Number(p.gamesPlayed) || 0));
+          saveData.totalFruitsSliced = Math.max(0, Math.floor(Number(p.totalFruitsSliced) || 0));
+          saveData.totalBombsHit = Math.max(0, Math.floor(Number(p.totalBombsHit) || 0));
+          saveData.highestCombo = Math.max(0, Math.floor(Number(p.highestCombo) || 0));
+          saveData.cleanRuns = Math.max(0, Math.floor(Number(p.cleanRuns) || 0));
+          if (Array.isArray(p.unlockedAchievements)) {
+            saveData.unlockedAchievements = [...new Set(p.unlockedAchievements)];
+          }
+          saveData.ratingCooldownUntil = Math.max(0, Number(p.ratingCooldownUntil) || 0);
+          if (Array.isArray(p.localFeedbackList)) {
+            saveData.localFeedbackList = p.localFeedbackList.slice(0, 15);
+          }
+        } catch (err) {
+          console.warn('[Fruit Ninja 203] Safe fallback on corrupted storage:', err);
+        }
+      }
+
+      function persistSaveData() {
+        try {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(saveData));
+        } catch (err) {
+          console.warn('[Fruit Ninja 203] Storage write skipped:', err);
+        }
+      }
+
+      // ======================================================================
+      // WEB AUDIO API SOUND & SYNTH MUSIC ENGINE
+      // ======================================================================
+      const SoundEngine = {
+        ctx: null,
+        musicTimer: null,
+        step: 0,
+
+        unlock() {
+          if (!this.ctx && (window.AudioContext || window.webkitAudioContext)) {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            this.ctx = new Ctx();
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume().catch(() => {});
+          }
+        },
+
+        tone(freq, endFreq, dur, type, volPeak, delay = 0) {
+          if (!saveData.sfxEnabled) return;
+          try {
+            this.unlock();
+            if (!this.ctx) return;
+            const t0 = this.ctx.currentTime + delay;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, t0);
+            if (endFreq) osc.frequency.exponentialRampToValueAtTime(endFreq, t0 + dur);
+
+            gain.gain.setValueAtTime(0.0001, t0);
+            gain.gain.linearRampToValueAtTime(volPeak, t0 + 0.012);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(t0);
+            osc.stop(t0 + dur + 0.02);
+          } catch (_) {}
+        },
+
+        click() {
+          this.tone(640, 820, 0.055, 'sine', 0.08);
+        },
+
+        slice() {
+          this.tone(920, 340, 0.09, 'sawtooth', 0.09);
+          this.tone(520, 780, 0.06, 'triangle', 0.08, 0.02);
+        },
+
+        combo(count) {
+          const base = 520 + Math.min(count, 8) * 65;
+          this.tone(base, base * 1.35, 0.16, 'triangle', 0.14);
+        },
+
+        bomb() {
+          this.tone(150, 42, 0.34, 'sawtooth', 0.22);
+          this.tone(95, 35, 0.38, 'square', 0.12, 0.03);
+        },
+
+        powerup() {
+          this.tone(440, 660, 0.12, 'sine', 0.12, 0);
+          this.tone(660, 880, 0.15, 'sine', 0.12, 0.08);
+        },
+
+        levelWin() {
+          const notes = [523.25, 659.25, 783.99, 1046.5];
+          notes.forEach((n, idx) => this.tone(n, null, 0.18, 'triangle', 0.14, idx * 0.09));
+        },
+
+        achievement() {
+          this.tone(783.99, 1046.5, 0.14, 'triangle', 0.13, 0);
+          this.tone(1046.5, 1318.5, 0.22, 'sine', 0.13, 0.1);
+        },
+
+        startMusic() {
+          this.stopMusic();
+          if (!saveData.musicEnabled) return;
+          const notes = [261.63, 329.63, 392.0, 523.25, 392.0, 329.63, 293.66, 392.0];
+          this.musicTimer = setInterval(() => {
+            if (!saveData.musicEnabled || run.phase !== 'playing') return;
+            try {
+              this.unlock();
+              if (!this.ctx) return;
+              const t0 = this.ctx.currentTime;
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(notes[this.step % notes.length], t0);
+              this.step++;
+              gain.gain.setValueAtTime(0.0001, t0);
+              gain.gain.linearRampToValueAtTime(0.03, t0 + 0.04);
+              gain.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.26);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(t0);
+              osc.stop(t0 + 0.28);
+            } catch (_) {}
+          }, 300);
+        },
+
+        stopMusic() {
+          if (this.musicTimer) {
+            clearInterval(this.musicTimer);
+            this.musicTimer = null;
+          }
+        },
+      };
+
+      // ======================================================================
+      // ACHIEVEMENTS EVALUATOR
+      // ======================================================================
+      function evaluateAchievements() {
+        let newlyUnlocked = false;
+        ACHIEVEMENTS_DEF.forEach((ach) => {
+          if (!saveData.unlockedAchievements.includes(ach.id) && ach.check(saveData)) {
+            saveData.unlockedAchievements.push(ach.id);
+            saveData.coins += 20;
+            newlyUnlocked = true;
+            SoundEngine.achievement();
+            addFloatingPopup(LOGICAL_W * 0.5, 95, `🏆 ${ach.title} (+20🪙)`, '#a855f7');
+          }
+        });
+        if (newlyUnlocked) {
+          persistSaveData();
+        }
+      }
+
+      // ======================================================================
+      // SPAWNING, PHYSICS, SEGMENT SLICING & COLLISIONS
+      // ======================================================================
+      function addFloatingPopup(x, y, text, color) {
+        if (run.popups.length >= MAX_POPUPS) run.popups.shift();
+        run.popups.push({
+          x: Math.max(60, Math.min(LOGICAL_W - 60, x)),
+          y: Math.max(45, Math.min(LOGICAL_H - 90, y)),
+          text,
+          color,
+          vy: -48,
+          life: 1.0,
+        });
+      }
+
+      function spawnJuiceBurst(x, y, color, count = 10) {
+        if (!saveData.particlesEnabled) return;
+        for (let i = 0; i < count; i++) {
+          if (run.particles.length >= MAX_PARTICLES) run.particles.shift();
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 60 + Math.random() * 210;
+          run.particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed - 40,
+            r: 2.5 + Math.random() * 4,
+            color,
+            life: 0.55 + Math.random() * 0.35,
+            maxLife: 0.9,
+          });
+        }
+      }
+
+      function spawnFruitHalves(entity, sliceAngle) {
+        for (const side of [-1, 1]) {
+          if (run.halves.length >= MAX_HALVES) run.halves.shift();
+          const perp = sliceAngle + (side * Math.PI) / 2;
+          run.halves.push({
+            x: entity.x + Math.cos(perp) * 6,
+            y: entity.y + Math.sin(perp) * 6,
+            vx: entity.vx + Math.cos(perp) * 95,
+            vy: entity.vy * 0.75 + Math.sin(perp) * 95 - 45,
+            r: entity.r,
+            angle: entity.angle,
+            vAngle: side * (5 + Math.random() * 4),
+            rind: entity.rind,
+            flesh: entity.flesh,
+            side,
+            life: 1.4,
+          });
+        }
+      }
+
+      function createLaunchEntity(forceFruitOnly = false) {
+        if (run.entities.length >= MAX_FRUITS) return null;
+        const diffCfg = DIFFICULTY_CONFIG[saveData.difficulty] || DIFFICULTY_CONFIG.medium;
+        const progressionBoost = 1 + Math.min(0.35, run.elapsedPlayTime * 0.004);
+        const speedMult = diffCfg.speedScale * progressionBoost;
+
+        const x = 68 + Math.random() * (LOGICAL_W - 136);
+        const y = LOGICAL_H + 24;
+        const towardCenter = (LOGICAL_W * 0.5 - x) * 0.36;
+        const vx = towardCenter + (Math.random() - 0.5) * 95;
+        const vy = -(545 + Math.random() * 145) * speedMult;
+
+        const canSpawnBomb = !forceFruitOnly && saveData.mode !== 'zen';
+        const bombRoll = canSpawnBomb ? Math.random() < diffCfg.bombChance : false;
+
+        if (bombRoll) {
+          return {
+            kind: 'bomb',
+            x,
+            y,
+            vx,
+            vy,
+            r: 22,
+            angle: 0,
+            vAngle: (Math.random() - 0.5) * 5,
+            sliced: false,
+            missedPenaltyApplied: false,
+          };
+        }
+
+        const canSpawnPowerup = !forceFruitOnly && saveData.mode !== 'zen' && Math.random() < 0.11;
+        if (canSpawnPowerup) {
+          const validPUs = POWERUP_TYPES.filter((pu) => {
+            if (pu.id === 'bonus_time') return saveData.mode === 'arcade';
+            if (pu.id === 'extra_life') return saveData.mode === 'classic' && run.lives < 3;
+            return true;
+          });
+          if (validPUs.length > 0) {
+            const pu = validPUs[Math.floor(Math.random() * validPUs.length)];
+            return {
+              kind: 'powerup',
+              puId: pu.id,
+              label: pu.label,
+              color: pu.color,
+              duration: pu.duration,
+              x,
+              y,
+              vx,
+              vy,
+              r: 22,
+              angle: 0,
+              vAngle: 3.2,
+              sliced: false,
+              missedPenaltyApplied: false,
+            };
+          }
+        }
+
+        const ft = FRUIT_TYPES[Math.floor(Math.random() * FRUIT_TYPES.length)];
+        return {
+          kind: 'fruit',
+          fruitId: ft.id,
+          name: ft.name,
+          r: ft.r,
+          points: ft.points,
+          coins: ft.coins,
+          rind: ft.rind,
+          flesh: ft.flesh,
+          x,
+          y,
+          vx,
+          vy,
+          angle: Math.random() * Math.PI * 2,
+          vAngle: (Math.random() - 0.5) * 7,
+          sliced: false,
+          missedPenaltyApplied: false,
+        };
+      }
+
+      function spawnWave() {
+        const diffCfg = DIFFICULTY_CONFIG[saveData.difficulty] || DIFFICULTY_CONFIG.medium;
+        const count =
+          run.activeEffects.frenzy > 0
+            ? Math.min(5, diffCfg.waveMax + 1)
+            : diffCfg.waveMin + Math.floor(Math.random() * (diffCfg.waveMax - diffCfg.waveMin + 1));
+
+        let bombsInWave = 0;
+        for (let i = 0; i < count; i++) {
+          const ent = createLaunchEntity(bombsInWave >= 1);
+          if (!ent) break;
+          if (ent.kind === 'bomb') bombsInWave++;
+          run.entities.push(ent);
+        }
+      }
+
+      function distToSegmentSq(px, py, x1, y1, x2, y2) {
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+        const lenSq = dx * dx + dy * dy;
+        if (lenSq === 0) {
+          const ex = px - x1;
+          const ey = py - y1;
+          return ex * ex + ey * ey;
+        }
+        let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+        t = Math.max(0, Math.min(1, t));
+        const projX = x1 + t * dx;
+        const projY = y1 + t * dy;
+        const distX = px - projX;
+        const distY = py - projY;
+        return distX * distX + distY * distY;
+      }
+
+      function checkSliceAlongSegment(p1, p2) {
+        if (run.phase !== 'playing' || !p1 || !p2) return;
+        const segAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+
+        for (let i = 0; i < run.entities.length; i++) {
+          const ent = run.entities[i];
+          if (ent.sliced) continue;
+
+          const hitRadius = ent.r + 7;
+          const dSq = distToSegmentSq(ent.x, ent.y, p1.x, p1.y, p2.x, p2.y);
+          if (dSq <= hitRadius * hitRadius) {
+            ent.sliced = true;
+            onEntitySliced(ent, segAngle);
           }
         }
       }
-    }
-  }
 
-  function gameOver() {
-    gameRunning = false;
-    if (score > bestScore) {
-      bestScore = score;
-      localStorage.setItem("fruitBest", bestScore);
-    }
+      function onEntitySliced(ent, segAngle) {
+        if (ent.kind === 'bomb') {
+          run.bombsHit += 1;
+          saveData.totalBombsHit += 1;
+          SoundEngine.bomb();
+          spawnJuiceBurst(ent.x, ent.y, '#ff7a18', 18);
+          spawnJuiceBurst(ent.x, ent.y, '#ef4444', 12);
 
-    setTimeout(() => {
-      ctx.fillStyle = "rgba(0,0,0,0.85)";
-      ctx.fillRect(0, canvas.height/2 - 120, canvas.width, 240);
-      
-      ctx.fillStyle = "#f97316";
-      ctx.font = "bold 40px Arial";
-      ctx.textAlign = "center";
-      ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 50);
-      
-      ctx.fillStyle = "white";
-      ctx.font = "24px Arial";
-      ctx.fillText("Score: " + score, canvas.width/2, canvas.height/2 + 10);
-      ctx.fillText("Best: " + bestScore, canvas.width/2, canvas.height/2 + 50);
-      
-      ctx.fillStyle = "#aab1ce";
-      ctx.font = "16px Arial";
-      ctx.fillText("Click to Play Again", canvas.width/2, canvas.height/2 + 100);
-      
-      const restart = () => {
-        canvas.removeEventListener("mousedown", restart);
-        canvas.removeEventListener("touchstart", restart);
-        resetGame();
-      };
-      canvas.addEventListener("mousedown", restart);
-      canvas.addEventListener("touchstart", restart, {passive: true});
-    }, 500);
-  }
+          if (saveData.shakeEnabled) {
+            run.shakeTimer = 0.32;
+            run.shakeIntensity = 11;
+          }
 
-  function gameLoop() {
-    if (!gameRunning) {
-      // Keep drawing trails and slices even if game over
-      draw();
-      if (slices.length > 0) requestAnimationFrame(gameLoop); 
-      return;
-    }
-    update();
-    draw();
-    requestAnimationFrame(gameLoop);
-  }
+          if (saveData.mode === 'classic') {
+            run.lives = Math.max(0, run.lives - 1);
+            addFloatingPopup(ent.x, ent.y, 'BOMB! -1 ♥', '#fb7185');
+            persistSaveData();
+            updateHUD();
+            if (run.lives <= 0) {
+              finishRun('Hit a Bomb in Classic Mode');
+            }
+          } else if (saveData.mode === 'arcade') {
+            run.score = Math.max(0, run.score - 40);
+            run.timeLeft = Math.max(0, run.timeLeft - 4);
+            addFloatingPopup(ent.x, ent.y, 'BOOM! -40 pts & -4s', '#fb7185');
+            persistSaveData();
+            updateHUD();
+            if (run.timeLeft <= 0) {
+              finishRun("Time's Up!");
+            }
+          } else if (saveData.mode === 'challenge') {
+            run.score = Math.max(0, run.score - 35);
+            addFloatingPopup(ent.x, ent.y, 'BOMB HIT! -35 pts', '#fb7185');
+            persistSaveData();
+            updateHUD();
+          }
+          return;
+        }
 
-  // Mouse Controls
-  canvas.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    mouseTrail.push({ x, y });
-    if (mouseTrail.length > 8) mouseTrail.shift();
-  });
+        if (ent.kind === 'powerup') {
+          SoundEngine.powerup();
+          spawnJuiceBurst(ent.x, ent.y, ent.color, 14);
+          if (ent.puId === 'double_score') {
+            run.activeEffects.doubleScore = ent.duration;
+            addFloatingPopup(ent.x, ent.y, '2X SCORE!', '#facc15');
+          } else if (ent.puId === 'slow_motion') {
+            run.activeEffects.slowMotion = ent.duration;
+            addFloatingPopup(ent.x, ent.y, 'SLOW MOTION!', '#00f0ff');
+          } else if (ent.puId === 'extra_life') {
+            if (saveData.mode === 'classic' && run.lives < 3) {
+              run.lives += 1;
+              addFloatingPopup(ent.x, ent.y, '+1 LIFE ♥', '#4ade80');
+            } else {
+              run.score += 30;
+              addFloatingPopup(ent.x, ent.y, '+30 BONUS', '#4ade80');
+            }
+          } else if (ent.puId === 'bonus_time') {
+            run.timeLeft += 8;
+            addFloatingPopup(ent.x, ent.y, '+8s TIME!', '#c084fc');
+          } else if (ent.puId === 'fruit_frenzy') {
+            run.activeEffects.frenzy = ent.duration;
+            addFloatingPopup(ent.x, ent.y, 'FRUIT FRENZY!', '#fb923c');
+            spawnWave();
+          }
+          updateHUD();
+          return;
+        }
 
-  // Touch Controls
-  canvas.addEventListener("touchmove", (e) => {
-    e.preventDefault();
-    const rect = canvas.getBoundingClientRect();
-    const x = e.touches[0].clientX - rect.left;
-    const y = e.touches[0].clientY - rect.top;
-    
-    mouseTrail.push({ x, y });
-    if (mouseTrail.length > 8) mouseTrail.shift();
-  }, {passive: false});
+        SoundEngine.slice();
+        spawnFruitHalves(ent, segAngle);
+        spawnJuiceBurst(ent.x, ent.y, ent.flesh, 11);
 
-  // Clear trail when mouse stops
-  setInterval(() => {
-    if (mouseTrail.length > 0) mouseTrail.shift();
-  }, 50);
+        run.fruitsSliced += 1;
+        saveData.totalFruitsSliced += 1;
 
-  startBtn.addEventListener("click", resetGame);
+        const mult = run.activeEffects.doubleScore > 0 ? 2 : 1;
+        const pts = ent.points * mult;
+        run.score += pts;
 
-</script>
+        const earnedCoins = Math.max(1, ent.coins);
+        saveData.coins += earnedCoins;
+        run.coinsEarnedThisRun += earnedCoins;
+
+        run.swipeChainCount += 1;
+        run.swipeResetTimer = 0.28;
+
+        if (run.swipeChainCount >= 3) {
+          const comboBonus = run.swipeChainCount * 10 * mult;
+          run.score += comboBonus;
+          run.combosTriggered += 1;
+          if (run.swipeChainCount > run.bestCombo) run.bestCombo = run.swipeChainCount;
+          if (run.swipeChainCount > saveData.highestCombo) saveData.highestCombo = run.swipeChainCount;
+          const label = run.swipeChainCount >= 5 ? `SUPER COMBO ${run.swipeChainCount}x! +${comboBonus}` : `${run.swipeChainCount}x COMBO! +${comboBonus}`;
+          addFloatingPopup(ent.x, ent.y - 16, label, '#00f0ff');
+          SoundEngine.combo(run.swipeChainCount);
+        } else {
+          addFloatingPopup(ent.x, ent.y - 10, `+${pts}`, ent.flesh);
+        }
+
+        if (run.score > saveData.bestScore) {
+          saveData.bestScore = run.score;
+        }
+
+        evaluateAchievements();
+        persistSaveData();
+        updateHUD();
+        updateSideStatsUI();
+        checkChallengeObjectiveCompletion();
+      }
+
+      function checkChallengeObjectiveCompletion() {
+        if (saveData.mode !== 'challenge' || run.phase !== 'playing') return;
+        const lvl = getLevelObj();
+        let met = false;
+
+        if (lvl.type === 'slices' && run.fruitsSliced >= lvl.target) met = true;
+        else if (lvl.type === 'score' && run.score >= lvl.target) met = true;
+        else if (lvl.type === 'combos' && run.combosTriggered >= lvl.target) met = true;
+        else if (lvl.type === 'score_no_bomb' && run.score >= lvl.target && run.bombsHit === 0) met = true;
+        else if (lvl.type === 'grand' && run.score >= lvl.targetScore && run.fruitsSliced >= lvl.targetSlices) met = true;
+
+        if (met) {
+          completeChallengeLevel(lvl);
+        }
+      }
+
+      function computeEarnedStars(lvl) {
+        let ratio = 1;
+        if (lvl.type === 'slices') ratio = run.fruitsSliced / lvl.target;
+        else if (lvl.type === 'score' || lvl.type === 'score_no_bomb') ratio = run.score / lvl.target;
+        else if (lvl.type === 'combos') ratio = run.combosTriggered / lvl.target;
+        else if (lvl.type === 'grand') {
+          ratio = Math.min(run.score / lvl.targetScore, run.fruitsSliced / lvl.targetSlices);
+        }
+
+        if (ratio >= 1.45 || run.bestCombo >= 4) return 3;
+        if (ratio >= 1.18 || run.combosTriggered >= 2) return 2;
+        return 1;
+      }
+
+      function completeChallengeLevel(lvl) {
+        stopLoop();
+        SoundEngine.stopMusic();
+        SoundEngine.levelWin();
+
+        const earned = computeEarnedStars(lvl);
+        const prevStars = saveData.levelStars[lvl.level] || 0;
+        if (earned > prevStars) {
+          saveData.levelStars[lvl.level] = earned;
+        }
+
+        if (!saveData.claimedLevelRewards[lvl.level]) {
+          saveData.claimedLevelRewards[lvl.level] = true;
+          saveData.coins += lvl.rewardCoins;
+          run.coinsEarnedThisRun += lvl.rewardCoins;
+        }
+
+        if (lvl.level < CHALLENGE_LEVELS.length && saveData.unlockedLevel < lvl.level + 1) {
+          saveData.unlockedLevel = lvl.level + 1;
+        }
+
+        saveData.gamesPlayed += 1;
+        if (run.bombsHit === 0) saveData.cleanRuns += 1;
+        if (run.score > saveData.bestScore) saveData.bestScore = run.score;
+
+        evaluateAchievements();
+        persistSaveData();
+        updateAllDisplays();
+
+        run.phase = 'level_complete';
+        syncScrollLock();
+
+        document.getElementById('lc-level-num').textContent = String(lvl.level);
+        document.getElementById('lc-level-name').textContent = lvl.name;
+        document.getElementById('lc-score').textContent = String(run.score);
+        document.getElementById('lc-fruits').textContent = String(run.fruitsSliced);
+        document.getElementById('lc-combo').textContent = `${run.bestCombo}x`;
+        document.getElementById('lc-total-stars').textContent = `${getTotalStars()} / 24`;
+
+        const starEls = document.querySelectorAll('#lc-stars-display .lc-star');
+        starEls.forEach((el, idx) => {
+          const lit = idx < earned;
+          el.textContent = lit ? '★' : '☆';
+          el.className = lit
+            ? 'lc-star text-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.7)] animate-star-pop'
+            : 'lc-star text-slate-600';
+          el.style.animationDelay = `${idx * 110}ms`;
+        });
+
+        const nextBtn = document.getElementById('btn-lc-next');
+        if (lvl.level < CHALLENGE_LEVELS.length) {
+          nextBtn.classList.remove('hidden');
+          nextBtn.textContent = `Next Level (Lv.${lvl.level + 1}) →`;
+        } else {
+          nextBtn.classList.add('hidden');
+        }
+
+        hideAllOverlays();
+        const ov = document.getElementById('overlay-level-complete');
+        ov.classList.remove('hidden');
+        ov.classList.add('flex');
+      }
+
+      function finishRun(reasonText) {
+        stopLoop();
+        SoundEngine.stopMusic();
+        saveData.gamesPlayed += 1;
+        if (saveData.mode !== 'zen' && run.bombsHit === 0) {
+          saveData.cleanRuns += 1;
+        }
+        if (run.score > saveData.bestScore) {
+          saveData.bestScore = run.score;
+        }
+        evaluateAchievements();
+        persistSaveData();
+        updateAllDisplays();
+
+        run.phase = 'gameover';
+        syncScrollLock();
+
+        document.getElementById('go-reason').textContent = reasonText;
+        document.getElementById('go-score').textContent = String(run.score);
+        document.getElementById('go-best').textContent = String(saveData.bestScore);
+        document.getElementById('go-fruits').textContent = String(run.fruitsSliced);
+        document.getElementById('go-combo').textContent = `${run.bestCombo}x`;
+        document.getElementById('go-coins').textContent = String(run.coinsEarnedThisRun);
+
+        hideAllOverlays();
+        const ov = document.getElementById('overlay-gameover');
+        ov.classList.remove('hidden');
+        ov.classList.add('flex');
+      }
+
+      // ======================================================================
+      // SIMULATION STEP & CANVAS RENDERING
+      // ======================================================================
+      function updateSimulation(dt) {
+        if (run.shakeTimer > 0) {
+          run.shakeTimer = Math.max(0, run.shakeTimer - dt);
+        }
+
+        if (run.swipeResetTimer > 0) {
+          run.swipeResetTimer -= dt;
+          if (run.swipeResetTimer <= 0) {
+            run.swipeChainCount = 0;
+          }
+        }
+
+        for (let i = run.trailPoints.length - 1; i >= 0; i--) {
+          run.trailPoints[i].age += dt;
+          if (run.trailPoints[i].age > 0.16) {
+            run.trailPoints.splice(i, 1);
+          }
+        }
+
+        for (let i = run.particles.length - 1; i >= 0; i--) {
+          const pt = run.particles[i];
+          pt.x += pt.vx * dt;
+          pt.y += pt.vy * dt;
+          pt.vy += 420 * dt;
+          pt.life -= dt;
+          if (pt.life <= 0) run.particles.splice(i, 1);
+        }
+
+        for (let i = run.popups.length - 1; i >= 0; i--) {
+          const pop = run.popups[i];
+          pop.y += pop.vy * dt;
+          pop.life -= dt * 1.15;
+          if (pop.life <= 0) run.popups.splice(i, 1);
+        }
+
+        for (let i = run.halves.length - 1; i >= 0; i--) {
+          const h = run.halves[i];
+          h.x += h.vx * dt;
+          h.y += h.vy * dt;
+          h.vy += 680 * dt;
+          h.angle += h.vAngle * dt;
+          h.life -= dt;
+          if (h.life <= 0 || h.y > LOGICAL_H + 60) run.halves.splice(i, 1);
+        }
+
+        if (run.phase !== 'playing') return;
+
+        run.elapsedPlayTime += dt;
+
+        if (run.activeEffects.doubleScore > 0) run.activeEffects.doubleScore = Math.max(0, run.activeEffects.doubleScore - dt);
+        if (run.activeEffects.slowMotion > 0) run.activeEffects.slowMotion = Math.max(0, run.activeEffects.slowMotion - dt);
+        if (run.activeEffects.frenzy > 0) run.activeEffects.frenzy = Math.max(0, run.activeEffects.frenzy - dt);
+
+        if (saveData.mode === 'arcade') {
+          run.timeLeft = Math.max(0, run.timeLeft - dt);
+          if (run.timeLeft <= 0) {
+            updateHUD();
+            finishRun("Time's Up!");
+            return;
+          }
+        }
+
+        const diffCfg = DIFFICULTY_CONFIG[saveData.difficulty] || DIFFICULTY_CONFIG.medium;
+        const slowFactor = run.activeEffects.slowMotion > 0 ? 0.52 : 1.0;
+        const simDt = dt * slowFactor;
+        const gravity = 760 * diffCfg.gravityScale;
+
+        run.spawnTimer -= dt * (run.activeEffects.frenzy > 0 ? 1.85 : 1.0);
+        if (run.spawnTimer <= 0) {
+          spawnWave();
+          run.spawnTimer = diffCfg.spawnInterval;
+        }
+
+        for (let i = run.entities.length - 1; i >= 0; i--) {
+          const ent = run.entities[i];
+          ent.x += ent.vx * simDt;
+          ent.y += ent.vy * simDt;
+          ent.vy += gravity * simDt;
+          ent.angle += ent.vAngle * simDt;
+
+          if (ent.sliced) {
+            run.entities.splice(i, 1);
+            continue;
+          }
+
+          if (ent.y - ent.r > LOGICAL_H + 30 && ent.vy > 0) {
+            if (saveData.mode === 'classic' && ent.kind === 'fruit' && !ent.missedPenaltyApplied) {
+              ent.missedPenaltyApplied = true;
+              run.lives = Math.max(0, run.lives - 1);
+              addFloatingPopup(ent.x, LOGICAL_H - 36, 'MISSED FRUIT! -1 ♥', '#fb7185');
+              updateHUD();
+              if (run.lives <= 0) {
+                run.entities.splice(i, 1);
+                finishRun('Ran Out of Lives');
+                return;
+              }
+            }
+            run.entities.splice(i, 1);
+          }
+        }
+
+        updateHUD();
+      }
+
+      function renderScene(ctx) {
+        const isDay = saveData.theme === 'day';
+
+        ctx.save();
+        if (saveData.shakeEnabled && run.shakeTimer > 0) {
+          const mag = run.shakeIntensity * (run.shakeTimer / 0.32);
+          ctx.translate((Math.random() - 0.5) * mag * 2, (Math.random() - 0.5) * mag * 2);
+        }
+
+        const bgGrad = ctx.createLinearGradient(0, 0, 0, LOGICAL_H);
+        if (isDay) {
+          bgGrad.addColorStop(0, '#38bdf8');
+          bgGrad.addColorStop(0.6, '#bae6fd');
+          bgGrad.addColorStop(1, '#e0f2fe');
+        } else {
+          bgGrad.addColorStop(0, '#060a17');
+          bgGrad.addColorStop(0.55, '#0d1530');
+          bgGrad.addColorStop(1, '#181236');
+        }
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, LOGICAL_W, LOGICAL_H);
+
+        if (isDay) {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.72)';
+          drawSoftCloud(ctx, 95, 95, 1.0);
+          drawSoftCloud(ctx, 360, 130, 1.15);
+          drawSoftCloud(ctx, 230, 72, 0.8);
+        } else {
+          ctx.strokeStyle = 'rgba(0, 240, 255, 0.05)';
+          ctx.lineWidth = 1;
+          for (let gx = 60; gx < LOGICAL_W; gx += 60) {
+            ctx.beginPath();
+            ctx.moveTo(gx, 0);
+            ctx.lineTo(gx, LOGICAL_H);
+            ctx.stroke();
+          }
+        }
+
+        if (run.trailPoints.length > 1) {
+          const skin = TRAIL_SKINS.find((t) => t.id === saveData.equippedTrail) || TRAIL_SKINS[0];
+          ctx.save();
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          for (let i = 1; i < run.trailPoints.length; i++) {
+            const p0 = run.trailPoints[i - 1];
+            const p1 = run.trailPoints[i];
+            const alpha = Math.max(0, 1 - p1.age / 0.16);
+            const width = Math.max(2, (1 - p1.age / 0.16) * 11);
+
+            ctx.strokeStyle = skin.glow;
+            ctx.globalAlpha = alpha * 0.65;
+            ctx.lineWidth = width * 1.7;
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.stroke();
+
+            ctx.strokeStyle = skin.core;
+            ctx.globalAlpha = alpha;
+            ctx.lineWidth = width * 0.65;
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            ctx.lineTo(p1.x, p1.y);
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        for (let i = 0; i < run.halves.length; i++) {
+          const h = run.halves[i];
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, Math.min(1, h.life));
+          ctx.translate(h.x, h.y);
+          ctx.rotate(h.angle);
+          ctx.fillStyle = h.rind;
+          ctx.beginPath();
+          ctx.arc(0, 0, h.r * 0.92, 0, Math.PI);
+          ctx.closePath();
+          ctx.fill();
+
+          ctx.fillStyle = h.flesh;
+          ctx.beginPath();
+          ctx.arc(0, 0, h.r * 0.72, 0, Math.PI);
+          ctx.closePath();
+          ctx.fill();
+          ctx.restore();
+        }
+
+        for (let i = 0; i < run.entities.length; i++) {
+          const ent = run.entities[i];
+          ctx.save();
+          ctx.translate(ent.x, ent.y);
+          ctx.rotate(ent.angle);
+
+          if (ent.kind === 'bomb') {
+            ctx.fillStyle = '#1e293b';
+            ctx.strokeStyle = '#ff7a18';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(0, 0, ent.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 2.2;
+            ctx.beginPath();
+            ctx.moveTo(-6, -6);
+            ctx.lineTo(6, 6);
+            ctx.moveTo(6, -6);
+            ctx.lineTo(-6, 6);
+            ctx.stroke();
+
+            ctx.fillStyle = '#facc15';
+            ctx.beginPath();
+            ctx.arc(0, -ent.r - 5, 4.5, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (ent.kind === 'powerup') {
+            ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+            ctx.strokeStyle = ent.color;
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(0, 0, ent.r, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.rotate(-ent.angle);
+            ctx.fillStyle = ent.color;
+            ctx.font = 'bold 9px Orbitron, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(ent.label, 0, 0);
+          } else {
+            ctx.fillStyle = ent.rind;
+            ctx.beginPath();
+            ctx.arc(0, 0, ent.r, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = ent.flesh;
+            ctx.beginPath();
+            ctx.arc(0, 0, ent.r * 0.76, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+            ctx.beginPath();
+            ctx.arc(-ent.r * 0.25, -ent.r * 0.25, ent.r * 0.22, 0, Math.PI * 2);
+            ctx.fill();
+          }
+
+          ctx.restore();
+        }
+
+        for (let i = 0; i < run.particles.length; i++) {
+          const pt = run.particles[i];
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pt.life / pt.maxLife);
+          ctx.fillStyle = pt.color;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+
+        for (let i = 0; i < run.popups.length; i++) {
+          const pop = run.popups[i];
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, pop.life);
+          ctx.font = '800 14px Orbitron, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#050814';
+          ctx.fillText(pop.text, pop.x + 1.5, pop.y + 1.5);
+          ctx.fillStyle = pop.color;
+          ctx.fillText(pop.text, pop.x, pop.y);
+          ctx.restore();
+        }
+
+        ctx.restore();
+      }
+
+      function drawSoftCloud(ctx, x, y, s) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(s, s);
+        ctx.beginPath();
+        ctx.arc(0, 0, 22, 0, Math.PI * 2);
+        ctx.arc(20, -6, 26, 0, Math.PI * 2);
+        ctx.arc(44, 0, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      function frameLoop(now) {
+        const dt = Math.min((now - run.lastTime) / 1000, 0.05);
+        run.lastTime = now;
+
+        updateSimulation(dt);
+
+        const canvas = document.getElementById('slice-canvas');
+        renderScene(canvas.getContext('2d'));
+
+        if (run.phase === 'playing') {
+          run.loopId = window.requestAnimationFrame(frameLoop);
+        } else {
+          run.loopId = null;
+        }
+      }
+
+      function startLoop() {
+        if (run.loopId !== null) return;
+        run.lastTime = performance.now();
+        run.loopId = window.requestAnimationFrame(frameLoop);
+      }
+
+      function stopLoop() {
+        if (run.loopId !== null) {
+          window.cancelAnimationFrame(run.loopId);
+          run.loopId = null;
+        }
+      }
+
+      function resizeCanvas() {
+        const canvas = document.getElementById('slice-canvas');
+        const rect = canvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = Math.max(1, Math.round(rect.width * dpr));
+        const h = Math.max(1, Math.round(rect.height * dpr));
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(canvas.width / LOGICAL_W, 0, 0, canvas.height / LOGICAL_H, 0, 0);
+        renderScene(ctx);
+      }
+
+      // ======================================================================
+      // MODE, PAUSE, RESTART & OVERLAY MANAGEMENT
+      // ======================================================================
+      function syncScrollLock() {
+        if (run.phase === 'playing') {
+          document.body.classList.add('fn-playing-lock');
+        } else {
+          document.body.classList.remove('fn-playing-lock');
+        }
+      }
+
+      function hideAllOverlays() {
+        ['overlay-start', 'overlay-pause', 'overlay-level-complete', 'overlay-gameover'].forEach((id) => {
+          const el = document.getElementById(id);
+          el.classList.add('hidden');
+          el.classList.remove('flex');
+        });
+      }
+
+      function showDashboardOverlay() {
+        stopLoop();
+        SoundEngine.stopMusic();
+        run.phase = 'start';
+        syncScrollLock();
+        hideAllOverlays();
+        document.getElementById('overlay-start').classList.remove('hidden');
+        document.getElementById('btn-hud-pause').disabled = true;
+        updateHUD();
+        resizeCanvas();
+      }
+
+      function startMatch() {
+        SoundEngine.unlock();
+        SoundEngine.click();
+        if (run.exitTimeout) {
+          clearTimeout(run.exitTimeout);
+          run.exitTimeout = null;
+        }
+
+        run.score = 0;
+        run.lives = 3;
+        run.timeLeft = 60;
+        run.fruitsSliced = 0;
+        run.bombsHit = 0;
+        run.bestCombo = 0;
+        run.combosTriggered = 0;
+        run.coinsEarnedThisRun = 0;
+        run.elapsedPlayTime = 0;
+        run.spawnTimer = 0.25;
+        run.swipeChainCount = 0;
+        run.swipeResetTimer = 0;
+        run.shakeTimer = 0;
+        run.activeEffects = { doubleScore: 0, slowMotion: 0, frenzy: 0 };
+        run.entities = [];
+        run.halves = [];
+        run.particles = [];
+        run.popups = [];
+        run.trailPoints = [];
+        run.phase = 'playing';
+        run.pausedFromHidden = false;
+
+        syncScrollLock();
+        hideAllOverlays();
+        document.getElementById('btn-hud-pause').disabled = false;
+        updateHUD();
+        spawnWave();
+        startLoop();
+        if (saveData.musicEnabled) SoundEngine.startMusic();
+      }
+
+      function setPausedState(pauseActive, fromHidden = false) {
+        if (pauseActive && run.phase === 'playing') {
+          stopLoop();
+          SoundEngine.stopMusic();
+          run.phase = 'paused';
+          run.pausedFromHidden = fromHidden;
+          syncScrollLock();
+          hideAllOverlays();
+          const ov = document.getElementById('overlay-pause');
+          ov.classList.remove('hidden');
+          ov.classList.add('flex');
+          document.getElementById('pause-title-text').textContent = fromHidden
+            ? 'Paused (Tab Hidden)'
+            : 'Game Paused';
+          document.getElementById('pause-sub-text').textContent = fromHidden
+            ? 'Gameplay paused automatically when switching tabs. Click Resume when ready.'
+            : 'Gameplay and timers are paused. Resume or exit anytime.';
+          document.getElementById('btn-hud-pause').textContent = 'Resume';
+        } else if (!pauseActive && run.phase === 'paused' && !fromHidden) {
+          run.phase = 'playing';
+          run.pausedFromHidden = false;
+          syncScrollLock();
+          hideAllOverlays();
+          document.getElementById('btn-hud-pause').textContent = 'Pause';
+          startLoop();
+          if (saveData.musicEnabled) SoundEngine.startMusic();
+        }
+      }
+
+      function applyModeSelection(mode) {
+        if (!['classic', 'arcade', 'zen', 'challenge'].includes(mode)) return;
+        saveData.mode = mode;
+        persistSaveData();
+
+        document.querySelectorAll('.mode-select-btn').forEach((btn) => {
+          const active = btn.dataset.mode === mode;
+          btn.className = active
+            ? 'mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border border-cyan-400 bg-cyan-500/20 text-cyan-300 transition'
+            : 'mode-select-btn py-1.5 px-1.5 rounded-xl text-xs font-bold border border-slate-700/60 fn-surface transition';
+        });
+
+        document.getElementById('mode-summary-text').textContent = MODE_DESCRIPTIONS[mode];
+        updateHUD();
+      }
+
+      function applyDifficultySelection(diff) {
+        if (!DIFFICULTY_CONFIG[diff]) return;
+        saveData.difficulty = diff;
+        persistSaveData();
+
+        document.querySelectorAll('.diff-select-btn').forEach((btn) => {
+          const active = btn.dataset.diff === diff;
+          btn.className = active
+            ? 'diff-select-btn py-1.5 px-2 rounded-xl text-xs font-bold border border-purple-400 bg-purple-500/20 text-purple-300 transition'
+            : 'diff-select-btn py-1.5 px-2 rounded-xl text-xs font-bold border border-slate-700/60 fn-surface transition';
+        });
+      }
+
+      function applyThemeUI() {
+        const isDay = saveData.theme === 'day';
+        document.documentElement.classList.toggle('theme-day', isDay);
+        document.documentElement.classList.toggle('theme-dark', !isDay);
+
+        const darkBtn = document.getElementById('set-theme-dark');
+        const dayBtn = document.getElementById('set-theme-day');
+        darkBtn.className = !isDay
+          ? 'py-2 px-3 rounded-xl text-xs font-bold border border-cyan-400 bg-cyan-500/20 text-cyan-300 transition'
+          : 'py-2 px-3 rounded-xl text-xs font-bold border border-slate-300 bg-slate-100 text-slate-700 transition';
+        dayBtn.className = isDay
+          ? 'py-2 px-3 rounded-xl text-xs font-bold border border-sky-600 bg-sky-100 text-sky-900 transition'
+          : 'py-2 px-3 rounded-xl text-xs font-bold border border-slate-700 bg-slate-900 text-slate-300 transition';
+
+        resizeCanvas();
+      }
+
+      function updateHUD() {
+        document.getElementById('hud-score').textContent = String(run.score);
+        document.getElementById('hud-best').textContent = String(Math.max(saveData.bestScore, run.score));
+
+        const livesBox = document.getElementById('hud-lives-box');
+        const timerBox = document.getElementById('hud-timer-box');
+        const objBox = document.getElementById('hud-objective-box');
+
+        livesBox.classList.toggle('hidden', saveData.mode === 'zen' || saveData.mode === 'arcade');
+        timerBox.classList.toggle('hidden', saveData.mode !== 'arcade');
+        objBox.classList.toggle('hidden', saveData.mode !== 'challenge');
+
+        document.getElementById('hud-lives').textContent = '♥'.repeat(run.lives) + '♡'.repeat(Math.max(0, 3 - run.lives));
+        document.getElementById('hud-timer').textContent = `${Math.ceil(run.timeLeft)}s`;
+
+        if (saveData.mode === 'challenge') {
+          const lvl = getLevelObj();
+          document.getElementById('hud-level-num').textContent = String(lvl.level);
+          document.getElementById('hud-objective-text').textContent = lvl.desc;
+        }
+
+        const puContainer = document.getElementById('hud-powerups');
+        puContainer.innerHTML = '';
+        if (run.activeEffects.doubleScore > 0) {
+          puContainer.innerHTML += `<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">2X ${run.activeEffects.doubleScore.toFixed(1)}s</span>`;
+        }
+        if (run.activeEffects.slowMotion > 0) {
+          puContainer.innerHTML += `<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">SLOW ${run.activeEffects.slowMotion.toFixed(1)}s</span>`;
+        }
+        if (run.activeEffects.frenzy > 0) {
+          puContainer.innerHTML += `<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-orange-500/20 text-orange-300 border border-orange-400/40">FRENZY ${run.activeEffects.frenzy.toFixed(1)}s</span>`;
+        }
+      }
+
+      function updateSideStatsUI() {
+        const stars = getTotalStars();
+        document.getElementById('top-best-val').textContent = String(saveData.bestScore);
+        document.getElementById('top-coins-val').textContent = String(saveData.coins);
+        document.getElementById('top-stars-val').textContent = `${stars}/24`;
+
+        document.getElementById('start-coins-val').textContent = String(saveData.coins);
+        document.getElementById('start-stars-val').textContent = `${stars}/24`;
+        document.getElementById('start-selected-lv').textContent = String(saveData.selectedLevel);
+
+        document.getElementById('side-best').textContent = String(saveData.bestScore);
+        document.getElementById('side-coins').textContent = String(saveData.coins);
+        document.getElementById('side-stars').textContent = `${stars}/24`;
+        document.getElementById('side-total-fruits').textContent = String(saveData.totalFruitsSliced);
+        document.getElementById('side-max-combo').textContent = `${saveData.highestCombo}x`;
+        document.getElementById('side-games-played').textContent = String(saveData.gamesPlayed);
+        document.getElementById('side-bombs-hit').textContent = String(saveData.totalBombsHit);
+        document.getElementById('side-award-count').textContent = `${saveData.unlockedAchievements.length}/${ACHIEVEMENTS_DEF.length}`;
+
+        const skin = TRAIL_SKINS.find((t) => t.id === saveData.equippedTrail) || TRAIL_SKINS[0];
+        document.getElementById('side-active-trail').textContent = `Trail: ${skin.name}`;
+      }
+
+      function updateSettingsTogglesUI() {
+        document.getElementById('set-toggle-sfx').textContent = saveData.sfxEnabled ? 'ON' : 'OFF';
+        document.getElementById('set-toggle-music').textContent = saveData.musicEnabled ? 'ON' : 'OFF';
+        document.getElementById('set-toggle-particles').textContent = saveData.particlesEnabled ? 'ON' : 'OFF';
+        document.getElementById('set-toggle-shake').textContent = saveData.shakeEnabled ? 'ON' : 'OFF';
+      }
+
+      function updateAllDisplays() {
+        updateHUD();
+        updateSideStatsUI();
+        updateSettingsTogglesUI();
+      }
+
+      // ======================================================================
+      // LEVEL MAP, BLADE SHOP & ACHIEVEMENTS MODALS
+      // ======================================================================
+      function openModal(id) {
+        if (run.phase === 'playing') {
+          setPausedState(true, false);
+        }
+        const el = document.getElementById(id);
+        el.classList.remove('hidden');
+        el.classList.add('flex');
+      }
+
+      function closeModal(id) {
+        const el = document.getElementById(id);
+        el.classList.add('hidden');
+        el.classList.remove('flex');
+      }
+
+      function renderLevelMapModal() {
+        document.getElementById('map-total-stars').textContent = `${getTotalStars()} / 24`;
+        const container = document.getElementById('level-map-cards');
+        container.innerHTML = '';
+
+        CHALLENGE_LEVELS.forEach((lvl) => {
+          const unlocked = lvl.level <= saveData.unlockedLevel;
+          const stars = saveData.levelStars[lvl.level] || 0;
+          const card = document.createElement('div');
+          card.className = `p-3.5 rounded-xl fn-surface flex items-center justify-between gap-3 ${
+            unlocked ? '' : 'opacity-55'
+          }`;
+
+          const starsText = unlocked ? '★'.repeat(stars) + '☆'.repeat(3 - stars) : '🔒';
+          card.innerHTML = `
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="font-display text-xs font-extrabold text-cyan-400">LV.${lvl.level}</span>
+                <span class="font-bold text-sm truncate">${lvl.name}</span>
+              </div>
+              <p class="text-xs fn-muted mt-0.5">${lvl.desc}</p>
+              <div class="text-amber-400 text-xs mt-1 font-bold">${starsText} <span class="fn-muted font-normal ml-1">+${lvl.rewardCoins}🪙</span></div>
+            </div>
+            <button
+              type="button"
+              ${unlocked ? '' : 'disabled'}
+              class="px-3 py-2 rounded-xl text-xs font-bold shrink-0 ${
+                unlocked ? 'btn-arcade-play' : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+              }"
+            >
+              ${stars > 0 ? 'Replay' : unlocked ? 'Play' : 'Locked'}
+            </button>
+          `;
+
+          if (unlocked) {
+            card.querySelector('button').addEventListener('click', () => {
+              saveData.selectedLevel = lvl.level;
+              saveData.mode = 'challenge';
+              persistSaveData();
+              applyModeSelection('challenge');
+              updateSideStatsUI();
+              closeModal('modal-level-map');
+              startMatch();
+            });
+          }
+
+          container.appendChild(card);
+        });
+      }
+
+      function renderShopModal() {
+        document.getElementById('shop-coins-balance').textContent = String(saveData.coins);
+        const list = document.getElementById('shop-items-list');
+        list.innerHTML = '';
+
+        TRAIL_SKINS.forEach((skin) => {
+          const owned = saveData.ownedTrails.includes(skin.id);
+          const equipped = saveData.equippedTrail === skin.id;
+          const canAfford = saveData.coins >= skin.price;
+
+          const row = document.createElement('div');
+          row.className = 'p-3 rounded-xl fn-surface flex items-center justify-between gap-3';
+          row.innerHTML = `
+            <div class="flex items-center gap-3">
+              <span class="w-5 h-5 rounded-full shrink-0 border border-white/30" style="background:${skin.glow};box-shadow:0 0 10px ${skin.glow}"></span>
+              <div>
+                <div class="font-bold text-sm">${skin.name}</div>
+                <div class="text-xs fn-muted">${skin.price === 0 ? 'Starter Blade' : `${skin.price} Coins`}</div>
+              </div>
+            </div>
+            <button
+              type="button"
+              ${!owned && !canAfford ? 'disabled' : ''}
+              class="px-3 py-1.5 rounded-xl text-xs font-bold shrink-0 ${
+                equipped
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/40'
+                  : owned
+                  ? 'fn-card text-cyan-400 border border-cyan-400/40'
+                  : canAfford
+                  ? 'btn-arcade-play'
+                  : 'bg-slate-800 text-slate-500 cursor-not-allowed'
+              }"
+            >
+              ${equipped ? 'Equipped' : owned ? 'Equip' : `Buy (${skin.price}🪙)`}
+            </button>
+          `;
+
+          row.querySelector('button').addEventListener('click', () => {
+            if (equipped) return;
+            if (owned) {
+              saveData.equippedTrail = skin.id;
+              SoundEngine.click();
+            } else if (saveData.coins >= skin.price) {
+              saveData.coins -= skin.price;
+              saveData.ownedTrails.push(skin.id);
+              saveData.equippedTrail = skin.id;
+              SoundEngine.powerup();
+            }
+            persistSaveData();
+            updateSideStatsUI();
+            renderShopModal();
+          });
+
+          list.appendChild(row);
+        });
+      }
+
+      function renderAchievementsModal() {
+        document.getElementById('awards-progress-label').textContent =
+          `${saveData.unlockedAchievements.length} / ${ACHIEVEMENTS_DEF.length}`;
+        const list = document.getElementById('achievements-list');
+        list.innerHTML = '';
+
+        ACHIEVEMENTS_DEF.forEach((ach) => {
+          const unlocked = saveData.unlockedAchievements.includes(ach.id);
+          const item = document.createElement('div');
+          item.className = `p-3 rounded-xl fn-surface flex items-center justify-between gap-3 ${
+            unlocked ? 'border-purple-400/50' : 'opacity-60'
+          }`;
+          item.innerHTML = `
+            <div>
+              <div class="font-bold text-sm ${unlocked ? 'text-purple-300' : ''}">${ach.title}</div>
+              <div class="text-xs fn-muted">${ach.desc}</div>
+            </div>
+            <span class="text-xs font-bold px-2.5 py-1 rounded-lg shrink-0 ${
+              unlocked ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-800 text-slate-400'
+            }">
+              ${unlocked ? 'Unlocked' : 'Locked'}
+            </span>
+          `;
+          list.appendChild(item);
+        });
+      }
+
+      // ======================================================================
+      // EXIT & RATING FLOW (7-DAY SKIP / 30-DAY SUBMIT COOLDOWN, LOCAL ONLY)
+      // ======================================================================
+      function goToGameZoneHomepage() {
+        if (run.exitTimeout) {
+          clearTimeout(run.exitTimeout);
+          run.exitTimeout = null;
+        }
+        stopLoop();
+        SoundEngine.stopMusic();
+        document.body.classList.remove('fn-playing-lock');
+        try {
+          window.location.assign(HOME_URL);
+        } catch (_) {
+          window.location.href = HOME_URL;
+        }
+      }
+
+      function canShowExitRating() {
+        try {
+          if (saveData.gamesPlayed < 1) return false;
+          return Date.now() >= (Number(saveData.ratingCooldownUntil) || 0);
+        } catch (_) {
+          return false;
+        }
+      }
+
+      function handleExitRequest(e) {
+        if (e && typeof e.preventDefault === 'function') e.preventDefault();
+        if (run.phase === 'playing') {
+          setPausedState(true, false);
+        }
+        ['modal-level-map', 'modal-shop', 'modal-achievements', 'modal-settings', 'modal-confirm-reset'].forEach(closeModal);
+
+        if (!canShowExitRating()) {
+          goToGameZoneHomepage();
+          return;
+        }
+
+        run.selectedRatingStars = 0;
+        run.hoveredRatingStars = 0;
+        document.getElementById('rating-comment-box').value = '';
+        document.getElementById('rating-star-required').classList.add('hidden');
+        document.getElementById('rating-form-panel').classList.remove('hidden');
+        document.getElementById('rating-thanks-panel').classList.add('hidden');
+        renderRatingStarSelection();
+
+        const modal = document.getElementById('modal-exit-rating');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+
+      function renderRatingStarSelection() {
+        const active = run.hoveredRatingStars || run.selectedRatingStars;
+        const caption = document.getElementById('rating-star-caption');
+
+        document.querySelectorAll('#rating-star-buttons .star-rate-btn').forEach((btn) => {
+          const val = Number(btn.dataset.star);
+          btn.setAttribute('aria-checked', val === run.selectedRatingStars ? 'true' : 'false');
+          if (val <= active) {
+            btn.classList.remove('star-rate-off');
+            btn.classList.add('star-rate-on');
+          } else {
+            btn.classList.remove('star-rate-on');
+            btn.classList.add('star-rate-off');
+          }
+        });
+
+        if (active >= 1 && active <= 5) {
+          const b = document.querySelector(`#rating-star-buttons .star-rate-btn[data-star="${active}"]`);
+          caption.textContent = b ? b.dataset.desc : `${active} Stars`;
+        } else {
+          caption.textContent = 'Select 1–5 stars';
+        }
+      }
+
+      function skipRatingWithCooldown() {
+        saveData.ratingCooldownUntil = Date.now() + DISMISS_DAYS * DAY_MS;
+        persistSaveData();
+        closeModal('modal-exit-rating');
+        goToGameZoneHomepage();
+      }
+
+      function submitExitRating() {
+        if (!Number.isInteger(run.selectedRatingStars) || run.selectedRatingStars < 1 || run.selectedRatingStars > 5) {
+          document.getElementById('rating-star-required').classList.remove('hidden');
+          return;
+        }
+
+        const rawComment = document.getElementById('rating-comment-box').value || '';
+        const cleanComment = rawComment.replace(/[<>]/g, '').trim().slice(0, 240);
+
+        saveData.localFeedbackList.unshift({
+          stars: run.selectedRatingStars,
+          feedback: cleanComment,
+          submittedAt: new Date().toISOString(),
+          scope: 'local-only',
+        });
+        saveData.localFeedbackList = saveData.localFeedbackList.slice(0, 15);
+        saveData.ratingCooldownUntil = Date.now() + SUBMIT_DAYS * DAY_MS;
+        persistSaveData();
+
+        document.getElementById('rating-form-panel').classList.add('hidden');
+        document.getElementById('rating-thanks-panel').classList.remove('hidden');
+
+        run.exitTimeout = setTimeout(() => {
+          goToGameZoneHomepage();
+        }, 1250);
+      }
+
+      // ======================================================================
+      // INITIALIZATION & EVENT WIRING
+      // ======================================================================
+      window.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('fn-year').textContent = String(new Date().getFullYear());
+
+        loadSaveData();
+        applyThemeUI();
+        applyModeSelection(saveData.mode);
+        applyDifficultySelection(saveData.difficulty);
+        updateAllDisplays();
+        resizeCanvas();
+        showDashboardOverlay();
+
+        document.getElementById('btn-play-main').addEventListener('click', startMatch);
+        document.getElementById('btn-go-retry').addEventListener('click', startMatch);
+        document.getElementById('btn-hud-restart').addEventListener('click', startMatch);
+        document.getElementById('btn-pause-restart-btn').addEventListener('click', startMatch);
+        document.getElementById('btn-lc-replay').addEventListener('click', startMatch);
+
+        document.getElementById('btn-lc-next').addEventListener('click', () => {
+          if (saveData.selectedLevel < CHALLENGE_LEVELS.length && saveData.selectedLevel < saveData.unlockedLevel) {
+            saveData.selectedLevel += 1;
+            persistSaveData();
+            updateSideStatsUI();
+          }
+          startMatch();
+        });
+
+        document.getElementById('btn-lc-map').addEventListener('click', () => {
+          renderLevelMapModal();
+          openModal('modal-level-map');
+        });
+
+        ['btn-pause-dashboard-btn', 'btn-go-dashboard', 'btn-side-dashboard'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            SoundEngine.click();
+            showDashboardOverlay();
+          });
+        });
+
+        document.getElementById('btn-hud-pause').addEventListener('click', () => {
+          if (run.phase === 'playing') setPausedState(true, false);
+          else if (run.phase === 'paused') setPausedState(false, false);
+        });
+        document.getElementById('btn-resume-btn').addEventListener('click', () => {
+          SoundEngine.click();
+          setPausedState(false, false);
+        });
+
+        document.querySelectorAll('.mode-select-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            SoundEngine.click();
+            applyModeSelection(btn.dataset.mode);
+          });
+        });
+        document.querySelectorAll('.diff-select-btn').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            SoundEngine.click();
+            applyDifficultySelection(btn.dataset.diff);
+          });
+        });
+
+        ['btn-open-level-map', 'btn-start-map', 'btn-side-map'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            SoundEngine.click();
+            renderLevelMapModal();
+            openModal('modal-level-map');
+          });
+        });
+        document.getElementById('btn-close-map').addEventListener('click', () => closeModal('modal-level-map'));
+
+        ['btn-open-shop', 'btn-start-shop', 'btn-side-shop'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            SoundEngine.click();
+            renderShopModal();
+            openModal('modal-shop');
+          });
+        });
+        document.getElementById('btn-close-shop').addEventListener('click', () => closeModal('modal-shop'));
+
+        ['btn-open-achievements', 'btn-side-awards'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            SoundEngine.click();
+            renderAchievementsModal();
+            openModal('modal-achievements');
+          });
+        });
+        document.getElementById('btn-close-awards').addEventListener('click', () => closeModal('modal-achievements'));
+
+        ['btn-open-settings', 'btn-start-settings', 'btn-pause-settings-btn'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            SoundEngine.click();
+            updateSettingsTogglesUI();
+            openModal('modal-settings');
+          });
+        });
+        document.getElementById('btn-close-settings').addEventListener('click', () => closeModal('modal-settings'));
+
+        document.getElementById('set-theme-dark').addEventListener('click', () => {
+          saveData.theme = 'dark';
+          persistSaveData();
+          applyThemeUI();
+        });
+        document.getElementById('set-theme-day').addEventListener('click', () => {
+          saveData.theme = 'day';
+          persistSaveData();
+          applyThemeUI();
+        });
+
+        document.getElementById('set-toggle-sfx').addEventListener('click', () => {
+          saveData.sfxEnabled = !saveData.sfxEnabled;
+          persistSaveData();
+          updateSettingsTogglesUI();
+          if (saveData.sfxEnabled) SoundEngine.click();
+        });
+        document.getElementById('set-toggle-music').addEventListener('click', () => {
+          saveData.musicEnabled = !saveData.musicEnabled;
+          persistSaveData();
+          updateSettingsTogglesUI();
+          if (saveData.musicEnabled && run.phase === 'playing') SoundEngine.startMusic();
+          else if (!saveData.musicEnabled) SoundEngine.stopMusic();
+        });
+        document.getElementById('set-toggle-particles').addEventListener('click', () => {
+          saveData.particlesEnabled = !saveData.particlesEnabled;
+          persistSaveData();
+          updateSettingsTogglesUI();
+        });
+        document.getElementById('set-toggle-shake').addEventListener('click', () => {
+          saveData.shakeEnabled = !saveData.shakeEnabled;
+          persistSaveData();
+          updateSettingsTogglesUI();
+        });
+
+        ['btn-side-reset', 'set-open-reset'].forEach((id) => {
+          document.getElementById(id).addEventListener('click', () => {
+            openModal('modal-confirm-reset');
+          });
+        });
+        document.getElementById('btn-cancel-reset').addEventListener('click', () => closeModal('modal-confirm-reset'));
+        document.getElementById('btn-confirm-reset').addEventListener('click', () => {
+          saveData.coins = 0;
+          saveData.ownedTrails = ['cyan'];
+          saveData.equippedTrail = 'cyan';
+          saveData.bestScore = 0;
+          saveData.gamesPlayed = 0;
+          saveData.totalFruitsSliced = 0;
+          saveData.totalBombsHit = 0;
+          saveData.highestCombo = 0;
+          saveData.cleanRuns = 0;
+          saveData.unlockedAchievements = [];
+          saveData.unlockedLevel = 1;
+          saveData.selectedLevel = 1;
+          saveData.levelStars = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0 };
+          saveData.claimedLevelRewards = {};
+          persistSaveData();
+          updateAllDisplays();
+          closeModal('modal-confirm-reset');
+          showDashboardOverlay();
+        });
+
+        [
+          'nav-back-to-games',
+          'btn-header-exit',
+          'btn-pause-exit-btn',
+          'btn-lc-exit',
+          'btn-go-exit',
+          'btn-map-exit',
+          'set-exit-btn',
+        ].forEach((id) => {
+          document.getElementById(id).addEventListener('click', handleExitRequest);
+        });
+
+        document.getElementById('btn-maybe-later-rating').addEventListener('click', skipRatingWithCooldown);
+        document.getElementById('btn-exit-rating-x').addEventListener('click', skipRatingWithCooldown);
+        document.getElementById('btn-submit-exit-rating').addEventListener('click', submitExitRating);
+        document.getElementById('btn-exit-now-after-thanks').addEventListener('click', goToGameZoneHomepage);
+
+        document.querySelectorAll('#rating-star-buttons .star-rate-btn').forEach((btn) => {
+          const val = Number(btn.dataset.star);
+          btn.addEventListener('mouseenter', () => {
+            run.hoveredRatingStars = val;
+            renderRatingStarSelection();
+          });
+          btn.addEventListener('mouseleave', () => {
+            run.hoveredRatingStars = 0;
+            renderRatingStarSelection();
+          });
+          btn.addEventListener('click', () => {
+            run.selectedRatingStars = val;
+            document.getElementById('rating-star-required').classList.add('hidden');
+            renderRatingStarSelection();
+          });
+        });
+
+        const canvas = document.getElementById('slice-canvas');
+        function toLogicalPoint(clientX, clientY) {
+          const rect = canvas.getBoundingClientRect();
+          if (!rect.width || !rect.height) return { x: 0, y: 0 };
+          return {
+            x: ((clientX - rect.left) / rect.width) * LOGICAL_W,
+            y: ((clientY - rect.top) / rect.height) * LOGICAL_H,
+          };
+        }
+
+        canvas.addEventListener('pointerdown', (e) => {
+          if (e.pointerType === 'mouse' && e.button !== 0) return;
+          SoundEngine.unlock();
+          run.pointerDown = true;
+          const pt = toLogicalPoint(e.clientX, e.clientY);
+          run.lastPointer = pt;
+          run.trailPoints.push({ x: pt.x, y: pt.y, age: 0 });
+        });
+
+        canvas.addEventListener('pointermove', (e) => {
+          const pt = toLogicalPoint(e.clientX, e.clientY);
+          const shouldSlice = run.pointerDown || e.pointerType === 'mouse';
+          if (shouldSlice && run.lastPointer) {
+            run.trailPoints.push({ x: pt.x, y: pt.y, age: 0 });
+            checkSliceAlongSegment(run.lastPointer, pt);
+          }
+          run.lastPointer = pt;
+        });
+
+        const endPointer = () => {
+          run.pointerDown = false;
+          run.lastPointer = null;
+        };
+        canvas.addEventListener('pointerup', endPointer);
+        canvas.addEventListener('pointercancel', endPointer);
+        canvas.addEventListener('pointerleave', () => {
+          run.lastPointer = null;
+        });
+
+        window.addEventListener('keydown', (e) => {
+          const tag = e.target && e.target.tagName ? e.target.tagName.toUpperCase() : '';
+          if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+          if (e.key === 'Escape') {
+            if (!document.getElementById('modal-exit-rating').classList.contains('hidden')) {
+              skipRatingWithCooldown();
+              return;
+            }
+            for (const mId of ['modal-confirm-reset', 'modal-settings', 'modal-level-map', 'modal-shop', 'modal-achievements']) {
+              if (!document.getElementById(mId).classList.contains('hidden')) {
+                closeModal(mId);
+                return;
+              }
+            }
+            if (run.phase === 'playing') setPausedState(true, false);
+            else if (run.phase === 'paused' && !run.pausedFromHidden) setPausedState(false, false);
+          } else if ((e.key === 'p' || e.key === 'P') && (run.phase === 'playing' || run.phase === 'paused')) {
+            e.preventDefault();
+            setPausedState(run.phase === 'playing', false);
+          }
+        });
+
+        document.addEventListener('visibilitychange', () => {
+          if (document.hidden && run.phase === 'playing') {
+            setPausedState(true, true);
+          }
+        });
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('beforeunload', () => {
+          stopLoop();
+          SoundEngine.stopMusic();
+          if (run.exitTimeout) clearTimeout(run.exitTimeout);
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
