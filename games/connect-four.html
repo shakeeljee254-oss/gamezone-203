@@ -12,7 +12,7 @@
   />
   <meta
     name="keywords"
-    content="Connect Four 203, Connect 4 online, free Connect Four game, GameZone203, strategy board game, Minimax AI, 2 player Connect 4, HTML5 browser game, connect four board size, connect four life size, life size connect four game, large size connect four, large size connect four game, connect four travel size game, giant size connect four, travel size connect four, connect four online no download, connect 4 strategy tips, connect four easy medium hard ai, connect four pass and play, connect four daily quests, connect four keyboard shortcuts, connect four dark and light theme, connect four free browser game"
+    content="Connect Four 203, Connect 4 online, free Connect Four game, GameZone203, strategy board game, Minimax AI, 2 player Connect 4, HTML5 browser game, connect four board size, connect four life size, life size connect four game, large size connect four, large size connect four game, connect four travel size game, giant size connect four, travel size connect four, connect four online no download, connect 4 strategy tips, connect four easy medium hard ai, connect four pass and play, connect four daily quests, connect four keyboard shortcuts, connect four dark and light theme, connect four free browser game, connect four ai demo mode, connect four undo move online, connect four day light dark theme"
   />
   <meta name="author" content="GameZone203" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -37,6 +37,79 @@
     content="Play free Connect Four 203 online at GameZone203 on mobile, laptop, and PC with Easy, Medium, and Hard AI."
   />
   <meta name="twitter:image" content="https://shakeeljee254-oss.github.io/gamezone-203/logo.png" />
+
+  <!-- VideoGame & FAQPage Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoGame",
+        "name": "Connect Four 203",
+        "description": "Play Connect Four 203 free online at GameZone203 with no download. Instant arena on mobile, laptop, and PC with Easy, Medium, and Hard AI, Day/Light/Dark themes, daily quests, and 2-player mode.",
+        "genre": ["Strategy", "Board Game", "Puzzle"],
+        "gamePlatform": ["Web Browser", "Mobile Web", "Desktop Browser"],
+        "operatingSystem": "Any (HTML5)",
+        "applicationCategory": "Game",
+        "playMode": ["SinglePlayer", "MultiPlayer"],
+        "numberOfPlayers": {
+          "@type": "QuantitativeValue",
+          "minValue": 1,
+          "maxValue": 2
+        },
+        "url": "https://shakeeljee254-oss.github.io/gamezone-203/games/connect-four/",
+        "image": "https://shakeeljee254-oss.github.io/gamezone-203/logo.png",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GameZone203"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How do you win in Connect Four 203?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Drop Red or Yellow discs into the 7x6 grid and align four discs in a row horizontally, vertically, or diagonally before your opponent."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What game modes and AI difficulty levels are available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can play 1P vs AI with Easy, Medium, or Hard difficulty, 2 Players pass-and-play, or watch AI Demo mode."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I switch themes and use keyboard shortcuts?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can switch between Day, Light, and Dark themes anytime and use number keys 1 to 7 or Left/Right arrow keys and Enter/Space to drop discs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is Connect Four 203 free to play without downloading?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, Connect Four 203 is free to play directly in your browser on mobile, laptop, and PC at GameZone203 with no download required."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -514,6 +587,28 @@
           Tap/click any column or press <strong>1–7</strong> on your keyboard. Choose <strong>Easy</strong> for casual play, <strong>Medium</strong> for threat blocking, or <strong>Hard</strong> for deep tactical search.
         </p>
       </article>
+    </section>
+
+    <section id="game-faq" aria-label="Frequently Asked Questions" class="theme-card rounded-2xl p-4 sm:p-5 space-y-3">
+      <h2 class="font-display text-sm sm:text-base font-bold">Frequently Asked Questions</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs sm:text-sm">
+        <div class="theme-muted-box rounded-xl p-3 space-y-1">
+          <h3 class="font-bold">How do you win in Connect Four 203?</h3>
+          <p class="theme-text-muted leading-relaxed">Drop Red or Yellow discs into the 7×6 grid and connect four in a row horizontally, vertically, or diagonally.</p>
+        </div>
+        <div class="theme-muted-box rounded-xl p-3 space-y-1">
+          <h3 class="font-bold">What modes and AI levels are included?</h3>
+          <p class="theme-text-muted leading-relaxed">Play 1P vs AI (Easy, Medium, Hard), 2 Players pass-and-play, or AI Demo mode with daily quests and achievements.</p>
+        </div>
+        <div class="theme-muted-box rounded-xl p-3 space-y-1">
+          <h3 class="font-bold">Can I switch Day, Light, and Dark themes?</h3>
+          <p class="theme-text-muted leading-relaxed">Yes, switch between Day, Light, and Dark themes anytime from the top bar or Settings modal.</p>
+        </div>
+        <div class="theme-muted-box rounded-xl p-3 space-y-1">
+          <h3 class="font-bold">Is it free with no download?</h3>
+          <p class="theme-text-muted leading-relaxed">Yes, play free directly in your browser on mobile, laptop, and PC at GameZone203 without any download.</p>
+        </div>
+      </div>
     </section>
 
     <footer class="border-t border-slate-500/20 pt-3 pb-4 flex flex-wrap items-center justify-between gap-2 text-xs theme-text-muted">
