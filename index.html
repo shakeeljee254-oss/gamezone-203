@@ -3,30 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO TAGS -->
-  <title>GameZone 203 - Play 50+ Free Online Games (Tic Tac Toe, 2048 & More)</title>
+  <title>GameZone 203 - Play 50+ Free Online Games (Tic Tac Toe, 2048 &amp; More)</title>
   <meta name="description" content="Play free online games at GameZone 203. Explore action, racing, puzzle, arcade, and classic games like Tic Tac Toe, 2048, and Neon Snake. No download required!">
   <meta name="keywords" content="free online games, play games online, tic tac toe, 2048 game, neon snake, arcade games, puzzle games">
-  <meta name="robots" content="index, follow">
-  
-  <!-- CANONICAL URL (Aapka Asli GitHub Domain) -->
+  <meta name="robots" content="index, follow, max-image-preview:large">
+
+  <!-- CANONICAL URL -->
   <link rel="canonical" href="https://shakeeljee254-oss.github.io/gamezone-203/">
-  
-  <!-- OPEN GRAPH (WhatsApp/Facebook Preview) -->
+
+  <!-- OPEN GRAPH -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GameZone 203">
   <meta property="og:title" content="GameZone 203 - Play Free Online Games">
   <meta property="og:description" content="Play 50+ free online games. Action, puzzle, racing, and classics like Tic Tac Toe and 2048.">
   <meta property="og:url" content="https://shakeeljee254-oss.github.io/gamezone-203/">
   <meta property="og:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
-  
+
   <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image">
-  
+  <meta name="twitter:title" content="GameZone 203 - Play Free Online Games">
+  <meta name="twitter:description" content="Play 50+ free online games. Action, puzzle, racing, and classics like Tic Tac Toe and 2048.">
+  <meta name="twitter:image" content="https://shakeeljee254-oss.github.io/gamezone-203/cover.png">
+
+  <!-- STRUCTURED DATA (WebSite + FAQPage, no fake ratings) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "GameZone 203",
+        "url": "https://shakeeljee254-oss.github.io/gamezone-203/",
+        "description": "Play free browser games online at GameZone 203 with no downloads required."
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are games on GameZone 203 free to play?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can play free browser games at GameZone 203 directly on desktop, laptop, and mobile without downloading software."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What categories of games are available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "GameZone 203 organizes games across categories such as Action, Racing, Puzzle, Board Games, Arcade, and Kids games."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Where can I find Privacy Policy, Terms, About, and Contact information?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Links to About, Contact, Privacy Policy, Terms & Conditions, and Disclaimer are available in the navigation and footer."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
   <!-- THEME COLOR & CSS -->
   <meta name="theme-color" content="#f4f6ff">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .legal-dropdown {
+      position: relative;
+    }
+    .legal-dropdown-toggle {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      text-align: left;
+    }
+    .legal-dropdown-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 6px;
+      padding: 8px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(15, 23, 42, 0.12);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+    .legal-dropdown.open .legal-dropdown-menu {
+      display: flex;
+    }
+    .legal-dropdown-menu a {
+      padding: 7px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      font-size: 0.9rem;
+    }
+    .legal-dropdown-menu a:hover {
+      background: rgba(37, 99, 235, 0.08);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin: 10px 0;
+    }
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    .portal-faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .portal-faq-card {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(15, 23, 42, 0.1);
+    }
+    .portal-faq-card h3 {
+      margin: 0 0 6px;
+      font-size: 1rem;
+    }
+    .portal-faq-card p {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
 
@@ -39,13 +163,34 @@
       </a>
       <p class="brand-tagline">Play • Explore • Enjoy</p>
 
-      <nav class="sidebar-nav" id="main-nav">
+      <nav class="sidebar-nav" id="main-nav" aria-label="Primary Navigation">
         <a href="#all-games" class="side-link active">🏠 <span>Home</span></a>
         <a href="#all-games" class="side-link">🎮 <span>All Games</span></a>
         <a href="#popular" class="side-link">🏆 <span>Popular Games</span></a>
         <a href="#kids" class="side-link">🧸 <span>Kids Games</span></a>
         <a href="#categories" class="side-link">🗂️ <span>Categories</span></a>
-        <a href="#about" class="side-link">ℹ️ <span>About</span></a>
+        <a href="about.html" class="side-link">ℹ️ <span>About</span></a>
+        <a href="contact.html" class="side-link">✉️ <span>Contact</span></a>
+
+        <div class="legal-dropdown" id="legal-dropdown">
+          <button
+            type="button"
+            class="side-link legal-dropdown-toggle"
+            id="legal-dropdown-btn"
+            aria-expanded="false"
+            aria-controls="legal-dropdown-menu"
+          >
+            <span>📄 <span>Legal</span></span>
+            <span aria-hidden="true">▾</span>
+          </button>
+          <div class="legal-dropdown-menu" id="legal-dropdown-menu" role="menu">
+            <a href="privacy-policy.html" role="menuitem">🔒 Privacy Policy</a>
+            <a href="terms.html" role="menuitem">📜 Terms &amp; Conditions</a>
+            <a href="disclaimer.html" role="menuitem">⚠️ Disclaimer</a>
+            <a href="about.html" role="menuitem">ℹ️ About Us</a>
+            <a href="contact.html" role="menuitem">✉️ Contact Us</a>
+          </div>
+        </div>
       </nav>
 
       <div class="sidebar-promo">
@@ -82,17 +227,15 @@
         </div>
       </header>
 
-           <!-- HERO + TRENDING SIDEBAR -->
+      <!-- HERO + TRENDING SIDEBAR -->
       <section class="dashboard-top">
-        
-        <!-- NAYA PREMIUM HERO SECTION -->
         <div class="hero">
           <div class="hero-content">
             <span class="hero-eyebrow">🎮 WELCOME TO THE ULTIMATE GAMING ZONE</span>
             <h1>Play <span>50+</span> Free Games</h1>
             <p>No downloads. No sign-ups. Just pure gaming fun at your fingertips. Play instantly on any device!</p>
             <a href="#all-games" class="hero-button">▶ Explore All Games</a>
-            
+
             <div class="hero-stats">
               <div class="stat-item"><strong>50+</strong><span>Games</span></div>
               <div class="stat-item"><strong>100%</strong><span>Free</span></div>
@@ -163,6 +306,18 @@
         <div class="game-grid" id="popular-grid"></div>
       </section>
 
+      <!-- KIDS GAMES ANCHOR TARGET -->
+      <section class="games-section" id="kids">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">FAMILY FRIENDLY</span>
+            <h2>🧸 Kids Games</h2>
+            <p>Easy-to-play browser games for younger players.</p>
+          </div>
+          <a href="#all-games" class="view-all">Filter in All Games →</a>
+        </div>
+      </section>
+
       <!-- ALL GAMES -->
       <section class="games-section all-games-section" id="all-games">
         <div class="section-title">
@@ -180,14 +335,70 @@
         </p>
       </section>
 
+      <!-- PORTAL FAQ -->
+      <section class="games-section" id="faq" aria-label="Frequently Asked Questions">
+        <div class="section-title">
+          <div>
+            <span class="section-kicker">HELP &amp; INFO</span>
+            <h2>❓ Frequently Asked Questions</h2>
+          </div>
+        </div>
+        <div class="portal-faq-grid">
+          <div class="portal-faq-card">
+            <h3>Are games free to play?</h3>
+            <p>Yes, browse and play free online games directly in your browser without downloads.</p>
+          </div>
+          <div class="portal-faq-card">
+            <h3>Which devices are supported?</h3>
+            <p>GameZone 203 is designed to work across desktop, laptop, tablet, and mobile browsers.</p>
+          </div>
+          <div class="portal-faq-card">
+            <h3>Where are policies and contact details?</h3>
+            <p>Check the Legal menu in the sidebar or the links in the footer below.</p>
+          </div>
+        </div>
+      </section>
+
       <!-- FOOTER -->
       <footer class="main-footer" id="about">
         <a href="/gamezone-203/" class="footer-brand">🎮 GameZone<b>203</b></a>
         <p>Play More. Have Fun! Discover free online games for everyone.</p>
+        <nav class="footer-links" aria-label="Footer Links">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms.html">Terms &amp; Conditions</a>
+          <a href="disclaimer.html">Disclaimer</a>
+        </nav>
         <small>© <span id="footer-year"></span> GameZone 203. All rights reserved.</small>
       </footer>
     </main>
   </div>
+
+  <script>
+    (function () {
+      const dd = document.getElementById('legal-dropdown');
+      const btn = document.getElementById('legal-dropdown-btn');
+      if (dd && btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const isOpen = dd.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(isOpen));
+        });
+        document.addEventListener('click', function (e) {
+          if (!dd.contains(e.target)) {
+            dd.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+      const y1 = document.getElementById('year');
+      const y2 = document.getElementById('footer-year');
+      const nowYear = String(new Date().getFullYear());
+      if (y1 && !y1.textContent.trim()) y1.textContent = nowYear;
+      if (y2 && !y2.textContent.trim()) y2.textContent = nowYear;
+    })();
+  </script>
 
   <!-- YOUR JAVASCRIPT FILES -->
   <script src="main.js"></script>
